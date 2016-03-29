@@ -3,7 +3,7 @@ gradle/
 run/
 libs/
 .settings/
-ashenwheat*.launch
+*.launch
 *.log
 *.jar
 *.class
@@ -11,3 +11,4 @@ gradlew
 gradlew.bat
 bin/
 .gradle/
+build.number
