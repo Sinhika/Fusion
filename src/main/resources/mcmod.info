@@ -1,0 +1,17 @@
+[
+{
+"modid": "fusion",
+"name": "Fusion",
+"description": "A plugin for SimpleCore API that adds a unique alloying process.",
+"version": "${version}",
+"credits": "Created by AleXndrTheGr8st, with help from Zot201. Maintained by Sinhika",
+"logoFile": "/assets/simplecore/logos/SimpleCore.png",
+"mcversion": "${mcversion}",
+"url": "http://minecraft.curseforge.com/projects/simplecore-api",
+"updateUrl": "",
+"authorList": [ "AleXndrTheGr8st", "Sinhika" ],
+"parent":"",
+"screenshots": [],
+"dependencies": [simplecore]
+}
+]
