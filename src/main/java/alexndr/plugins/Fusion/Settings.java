@@ -78,7 +78,8 @@ public class Settings {
 										.setLightValue(0.0F).setHarvestTool("pickaxe")).asConfigBlock();
 			sinisiteBlock = settings.get(new ConfigBlock("Sinisite Block", "Blocks").setHardness(7.0F).setResistance(12.0F)
 										.setLightValue(0.0F).setHarvestTool("pickaxe")).asConfigBlock();
-			fusionFurnace = settings.get(new ConfigBlock("Fusion Furnace", "Blocks").setHardness(3.5F).setResistance(10.0F)
+			
+			fusionFurnace = settings.get(new ConfigBlock("Fusion Furnace", "Machines").setHardness(3.5F).setResistance(10.0F)
 										.setLightValue(1.0F).setHarvestTool("pickaxe")).asConfigBlock();
 			
 			//Tools
