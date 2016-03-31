@@ -7,6 +7,7 @@ import alexndr.api.config.Configuration;
 import alexndr.api.config.types.ConfigArmor;
 import alexndr.api.config.types.ConfigBlock;
 import alexndr.api.config.types.ConfigEntry;
+import alexndr.api.config.types.ConfigItem;
 import alexndr.api.config.types.ConfigTool;
 import alexndr.api.config.types.ConfigValue;
 import alexndr.api.logger.LogHelper;
@@ -58,6 +59,16 @@ public class Settings {
 			enableSimpleOres = contentToggles.getValueByName("EnableSimpleOres");
 			enableNetherrocks = contentToggles.getValueByName("EnableNetherrocks");
 				
+			//Items
+			steelIngot = settings.get(new ConfigItem("Steel Ingot", "Items").setStackSize(64)
+					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+			bronzeIngot = settings.get(new ConfigItem("Bronze Ingot", "Items").setStackSize(64)
+					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+			thyriumIngot = settings.get(new ConfigItem("Thyrium Ingot", "Items").setStackSize(64)
+					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+			sinisiteIngot = settings.get(new ConfigItem("Sinisite Ingot", "Items").setStackSize(64)
+					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+
 			//Blocks
 			steelBlock = settings.get(new ConfigBlock("Steel Block", "Blocks").setHardness(7.0F).setResistance(12.0F)
 									 .setLightValue(0.0F).setHarvestTool("pickaxe")).asConfigBlock();
@@ -144,6 +155,7 @@ public class Settings {
 			LogHelper.verbose("Fusion", "Settings loaded successfully");
 		}
 	} // end ()
+	public static ConfigItem steelIngot, bronzeIngot, thyriumIngot, sinisiteIngot;
 	
 	public static ConfigEntry thyriumBow, sinisiteBow;
 	public static ConfigBlock steelBlock, bronzeBlock, thyriumBlock, sinisiteBlock;
@@ -153,5 +165,6 @@ public class Settings {
 	
 	public static ConfigValue customRecipes, extraChunkRecipes, updateChecker;
 	public static ConfigValue enableSimpleOres, enableNetherrocks;
-	public static ConfigValue thyriumBowDamageModifier, thyriumBowZoomAmount, sinisiteBowDamageModifier, sinisiteBowKnockbackAmount;
+	public static ConfigValue thyriumBowDamageModifier, thyriumBowZoomAmount, 
+							  sinisiteBowDamageModifier, sinisiteBowKnockbackAmount;
 }

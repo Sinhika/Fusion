@@ -14,8 +14,15 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import alexndr.api.content.inventory.SimpleTab;
+import alexndr.api.core.APISettings;
+import alexndr.api.core.SimpleCoreAPI;
+import alexndr.api.helpers.game.RenderItemHelper;
 import alexndr.api.helpers.game.StatTriggersHelper;
+import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.logger.LogHelper;
+import alexndr.api.registry.ContentCategories;
 import alexndr.api.registry.ContentRegistry;
 import alexndr.api.registry.Plugin;
 import alexndr.plugins.SimpleOres.ModInfo;
@@ -24,20 +31,25 @@ import alexndr.plugins.SimpleOres.ModInfo;
  * @author AleXndrTheGr8st
  */
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, 
-	 dependencies = "required-after:simplecore", updateJSON=ModInfo.VERSIONURL)
+	 dependencies = "required-after:simplecore, after:simpleores, after:netherrocks", 
+	 updateJSON=ModInfo.VERSIONURL)
 public class Fusion 
 {
 	public static Plugin plugin = new Plugin(ModInfo.ID, ModInfo.NAME);
 	
 	@SidedProxy(clientSide = "alexndr.plugins.Fusion.ProxyClient", serverSide = "alexndr.plugins.Fusion.ProxyCommon")
 	public static ProxyCommon proxy;
-	public static Fusion INSTANCE = new Fusion();
+	
+	public static Fusion INSTANCE;
 	
 	//Tool Materials
 	public static ToolMaterial toolSteel;
 	
 	//Armor Materials
 	public static ArmorMaterial armorSteel;
+	
+	@SuppressWarnings("unused")
+	private static SimpleTab simpleMachines;
 	
 	/**
 	 * Called during the PreInit phase.
@@ -53,14 +65,18 @@ public class Fusion
 		Settings.createOrLoadSettings(event);
 		
 		//Content
+		if (! TabHelper.wereTabsInitialized()) {
+			SimpleCoreAPI.tabPreInit();
+		}
+		tabPreInit();
+		
 		setToolAndArmorStats();
 		if(Loader.isModLoaded("simpleores") && Settings.enableSimpleOres.asBoolean()) {
 			ContentSimpleOres.setToolAndArmorStats();
 		}
-		
 		Content.preInitialize();
 		Recipes.preInitialize();
-	}
+	} // end PreInit()
 	
 	/**
 	 * Called during the Init phase.
@@ -72,6 +88,11 @@ public class Fusion
 		INSTANCE = this;
 		
 		//Registers
+		if(event.getSide() == Side.CLIENT) 
+		{
+			RenderItemHelper.renderItemsAndBlocks(plugin);
+		}
+		// TODO check if we do this here, or elsewhere...
 		GameRegistry.registerTileEntity(TileEntityFusionFurnace.class, "fusionFurnace");
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, (IGuiHandler) proxy);
 		
@@ -126,4 +147,15 @@ public class Fusion
     													   Settings.steelArmor.getBootsReduction()}, 
     													   Settings.steelArmor.getEnchantability());
     }
+    
+    private static void tabPreInit()
+    {
+		LogHelper.verbose("Creating tabs");
+		if(APISettings.tabs.asBoolean() && APISettings.separateTabs.asBoolean()) 
+		{
+			simpleMachines = new SimpleTab(Fusion.plugin, "SimpleMachines", 
+										   ContentCategories.CreativeTab.OTHER);
+		} //
+    } // end tabPreInit()
+    
 } // end class

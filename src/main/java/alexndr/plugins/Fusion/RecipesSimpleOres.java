@@ -2,7 +2,6 @@ package alexndr.plugins.Fusion;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -27,11 +26,11 @@ public class RecipesSimpleOres
 	{	
 		//Block Recipes
 			//Storage Content
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_block, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_block, true, new Object[]{
 				"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotBronze"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_block, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_block, true, new Object[]{
 				"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotThyrium"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_block, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_block, true, new Object[]{
 				"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotSinisite"}));
 			
 		//Item Recipes
@@ -93,83 +92,83 @@ public class RecipesSimpleOres
 			}
 			
 			//Rods
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_rod, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_rod, true, new Object[]{
 				"X", "X", Character.valueOf('X'), "ingotThyrium"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_rod, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_rod, true, new Object[]{
 				"X", "X", Character.valueOf('X'), "ingotSinisite"}));
 			
 		//Tool Recipes
 			//Bronze Tool Recipes
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_pickaxe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_pickaxe, true, new Object[]{
 				"XXX", " Y ", " Y ", Character.valueOf('X'), "ingotBronze", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_axe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_axe, true, new Object[]{
 				"XX ", "XY ", " Y ", Character.valueOf('X'), "ingotBronze", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_shovel, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_shovel, true, new Object[]{
 				"X", "Y", "Y", Character.valueOf('X'), "ingotBronze", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_sword, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_sword, true, new Object[]{
 				"X", "X", "Y", Character.valueOf('X'), "ingotBronze", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_hoe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_hoe, true, new Object[]{
 				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotBronze", Character.valueOf('Y'), "stickWood"}));
 			
 			//Thyrium Tool Recipes
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_pickaxe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_pickaxe, true, new Object[]{
 				"XXX", " Y ", " Y ", Character.valueOf('X'), "ingotThyrium", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_axe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_axe, true, new Object[]{
 				"XX ", "XY ", " Y ", Character.valueOf('X'), "ingotThyrium", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_shovel, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_shovel, true, new Object[]{
 				"X", "Y", "Y", Character.valueOf('X'), "ingotThyrium", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_sword, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_sword, true, new Object[]{
 				"X", "X", "Y", Character.valueOf('X'), "ingotThyrium", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_hoe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_hoe, true, new Object[]{
 				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotThyrium", Character.valueOf('Y'), "stickWood"}));
 			
 			//Sinisite Tool Recipes
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_pickaxe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_pickaxe, true, new Object[]{
 				"XXX", " Y ", " Y ", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_axe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_axe, true, new Object[]{
 				"XX ", "XY ", " Y ", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_shovel, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_shovel, true, new Object[]{
 				"X", "Y", "Y", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_sword, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_sword, true, new Object[]{
 				"X", "X", "Y", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_hoe, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_hoe, true, new Object[]{
 				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
 			
 			//Bow Recipes
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_bow, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_bow, true, new Object[]{
 				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.thyrium_rod, Character.valueOf('Y'), Items.string, Character.valueOf('Z'), Items.gold_ingot}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_bow, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_bow, true, new Object[]{
 				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.sinisite_rod, Character.valueOf('Y'), Items.string, Character.valueOf('Z'), "gemOnyx"}));
 			
 		//Armour Recipes
 			//Bronze Armour Recipes
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_helmet, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_helmet, true, new Object[]{
 				"XXX", "X X", Character.valueOf('X'), "ingotBronze"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_chestplate, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_chestplate, true, new Object[]{
 				"X X", "XXX", "XXX", Character.valueOf('X'), "ingotBronze"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_leggings, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_leggings, true, new Object[]{
 				"XXX", "X X", "X X", Character.valueOf('X'), "ingotBronze"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.bronze_boots, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.bronze_boots, true, new Object[]{
 				"X X", "X X", Character.valueOf('X'), "ingotBronze"}));
 			
 			//Thyrium Armour Recipes
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_helmet, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_helmet, true, new Object[]{
 				"XXX", "X X", Character.valueOf('X'), "ingotThyrium"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_chestplate, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_chestplate, true, new Object[]{
 				"X X", "XXX", "XXX", Character.valueOf('X'), "ingotThyrium"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_leggings, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_leggings, true, new Object[]{
 				"XXX", "X X", "X X", Character.valueOf('X'), "ingotThyrium"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.thyrium_boots, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_boots, true, new Object[]{
 				"X X", "X X", Character.valueOf('X'), "ingotThyrium"}));
 			
 			//Sinisite Armour Recipes
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_helmet, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_helmet, true, new Object[]{
 				"XXX", "X X", Character.valueOf('X'), "ingotSinisite"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_chestplate, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_chestplate, true, new Object[]{
 				"X X", "XXX", "XXX", Character.valueOf('X'), "ingotSinisite"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_leggings, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_leggings, true, new Object[]{
 				"XXX", "X X", "X X", Character.valueOf('X'), "ingotSinisite"}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ContentSimpleOres.sinisite_boots, true, new Object[]{
+			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_boots, true, new Object[]{
 				"X X", "X X", Character.valueOf('X'), "ingotSinisite"}));
 			
 		//Smelting Recipes

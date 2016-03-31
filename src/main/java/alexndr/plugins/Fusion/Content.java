@@ -6,18 +6,18 @@ import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import alexndr.api.content.blocks.SimpleBlock;
 import alexndr.api.content.items.SimpleArmor;
 import alexndr.api.content.items.SimpleAxe;
 import alexndr.api.content.items.SimpleHoe;
 import alexndr.api.content.items.SimpleItem;
 import alexndr.api.content.items.SimplePickaxe;
+import alexndr.api.content.items.SimpleShears;
 import alexndr.api.content.items.SimpleShovel;
 import alexndr.api.content.items.SimpleSword;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.logger.LogHelper;
-import alexndr.api.registry.ContentRegistry;
+import alexndr.api.registry.ContentCategories;
 
 /**
  * @author AleXndrTheGr8st
@@ -33,16 +33,47 @@ public class Content
 	 */
 	public static void preInitialize()
 	{
-		try{doItems(); LogHelper.verbose("Fusion", "All items were added successfully");}
-		catch(Exception e){LogHelper.severe("Fusion", "Items were not added successfully. This is a serious problem!"); e.printStackTrace();}
-		try{doBlocks(); LogHelper.verbose("Fusion", "All blocks were added successfully");}
-		catch(Exception e){LogHelper.severe("Fusion", "Blocks were not added successfully. This is a serious problem!"); e.printStackTrace();}
-		try{doTools(); LogHelper.verbose("Fusion", "All tools were added successfully");}
-		catch(Exception e){LogHelper.severe("Fusion", "Tools were not added successfully. This is a serious problem!"); e.printStackTrace();}
-		try{doArmor(); LogHelper.verbose("Fusion", "All armor was added successfully");}
-		catch(Exception e){LogHelper.severe("Fusion", "Armor was not added successfully. This is a serious problem!"); e.printStackTrace();}
-		try{doAchievements(); LogHelper.verbose("Fusion", "All achievements were added successfully");}
-		catch(Exception e){LogHelper.severe("Fusion", "Achievements were not added successfully. This is a serious problem!"); e.printStackTrace();}
+		try {
+			doItems();
+			LogHelper.verbose("Fusion", "All items were added successfully");
+		} catch (Exception e) {
+			LogHelper.severe("Fusion",
+							"Items were not added successfully. This is a serious problem!");
+			e.printStackTrace();
+		}
+		try {
+			doBlocks();
+			LogHelper.verbose("Fusion", "All blocks were added successfully");
+		} catch (Exception e) {
+			LogHelper.severe("Fusion",
+							"Blocks were not added successfully. This is a serious problem!");
+			e.printStackTrace();
+		}
+		try {
+			doTools();
+			LogHelper.verbose("Fusion", "All tools were added successfully");
+		} catch (Exception e) {
+			LogHelper.severe("Fusion",
+							"Tools were not added successfully. This is a serious problem!");
+			e.printStackTrace();
+		}
+		try {
+			doArmor();
+			LogHelper.verbose("Fusion", "All armor was added successfully");
+		} catch (Exception e) {
+			LogHelper.severe("Fusion",
+							"Armor was not added successfully. This is a serious problem!");
+			e.printStackTrace();
+		}
+		try {
+			doAchievements();
+			LogHelper.verbose("Fusion",
+					"All achievements were added successfully");
+		} catch (Exception e) {
+			LogHelper.severe("Fusion",
+							"Achievements were not added successfully. This is a serious problem!");
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -50,8 +81,15 @@ public class Content
 	 */
 	public static void initialize()
 	{
-		try{setTabs(); LogHelper.verbose("Fusion", "Successfully set tabs for all blocks/items");}
-		catch(Exception e){LogHelper.severe("Fusion", "Tabs were not successfully set for blocks/items. This is a serious problem!"); e.printStackTrace();}
+		try {
+			setTabs();
+			LogHelper.verbose("Fusion",
+					"Successfully set tabs for all blocks/items");
+		} catch (Exception e) {
+			LogHelper.severe("Fusion",
+							"Tabs were not successfully set for blocks/items. This is a serious problem!");
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -59,13 +97,12 @@ public class Content
 	 */
 	public static void doArmor()
 	{
-		steel_helmet = new SimpleArmor(Fusion.armorSteel, 0).modId("fusion").setType("steel").setUnlocalizedName("steel_helmet");
-		steel_chestplate = new SimpleArmor(Fusion.armorSteel, 1).modId("fusion").setType("steel").setUnlocalizedName("steel_chestplate");
-		steel_leggings = new SimpleArmor(Fusion.armorSteel, 2).modId("fusion").setType("steel").setUnlocalizedName("steel_leggings");
-		steel_boots = new SimpleArmor(Fusion.armorSteel, 3).modId("fusion").setType("steel").setUnlocalizedName("steel_boots");
+		steel_helmet = new SimpleArmor(Fusion.plugin, Fusion.armorSteel, SimpleArmor.Slots.HELM).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_helmet");
+		steel_chestplate = new SimpleArmor(Fusion.plugin, Fusion.armorSteel, SimpleArmor.Slots.CHEST).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_chestplate");
+		steel_leggings = new SimpleArmor(Fusion.plugin, Fusion.armorSteel, SimpleArmor.Slots.LEGS).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_leggings");
+		steel_boots = new SimpleArmor(Fusion.plugin, Fusion.armorSteel, SimpleArmor.Slots.BOOTS).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_boots");
 		
-		if(simpleores)
-			ContentSimpleOres.doArmor();
+		if(simpleores) ContentSimpleOres.doArmor();
 	}
 	
 	/**
@@ -73,18 +110,18 @@ public class Content
 	 */
 	public static void doBlocks()
 	{
-		steel_block = new SimpleBlock(Material.iron).modId("fusion").setConfigValues(Settings.steelBlock).setBlockName("steel_block");
-		
-		fusion_furnace = new BlockFusionFurnace(false).setHardness(Settings.fusionFurnace.getHardness()).setResistance(Settings.fusionFurnace.getResistance()).setBlockName("fusion_furnace");
-		fusion_furnace_lit = new BlockFusionFurnace(true).setHardness(Settings.fusionFurnace.getHardness()).setResistance(Settings.fusionFurnace.getResistance()).setLightLevel(Settings.fusionFurnace.getLightValue()).setBlockName("fusion_furnace_lit");
-		
+		// TODO new version of this...
+//		fusion_furnace = new BlockFusionFurnace(false).setHardness(Settings.fusionFurnace.getHardness()).setResistance(Settings.fusionFurnace.getResistance()).setBlockName("fusion_furnace");
+//		fusion_furnace_lit = new BlockFusionFurnace(true).setHardness(Settings.fusionFurnace.getHardness()).setResistance(Settings.fusionFurnace.getResistance()).setLightLevel(Settings.fusionFurnace.getLightValue()).setBlockName("fusion_furnace_lit");
+		steel_block = new SimpleBlock(Fusion.plugin, Material.iron, ContentCategories.Block.GENERAL).setConfigEntry(Settings.steelBlock).setStepSound(Block.soundTypeMetal).setUnlocalizedName("steel_block");
+
 		//Block Registering
-		GameRegistry.registerBlock(fusion_furnace, "fusion_furnace");
-		GameRegistry.registerBlock(fusion_furnace_lit, "fusion_furnace_lit");
-		ContentRegistry.registerBlock(fusion_furnace, "fusion_furnace", "fusion", ContentTypes.Block.MACHINE);
+		// TODO this should be included in BlockFusionFurnace class.
+//		GameRegistry.registerBlock(fusion_furnace, "fusion_furnace");
+//		GameRegistry.registerBlock(fusion_furnace_lit, "fusion_furnace_lit");
+//		ContentRegistry.registerBlock(fusion_furnace, "fusion_furnace", "fusion", ContentTypes.Block.MACHINE);
 		
-		if(simpleores)
-			ContentSimpleOres.doBlocks();
+		if(simpleores) ContentSimpleOres.doBlocks();
 	}
 	
 	/**
@@ -92,13 +129,12 @@ public class Content
 	 */
 	public static void doItems()
 	{
-		steel_ingot = new SimpleItem().modId("fusion").isIngot().setUnlocalizedName("steel_ingot");
-		small_steel_chunk = new SimpleItem().modId("fusion").isIngot().setUnlocalizedName("small_steel_chunk");
-		medium_steel_chunk = new SimpleItem().modId("fusion").isIngot().setUnlocalizedName("medium_steel_chunk");
-		large_steel_chunk = new SimpleItem().modId("fusion").isIngot().setUnlocalizedName("large_steel_chunk");
+		steel_ingot = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("steel_ingot");
+		small_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("small_steel_chunk");
+		medium_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("medium_steel_chunk");
+		large_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("large_steel_chunk");
 		
-		if(simpleores)
-			ContentSimpleOres.doItems();
+		if(simpleores) ContentSimpleOres.doItems();
 	}
 	
 	/**
@@ -106,14 +142,14 @@ public class Content
 	 */
 	public static void doTools()
 	{
-		steel_pickaxe = new SimplePickaxe(Fusion.toolSteel).modId("fusion").setUnlocalizedName("steel_pickaxe");
-		steel_axe = new SimpleAxe(Fusion.toolSteel).modId("fusion").setUnlocalizedName("steel_axe");
-		steel_shovel = new SimpleShovel(Fusion.toolSteel).modId("fusion").setUnlocalizedName("steel_shovel");
-		steel_sword = new SimpleSword(Fusion.toolSteel).modId("fusion").setUnlocalizedName("steel_sword");
-		steel_hoe = new SimpleHoe(Fusion.toolSteel).modId("fusion").setUnlocalizedName("steel_hoe");
+		steel_pickaxe = new SimplePickaxe(Fusion.plugin, Fusion.toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_pickaxe");
+		steel_axe = new SimpleAxe(Fusion.plugin, Fusion.toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_axe");
+		steel_shovel = new SimpleShovel(Fusion.plugin, Fusion.toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shovel");
+		steel_hoe = new SimpleHoe(Fusion.plugin, Fusion.toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_hoe");
+		steel_sword = new SimpleSword(Fusion.plugin, Fusion.toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_sword");
+		steel_shears = new SimpleShears(Fusion.plugin, Fusion.toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shears");
 		
-		if(simpleores)
-			ContentSimpleOres.doTools();
+		if(simpleores) ContentSimpleOres.doTools();
 	}
 	
 	/**
@@ -134,19 +170,8 @@ public class Content
 	 */
 	public static void setTabs()
 	{
-		fusion_furnace.setCreativeTab(TabHelper.decorationsTab());
-		for(Item armor : ContentRegistry.getItemListFromModId("fusion", ContentTypes.Item.ARMOR))
-			armor.setCreativeTab(TabHelper.combatTab());
-		for(Block block : ContentRegistry.getBlockListFromModId("fusion"))
-			block.setCreativeTab(TabHelper.decorationsTab());
-		for(Block ore : ContentRegistry.getBlockListFromModId("fusion", ContentTypes.Block.ORE))
-			ore.setCreativeTab(TabHelper.blocksTab());
-		for(Item item : ContentRegistry.getItemListFromModId("fusion", ContentTypes.Item.INGOT))
-			item.setCreativeTab(TabHelper.materialsTab());
-		for(Item tool : ContentRegistry.getItemListFromModId("fusion", ContentTypes.Item.TOOL))
-			tool.setCreativeTab(TabHelper.toolsTab());
-		for(Item weapon : ContentRegistry.getItemListFromModId("fusion", ContentTypes.Item.WEAPON))
-			weapon.setCreativeTab(TabHelper.combatTab());
+		// TODO handle in BlockFusionFurnace class...
+		// fusion_furnace.setCreativeTab(TabHelper.decorationsTab());
 	}
 	
 	//Armor
@@ -171,6 +196,7 @@ public class Content
 	public static Item steel_shovel;
 	public static Item steel_sword;
 	public static Item steel_hoe;
+	public static Item steel_shears;
 	
 	//Achievements
 	public static Achievement fusionAch, steelAch, steelChestplateAch;
