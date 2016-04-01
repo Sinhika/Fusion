@@ -206,24 +206,10 @@ public abstract class SimpleFurnace extends BlockContainer
 
 	/* cut & pasted from BlockFurnace */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+    public abstract boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, 
+    											EntityPlayer playerIn, EnumFacing side, 
+    											float hitX, float hitY, float hitZ);
 
-            if (tileentity instanceof TileEntitySimpleFurnace)
-            {
-                playerIn.displayGUIChest((TileEntitySimpleFurnace)tileentity);
-            }
-
-            return true;
-        }
-    } // end onBlockActivated()
 
     /**
      * Mostly cut & pasted from BlockFurnace. This must be overridden for custom classes...

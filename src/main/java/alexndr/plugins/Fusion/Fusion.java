@@ -13,7 +13,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import alexndr.api.content.inventory.SimpleTab;
 import alexndr.api.core.APISettings;
@@ -92,9 +91,7 @@ public class Fusion
 		{
 			RenderItemHelper.renderItemsAndBlocks(plugin);
 		}
-		// TODO check if we do this here, or elsewhere...
-		GameRegistry.registerTileEntity(TileEntityFusionFurnace.class, "fusionFurnace");
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, (IGuiHandler) proxy);
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, (IGuiHandler) new FusionGuiHandler());
 		
 		//Content
 		Content.initialize();

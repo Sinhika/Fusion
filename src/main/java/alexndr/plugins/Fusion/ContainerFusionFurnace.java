@@ -6,7 +6,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceFuel;
-import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -55,15 +54,7 @@ public class ContainerFusionFurnace extends Container
     }
 
 
-//    @Override
-//	public void addCraftingToCrafters(ICrafting par1ICrafting)
-//    {
-//        super.addCraftingToCrafters(par1ICrafting);
-//        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
-//        par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
-//        par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.currentBurnTime);
-//    }
-    
+   
     @Override
 	public void detectAndSendChanges()
     {

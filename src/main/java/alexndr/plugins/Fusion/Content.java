@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import alexndr.api.content.blocks.SimpleBlock;
 import alexndr.api.content.items.SimpleArmor;
 import alexndr.api.content.items.SimpleAxe;
@@ -74,7 +75,11 @@ public class Content
 							"Achievements were not added successfully. This is a serious problem!");
 			e.printStackTrace();
 		}
-	}
+		
+		// register tile entities
+		GameRegistry.registerTileEntity(TileEntityFusionFurnace.class, "fusion_furnace");
+		
+	} // end ()
 	
 	/**
 	 * Sets the tabs that the blocks/items will be in. Called during Init phase.
@@ -110,17 +115,10 @@ public class Content
 	 */
 	public static void doBlocks()
 	{
-		// TODO new version of this...
-//		fusion_furnace = new BlockFusionFurnace(false).setHardness(Settings.fusionFurnace.getHardness()).setResistance(Settings.fusionFurnace.getResistance()).setBlockName("fusion_furnace");
-//		fusion_furnace_lit = new BlockFusionFurnace(true).setHardness(Settings.fusionFurnace.getHardness()).setResistance(Settings.fusionFurnace.getResistance()).setLightLevel(Settings.fusionFurnace.getLightValue()).setBlockName("fusion_furnace_lit");
+		fusion_furnace = new BlockFusionFurnace(false).setConfigEntry(Settings.fusionFurnace).setUnlocalizedName("fusion_furnace");
+		fusion_furnace_lit = new BlockFusionFurnace(true).setConfigEntry(Settings.fusionFurnace).setUnlocalizedName("fusion_furnace_lit");
 		steel_block = new SimpleBlock(Fusion.plugin, Material.iron, ContentCategories.Block.GENERAL).setConfigEntry(Settings.steelBlock).setStepSound(Block.soundTypeMetal).setUnlocalizedName("steel_block");
 
-		//Block Registering
-		// TODO this should be included in BlockFusionFurnace class.
-//		GameRegistry.registerBlock(fusion_furnace, "fusion_furnace");
-//		GameRegistry.registerBlock(fusion_furnace_lit, "fusion_furnace_lit");
-//		ContentRegistry.registerBlock(fusion_furnace, "fusion_furnace", "fusion", ContentTypes.Block.MACHINE);
-		
 		if(simpleores) ContentSimpleOres.doBlocks();
 	}
 	
