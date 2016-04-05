@@ -15,7 +15,7 @@ import com.google.common.collect.Lists;
  */
 public class FusionFurnaceRecipes 
 {
-	// private static FusionMaterial material;
+	private static FusionMaterial material;
 	
 	private static final ArrayList<RecipeEntry> recipeList = Lists.newArrayList();
 	private static final HashMap<ItemStack, Float> experienceMap = new HashMap<ItemStack, Float>();

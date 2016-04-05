@@ -103,7 +103,5 @@ public class SlotFusionFurnace extends Slot
         }
 
         this.field_75228_b = 0;
-        net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, par1ItemStack);
-
     }
 }

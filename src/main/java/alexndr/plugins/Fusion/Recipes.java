@@ -3,43 +3,30 @@ package alexndr.plugins.Fusion;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import alexndr.api.logger.LogHelper;
+import alexndr.api.core.LogHelper;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author AleXndrTheGr8st
  */
 public class Recipes 
 {
-	@SuppressWarnings("unused")
 	private static final int WILDCARD_VALUE = OreDictionary.WILDCARD_VALUE;
 	
 	public static void preInitialize()
 	{
-		try {
-			doOreDictRecipes();
-			LogHelper.verbose("Fusion",
-					"All OreDictionary entries were added successfully");
-		} catch (Exception e) {
-			LogHelper.severe("Fusion",
-							"OreDictionary entries were not added successfully. This is a serious problem!");
-			e.printStackTrace();
-		}
+		try{doOreDictRecipes(); LogHelper.verboseInfo("Fusion", "All OreDictionary entries were added successfully");}
+		catch(Exception e){LogHelper.severe("Fusion", "OreDictionary entries were not added successfully. This is a serious problem!"); e.printStackTrace();}
 	}
 	
 	public static void initialize()
 	{
-		try {
-			doRecipes();
-			LogHelper.verbose("Fusion", "All recipes were added successfully");
-		} catch (Exception e) {
-			LogHelper.severe("Fusion",
-							"Recipes were not added successfully. This is a serious problem!");
-			e.printStackTrace();
-		}
+		try{doRecipes(); LogHelper.verboseInfo("Fusion", "All recipes were added successfully");}
+		catch(Exception e){LogHelper.severe("Fusion", "Recipes were not added successfully. This is a serious problem!"); e.printStackTrace();}
 	}
 	
 	public static void doOreDictRecipes()
@@ -55,11 +42,11 @@ public class Recipes
 	{	
 		//Block Recipes
 			//Special Furnace Recipes
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.fusion_furnace, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.fusion_furnace, true, new Object[]{
 					"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.brick_block, Character.valueOf('Y'), Blocks.furnace, Character.valueOf('W'), Items.coal, Character.valueOf('Z'), Items.iron_ingot}));
 			
 			//Storage Blocks
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
 					"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotSteel"}));
 			
 		//Item Recipes
@@ -88,26 +75,26 @@ public class Recipes
 			
 		//Tools Recipes
 			//Steel Tools
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_pickaxe, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_pickaxe, true, new Object[]{
 				"XXX", " Y ", " Y ", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_axe, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_axe, true, new Object[]{
 				"XX ", "XY ", " Y ", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_shovel, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_shovel, true, new Object[]{
 				"X", "Y", "Y", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_sword, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_sword, true, new Object[]{
 				"X", "X", "Y", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_hoe, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_hoe, true, new Object[]{
 				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
 				
 		//Armor Recipes
 			//Steel Armor
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_helmet, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_helmet, true, new Object[]{
 				"XXX", "X X", Character.valueOf('X'), "ingotSteel"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_chestplate, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_chestplate, true, new Object[]{
 				"X X", "XXX", "XXX", Character.valueOf('X'), "ingotSteel"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_leggings, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_leggings, true, new Object[]{
 				"XXX", "X X", "X X", Character.valueOf('X'), "ingotSteel"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_boots, true, new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(Content.steel_boots, true, new Object[]{
 				"X X", "X X", Character.valueOf('X'), "ingotSteel"}));
 			
 		//Smelting Recipes

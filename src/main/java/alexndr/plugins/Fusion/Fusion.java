@@ -4,51 +4,34 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import alexndr.api.content.inventory.SimpleTab;
-import alexndr.api.core.APISettings;
-import alexndr.api.core.SimpleCoreAPI;
-import alexndr.api.helpers.game.RenderItemHelper;
+import alexndr.api.core.LogHelper;
+import alexndr.api.core.UpdateChecker;
 import alexndr.api.helpers.game.StatTriggersHelper;
-import alexndr.api.helpers.game.TabHelper;
-import alexndr.api.logger.LogHelper;
-import alexndr.api.registry.ContentCategories;
-import alexndr.api.registry.ContentRegistry;
-import alexndr.api.registry.Plugin;
-import alexndr.plugins.SimpleOres.ModInfo;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author AleXndrTheGr8st
  */
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, 
-	 dependencies = "required-after:simplecore, after:simpleores, after:netherrocks", 
-	 updateJSON=ModInfo.VERSIONURL)
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:simplecore")
 public class Fusion 
 {
-	public static Plugin plugin = new Plugin(ModInfo.ID, ModInfo.NAME);
-	
 	@SidedProxy(clientSide = "alexndr.plugins.Fusion.ProxyClient", serverSide = "alexndr.plugins.Fusion.ProxyCommon")
 	public static ProxyCommon proxy;
-	
-	public static Fusion INSTANCE;
+	public static Fusion INSTANCE = new Fusion();
 	
 	//Tool Materials
 	public static ToolMaterial toolSteel;
 	
 	//Armor Materials
 	public static ArmorMaterial armorSteel;
-	
-	@SuppressWarnings("unused")
-	private static SimpleTab simpleMachines;
 	
 	/**
 	 * Called during the PreInit phase.
@@ -58,24 +41,20 @@ public class Fusion
 	public void PreInit(FMLPreInitializationEvent event)
 	{
 		LogHelper.info("Loading Fusion...");
-		
 		//Configuration
-		ContentRegistry.registerPlugin(plugin);
+		ModInfo.setModInfoProperties(event);
 		Settings.createOrLoadSettings(event);
+		if(Settings.updateChecker.asBoolean()) {UpdateChecker updateChecker = new UpdateChecker(ModInfo.ID, ModInfo.VERSION, ModInfo.VERSIONURL);}
 		
 		//Content
-		if (! TabHelper.wereTabsInitialized()) {
-			SimpleCoreAPI.tabPreInit();
-		}
-		tabPreInit();
-		
 		setToolAndArmorStats();
 		if(Loader.isModLoaded("simpleores") && Settings.enableSimpleOres.asBoolean()) {
 			ContentSimpleOres.setToolAndArmorStats();
 		}
+		
 		Content.preInitialize();
 		Recipes.preInitialize();
-	} // end PreInit()
+	}
 	
 	/**
 	 * Called during the Init phase.
@@ -87,11 +66,8 @@ public class Fusion
 		INSTANCE = this;
 		
 		//Registers
-		if(event.getSide() == Side.CLIENT) 
-		{
-			RenderItemHelper.renderItemsAndBlocks(plugin);
-		}
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, (IGuiHandler) new FusionGuiHandler());
+		GameRegistry.registerTileEntity(TileEntityFusionFurnace.class, "fusionFurnace");
+		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, proxy);
 		
 		//Content
 		Content.initialize();
@@ -99,11 +75,8 @@ public class Fusion
 		setRepairMaterials();
 		setAchievementTriggers();
 		if(Loader.isModLoaded("simpleores") && Settings.enableSimpleOres.asBoolean())
-		{
-			ContentSimpleOres.setRepairMaterials(); 
-			ContentSimpleOres.setAchievementTriggers();
-		}
-	} // end Init()
+			ContentSimpleOres.setRepairMaterials(); ContentSimpleOres.setAchievementTriggers();
+	}
 	
 	/**
 	 * Called during the PostInit phase.
@@ -112,18 +85,18 @@ public class Fusion
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent event)
 	{
-		LogHelper.verbose("Fusion", FusionFurnaceRecipes.getRecipeList().size() + " Fusion Furnace recipes were loaded");
+		LogHelper.verboseInfo("Fusion", FusionFurnaceRecipes.getRecipeList().size() + " Fusion Furnace recipes were loaded");
 		LogHelper.info("Fusion loaded");
 	}
 	
 	private static void setAchievementTriggers()
 	{
 		//Crafting Triggers
-		StatTriggersHelper.addCraftingTrigger(new ItemStack(Content.fusion_furnace).getItem(), Content.fusionAch);
-		StatTriggersHelper.addCraftingTrigger(new ItemStack(Content.steel_chestplate).getItem(), Content.steelChestplateAch);
+		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(Content.fusion_furnace), Content.fusionAch);
+		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(Content.steel_chestplate), Content.steelChestplateAch);
 		
 		//Smelting Triggers
-		StatTriggersHelper.addSmeltingTrigger(new ItemStack(Content.steel_ingot).getItem(), Content.steelAch);
+		StatTriggersHelper.INSTANCE.addSmeltingTrigger(new ItemStack(Content.steel_ingot), Content.steelAch);
 	}
 	
 	private static void setRepairMaterials()
@@ -134,25 +107,7 @@ public class Fusion
 	
     private static void setToolAndArmorStats()
     {
-    	toolSteel = EnumHelper.addToolMaterial("STEEL", Settings.steelTools.getHarvestLevel(), Settings.steelTools.getUses(), 
-    											Settings.steelTools.getHarvestSpeed(), Settings.steelTools.getDamageVsEntity(), 
-    											Settings.steelTools.getEnchantability());
-    	armorSteel = EnumHelper.addArmorMaterial("STEEL", "steel", Settings.steelArmor.getDurability(), 
-    											new int[] {Settings.steelArmor.getHelmReduction(), 
-    													   Settings.steelArmor.getChestReduction(), 
-    													   Settings.steelArmor.getLegsReduction(), 
-    													   Settings.steelArmor.getBootsReduction()}, 
-    													   Settings.steelArmor.getEnchantability());
+    	toolSteel = EnumHelper.addToolMaterial("STEEL", Settings.steelTools.getMiningLevel(), Settings.steelTools.getUses(), Settings.steelTools.getMiningSpeed(), Settings.steelTools.getDamageVsEntity(), Settings.steelTools.getEnchantability());
+    	armorSteel = EnumHelper.addArmorMaterial("STEEL", Settings.steelArmor.getDurability(), new int[] {Settings.steelArmor.getHelmetReduction(), Settings.steelArmor.getChestplateReduction(), Settings.steelArmor.getLeggingsReduction(), Settings.steelArmor.getBootsReduction()}, Settings.steelArmor.getEnchantability());
     }
-    
-    private static void tabPreInit()
-    {
-		LogHelper.verbose("Creating tabs");
-		if(APISettings.tabs.asBoolean() && APISettings.separateTabs.asBoolean()) 
-		{
-			simpleMachines = new SimpleTab(Fusion.plugin, "SimpleMachines", 
-										   ContentCategories.CreativeTab.OTHER);
-		} //
-    } // end tabPreInit()
-    
-} // end class
+}

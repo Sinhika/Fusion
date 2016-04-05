@@ -7,11 +7,11 @@
 "credits": "Created by AleXndrTheGr8st, with help from Zot201. Maintained by Sinhika",
 "logoFile": "/assets/simplecore/logos/SimpleCore.png",
 "mcversion": "${mcversion}",
-"url": "http://minecraft.curseforge.com/projects/simplecore-api",
-"updateUrl": "",
+"url": "http://minecraft.curseforge.com/projects/fusion",
+"updateUrl": "http://minecraft.curseforge.com/projects/fusion/files",
 "authorList": [ "AleXndrTheGr8st", "Sinhika" ],
 "parent":"",
 "screenshots": [],
-"dependencies": [simplecore]
+"dependencies": [simplecore, simpleores]
 }
 ]
