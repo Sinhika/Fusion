@@ -26,6 +26,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class Content 
 {
 	private static boolean simpleores = Loader.isModLoaded("simpleores") && Settings.enableSimpleOres.asBoolean();
+	@SuppressWarnings("unused")
 	private static boolean netherrocks = Loader.isModLoaded("netherrocks") && Settings.enableNetherrocks.asBoolean();
 	
 	/**

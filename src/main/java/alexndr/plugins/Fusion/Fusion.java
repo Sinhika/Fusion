@@ -37,6 +37,7 @@ public class Fusion
 	 * Called during the PreInit phase.
 	 * @param event FMLPreInitializationEvent
 	 */
+	@SuppressWarnings("unused")
 	@EventHandler
 	public void PreInit(FMLPreInitializationEvent event)
 	{
@@ -92,11 +93,11 @@ public class Fusion
 	private static void setAchievementTriggers()
 	{
 		//Crafting Triggers
-		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(Content.fusion_furnace), Content.fusionAch);
-		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(Content.steel_chestplate), Content.steelChestplateAch);
+		StatTriggersHelper.addCraftingTrigger(new ItemStack(Content.fusion_furnace), Content.fusionAch);
+		StatTriggersHelper.addCraftingTrigger(new ItemStack(Content.steel_chestplate), Content.steelChestplateAch);
 		
 		//Smelting Triggers
-		StatTriggersHelper.INSTANCE.addSmeltingTrigger(new ItemStack(Content.steel_ingot), Content.steelAch);
+		StatTriggersHelper.addSmeltingTrigger(new ItemStack(Content.steel_ingot), Content.steelAch);
 	}
 	
 	private static void setRepairMaterials()

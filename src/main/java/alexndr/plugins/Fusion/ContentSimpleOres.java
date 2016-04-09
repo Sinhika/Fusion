@@ -135,16 +135,16 @@ public class ContentSimpleOres
 	public static void setAchievementTriggers()
 	{
 		//Smelting Triggers
-		StatTriggersHelper.INSTANCE.addSmeltingTrigger(new ItemStack(bronze_ingot), bronzeAch);
-		StatTriggersHelper.INSTANCE.addSmeltingTrigger(new ItemStack(thyrium_ingot), thyriumAch);
-		StatTriggersHelper.INSTANCE.addSmeltingTrigger(new ItemStack(sinisite_ingot), sinisiteAch);
+		StatTriggersHelper.addSmeltingTrigger(new ItemStack(bronze_ingot), bronzeAch);
+		StatTriggersHelper.addSmeltingTrigger(new ItemStack(thyrium_ingot), thyriumAch);
+		StatTriggersHelper.addSmeltingTrigger(new ItemStack(sinisite_ingot), sinisiteAch);
 		
 		//Crafting Triggers
-		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(bronze_helmet), bronzeHelmetAch);
-		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(thyrium_axe), thyriumAxeAch);
-		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(thyrium_bow), thyriumBowAch);
-		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(sinisite_sword), sinisiteSwordAch);
-		StatTriggersHelper.INSTANCE.addCraftingTrigger(new ItemStack(sinisite_bow), sinisiteBowAch);
+		StatTriggersHelper.addCraftingTrigger(new ItemStack(bronze_helmet), bronzeHelmetAch);
+		StatTriggersHelper.addCraftingTrigger(new ItemStack(thyrium_axe), thyriumAxeAch);
+		StatTriggersHelper.addCraftingTrigger(new ItemStack(thyrium_bow), thyriumBowAch);
+		StatTriggersHelper.addCraftingTrigger(new ItemStack(sinisite_sword), sinisiteSwordAch);
+		StatTriggersHelper.addCraftingTrigger(new ItemStack(sinisite_bow), sinisiteBowAch);
 	}
 	
 	//Blocks

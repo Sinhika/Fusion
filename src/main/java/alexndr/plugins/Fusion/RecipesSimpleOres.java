@@ -9,7 +9,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipesSimpleOres 
 {
-	private static final int WILDCARD_VALUE = OreDictionary.WILDCARD_VALUE;
+	// private static final int WILDCARD_VALUE = OreDictionary.WILDCARD_VALUE;
 	
 	public static void doOreDictRecipes()
 	{
@@ -22,6 +22,7 @@ public class RecipesSimpleOres
 		OreDictionary.registerOre("blockSinisite", new ItemStack(ContentSimpleOres.sinisite_block));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void doRecipes()
 	{	
 		//Block Recipes

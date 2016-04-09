@@ -15,7 +15,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class Recipes 
 {
-	private static final int WILDCARD_VALUE = OreDictionary.WILDCARD_VALUE;
+	// private static final int WILDCARD_VALUE = OreDictionary.WILDCARD_VALUE;
 	
 	public static void preInitialize()
 	{
@@ -38,6 +38,7 @@ public class Recipes
 			RecipesSimpleOres.doOreDictRecipes();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void doRecipes()
 	{	
 		//Block Recipes
