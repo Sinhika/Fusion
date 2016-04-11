@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "items/fusion:bronze_ingot"
+        "layer0": "fusion:items/bronze_ingot"
     },
     "display": {
         "thirdperson": {

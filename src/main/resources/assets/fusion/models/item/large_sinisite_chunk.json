@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "fusion:items/small_bronze_chunk"
+        "layer0": "fusion:items/large_sinisite_chunk"
     },
     "display": {
         "thirdperson": {

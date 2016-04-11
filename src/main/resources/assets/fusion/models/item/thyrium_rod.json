@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "items/fusion:steel_pickaxe"
+        "layer0": "fusion:items/thyrium_rod"
     },
     "display": {
         "thirdperson": {

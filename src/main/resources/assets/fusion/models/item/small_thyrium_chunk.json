@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "items/fusion:steel_chestplate"
+        "layer0": "fusion:items/small_thyrium_chunk"
     },
     "display": {
         "thirdperson": {
