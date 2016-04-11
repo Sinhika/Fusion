@@ -94,7 +94,7 @@ public class ContentSimpleOres
 				.addToolTip("tips.zoomTooltip").setRepairMaterial(new ItemStack(thyrium_rod)).setConfigEntry(Settings.thyriumBow).setUnlocalizedName("thyrium_bow");
 		
 		sinisite_bow = new SimpleBow(Fusion.plugin, 1200).setEffect(SimpleBowEffects.damageEffect, Settings.sinisiteBowDamageModifier.asFloat())
-				.addToolTip("tips.damageTooltip", EnumChatFormatting.GREEN).setEffect(SimpleBowEffects.knockbackEffect, Settings.sinisiteBowKnockbackAmount.asFloat())
+				.addToolTip("tips.damageTooltip", EnumChatFormatting.GREEN).setEffect(SimpleBowEffects.knockbackEffect, Settings.sinisiteBowKnockbackAmount.asInt())
 				.addToolTip("tips.knockbackTooltip").setRepairMaterial(new ItemStack(sinisite_rod)).setConfigEntry(Settings.sinisiteBow).setUnlocalizedName("sinisite_bow");
 	}
 	

@@ -105,7 +105,7 @@ public class Settings {
 			//	.setComment("The damage multiplier of the Sinisite Bow (versus vanilla bow).").setCommentIndentNumber(2);
 			sinisiteBow.createNewValue("DamageModifier").setDataType("@F").setCurrentValue("6.0").setDefaultValue("6.0");
 			// .setComment("The knockback level of the Sinisite Bow.").setCommentIndentNumber(2);
-			sinisiteBow.createNewValue("KnockbackAmount").setDataType("@F").setCurrentValue("2").setDefaultValue("2");
+			sinisiteBow.createNewValue("KnockbackAmount").setDataType("@I").setCurrentValue("2").setDefaultValue("2");
 			sinisiteBow = settings.get(sinisiteBow);
 			sinisiteBowDamageModifier = sinisiteBow.getValueByName("DamageModifier");
 			sinisiteBowKnockbackAmount = sinisiteBow.getValueByName("ZoomAmount");
