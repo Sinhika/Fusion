@@ -13,11 +13,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 import alexndr.api.content.inventory.SimpleTab;
 import alexndr.api.core.APISettings;
 import alexndr.api.core.SimpleCoreAPI;
-import alexndr.api.helpers.game.RenderItemHelper;
 import alexndr.api.helpers.game.StatTriggersHelper;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.logger.LogHelper;
@@ -86,11 +84,7 @@ public class Fusion
 	{
 		INSTANCE = this;
 		
-		//Registers
-		if(event.getSide() == Side.CLIENT) 
-		{
-			RenderItemHelper.renderItemsAndBlocks(plugin);
-		}
+		proxy.Init(event);
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, (IGuiHandler) new FusionGuiHandler());
 		
 		//Content
