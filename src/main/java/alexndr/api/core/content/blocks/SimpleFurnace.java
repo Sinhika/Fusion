@@ -212,7 +212,7 @@ public abstract class SimpleFurnace extends BlockContainer
 
 
     /**
-     * Mostly cut & pasted from BlockFurnace. This must be overridden for custom classes...
+     * Mostly cut & pasted from BlockFurnace. This *MUST* be overridden for custom classes...
      * @param active
      * @param worldIn
      * @param pos
@@ -360,12 +360,12 @@ public abstract class SimpleFurnace extends BlockContainer
     
 	public static SimpleFurnace getUnlit_furnace()
 	{
-		return null;
+		return (SimpleFurnace) unlit_furnace;
 	}
 
 	public static SimpleFurnace getLit_furnace()
 	{
-		return null;
+		return (SimpleFurnace) lit_furnace;
 	}
 
     /* -------------- EVERYTHING BELOW HERE MUST BE OVERRIDDEN IN CHILD CLASSES ----------- */

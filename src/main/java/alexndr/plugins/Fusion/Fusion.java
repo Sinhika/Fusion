@@ -1,7 +1,12 @@
 package alexndr.plugins.Fusion;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
@@ -27,7 +32,7 @@ import alexndr.api.registry.Plugin;
  * @author AleXndrTheGr8st
  */
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, 
-	 dependencies = "required-after:simplecore, after:simpleores, after:netherrocks", 
+	 dependencies = "required-after:simplecore;after:simpleores;after:netherrocks", 
 	 updateJSON=ModInfo.VERSIONURL)
 public class Fusion 
 {
@@ -44,7 +49,6 @@ public class Fusion
 	//Armor Materials
 	public static ArmorMaterial armorSteel;
 	
-	@SuppressWarnings("unused")
 	private static SimpleTab simpleMachines;
 	
 	/**
@@ -89,6 +93,7 @@ public class Fusion
 		//Content
 		Content.initialize();
 		Recipes.initialize();
+		setTabIcons();
 		setRepairMaterials();
 		setAchievementTriggers();
 		if(Loader.isModLoaded("simpleores") && Settings.enableSimpleOres.asBoolean())
@@ -109,6 +114,18 @@ public class Fusion
 		LogHelper.info("Fusion loaded");
 	}
 	
+	/**
+	 * sets tab icons, if they haven't been set by an earlier mod.
+	 */
+	private static void setTabIcons() {
+		LogHelper.verbose("Fusion", "Setting tab icons");
+		List<Item> list = Lists.newArrayList(Item.getItemFromBlock(Content.steel_block), 
+								Item.getItemFromBlock(Content.steel_block), 
+								Content.steel_ingot, Content.steel_pickaxe, Content.steel_sword);
+		SimpleCoreAPI.setTabIcons(list);
+		simpleMachines.setIcon(Item.getItemFromBlock(Content.fusion_furnace));
+	}
+
 	private static void setAchievementTriggers()
 	{
 		//Crafting Triggers

@@ -259,4 +259,5 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	{
 		return index != 1 || stack.getItem() == Items.bucket;
 	}
+	
 } // end class

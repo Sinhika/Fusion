@@ -43,44 +43,44 @@ public class Settings {
 			//Toggles
 			ConfigEntry toggles = new ConfigEntry("Fusion Toggles", "Toggles");
 			// .setComment("(NYI) Allows custom Fusion Furnace recipes").setCommentIndentNumber(2)
-			toggles.createNewValue("EnableCustomRecipes").setCurrentValue("false").setDefaultValue("false");
+			toggles.createNewValue("EnableCustomRecipes").setDataType("@B").setCurrentValue("false").setDefaultValue("false");
 			// .setComment("Enables extra chunk-combining recipes.").setCommentIndentNumber(0)
-			toggles.createNewValue("EnableExtraChunkRecipes").setCurrentValue("false").setDefaultValue("false");
+			toggles.createNewValue("EnableExtraChunkRecipes").setDataType("@B").setCurrentValue("false").setDefaultValue("false");
 			toggles = settings.get(toggles);
 			customRecipes = toggles.getValueByName("EnableCustomRecipes");
 			extraChunkRecipes = toggles.getValueByName("EnableExtraChunkRecipes");
 			
 			ConfigEntry contentToggles = new ConfigEntry("Content Toggles", "Toggles");
 			// .setComment("Enables SimpleOres-based content.")
-			contentToggles.createNewValue("EnableSimpleOres").setCurrentValue("true").setDefaultValue("true");
+			contentToggles.createNewValue("EnableSimpleOres").setDataType("@B").setCurrentValue("true").setDefaultValue("true");
 			// .setComment("Enables Netherrocks-based content.")
-			contentToggles.createNewValue("EnableNetherrocks").setCurrentValue("true").setDefaultValue("true");
+			contentToggles.createNewValue("EnableNetherrocks").setDataType("@B").setCurrentValue("true").setDefaultValue("true");
 			contentToggles = settings.get(contentToggles);
 			enableSimpleOres = contentToggles.getValueByName("EnableSimpleOres");
 			enableNetherrocks = contentToggles.getValueByName("EnableNetherrocks");
 				
 			//Items
 			steelIngot = settings.get(new ConfigItem("Steel Ingot", "Items").setStackSize(64)
-					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+					.setCreativeTab("SimpleMaterials").setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
 			bronzeIngot = settings.get(new ConfigItem("Bronze Ingot", "Items").setStackSize(64)
-					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+					.setCreativeTab("SimpleMaterials").setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
 			thyriumIngot = settings.get(new ConfigItem("Thyrium Ingot", "Items").setStackSize(64)
-					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+					.setCreativeTab("SimpleMaterials").setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
 			sinisiteIngot = settings.get(new ConfigItem("Sinisite Ingot", "Items").setStackSize(64)
-					.setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
+					.setCreativeTab("SimpleMaterials").setCreativeTab("SimpleMaterials").setSmeltingXP(0.4F)).asConfigItem();
 
 			//Blocks
 			steelBlock = settings.get(new ConfigBlock("Steel Block", "Blocks").setHardness(7.0F).setResistance(12.0F)
-									 .setLightValue(0.0F).setHarvestTool("pickaxe")).asConfigBlock();
+									 .setLightValue(0.0F).setHarvestTool("pickaxe").setCreativeTab("SimpleDecorations").setBeaconBase(true)).asConfigBlock();
 			bronzeBlock = settings.get(new ConfigBlock("Bronze Block", "Blocks").setHardness(7.0F).setResistance(12.0F)
-										.setLightValue(0.0F).setHarvestTool("pickaxe")).asConfigBlock();
+										.setLightValue(0.0F).setHarvestTool("pickaxe").setCreativeTab("SimpleDecorations").setBeaconBase(true)).asConfigBlock();
 			thyriumBlock = settings.get(new ConfigBlock("Thyrium Block", "Blocks").setHardness(7.0F).setResistance(12.0F)
-										.setLightValue(0.0F).setHarvestTool("pickaxe")).asConfigBlock();
+										.setLightValue(0.0F).setHarvestTool("pickaxe").setCreativeTab("SimpleDecorations").setBeaconBase(true)).asConfigBlock();
 			sinisiteBlock = settings.get(new ConfigBlock("Sinisite Block", "Blocks").setHardness(7.0F).setResistance(12.0F)
-										.setLightValue(0.0F).setHarvestTool("pickaxe")).asConfigBlock();
+										.setLightValue(0.0F).setHarvestTool("pickaxe").setCreativeTab("SimpleDecorations").setBeaconBase(true)).asConfigBlock();
 			
 			fusionFurnace = settings.get(new ConfigBlock("Fusion Furnace", "Machines").setHardness(3.5F).setResistance(10.0F)
-										.setLightValue(1.0F).setHarvestTool("pickaxe")).asConfigBlock();
+										.setLightValue(1.0F).setHarvestTool("pickaxe").setCreativeTab("SimpleMachines")).asConfigBlock();
 			
 			//Tools
 			steelTools = settings.get(new ConfigTool("Steel Tools", "Tools").setUses(700).setHarvestLevel(2)
