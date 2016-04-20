@@ -22,7 +22,6 @@ import alexndr.api.logger.LogHelper;
 import alexndr.api.registry.ContentCategories;
 import alexndr.api.registry.ContentRegistry;
 import alexndr.api.registry.Plugin;
-import alexndr.plugins.SimpleOres.ModInfo;
 
 /**
  * @author AleXndrTheGr8st
