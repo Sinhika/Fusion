@@ -21,7 +21,7 @@ public class ProxyClient extends alexndr.plugins.Fusion.ProxyCommon
 		//Registers
 		if(event.getSide() == Side.CLIENT) 
 		{
-			RenderItemHelper.renderItemsAndBlocks(Fusion.plugin);
+			RenderItemHelper.renderItemsAndBlocks();
 		}
 		
 	} // end Init()

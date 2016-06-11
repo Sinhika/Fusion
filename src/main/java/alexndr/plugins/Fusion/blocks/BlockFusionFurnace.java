@@ -1,4 +1,4 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.blocks;
 
 import java.util.Random;
 
@@ -14,6 +14,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import alexndr.api.core.content.blocks.SimpleFurnace;
 import alexndr.api.registry.ContentCategories;
+import alexndr.plugins.Fusion.Content;
+import alexndr.plugins.Fusion.Fusion;
+import alexndr.plugins.Fusion.helpers.FusionGuiHandler;
+import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 
 /**
  * @author AleXndrTheGr8st

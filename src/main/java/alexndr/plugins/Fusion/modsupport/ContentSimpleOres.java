@@ -1,4 +1,4 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.modsupport;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,6 +22,9 @@ import alexndr.api.content.items.SimpleSword;
 import alexndr.api.helpers.game.StatTriggersHelper;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.registry.ContentCategories;
+import alexndr.plugins.Fusion.Content;
+import alexndr.plugins.Fusion.Fusion;
+import alexndr.plugins.Fusion.Settings;
 
 public class ContentSimpleOres 
 {

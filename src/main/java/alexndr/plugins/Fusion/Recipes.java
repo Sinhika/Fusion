@@ -3,11 +3,12 @@ package alexndr.plugins.Fusion;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import alexndr.api.logger.LogHelper;
+import alexndr.plugins.Fusion.modsupport.ModSupport;
 
 /**
  * @author AleXndrTheGr8st
@@ -20,35 +21,36 @@ public class Recipes
 	public static void preInitialize()
 	{
 		try {
-			doOreDictRecipes();
+			doOreDictEntries();
+			ModSupport.doOreDictEntries();
 			LogHelper.verbose("Fusion",
 					"All OreDictionary entries were added successfully");
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			LogHelper.severe("Fusion",
 							"OreDictionary entries were not added successfully. This is a serious problem!");
 			e.printStackTrace();
 		}
-	}
+	} // end preInitialize
 	
 	public static void initialize()
 	{
 		try {
 			doRecipes();
+			ModSupport.doRecipes();
 			LogHelper.verbose("Fusion", "All recipes were added successfully");
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			LogHelper.severe("Fusion",
 							"Recipes were not added successfully. This is a serious problem!");
 			e.printStackTrace();
 		}
 	}
 	
-	public static void doOreDictRecipes()
+	public static void doOreDictEntries()
 	{
 		OreDictionary.registerOre("ingotSteel", new ItemStack(Content.steel_ingot));
 		OreDictionary.registerOre("blockSteel", new ItemStack(Content.steel_block));
-		
-		if(Loader.isModLoaded("simpleores") && Settings.enableSimpleOres.asBoolean())
-			RecipesSimpleOres.doOreDictRecipes();
 	}
 	
 	public static void doRecipes()
@@ -56,7 +58,7 @@ public class Recipes
 		//Block Recipes
 			//Special Furnace Recipes
 			GameRegistry.addRecipe(new ShapedOreRecipe(Content.fusion_furnace, true, new Object[]{
-					"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.brick_block, Character.valueOf('Y'), Blocks.furnace, Character.valueOf('W'), Items.coal, Character.valueOf('Z'), Items.iron_ingot}));
+					"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.BRICK_BLOCK, Character.valueOf('Y'), Blocks.FURNACE, Character.valueOf('W'), Items.COAL, Character.valueOf('Z'), Items.IRON_INGOT}));
 			
 			//Storage Blocks
 			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
@@ -64,8 +66,8 @@ public class Recipes
 			
 		//Item Recipes
 			//Ingot Recipes
-			GameRegistry.addShapelessRecipe(new ItemStack(Content.steel_ingot, 9), new Object[]{
-				Content.steel_block});
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Content.steel_ingot, 9), 
+										new Object[]{"blockSteel"}));
 			
 			//Steel Ingot
 			GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
@@ -112,14 +114,12 @@ public class Recipes
 			
 		//Smelting Recipes
 			//Fusion Furnace
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.coal), FusionMaterial.of(Items.coal), new ItemStack(Content.small_steel_chunk), 2.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.coal), FusionMaterial.of(Items.gunpowder), new ItemStack(Content.medium_steel_chunk), 4.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.coal), FusionMaterial.of(Items.redstone), new ItemStack(Content.large_steel_chunk), 8.0F);
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.COAL), new ItemStack(Content.small_steel_chunk), 2.0F);
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.GUNPOWDER), new ItemStack(Content.medium_steel_chunk), 4.0F);
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.REDSTONE), new ItemStack(Content.large_steel_chunk), 8.0F);
 			
 			//Regular Furnace
 			GameRegistry.addSmelting(Content.large_steel_chunk, new ItemStack(Content.steel_ingot), 0.4F);
-			
-		if(Loader.isModLoaded("simpleores") && Settings.enableSimpleOres.asBoolean())
-			RecipesSimpleOres.doRecipes();
-	}
-}
+		
+	} // end doRecipes
+} // end class Recipes

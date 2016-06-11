@@ -1,5 +1,8 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.helpers;
 
+import alexndr.plugins.Fusion.gui.GuiFusionFurnace;
+import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
+import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;

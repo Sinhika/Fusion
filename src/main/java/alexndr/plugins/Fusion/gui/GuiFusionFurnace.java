@@ -1,5 +1,7 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.gui;
 
+import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
+import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;

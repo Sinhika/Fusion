@@ -39,9 +39,9 @@ group= "alexndr.api"
 archivesBaseName = "fusion"
 
 minecraft {
-    version = "1.9.4-12.17.0.1910-1.9.4"
+    version = "1.9.4-12.17.0.1957"
     runDir = "run"
-    replaceIn "APIInfo.java"
+    replaceIn "ModInfo.java"
     replace "@MODVERSION@", "${project.version_mod}." + getVersionAppendage()
     
     // the mappings can be changed at any time, and must be in the following format.

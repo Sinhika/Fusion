@@ -1,5 +1,6 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.inventory;
 
+import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

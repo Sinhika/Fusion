@@ -1,4 +1,4 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.tiles;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -6,6 +6,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import alexndr.api.core.content.blocks.SimpleFurnace;
 import alexndr.api.core.content.tiles.TileEntitySimpleFurnace;
+import alexndr.plugins.Fusion.FusionFurnaceRecipes;
+import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
 
 /**
  * @author AleXndrTheGr8st

@@ -1,5 +1,8 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.modsupport;
 
+import alexndr.plugins.Fusion.FusionFurnaceRecipes;
+import alexndr.plugins.Fusion.FusionMaterial;
+import alexndr.plugins.Fusion.Settings;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
