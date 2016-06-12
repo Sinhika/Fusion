@@ -47,7 +47,7 @@ public class ProxyCommon
 
 	public void PostInit(FMLPostInitializationEvent event)
 	{
-		
+		ModSupport.PostInit();
 	} // end PostInit()
 	/**
 	 * sets tab icons, if they haven't been set by an earlier mod.

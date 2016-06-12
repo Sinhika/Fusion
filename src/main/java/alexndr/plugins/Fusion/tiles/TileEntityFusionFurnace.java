@@ -3,8 +3,8 @@ package alexndr.plugins.Fusion.tiles;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import alexndr.api.core.content.blocks.SimpleFurnace;
+import net.minecraft.util.math.MathHelper;
+import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.core.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
@@ -259,7 +259,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) 
 	{
-		return index != 1 || stack.getItem() == Items.bucket;
+		return index != 1 || stack.getItem() == Items.BUCKET;
 	}
 	
 } // end class

@@ -139,9 +139,9 @@ public class RecipesSimpleOres
 			
 			//Bow Recipes
 			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_bow, true, new Object[]{
-				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.thyrium_rod, Character.valueOf('Y'), Items.string, Character.valueOf('Z'), Items.gold_ingot}));
+				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.thyrium_rod, Character.valueOf('Y'), "string", Character.valueOf('Z'), "ingotGold"}));
 			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_bow, true, new Object[]{
-				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.sinisite_rod, Character.valueOf('Y'), Items.string, Character.valueOf('Z'), "gemOnyx"}));
+				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.sinisite_rod, Character.valueOf('Y'), "string", Character.valueOf('Z'), "gemOnyx"}));
 			
 		//Armour Recipes
 			//Bronze Armour Recipes
@@ -176,18 +176,45 @@ public class RecipesSimpleOres
 			
 		//Smelting Recipes
 			//Fusion Furnace
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"), FusionMaterial.of("ingotTin"), FusionMaterial.of(Items.dye, 1, 15), new ItemStack(ContentSimpleOres.small_bronze_chunk), 2.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"), FusionMaterial.of("ingotTin"), FusionMaterial.of(Items.gunpowder), new ItemStack(ContentSimpleOres.medium_bronze_chunk), 3.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"), FusionMaterial.of("ingotTin"), FusionMaterial.of(Items.redstone), new ItemStack(ContentSimpleOres.large_bronze_chunk), 10.0F);
-			
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"), FusionMaterial.of("ingotAdamantium"), FusionMaterial.of(Items.redstone), new ItemStack(ContentSimpleOres.small_thyrium_chunk), 6.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"), FusionMaterial.of("ingotAdamantium"), FusionMaterial.of(Items.dye, 1, 4), new ItemStack(ContentSimpleOres.medium_thyrium_chunk), 10.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"), FusionMaterial.of("ingotAdamantium"), FusionMaterial.of(Items.glowstone_dust), new ItemStack(ContentSimpleOres.large_thyrium_chunk), 30.0F);
-			
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"), FusionMaterial.of("ingotMythril"), FusionMaterial.of(Items.glowstone_dust), new ItemStack(ContentSimpleOres.small_sinisite_chunk), 12.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"), FusionMaterial.of("ingotMythril"), FusionMaterial.of(Items.blaze_powder), new ItemStack(ContentSimpleOres.medium_sinisite_chunk), 20.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"), FusionMaterial.of("ingotMythril"), FusionMaterial.of(Items.ghast_tear), new ItemStack(ContentSimpleOres.large_sinisite_chunk), 60.0F);
-		    	
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"),
+				FusionMaterial.of("ingotTin"), FusionMaterial.of(Items.DYE, 1,
+						15),
+				new ItemStack(ContentSimpleOres.small_bronze_chunk), 2.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"),
+				FusionMaterial.of("ingotTin"), FusionMaterial
+						.of("gunpowder"), new ItemStack(
+						ContentSimpleOres.medium_bronze_chunk), 3.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"),
+				FusionMaterial.of("ingotTin"), FusionMaterial
+						.of("dustRedstone"), new ItemStack(
+						ContentSimpleOres.large_bronze_chunk), 10.0F);
+
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
+				FusionMaterial.of("ingotAdamantium"), FusionMaterial
+						.of("dustRedstone"), new ItemStack(
+						ContentSimpleOres.small_thyrium_chunk), 6.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
+				FusionMaterial.of("ingotAdamantium"), FusionMaterial.of(
+						"gemLapis"), new ItemStack(
+						ContentSimpleOres.medium_thyrium_chunk), 10.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
+				FusionMaterial.of("ingotAdamantium"), FusionMaterial
+						.of("dustGlowstone"), new ItemStack(
+						ContentSimpleOres.large_thyrium_chunk), 30.0F);
+
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
+				FusionMaterial.of("ingotMythril"), FusionMaterial
+						.of("dustGlowstone"), new ItemStack(
+						ContentSimpleOres.small_sinisite_chunk), 12.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
+				FusionMaterial.of("ingotMythril"), FusionMaterial
+						.of(Items.BLAZE_POWDER), new ItemStack(
+						ContentSimpleOres.medium_sinisite_chunk), 20.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
+				FusionMaterial.of("ingotMythril"), FusionMaterial
+						.of(Items.GHAST_TEAR), new ItemStack(
+						ContentSimpleOres.large_sinisite_chunk), 60.0F);
+
 		    //Regular Furnace
 			GameRegistry.addSmelting(ContentSimpleOres.large_bronze_chunk, new ItemStack(ContentSimpleOres.bronze_ingot), 0.3F);
 			GameRegistry.addSmelting(ContentSimpleOres.large_thyrium_chunk, new ItemStack(ContentSimpleOres.thyrium_ingot), 0.6F);

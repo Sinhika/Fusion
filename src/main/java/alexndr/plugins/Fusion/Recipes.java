@@ -58,7 +58,10 @@ public class Recipes
 		//Block Recipes
 			//Special Furnace Recipes
 			GameRegistry.addRecipe(new ShapedOreRecipe(Content.fusion_furnace, true, new Object[]{
-					"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.BRICK_BLOCK, Character.valueOf('Y'), Blocks.FURNACE, Character.valueOf('W'), Items.COAL, Character.valueOf('Z'), Items.IRON_INGOT}));
+					"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.BRICK_BLOCK, 
+					Character.valueOf('Y'), Blocks.FURNACE, 
+					Character.valueOf('W'), Items.COAL, 
+					Character.valueOf('Z'), "ingotIron"}));
 			
 			//Storage Blocks
 			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
@@ -114,9 +117,17 @@ public class Recipes
 			
 		//Smelting Recipes
 			//Fusion Furnace
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.COAL), new ItemStack(Content.small_steel_chunk), 2.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.GUNPOWDER), new ItemStack(Content.medium_steel_chunk), 4.0F);
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"), FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.REDSTONE), new ItemStack(Content.large_steel_chunk), 8.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
+				FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.COAL),
+				new ItemStack(Content.small_steel_chunk), 2.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
+				FusionMaterial.of(Items.COAL), FusionMaterial
+						.of("gunpowder"), new ItemStack(
+						Content.medium_steel_chunk), 4.0F);
+		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
+				FusionMaterial.of(Items.COAL), FusionMaterial
+						.of("dustRedstone"), new ItemStack(
+						Content.large_steel_chunk), 8.0F);
 			
 			//Regular Furnace
 			GameRegistry.addSmelting(Content.large_steel_chunk, new ItemStack(Content.steel_ingot), 0.4F);

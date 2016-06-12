@@ -1,25 +1,28 @@
 package alexndr.plugins.Fusion.inventory;
 
-import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
+import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 
 /**
+ * this class is the FusionFurnace version of SlotFurnaceOutput, and is almost
+ * identical.
  * @author AleXndrTheGr8st
  */
 public class SlotFusionFurnace extends Slot
 {
 	/** The player that is using the GUI where this slot resides. */
     private EntityPlayer thePlayer;
-    private int field_75228_b;
+    private int removeCount;
 
-    public SlotFusionFurnace(EntityPlayer par1EntityPlayer, IInventory par2IInventory, int par3, int par4, int par5)
+    public SlotFusionFurnace(EntityPlayer par1EntityPlayer, IInventory inventoryIn, 
+    						 int index, int xPosition, int yPosition)
     {
-        super(par2IInventory, par3, par4, par5);
+        super(inventoryIn, index, xPosition, yPosition);
         this.thePlayer = par1EntityPlayer;
     }
 
@@ -41,17 +44,17 @@ public class SlotFusionFurnace extends Slot
     {
         if (this.getHasStack())
         {
-            this.field_75228_b += Math.min(par1, this.getStack().stackSize);
+            this.removeCount += Math.min(par1, this.getStack().stackSize);
         }
 
         return super.decrStackSize(par1);
     }
 
     @Override
-	public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
+	public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
     {
-        this.onCrafting(par2ItemStack);
-        super.onPickupFromSlot(par1EntityPlayer, par2ItemStack);
+        this.onCrafting(stack);
+        super.onPickupFromSlot(playerIn, stack);
     }
 
     /**
@@ -59,24 +62,24 @@ public class SlotFusionFurnace extends Slot
      * internal count then calls onCrafting(item).
      */
     @Override
-	protected void onCrafting(ItemStack par1ItemStack, int par2)
+	protected void onCrafting(ItemStack stack, int par2)
     {
-        this.field_75228_b += par2;
-        this.onCrafting(par1ItemStack);
+        this.removeCount += par2;
+        this.onCrafting(stack);
     }
 
     /**
      * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood.
      */
     @Override
-	protected void onCrafting(ItemStack par1ItemStack)
+	protected void onCrafting(ItemStack stack)
     {
-        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.field_75228_b);
+        stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.removeCount);
 
         if (!this.thePlayer.worldObj.isRemote)
         {
-            int i = this.field_75228_b;
-            float f = FusionFurnaceRecipes.getExperience(par1ItemStack);
+            int i = this.removeCount;
+            float f = FusionFurnaceRecipes.getExperience(stack);
             int j;
 
             if (f == 0.0F)
@@ -103,8 +106,8 @@ public class SlotFusionFurnace extends Slot
             }
         }
 
-        this.field_75228_b = 0;
-        net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, par1ItemStack);
+        this.removeCount = 0;
+        net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, stack);
 
-    }
-}
+    } // end-if !isRemote
+} // end onCrafting()

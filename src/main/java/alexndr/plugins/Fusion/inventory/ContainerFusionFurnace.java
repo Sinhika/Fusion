@@ -1,16 +1,16 @@
 package alexndr.plugins.Fusion.inventory;
 
-import alexndr.plugins.Fusion.FusionFurnaceRecipes;
-import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import alexndr.plugins.Fusion.FusionFurnaceRecipes;
+import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 
 /**
  * Lots of cutting & pasting fron ContainerFurnace here, except for the parts that aren't.
@@ -47,13 +47,13 @@ public class ContainerFusionFurnace extends Container
             this.addSlotToContainer(new Slot(inventoryplayer, i, 8 + i * 18, 142));
         }
 	}
-	
-	@Override
-    public void onCraftGuiOpened(ICrafting listener)
-    {
-        super.onCraftGuiOpened(listener);
-        listener.sendAllWindowProperties(this, this.furnace);
-    }
+//	
+//	@Override
+//    public void onCraftGuiOpened(ICrafting listener)
+//    {
+//        super.onCraftGuiOpened(listener);
+//        listener.sendAllWindowProperties(this, this.furnace);
+//    }
 
 
    
@@ -62,27 +62,28 @@ public class ContainerFusionFurnace extends Container
     {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < this.crafters.size(); ++i)
+        for (int i = 0; i < this.listeners.size(); ++i)
         {
-            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+            IContainerListener icontainerlistener = 
+            		(IContainerListener)this.listeners.get(i);
 
             if (this.lastCookTime != this.furnace.getField(2))
             {
-                icrafting.sendProgressBarUpdate(this, 0, this.furnace.getField(2));
+            	icontainerlistener.sendProgressBarUpdate(this, 0, this.furnace.getField(2));
             }
 
             if (this.lastBurnTime != this.furnace.getField(0))
             {
-                icrafting.sendProgressBarUpdate(this, 1, this.furnace.getField(0));
+            	icontainerlistener.sendProgressBarUpdate(this, 1, this.furnace.getField(0));
             }
 
             if (this.lastItemBurnTime != this.furnace.getField(1))
             {
-                icrafting.sendProgressBarUpdate(this, 2, this.furnace.getField(1));
+            	icontainerlistener.sendProgressBarUpdate(this, 2, this.furnace.getField(1));
             }
             if (this.lastTotalCookTime != this.furnace.getField(3))
             {
-                icrafting.sendProgressBarUpdate(this, 3, this.furnace.getField(3));
+            	icontainerlistener.sendProgressBarUpdate(this, 3, this.furnace.getField(3));
             }
         } // end if
 

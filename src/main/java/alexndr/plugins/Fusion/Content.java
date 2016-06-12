@@ -1,20 +1,20 @@
 package alexndr.plugins.Fusion;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import alexndr.api.content.blocks.SimpleBlock;
-import alexndr.api.content.inventory.SimpleTab;
 import alexndr.api.content.items.SimpleArmor;
 import alexndr.api.content.items.SimpleAxe;
 import alexndr.api.content.items.SimpleHoe;
@@ -28,7 +28,6 @@ import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.logger.LogHelper;
 import alexndr.api.registry.ContentCategories;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
-import alexndr.plugins.Fusion.modsupport.ContentSimpleOres;
 import alexndr.plugins.Fusion.modsupport.ModSupport;
 import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 
@@ -88,21 +87,39 @@ public class Content
 	 */
 	public static void doArmor()
 	{
-		steel_helmet = new SimpleArmor(Fusion.plugin, Content.armorSteel, SimpleArmor.Slots.HELM).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_helmet");
-		steel_chestplate = new SimpleArmor(Fusion.plugin, Content.armorSteel, SimpleArmor.Slots.CHEST).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_chestplate");
-		steel_leggings = new SimpleArmor(Fusion.plugin, Content.armorSteel, SimpleArmor.Slots.LEGS).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_leggings");
-		steel_boots = new SimpleArmor(Fusion.plugin, Content.armorSteel, SimpleArmor.Slots.BOOTS).setConfigEntry(Settings.steelArmor).setType("steel").setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_boots");
-		
-	}
+		steel_helmet = new SimpleArmor(Fusion.plugin, Content.armorSteel,
+				EntityEquipmentSlot.HEAD).setConfigEntry(Settings.steelArmor)
+				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setUnlocalizedName("steel_helmet");
+		steel_chestplate = new SimpleArmor(Fusion.plugin, Content.armorSteel,
+				EntityEquipmentSlot.CHEST).setConfigEntry(Settings.steelArmor)
+				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setUnlocalizedName("steel_chestplate");
+		steel_leggings = new SimpleArmor(Fusion.plugin, Content.armorSteel,
+				EntityEquipmentSlot.LEGS).setConfigEntry(Settings.steelArmor)
+				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setUnlocalizedName("steel_leggings");
+		steel_boots = new SimpleArmor(Fusion.plugin, Content.armorSteel,
+				EntityEquipmentSlot.FEET).setConfigEntry(Settings.steelArmor)
+				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setUnlocalizedName("steel_boots");
+	} // end doArmor()
 	
 	/**
 	 * Loads Fusion Blocks.
 	 */
 	public static void doBlocks()
 	{
-		fusion_furnace = new BlockFusionFurnace(false).setConfigEntry(Settings.fusionFurnace).setUnlocalizedName("fusion_furnace");
-		fusion_furnace_lit = new BlockFusionFurnace(true).setConfigEntry(Settings.fusionFurnace).setUnlocalizedName("fusion_furnace_lit");
-		steel_block = new SimpleBlock(Fusion.plugin, Material.IRON, ContentCategories.Block.GENERAL).setConfigEntry(Settings.steelBlock).setStepSound(Block.soundTypeMetal).setUnlocalizedName("steel_block");
+		fusion_furnace = new BlockFusionFurnace(false).setConfigEntry(
+				Settings.fusionFurnace).setUnlocalizedName("fusion_furnace");
+		fusion_furnace_lit = new BlockFusionFurnace(true).setConfigEntry(
+				Settings.fusionFurnace)
+				.setUnlocalizedName("fusion_furnace_lit");
+		steel_block = new SimpleBlock(Fusion.plugin, Material.IRON,
+				ContentCategories.Block.GENERAL)
+				.setConfigEntry(Settings.steelBlock)
+				.setStepSound(SoundType.METAL)
+				.setUnlocalizedName("steel_block");
 	}
 	
 	/**

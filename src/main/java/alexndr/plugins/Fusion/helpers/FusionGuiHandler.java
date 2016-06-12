@@ -1,13 +1,13 @@
 package alexndr.plugins.Fusion.helpers;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 import alexndr.plugins.Fusion.gui.GuiFusionFurnace;
 import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
 import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class FusionGuiHandler implements IGuiHandler 
 {
