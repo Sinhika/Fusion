@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import alexndr.api.content.blocks.SimpleFurnace;
-import alexndr.api.core.content.tiles.TileEntitySimpleFurnace;
+import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
 
@@ -14,7 +14,7 @@ import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
  */
 public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 {
-	private static boolean initDone = false;
+	protected static boolean initDone = false;
 	
 //	private static final int[] slots_catalyst = new int[] {4};
 //	private static final int[] slots_output = new int[] {2, 1};

@@ -18,7 +18,7 @@ import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
  */
 public class ContainerFusionFurnace extends Container
 {
-	private TileEntityFusionFurnace furnace;
+	protected TileEntityFusionFurnace furnace;
 	private int lastCookTime = 0;
 	private int lastBurnTime = 0;
 	private int lastItemBurnTime = 0;

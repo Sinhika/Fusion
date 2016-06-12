@@ -15,10 +15,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiFusionFurnace extends GuiContainer
 {
-	private TileEntityFusionFurnace furnaceInventory;
-    private final InventoryPlayer playerInventory;
+	protected TileEntityFusionFurnace furnaceInventory;
+	protected final InventoryPlayer playerInventory;
 	
-	private static final ResourceLocation guiTexture = new ResourceLocation("fusion:" + "textures/gui/container/fusion_furnace_gui.png");
+	protected static final ResourceLocation guiTexture = new ResourceLocation("fusion:" + "textures/gui/container/fusion_furnace_gui.png");
 	
 	
 	public GuiFusionFurnace(InventoryPlayer inventoryplayer, TileEntityFusionFurnace tileentity) 
@@ -72,14 +72,14 @@ public class GuiFusionFurnace extends GuiContainer
         this.drawTexturedModalRect(k + 98, l + 4 + 29 - i1, 188, 92 - i1, 12, 29);
 	}
 	
-    private int getCookProgressScaled(int pixels)
+	protected int getCookProgressScaled(int pixels)
     {
         int i = this.furnaceInventory.getField(2);
         int j = this.furnaceInventory.getField(3);
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 
-    private int getBurnLeftScaled(int pixels)
+	protected int getBurnLeftScaled(int pixels)
     {
         int i = this.furnaceInventory.getField(1);
         int m = this.furnaceInventory.getField(4);

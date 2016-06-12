@@ -63,7 +63,8 @@ public class Recipes
 					Character.valueOf('W'), Items.COAL, 
 					Character.valueOf('Z'), "ingotIron"}));
 			
-			//Storage Blocks
+
+//Storage Blocks
 			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
 					"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotSteel"}));
 			
