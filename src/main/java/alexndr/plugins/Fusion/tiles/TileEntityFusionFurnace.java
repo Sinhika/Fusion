@@ -4,10 +4,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
-import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
+import alexndr.plugins.Fusion.blocks.SimpleFurnace;
 
 /**
  * @author AleXndrTheGr8st
