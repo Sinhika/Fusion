@@ -34,11 +34,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import alexndr.api.config.types.ConfigBlock;
-import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.api.helpers.game.TooltipHelper;
 import alexndr.api.registry.ContentCategories;
 import alexndr.api.registry.ContentRegistry;
 import alexndr.api.registry.Plugin;
+import alexndr.plugins.Fusion.tiles.TileEntitySimpleFurnace;
 
 /**
  * We can't just subclass BlockFurnace, because then the material does not get properly set. Why not?

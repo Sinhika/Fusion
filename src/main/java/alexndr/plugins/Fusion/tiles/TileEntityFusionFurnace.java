@@ -4,7 +4,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
-import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
 import alexndr.plugins.Fusion.blocks.SimpleFurnace;
@@ -37,7 +36,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	
 	public TileEntityFusionFurnace() 
 	{
-		super("fusion:container.fusion_furnace", BlockFusionFurnace.class, 600, 
+		super("fusion:container.fusion_furnace", 600, 
 			  "fusion:fusion_furnace_gui", 5);
 		if (! TileEntityFusionFurnace.initDone) {
 			TileEntityFusionFurnace.initThis();

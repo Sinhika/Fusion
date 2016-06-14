@@ -1,10 +1,7 @@
 /**
  * 
  */
-package alexndr.api.content.tiles;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+package alexndr.plugins.Fusion.tiles;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -29,9 +26,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import alexndr.plugins.Fusion.blocks.SimpleFurnace;
@@ -56,23 +51,27 @@ public class TileEntitySimpleFurnace extends TileEntityLockable implements
     
     /** The number of ticks that a fresh copy of the currently-burning item would keep the furnace burning for */
     protected int currentItemBurnTime;
+    
+    /** number of ticks we've cooked so far. */
     protected int cookTime;
-    protected int totalCookTime;
+    
+    /** number of ticks it takes to cook this item. */
+    protected int totalCookTime;		
+    
+    /** what is this for? */
     protected int maxCookTime;
+    
     protected String furnaceCustomName;
     protected String furnaceName;
     protected String furnaceGuiId;
     
-    protected Class<? extends SimpleFurnace> furnaceBlockClass;
-    
-	/**
+    /**
 	 * 
 	 */
-	public TileEntitySimpleFurnace(String tileName, Class<? extends SimpleFurnace> fclass, int max_cook_time,
+	public TileEntitySimpleFurnace(String tileName, int max_cook_time,
 								   String guiID, int furnace_stack_count) 
 	{
 		this.furnaceName = tileName;
-		this.furnaceBlockClass = fclass;
 		this.maxCookTime = max_cook_time;
 		this.furnaceGuiId = guiID;
 		this.furnaceItemStacks = new ItemStack[furnace_stack_count];
@@ -193,6 +192,14 @@ public class TileEntitySimpleFurnace extends TileEntityLockable implements
 		}
 	} // end ()
 
+	public int getMaxCookTime() {
+		return maxCookTime;
+	}
+
+	public void setMaxCookTime(int maxCookTime) {
+		this.maxCookTime = maxCookTime;
+	}
+
 	/* (non-Javadoc)
 	 * @see net.minecraft.inventory.IInventory#getField(int)
 	 */
@@ -200,16 +207,14 @@ public class TileEntitySimpleFurnace extends TileEntityLockable implements
 	public int getField(int id) {
         switch (id)
         {
-            case 0:
+            case 0: // number of ticks that the furnace will still keep burning
                 return this.furnaceBurnTime;
-            case 1:
+            case 1: // max number of ticks we started with for current fuel item burning
                 return this.currentItemBurnTime;
-            case 2:
+            case 2:	// number of ticks we've cooked this item
                 return this.cookTime;
-            case 3:
+            case 3:	// number of ticks total to cook this item.
                 return this.totalCookTime;
-            case 4:
-            	return this.maxCookTime;
             default:
                 return 0;
         }
@@ -234,8 +239,6 @@ public class TileEntitySimpleFurnace extends TileEntityLockable implements
             case 3:
                 this.totalCookTime = value;
                 break;
-            case 4:
-            	this.maxCookTime = value;
         }
 	} // end ()
 
@@ -244,7 +247,7 @@ public class TileEntitySimpleFurnace extends TileEntityLockable implements
 	 */
 	@Override
 	public int getFieldCount() {
-        return 5;
+        return 4;
 	}
 
 	/* (non-Javadoc)
@@ -399,22 +402,7 @@ public class TileEntitySimpleFurnace extends TileEntityLockable implements
             if (flag != this.isBurning())
             {
                 flag1 = true;
-                Method m;
-				try {
-					m = furnaceBlockClass.getDeclaredMethod("setState", boolean.class, 
-																	World.class, BlockPos.class);
-					m.invoke(null, this.isBurning(), this.worldObj, this.pos);
-				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				}
+                SimpleFurnace.setState(this.isBurning(), this.worldObj, this.pos);
             } // end-if
         } // end-if
 

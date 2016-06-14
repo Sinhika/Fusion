@@ -1,13 +1,13 @@
 package alexndr.plugins.Fusion.gui;
 
-import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
-import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
+import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 
 /**
  * @author AleXndrTheGr8st
@@ -18,7 +18,9 @@ public class GuiFusionFurnace extends GuiContainer
 	protected TileEntityFusionFurnace furnaceInventory;
 	protected final InventoryPlayer playerInventory;
 	
-	protected static final ResourceLocation guiTexture = new ResourceLocation("fusion:" + "textures/gui/container/fusion_furnace_gui.png");
+	protected static final ResourceLocation guiTexture = 
+			new ResourceLocation(alexndr.plugins.Fusion.ModInfo.ID, 
+								 "textures/gui/container/fusion_furnace_gui.png");
 	
 	
 	public GuiFusionFurnace(InventoryPlayer inventoryplayer, TileEntityFusionFurnace tileentity) 
@@ -76,13 +78,13 @@ public class GuiFusionFurnace extends GuiContainer
     {
         int i = this.furnaceInventory.getField(2);
         int j = this.furnaceInventory.getField(3);
-        return j != 0 && i != 0 ? i * pixels / j : 0;
+        return (j != 0 && i != 0) ? i * pixels / j : 0;
     }
 
 	protected int getBurnLeftScaled(int pixels)
     {
         int i = this.furnaceInventory.getField(1);
-        int m = this.furnaceInventory.getField(4);
+        int m = this.furnaceInventory.getMaxCookTime();
         
         if (i == 0)
         {

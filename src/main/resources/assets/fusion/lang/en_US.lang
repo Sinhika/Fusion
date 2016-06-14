@@ -12,7 +12,7 @@ tile.fusion_furnace.name=Fusion Furnace
 tile.fusion_furnace_lit.name=Fusion Furnace
 
 // Containers
-container.fusion_furnace.name=Fusion Furnace
+container.fusion_furnace=Fusion Furnace
 
 //Items
 item.steel_ingot.name=Steel Ingot

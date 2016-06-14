@@ -47,15 +47,13 @@ public class ContainerFusionFurnace extends Container
             this.addSlotToContainer(new Slot(inventoryplayer, i, 8 + i * 18, 142));
         }
 	}
-//	
-//	@Override
-//    public void onCraftGuiOpened(ICrafting listener)
-//    {
-//        super.onCraftGuiOpened(listener);
-//        listener.sendAllWindowProperties(this, this.furnace);
-//    }
 
-
+	@Override
+    public void addListener(IContainerListener listener)
+    {
+        super.addListener(listener);
+        listener.sendAllWindowProperties(this, this.furnace);
+    }
    
     @Override
 	public void detectAndSendChanges()
@@ -69,17 +67,17 @@ public class ContainerFusionFurnace extends Container
 
             if (this.lastCookTime != this.furnace.getField(2))
             {
-            	icontainerlistener.sendProgressBarUpdate(this, 0, this.furnace.getField(2));
+            	icontainerlistener.sendProgressBarUpdate(this, 2, this.furnace.getField(2));
             }
 
             if (this.lastBurnTime != this.furnace.getField(0))
             {
-            	icontainerlistener.sendProgressBarUpdate(this, 1, this.furnace.getField(0));
+            	icontainerlistener.sendProgressBarUpdate(this, 0, this.furnace.getField(0));
             }
 
             if (this.lastItemBurnTime != this.furnace.getField(1))
             {
-            	icontainerlistener.sendProgressBarUpdate(this, 2, this.furnace.getField(1));
+            	icontainerlistener.sendProgressBarUpdate(this, 1, this.furnace.getField(1));
             }
             if (this.lastTotalCookTime != this.furnace.getField(3))
             {
