@@ -97,7 +97,6 @@ public class Settings {
 			thyriumBow.createNewValue("DamageModifier").setDataType("@F").setCurrentValue("5.0").setDefaultValue("5.0");
 			// .setMinimumValue("0.0").setMaximumValue("32000").setComment("The zoom amount of the Thyrium Bow.");
 			thyriumBow.createNewValue("ZoomAmount").setDataType("@F").setCurrentValue("0.35").setDefaultValue("0.35");
-			thyriumBow = settings.get(thyriumBow);
 			thyriumBowDamageModifier = thyriumBow.getValueByName("DamageModifier");
 			thyriumBowZoomAmount = thyriumBow.getValueByName("ZoomAmount");
 			
@@ -106,9 +105,8 @@ public class Settings {
 			sinisiteBow.createNewValue("DamageModifier").setDataType("@F").setCurrentValue("6.0").setDefaultValue("6.0");
 			// .setComment("The knockback level of the Sinisite Bow.").setCommentIndentNumber(2);
 			sinisiteBow.createNewValue("KnockbackAmount").setDataType("@I").setCurrentValue("2").setDefaultValue("2");
-			sinisiteBow = settings.get(sinisiteBow);
 			sinisiteBowDamageModifier = sinisiteBow.getValueByName("DamageModifier");
-			sinisiteBowKnockbackAmount = sinisiteBow.getValueByName("ZoomAmount");
+			sinisiteBowKnockbackAmount = sinisiteBow.getValueByName("KnockbackAmount");
 			
 			//Armor
 			steelArmor = settings.get(

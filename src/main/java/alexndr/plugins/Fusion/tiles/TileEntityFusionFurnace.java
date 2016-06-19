@@ -4,9 +4,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
+import alexndr.api.content.blocks.SimpleFurnace;
+import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
-import alexndr.plugins.Fusion.blocks.SimpleFurnace;
 
 /**
  * @author AleXndrTheGr8st
@@ -27,9 +28,9 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	{
 		if (initDone) return;
 		
+		slotsTop = new int[] {4}; 		// slots_catalyst
 		slotsBottom = new int[] {2, 1}; // slots_output, slots_fuel
 		slotsSides = new int[] {0, 3};  // slots_input1, slots_input2
-		slotsTop = new int[] {4}; 		// slots_catalyst
 		
 		initDone = true;
 	}
@@ -38,9 +39,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	{
 		super("fusion:container.fusion_furnace", 600, 
 			  "fusion:fusion_furnace_gui", 5);
-		if (! TileEntityFusionFurnace.initDone) {
-			TileEntityFusionFurnace.initThis();
-		}
+		initThis();
 	} // end ctor()
 	
 	@Override
@@ -162,7 +161,8 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 			if(this.furnaceItemStacks[2] == null) {
 				this.furnaceItemStacks[2] = itemstack.copy();
 			}
-			else if(this.furnaceItemStacks[2].isItemEqual(itemstack)) {
+			else if(this.furnaceItemStacks[2].getItem() == itemstack.getItem()) 
+			{
 				furnaceItemStacks[2].stackSize += itemstack.stackSize;
 			}
 			
@@ -176,10 +176,9 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	            --this.furnaceItemStacks[ii].stackSize;
 	            
 	            // check for items contained in buckets
-	            if (furnaceItemStacks[ii] != null && this.furnaceItemStacks[ii].stackSize <= 0) 
+	            if (this.furnaceItemStacks[ii].stackSize <= 0) 
 	            {
-	            	// if we haz bucket, we gets bucket. If we no haz bucket, we get null.
-					furnaceItemStacks[ii] = furnaceItemStacks[ii].getItem().getContainerItem(furnaceItemStacks[ii]);
+					furnaceItemStacks[ii] = null;
 	            }
 			} // end-for
 

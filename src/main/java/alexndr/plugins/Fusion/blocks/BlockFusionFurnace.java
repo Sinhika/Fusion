@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.registry.ContentCategories;
 import alexndr.plugins.Fusion.Content;
 import alexndr.plugins.Fusion.Fusion;
