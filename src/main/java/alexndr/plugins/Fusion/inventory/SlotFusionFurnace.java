@@ -16,8 +16,8 @@ import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 public class SlotFusionFurnace extends Slot
 {
 	/** The player that is using the GUI where this slot resides. */
-    private EntityPlayer thePlayer;
-    private int removeCount;
+    protected EntityPlayer thePlayer;
+    protected int removeCount;
 
     public SlotFusionFurnace(EntityPlayer par1EntityPlayer, IInventory inventoryIn, 
     						 int index, int xPosition, int yPosition)
@@ -40,14 +40,13 @@ public class SlotFusionFurnace extends Slot
      * stack.
      */
     @Override
-	public ItemStack decrStackSize(int par1)
+	public ItemStack decrStackSize(int amount)
     {
         if (this.getHasStack())
         {
-            this.removeCount += Math.min(par1, this.getStack().stackSize);
+            this.removeCount += Math.min(amount, this.getStack().stackSize);
         }
-
-        return super.decrStackSize(par1);
+        return super.decrStackSize(amount);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class SlotFusionFurnace extends Slot
     {
         this.onCrafting(stack);
         super.onPickupFromSlot(playerIn, stack);
-    }
+     }
 
     /**
      * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an
