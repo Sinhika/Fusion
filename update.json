@@ -2,6 +2,8 @@
   "homepage": "http://minecraft.curseforge.com/projects/fusion/files",
   "promos": {
     "1.8.9-latest": "2.0.0.6",
-    "1.8.9-recommended": "2.0.0.6"
+    "1.8.9-recommended": "2.0.0.6",
+    "1.9.4-latest": "2.1.0.16",
+    "1.9.4-recommended": "2.1.0.16"
   }
 }
