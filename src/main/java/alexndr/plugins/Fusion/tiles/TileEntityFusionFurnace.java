@@ -37,7 +37,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	
 	public TileEntityFusionFurnace() 
 	{
-		super("fusion:container.fusion_furnace", 600, 
+		super("container.fusion_furnace", 600, 
 			  "fusion:fusion_furnace_gui", 5);
 		initThis();
 	} // end ctor()
@@ -166,22 +166,16 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 				furnaceItemStacks[2].stackSize += itemstack.stackSize;
 			}
 			
-			// decrement input slots 0, 3, 4
-			for (int ii=0; ii < 5; ii++)
-			{
-				// ignore fuel and output slots
-				if (ii == 1 || ii == 2) continue;
-				
-				// decrement inputs
-	            --this.furnaceItemStacks[ii].stackSize;
-	            
-	            // check for items contained in buckets
-	            if (this.furnaceItemStacks[ii].stackSize <= 0) 
-	            {
-					furnaceItemStacks[ii] = null;
-	            }
-			} // end-for
-
+			// Check for empty input slots 0, 3, 4
+            if (this.furnaceItemStacks[0].stackSize <= 0) {
+				furnaceItemStacks[0] = null;
+            }
+            if (this.furnaceItemStacks[3].stackSize <= 0) {
+				furnaceItemStacks[3] = null;
+            }
+            if (this.furnaceItemStacks[4].stackSize <= 0) {
+				furnaceItemStacks[4] = null;
+            }
 		} // end-if canSmelt
 	} // end smeltItem()
 	
