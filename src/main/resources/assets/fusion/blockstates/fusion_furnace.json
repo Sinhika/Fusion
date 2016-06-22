@@ -1,8 +1,18 @@
 {
+	"forge_marker" : 1,
+	"defaults": {
+		"textures": {         
+			"top": "fusion:blocks/fusion_furnace_top",
+			"front": "fusion:blocks/fusion_furnace_front",
+			"side": "fusion:blocks/fusion_furnace_side"
+		}
+	},
     "variants": {
-        "facing=north": { "model": "fusion:fusion_furnace" },
-        "facing=south": { "model": "fusion:fusion_furnace", "y": 180 },
-        "facing=west":  { "model": "fusion:fusion_furnace", "y": 270 },
-        "facing=east":  { "model": "fusion:fusion_furnace", "y": 90 }
+		"normal": { "model" : "orientable" },
+		"inventory": { "model" : "orientable" },
+        "facing=north": { "model": "orientable" },
+        "facing=south": { "model": "orientable", "y": 180 },
+        "facing=west":  { "model": "orientable", "y": 270 },
+        "facing=east":  { "model": "orientable", "y": 90 }
     }
 }

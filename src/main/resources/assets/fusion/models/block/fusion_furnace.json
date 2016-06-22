@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "fusion:blocks/fusion_furnace_top",
-        "front": "fusion:blocks/fusion_furnace_front",
-        "side": "fusion:blocks/fusion_furnace_side"
-    }
-}
