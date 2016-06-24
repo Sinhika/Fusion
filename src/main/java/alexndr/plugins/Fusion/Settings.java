@@ -92,19 +92,21 @@ public class Settings {
 			sinisiteTools = settings.get(new ConfigTool("Sinisite Tools", "Tools").setUses(4100).setHarvestLevel(5)
 										.setHarvestSpeed(18.0F).setDamageVsEntity(8.0F).setEnchantability(11)).asConfigTool();
 			
-			thyriumBow = settings.get(new ConfigEntry("Thyrium Bow", "Tools"));
+			thyriumBow = settings.get(new ConfigEntry("Thyrium Bow", "Bows"));
 			// 	.setComment("The damage multiplier of the Thyrium Bow (versus vanilla bow).").setCommentIndentNumber(2);
 			thyriumBow.createNewValue("DamageModifier").setDataType("@F").setCurrentValue("5.0").setDefaultValue("5.0");
 			// .setMinimumValue("0.0").setMaximumValue("32000").setComment("The zoom amount of the Thyrium Bow.");
 			thyriumBow.createNewValue("ZoomAmount").setDataType("@F").setCurrentValue("0.35").setDefaultValue("0.35");
+			thyriumBow.createNewValue("CreativeTab").setDataType("@S").setCurrentValue("SimpleCombat").setDefaultValue("SimpleCombat");
 			thyriumBowDamageModifier = thyriumBow.getValueByName("DamageModifier");
 			thyriumBowZoomAmount = thyriumBow.getValueByName("ZoomAmount");
 			
-			sinisiteBow = settings.get(new ConfigEntry("Sinisite Bow", "Tools"));
+			sinisiteBow = settings.get(new ConfigEntry("Sinisite Bow", "Bows"));
 			//	.setComment("The damage multiplier of the Sinisite Bow (versus vanilla bow).").setCommentIndentNumber(2);
 			sinisiteBow.createNewValue("DamageModifier").setDataType("@F").setCurrentValue("6.0").setDefaultValue("6.0");
 			// .setComment("The knockback level of the Sinisite Bow.").setCommentIndentNumber(2);
 			sinisiteBow.createNewValue("KnockbackAmount").setDataType("@I").setCurrentValue("2").setDefaultValue("2");
+			sinisiteBow.createNewValue("CreativeTab").setDataType("@S").setCurrentValue("SimpleCombat").setDefaultValue("SimpleCombat");
 			sinisiteBowDamageModifier = sinisiteBow.getValueByName("DamageModifier");
 			sinisiteBowKnockbackAmount = sinisiteBow.getValueByName("KnockbackAmount");
 			
