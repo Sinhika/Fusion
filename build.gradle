@@ -33,7 +33,7 @@ group= "alexndr.plugins"
 archivesBaseName = "fusion"
 
 minecraft {
-    version = "${forge_version_long}"
+    version = "${version_forge_long}"
     runDir = "run"
     replaceIn "ModInfo.java"
     replace "@MODVERSION@", "${project.version_mod}." + getVersionAppendage()
