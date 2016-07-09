@@ -79,8 +79,11 @@ public class Settings {
 			sinisiteBlock = settings.get(new ConfigBlock("Sinisite Block", "Blocks").setHardness(7.0F).setResistance(12.0F)
 										.setLightValue(0.0F).setHarvestTool("pickaxe").setCreativeTab("SimpleDecorations").setBeaconBase(true)).asConfigBlock();
 			
-			fusionFurnace = settings.get(new ConfigBlock("Fusion Furnace", "Machines").setHardness(3.5F).setResistance(10.0F)
-										.setLightValue(1.0F).setHarvestTool("pickaxe").setCreativeTab("SimpleMachines")).asConfigBlock();
+			fusionFurnace = settings.get(new ConfigBlock("Fusion Furnace", "Machines")
+										.setHardness(3.5F).setResistance(10.0F)
+										.setLightValue(1.0F).setHarvestTool("pickaxe")
+										.setCreativeTab("SimpleMachines"))
+										.asConfigBlock();
 			
 			//Tools
 			steelTools = settings.get(new ConfigTool("Steel Tools", "Tools").setUses(700).setHarvestLevel(2)
