@@ -27,7 +27,6 @@ public class ProxyCommon
 		if (! TabHelper.wereTabsInitialized()) {
 			SimpleCoreAPI.tabPreInit();
 		}
-		Fusion.tabPreInit();
 		ModSupport.preInit();
 		Content.preInitialize();
 		Recipes.preInitialize();
@@ -56,9 +55,10 @@ public class ProxyCommon
 		LogHelper.verbose("Fusion", "Setting tab icons");
 		List<Item> list = Lists.newArrayList(Item.getItemFromBlock(Content.steel_block), 
 								Item.getItemFromBlock(Content.steel_block), 
-								Content.steel_ingot, Content.steel_pickaxe, Content.steel_sword);
+								Content.steel_ingot, Content.steel_pickaxe, 
+								Content.steel_sword, 
+								Item.getItemFromBlock(Content.fusion_furnace));
 		SimpleCoreAPI.setTabIcons(list);
-		Fusion.simpleMachines.setIcon(Item.getItemFromBlock(Content.fusion_furnace));
 	}
 
 } // end class

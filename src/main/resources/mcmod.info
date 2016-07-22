@@ -5,7 +5,7 @@
 "description": "A plugin for SimpleCore API that adds a unique alloying process.",
 "version": "${version}",
 "credits": "Created by AleXndrTheGr8st, with help from Zot201. Maintained by Sinhika",
-"logoFile": "/assets/simplecore/logos/SimpleCore.png",
+"logoFile": "assets/simplecore/logos/Fusion.png",
 "mcversion": "${mcversion}",
 "url": "http://minecraft.curseforge.com/projects/fusion",
 "updateUrl": "",

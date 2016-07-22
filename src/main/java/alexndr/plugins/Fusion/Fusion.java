@@ -8,10 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import alexndr.api.content.inventory.SimpleTab;
-import alexndr.api.core.APISettings;
 import alexndr.api.logger.LogHelper;
-import alexndr.api.registry.ContentCategories;
 import alexndr.api.registry.Plugin;
 import alexndr.plugins.Fusion.helpers.FusionGuiHandler;
 
@@ -31,8 +28,6 @@ public class Fusion
 
 	public static Plugin plugin = new Plugin(ModInfo.ID, ModInfo.NAME);
 
-	public static SimpleTab simpleMachines;
-	
 	/**
 	 * Called during the PreInit phase.
 	 * @param event FMLPreInitializationEvent
@@ -66,15 +61,5 @@ public class Fusion
 		LogHelper.verbose("Fusion", FusionFurnaceRecipes.getRecipeList().size() + " Fusion Furnace recipes were loaded");
 		LogHelper.info("Fusion loaded");
 	}
-	
-    public static void tabPreInit()
-    {
-		LogHelper.verbose("Creating tabs");
-		if(APISettings.tabs.asBoolean() && APISettings.separateTabs.asBoolean()) 
-		{
-			simpleMachines = new SimpleTab(Fusion.plugin, "SimpleMachines", 
-										   ContentCategories.CreativeTab.OTHER);
-		} //
-    } // end tabPreInit()
     
 } // end class
