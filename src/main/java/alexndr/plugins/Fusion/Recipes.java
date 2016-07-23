@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import alexndr.api.config.types.ConfigFusionRecipe;
 import alexndr.api.logger.LogHelper;
 import alexndr.plugins.Fusion.modsupport.ModSupport;
 
@@ -56,82 +57,102 @@ public class Recipes
 	public static void doRecipes()
 	{	
 		//Block Recipes
-			//Special Furnace Recipes
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.fusion_furnace, true, new Object[]{
-					"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.BRICK_BLOCK, 
-					Character.valueOf('Y'), Blocks.FURNACE, 
-					Character.valueOf('W'), Items.COAL, 
-					Character.valueOf('Z'), "ingotIron"}));
-			
+		//Special Furnace Recipes
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.fusion_furnace, true, new Object[]{
+				"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.BRICK_BLOCK, 
+				Character.valueOf('Y'), Blocks.FURNACE, 
+				Character.valueOf('W'), Items.COAL, 
+				Character.valueOf('Z'), "ingotIron"}));
 
-//Storage Blocks
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
-					"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotSteel"}));
-			
+
+		//Storage Blocks
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
+				"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotSteel"}));
+
 		//Item Recipes
-			//Ingot Recipes
-			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Content.steel_ingot, 9), 
-										new Object[]{"blockSteel"}));
-			
-			//Steel Ingot
+		//Ingot Recipes
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Content.steel_ingot, 9), 
+				new Object[]{"blockSteel"}));
+
+		//Steel Ingot
+		GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
+			Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk});
+		GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
+			Content.medium_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
+
+		//Extra Chunk Recipes
+		if(Settings.extraChunkRecipes.asBoolean())
+		{
 			GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
-				Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk});
-			GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
-				Content.medium_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
-			
-			//Extra Chunk Recipes
-			if(Settings.extraChunkRecipes.asBoolean())
-			{
-				GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
-					Content.small_steel_chunk, Content.small_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
-				GameRegistry.addShapelessRecipe(new ItemStack(Content.medium_steel_chunk), new Object[]{
-					Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk});
-				GameRegistry.addShapelessRecipe(new ItemStack(Content.medium_steel_chunk, 2), new Object[]{
-					Content.large_steel_chunk});
-				GameRegistry.addShapelessRecipe(new ItemStack(Content.small_steel_chunk, 2), new Object[]{
-					Content.medium_steel_chunk});
-			}
-			
+				Content.small_steel_chunk, Content.small_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
+			GameRegistry.addShapelessRecipe(new ItemStack(Content.medium_steel_chunk), new Object[]{
+				Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk});
+			GameRegistry.addShapelessRecipe(new ItemStack(Content.medium_steel_chunk, 2), new Object[]{
+				Content.large_steel_chunk});
+			GameRegistry.addShapelessRecipe(new ItemStack(Content.small_steel_chunk, 2), new Object[]{
+				Content.medium_steel_chunk});
+		}
+
 		//Tools Recipes
-			//Steel Tools
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_pickaxe, true, new Object[]{
+		//Steel Tools
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_pickaxe, true, new Object[]{
 				"XXX", " Y ", " Y ", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_axe, true, new Object[]{
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_axe, true, new Object[]{
 				"XX ", "XY ", " Y ", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_shovel, true, new Object[]{
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_shovel, true, new Object[]{
 				"X", "Y", "Y", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_sword, true, new Object[]{
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_sword, true, new Object[]{
 				"X", "X", "Y", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_hoe, true, new Object[]{
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_hoe, true, new Object[]{
 				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
-				
+
 		//Armor Recipes
-			//Steel Armor
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_helmet, true, new Object[]{
+		//Steel Armor
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_helmet, true, new Object[]{
 				"XXX", "X X", Character.valueOf('X'), "ingotSteel"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_chestplate, true, new Object[]{
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_chestplate, true, new Object[]{
 				"X X", "XXX", "XXX", Character.valueOf('X'), "ingotSteel"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_leggings, true, new Object[]{
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_leggings, true, new Object[]{
 				"XXX", "X X", "X X", Character.valueOf('X'), "ingotSteel"}));
-			GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_boots, true, new Object[]{
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_boots, true, new Object[]{
 				"X X", "X X", Character.valueOf('X'), "ingotSteel"}));
-			
+
 		//Smelting Recipes
-			//Fusion Furnace
+		//Fusion Furnace
 		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
 				FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.COAL),
 				new ItemStack(Content.small_steel_chunk), 2.0F);
 		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
 				FusionMaterial.of(Items.COAL), FusionMaterial
-						.of("gunpowder"), new ItemStack(
+				.of("gunpowder"), new ItemStack(
 						Content.medium_steel_chunk), 4.0F);
 		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
 				FusionMaterial.of(Items.COAL), FusionMaterial
-						.of("dustRedstone"), new ItemStack(
+				.of("dustRedstone"), new ItemStack(
 						Content.large_steel_chunk), 8.0F);
-			
-			//Regular Furnace
-			GameRegistry.addSmelting(Content.large_steel_chunk, new ItemStack(Content.steel_ingot), 0.4F);
 		
+		if (Settings.customRecipes.asBoolean()) {
+			doCustomFusionRecipes();
+		}
+		//Regular Furnace
+		GameRegistry.addSmelting(Content.large_steel_chunk, new ItemStack(Content.steel_ingot), 0.4F);
 	} // end doRecipes
+	
+	private static void doCustomFusionRecipes()
+	{
+		// avoid NPE
+		if (Settings.numCustomRecipes == null || Settings.customFusionRecipes == null) {
+			return;
+		}
+		for (int ii=0; ii < Settings.numCustomRecipes.asInt(); ii++)
+		{
+			ConfigFusionRecipe r = Settings.customFusionRecipes[ii];
+			ItemStack outStack = new ItemStack(FusionMaterial.of(r.getOutput()).getItem());
+			
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of(r.getInput1()), 
+										     FusionMaterial.of(r.getInput2()), 
+										     FusionMaterial.of(r.getCatalyst()),
+											 outStack, 1.0F);
+		} // end-for
+	} // end doCustomFusionRecipes()
 } // end class Recipes

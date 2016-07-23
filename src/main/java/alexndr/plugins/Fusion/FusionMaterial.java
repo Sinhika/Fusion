@@ -5,7 +5,10 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
+
+import alexndr.api.logger.LogHelper;
 
 import com.google.common.collect.Lists;
 
@@ -32,8 +35,31 @@ public abstract class FusionMaterial
 	 */
 	public static FusionMaterial of(String ore, int amount)
 	{
-		return new DictMaterial(ore, amount);
-	}
+		// actually check ore dictionary for material...
+		if (OreDictionary.doesOreNameExist(ore)) {
+			return new DictMaterial(ore, amount);
+		} // end-if
+		
+		ResourceLocation ore_name = new ResourceLocation(ore);
+		
+		// is this a block name?
+		if (Block.REGISTRY.getObject(ore_name) != null)
+		{
+			Block B = Block.REGISTRY.getObject(ore_name);
+			return of(B, amount);
+		}
+		// or an item name?
+		else if (Item.REGISTRY.getObject(ore_name) != null)
+		{
+			Item I = Item.REGISTRY.getObject(ore_name);
+			return of (I, amount);
+		}
+		// fail-safe case
+		else { 
+			LogHelper.severe(ModInfo.ID, "Material " + ore + " does not exist! Cannot create recipe.");
+			return new NullMaterial();
+		}
+	} // end of(String, int)
 	
 	/**
 	 * Creates a new StackMaterial for ItemStack materials.
