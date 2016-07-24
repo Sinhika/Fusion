@@ -107,7 +107,7 @@ public class Settings
 					ConfigFusionRecipe recipe = 
 							new ConfigFusionRecipe("Custom Recipe #" + (i + 1), "CustomRecipes");
 					recipe.createNewValue("Input1").setDataType("@S")
-						.setCurrentValue("minecraft:cobble_stone").setDefaultValue("input1");
+						.setCurrentValue("minecraft:cobblestone").setDefaultValue("input1");
 					recipe.createNewValue("Input2").setDataType("@S")
 						.setCurrentValue("minecraft:flint").setDefaultValue("input2");
 					recipe.createNewValue("Catalyst").setDataType("@S")

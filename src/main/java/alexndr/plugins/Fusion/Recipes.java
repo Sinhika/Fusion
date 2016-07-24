@@ -46,7 +46,21 @@ public class Recipes
 							"Recipes were not added successfully. This is a serious problem!");
 			e.printStackTrace();
 		}
-	}
+	} // end initialize
+	
+	public static void postInitialize()
+	{
+		try {
+			if (Settings.customRecipes.asBoolean() == true) {
+				doCustomFusionRecipes();
+			}
+		}
+		catch (Exception e) {
+			LogHelper.severe("Fusion",
+					"Custom recipes were not added successfully. This is a problem!");
+			e.printStackTrace();
+		}
+	} // end postInitialzie()
 	
 	public static void doOreDictEntries()
 	{
@@ -131,9 +145,6 @@ public class Recipes
 				.of("dustRedstone"), new ItemStack(
 						Content.large_steel_chunk), 8.0F);
 		
-		if (Settings.customRecipes.asBoolean()) {
-			doCustomFusionRecipes();
-		}
 		//Regular Furnace
 		GameRegistry.addSmelting(Content.large_steel_chunk, new ItemStack(Content.steel_ingot), 0.4F);
 	} // end doRecipes
@@ -144,7 +155,7 @@ public class Recipes
 		if (Settings.numCustomRecipes == null || Settings.customFusionRecipes == null) {
 			return;
 		}
-		for (int ii=0; ii < Settings.numCustomRecipes.asInt(); ii++)
+		for (int ii=0; ii < Settings.customFusionRecipes.length; ii++)
 		{
 			ConfigFusionRecipe r = Settings.customFusionRecipes[ii];
 			ItemStack outStack = new ItemStack(FusionMaterial.of(r.getOutput()).getItem());
@@ -153,6 +164,7 @@ public class Recipes
 										     FusionMaterial.of(r.getInput2()), 
 										     FusionMaterial.of(r.getCatalyst()),
 											 outStack, 1.0F);
+			LogHelper.info(ModInfo.ID, r.getName() + " registered.");
 		} // end-for
 	} // end doCustomFusionRecipes()
 } // end class Recipes

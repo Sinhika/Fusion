@@ -3,6 +3,7 @@ package alexndr.plugins.Fusion;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -43,7 +44,8 @@ public abstract class FusionMaterial
 		ResourceLocation ore_name = new ResourceLocation(ore);
 		
 		// is this a block name?
-		if (Block.REGISTRY.getObject(ore_name) != null)
+		// Note: block registry has default key Blocks.AIR
+		if (Block.REGISTRY.getObject(ore_name) != Blocks.AIR)
 		{
 			Block B = Block.REGISTRY.getObject(ore_name);
 			return of(B, amount);
