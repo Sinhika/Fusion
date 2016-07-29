@@ -119,6 +119,8 @@ public class Recipes
 				"X", "X", "Y", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_hoe, true, new Object[]{
 				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotSteel", Character.valueOf('Y'), "stickWood"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_shears, false,
+				new Object[] { " Y", "Y ", Character.valueOf('Y'), "ingotSteel" }));
 
 		//Armor Recipes
 		//Steel Armor
