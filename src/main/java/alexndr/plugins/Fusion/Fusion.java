@@ -1,5 +1,8 @@
 package alexndr.plugins.Fusion;
 
+import alexndr.api.logger.LogHelper;
+import alexndr.api.registry.Plugin;
+import alexndr.plugins.Fusion.helpers.FusionGuiHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -8,14 +11,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import alexndr.api.logger.LogHelper;
-import alexndr.api.registry.Plugin;
-import alexndr.plugins.Fusion.helpers.FusionGuiHandler;
 
 /**
  * @author AleXndrTheGr8st
  */
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, 
+     acceptedMinecraftVersions=ModInfo.ACCEPTED_VERSIONS,
 	 dependencies = ModInfo.DEPENDENCIES, updateJSON=ModInfo.VERSIONURL)
 public class Fusion 
 {

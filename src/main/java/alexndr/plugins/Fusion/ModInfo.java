@@ -13,6 +13,7 @@ public class ModInfo
 	public static final String NAME = "Fusion";
 	public static final String VERSION = "@MODVERSION@";
 	public static final String DESCRIPTION = "A plugin for SimpleCore API that adds a unique alloying process.";
+	public static final String ACCEPTED_VERSIONS = "[1.9.4,1.10.2]";
 	public static final String DEPENDENCIES = "required-after:simplecore@[1.3.8.0,);after:simpleores;after:netherrocks";
 	public static final String URL = "http://minecraft.curseforge.com/projects/fusion";
 	public static final List<String> AUTHORS = Lists.newArrayList("AleXndrTheGr8st", "Sinhika");
