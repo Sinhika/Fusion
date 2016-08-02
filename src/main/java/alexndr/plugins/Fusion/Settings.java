@@ -20,46 +20,15 @@ public class Settings
 
 	public static void createOrLoadSettings(FMLPreInitializationEvent event) 
 	{
-		settings.setModName("Fusion");
-		File settingsFile = new File(event.getModConfigurationDirectory()
-				+ "/AleXndr", "FusionSettings.xml");
+		settings.setModName(ModInfo.NAME);
+		File configDir = new File(event.getModConfigurationDirectory(), "AleXndr");
+		File settingsFile = new File(configDir, "FusionSettings.xml");
 		settings.setFile(settingsFile);
 
-		LogHelper.verbose("Fusion", "Loading Settings...");
+		LogHelper.verbose(ModInfo.NAME, "Loading Settings...");
 		try {
 			settings.load();
-
-			// Config Help
-			ConfigEntry link = new ConfigEntry("Documentation", "ConfigHelp");
-			link.createNewValue("DocumentationLink")
-					.setActive().setDataType("@S")
-					.setCurrentValue(
-							"https://github.com/AleXndrTheGr8st/SimpleCore/wiki/Using-The-Config")
-					.setDefaultValue("");
-			link = settings.get(link);
-
-			ConfigEntry dataTypes = new ConfigEntry("Data Types", "ConfigHelp");
-			dataTypes.createNewValue("ABOUT").setActive().setDataType("@S")
-					.setCurrentValue(
-							"It is important that the correct data types are used. They are designated by the @ symbol.")
-					.setDefaultValue("");
-			dataTypes.createNewValue("Boolean").setActive().setDataType("@B")
-					.setCurrentValue("Accepts: true, false.")
-					.setDefaultValue("");
-			dataTypes.createNewValue("Integer").setActive().setDataType("@I")
-					.setCurrentValue("Accepts: Whole numbers only, such as 2 or 4096.")
-					.setDefaultValue("");
-			dataTypes.createNewValue("Float").setActive().setDataType("@F")
-					.setCurrentValue("Accepts: Decimal numbers, such as 1.5 or 98.9.")
-					.setDefaultValue("");
-			dataTypes.createNewValue("Double").setActive().setDataType("@D")
-					.setCurrentValue("Accepts: Decimal numbers, such as 1.5 or 98.9.")
-					.setDefaultValue("");
-			dataTypes.createNewValue("String").setActive().setDataType("@S")
-					.setCurrentValue(
-							"Accepts: Any number or character, such as abcdefg or 9dsa29213mn#.")
-					.setDefaultValue("");
-			dataTypes = settings.get(dataTypes);
+			settings.createHelpEntry(ModInfo.URL);
 
 			// Toggles
 			ConfigEntry toggles = new ConfigEntry("Fusion Toggles", "Toggles");
@@ -80,15 +49,15 @@ public class Settings
 			contentToggles.createNewValue("EnableSimpleOres").setDataType("@B")
 					.setCurrentValue("true").setDefaultValue("true");
 			// .setComment("Enables Netherrocks-based content.")
-			contentToggles.createNewValue("EnableNetherrocks")
-					.setDataType("@B").setCurrentValue("true")
-					.setDefaultValue("true");
+			contentToggles.createNewValue("EnableNetherrocks").setDataType("@B").setCurrentValue("false")
+					.setDefaultValue("false");
 			contentToggles = settings.get(contentToggles);
+			
 			enableSimpleOres = contentToggles
 					.getValueByName("EnableSimpleOres");
 			enableNetherrocks = contentToggles
 					.getValueByName("EnableNetherrocks");
-
+			
 			// CUSTOM RECIPES
 			if (customRecipes.asBoolean() == true) 
 			{
