@@ -2,6 +2,7 @@ package alexndr.plugins.Fusion.modsupport;
 
 import net.minecraftforge.fml.common.Loader;
 import alexndr.api.helpers.game.RenderItemHelper;
+import alexndr.plugins.Fusion.Fusion;
 import alexndr.plugins.Fusion.Settings;
 
 public class ModSupport 
@@ -42,8 +43,8 @@ public class ModSupport
 	public static void ClientPreInit(RenderItemHelper renderHelper) 
 	{
 		if(use_simpleores) {
-			renderHelper.addBowRenderDetails(ContentSimpleOres.sinisite_bow);
-			renderHelper.addBowRenderDetails(ContentSimpleOres.thyrium_bow);
+			renderHelper.addBowRenderDetails(Fusion.plugin, ContentSimpleOres.sinisite_bow);
+			renderHelper.addBowRenderDetails(Fusion.plugin, ContentSimpleOres.thyrium_bow);
 		}
 	} // end ClientPreInit()
 	
