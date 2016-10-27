@@ -119,7 +119,7 @@ public class Content
 				ContentCategories.Block.GENERAL)
 				.setConfigEntry(Settings.steelBlock)
 				.setStepSound(SoundType.METAL)
-				.setUnlocalizedName("steel_block");
+				.setUnlocalizedName("steel_block").setCreativeTab(TabHelper.decorationsTab());
 	}
 	
 	/**
@@ -127,10 +127,17 @@ public class Content
 	 */
 	public static void doItems()
 	{
-		steel_ingot = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("steel_ingot");
-		small_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("small_steel_chunk");
-		medium_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("medium_steel_chunk");
-		large_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot).setUnlocalizedName("large_steel_chunk");
+		steel_ingot = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot)
+				.setUnlocalizedName("steel_ingot").setCreativeTab(TabHelper.materialsTab());
+		small_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
+				.setConfigEntry(Settings.steelIngot).setUnlocalizedName("small_steel_chunk")
+				.setCreativeTab(TabHelper.materialsTab());
+		medium_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
+				.setConfigEntry(Settings.steelIngot).setUnlocalizedName("medium_steel_chunk")
+				.setCreativeTab(TabHelper.materialsTab());
+		large_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
+				.setConfigEntry(Settings.steelIngot).setUnlocalizedName("large_steel_chunk")
+				.setCreativeTab(TabHelper.materialsTab());
 	}
 	
 	/**
@@ -138,12 +145,18 @@ public class Content
 	 */
 	public static void doTools()
 	{
-		steel_pickaxe = new SimplePickaxe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_pickaxe");
-		steel_axe = new SimpleAxe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_axe");
-		steel_shovel = new SimpleShovel(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shovel");
-		steel_hoe = new SimpleHoe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_hoe");
-		steel_sword = new SimpleSword(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_sword");
-		steel_shears = new SimpleShears(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools).setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shears");
+		steel_pickaxe = new SimplePickaxe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
+				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_pickaxe");
+		steel_axe = new SimpleAxe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
+				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_axe");
+		steel_shovel = new SimpleShovel(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
+				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shovel");
+		steel_hoe = new SimpleHoe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
+				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_hoe");
+		steel_sword = new SimpleSword(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
+				.setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_sword");
+		steel_shears = new SimpleShears(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
+				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shears");
 	}
 	
 	/**

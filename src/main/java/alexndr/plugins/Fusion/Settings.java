@@ -93,23 +93,15 @@ public class Settings
 			// Items
 			steelIngot = settings.get(
 					new ConfigItem("Steel Ingot", "Items").setStackSize(64)
-							.setCreativeTab("SimpleMaterials")
-							.setCreativeTab("SimpleMaterials")
 							.setSmeltingXP(0.4F)).asConfigItem();
 			bronzeIngot = settings.get(
 					new ConfigItem("Bronze Ingot", "Items").setStackSize(64)
-							.setCreativeTab("SimpleMaterials")
-							.setCreativeTab("SimpleMaterials")
 							.setSmeltingXP(0.4F)).asConfigItem();
 			thyriumIngot = settings.get(
 					new ConfigItem("Thyrium Ingot", "Items").setStackSize(64)
-							.setCreativeTab("SimpleMaterials")
-							.setCreativeTab("SimpleMaterials")
 							.setSmeltingXP(0.4F)).asConfigItem();
 			sinisiteIngot = settings.get(
 					new ConfigItem("Sinisite Ingot", "Items").setStackSize(64)
-							.setCreativeTab("SimpleMaterials")
-							.setCreativeTab("SimpleMaterials")
 							.setSmeltingXP(0.4F)).asConfigItem();
 
 			// Blocks
@@ -117,25 +109,21 @@ public class Settings
 					new ConfigBlock("Steel Block", "Blocks").setHardness(7.0F)
 							.setResistance(12.0F).setLightValue(0.0F)
 							.setHarvestTool("pickaxe")
-							.setCreativeTab("SimpleDecorations")
 							.setBeaconBase(true)).asConfigBlock();
 			bronzeBlock = settings.get(
 					new ConfigBlock("Bronze Block", "Blocks").setHardness(7.0F)
 							.setResistance(12.0F).setLightValue(0.0F)
 							.setHarvestTool("pickaxe")
-							.setCreativeTab("SimpleDecorations")
 							.setBeaconBase(true)).asConfigBlock();
 			thyriumBlock = settings.get(
 					new ConfigBlock("Thyrium Block", "Blocks")
 							.setHardness(7.0F).setResistance(12.0F)
 							.setLightValue(0.0F).setHarvestTool("pickaxe")
-							.setCreativeTab("SimpleDecorations")
 							.setBeaconBase(true)).asConfigBlock();
 			sinisiteBlock = settings.get(
 					new ConfigBlock("Sinisite Block", "Blocks")
 							.setHardness(7.0F).setResistance(12.0F)
 							.setLightValue(0.0F).setHarvestTool("pickaxe")
-							.setCreativeTab("SimpleDecorations")
 							.setBeaconBase(true)).asConfigBlock();
 
 			fusionFurnace = settings.get(
@@ -167,15 +155,10 @@ public class Settings
 					.asConfigTool();
 
 			thyriumBow = settings.get(new ConfigEntry("Thyrium Bow", "Bows"));
-			// .setComment("The damage multiplier of the Thyrium Bow (versus vanilla bow).").setCommentIndentNumber(2);
 			thyriumBow.createNewValue("DamageModifier").setDataType("@F")
 					.setCurrentValue("5.0").setDefaultValue("5.0");
-			// .setMinimumValue("0.0").setMaximumValue("32000").setComment("The zoom amount of the Thyrium Bow.");
 			thyriumBow.createNewValue("ZoomAmount").setDataType("@F")
 					.setCurrentValue("0.35").setDefaultValue("0.35");
-			thyriumBow.createNewValue("CreativeTab").setDataType("@S")
-					.setCurrentValue("SimpleCombat")
-					.setDefaultValue("SimpleCombat");
 			thyriumBowDamageModifier = thyriumBow
 					.getValueByName("DamageModifier");
 			thyriumBowZoomAmount = thyriumBow.getValueByName("ZoomAmount");
@@ -187,9 +170,6 @@ public class Settings
 			// .setComment("The knockback level of the Sinisite Bow.").setCommentIndentNumber(2);
 			sinisiteBow.createNewValue("KnockbackAmount").setDataType("@I")
 					.setCurrentValue("2").setDefaultValue("2");
-			sinisiteBow.createNewValue("CreativeTab").setDataType("@S")
-					.setCurrentValue("SimpleCombat")
-					.setDefaultValue("SimpleCombat");
 			sinisiteBowDamageModifier = sinisiteBow
 					.getValueByName("DamageModifier");
 			sinisiteBowKnockbackAmount = sinisiteBow
