@@ -32,10 +32,8 @@ public class Settings
 
 			// Toggles
 			ConfigEntry toggles = new ConfigEntry("Fusion Toggles", "Toggles");
-			// .setComment("(NYI) Allows custom Fusion Furnace recipes").setCommentIndentNumber(2)
 			toggles.createNewValue("EnableCustomRecipes").setDataType("@B")
 					.setCurrentValue("false").setDefaultValue("false");
-			// .setComment("Enables extra chunk-combining recipes.").setCommentIndentNumber(0)
 			toggles.createNewValue("EnableExtraChunkRecipes").setDataType("@B")
 					.setCurrentValue("false").setDefaultValue("false");
 			toggles = settings.get(toggles);
@@ -45,10 +43,8 @@ public class Settings
 
 			ConfigEntry contentToggles = new ConfigEntry("Content Toggles",
 					"Toggles");
-			// .setComment("Enables SimpleOres-based content.")
 			contentToggles.createNewValue("EnableSimpleOres").setDataType("@B")
 					.setCurrentValue("true").setDefaultValue("true");
-			// .setComment("Enables Netherrocks-based content.")
 			contentToggles.createNewValue("EnableNetherrocks").setDataType("@B").setCurrentValue("false")
 					.setDefaultValue("false");
 			contentToggles = settings.get(contentToggles);
@@ -66,7 +62,6 @@ public class Settings
 				customRecipeConfig.createNewValue("NumCustomRecipes")
 						.setDataType("@I").setCurrentValue("1")
 						.setDefaultValue("1");
-				// .setComment("The number of custom recipes to add.");
 				customRecipeConfig = settings.get(customRecipeConfig);
 				numCustomRecipes = customRecipeConfig.getValueByName("NumCustomRecipes");
 				customFusionRecipes = new ConfigFusionRecipe[numCustomRecipes.asInt()];
