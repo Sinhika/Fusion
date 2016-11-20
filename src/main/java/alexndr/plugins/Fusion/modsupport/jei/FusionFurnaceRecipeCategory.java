@@ -8,10 +8,11 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
-import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 
+@SuppressWarnings("deprecation")
 public class FusionFurnaceRecipeCategory extends BlankRecipeCategory<FusionFurnaceRecipeWrapper>
 {
     public static final String UID = "fusion.furnace"; 
@@ -32,7 +33,7 @@ public class FusionFurnaceRecipeCategory extends BlankRecipeCategory<FusionFurna
 
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper)
     {
-        localizedName = Translator.translateToLocal("fusion.jei.fusionCategory");
+        localizedName = I18n.translateToLocal("fusion.jei.fusionCategory");
         backgroundLocation = 
                         new ResourceLocation(alexndr.plugins.Fusion.ModInfo.ID, 
                                              "textures/gui/container/fusion_furnace_gui.png");
