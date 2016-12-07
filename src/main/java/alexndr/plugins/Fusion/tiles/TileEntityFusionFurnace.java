@@ -82,7 +82,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
             --this.furnaceBurnTime;
         }
 
-		if(!this.worldObj.isRemote)
+		if(!this.getWorld().isRemote)
 		{
             if (this.isBurning() || this.furnaceItemStacks[NDX_FUEL_SLOT] != null 
                             && this.furnaceItemStacks[NDX_LEFT_SLOT] != null
@@ -135,7 +135,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
             if (flag != this.isBurning())
             {
                 flag1 = true;
-				BlockFusionFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+				BlockFusionFurnace.setState(this.isBurning(), this.getWorld(), this.pos);
 			}
 		} // end-if
 		
@@ -214,7 +214,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) 
 	{
-		EnumFacing furnaceFace = this.worldObj.getBlockState(this.pos).getValue(SimpleFurnace.FACING);
+		EnumFacing furnaceFace = this.getWorld().getBlockState(this.pos).getValue(SimpleFurnace.FACING);
 		switch (side)
 		{
 			case DOWN :

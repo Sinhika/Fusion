@@ -73,9 +73,9 @@ public class SlotFusionFurnace extends Slot
     @Override
 	protected void onCrafting(ItemStack stack)
     {
-        stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.removeCount);
+        stack.onCrafting(this.thePlayer.getEntityWorld(), this.thePlayer, this.removeCount);
 
-        if (!this.thePlayer.worldObj.isRemote)
+        if (!this.thePlayer.getEntityWorld().isRemote)
         {
             int i = this.removeCount;
             float f = FusionFurnaceRecipes.getExperience(stack);
@@ -101,7 +101,11 @@ public class SlotFusionFurnace extends Slot
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-                this.thePlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(this.thePlayer.worldObj, this.thePlayer.posX, this.thePlayer.posY + 0.5D, this.thePlayer.posZ + 0.5D, j));
+                this.thePlayer.getEntityWorld().spawnEntityInWorld(
+                        new EntityXPOrb(this.thePlayer.getEntityWorld(), 
+                                        this.thePlayer.posX, 
+                                        this.thePlayer.posY + 0.5D, 
+                                        this.thePlayer.posZ + 0.5D, j));
             }
         }
 
