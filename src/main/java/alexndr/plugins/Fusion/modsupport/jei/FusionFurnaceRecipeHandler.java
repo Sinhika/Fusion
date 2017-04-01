@@ -1,35 +1,25 @@
 package alexndr.plugins.Fusion.modsupport.jei;
 
 import alexndr.plugins.Fusion.RecipeEntry;
+import mcjty.lib.jei.CompatRecipeHandler;
+import mcjty.lib.tools.ItemStackTools;
 import mezz.jei.api.IJeiHelpers;
-import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
-public class FusionFurnaceRecipeHandler implements IRecipeHandler<RecipeEntry>
+public class FusionFurnaceRecipeHandler extends CompatRecipeHandler<RecipeEntry>
 {
    private final IJeiHelpers jeiHelpers;
     
    public FusionFurnaceRecipeHandler(IJeiHelpers jeiHelpers)
    {
-        this.jeiHelpers = jeiHelpers;
+       super(FusionFurnaceRecipeCategory.UID);
+       this.jeiHelpers = jeiHelpers;
    }
 
     @Override
     public Class<RecipeEntry> getRecipeClass()
     {
         return RecipeEntry.class;
-    }
-
-    @Override
-    public String getRecipeCategoryUid()
-    {
-        return FusionFurnaceRecipeCategory.UID;
-    }
-
-    @Override
-    public String getRecipeCategoryUid(RecipeEntry recipe)
-    {
-        return FusionFurnaceRecipeCategory.UID;
     }
 
     @Override
@@ -41,14 +31,14 @@ public class FusionFurnaceRecipeHandler implements IRecipeHandler<RecipeEntry>
     @Override
     public boolean isRecipeValid(RecipeEntry recipe)
     {
-        if (recipe.getOutput() == null) return false;
-        if (recipe.catalyst.getItem() == null && recipe.catalyst.getOre() == null) {
+        if (ItemStackTools.isEmpty(recipe.getOutput())) return false;
+        if (recipe.catalyst.matches(ItemStackTools.getEmptyStack())) {
             return false;
         }
-        if (recipe.input1.getItem() == null && recipe.input1.getOre() == null) {
+        if (recipe.input1.matches(ItemStackTools.getEmptyStack())) {
             return false;
         }
-        if (recipe.input2.getItem() == null && recipe.input2.getOre() == null) {
+        if (recipe.input2.matches(ItemStackTools.getEmptyStack())) {
             return false;
         }
         return true;

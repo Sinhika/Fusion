@@ -1,19 +1,20 @@
 package alexndr.plugins.Fusion.inventory;
 
+import alexndr.plugins.Fusion.FusionFurnaceRecipes;
+import mcjty.lib.compat.CompatSlot;
+import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 
 /**
  * this class is the FusionFurnace version of SlotFurnaceOutput, and is almost
  * identical.
  * @author AleXndrTheGr8st
  */
-public class SlotFusionFurnace extends Slot
+public class SlotFusionFurnace extends CompatSlot
 {
 	/** The player that is using the GUI where this slot resides. */
     protected EntityPlayer thePlayer;
@@ -44,7 +45,7 @@ public class SlotFusionFurnace extends Slot
     {
         if (this.getHasStack())
         {
-            this.removeCount += Math.min(amount, this.getStack().stackSize);
+            this.removeCount += Math.min(amount, ItemStackTools.getStackSize(this.getStack()));
         }
         return super.decrStackSize(amount);
     }

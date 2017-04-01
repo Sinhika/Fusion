@@ -269,24 +269,27 @@ public class ContentSimpleOres
 
 		armorBronze = EnumHelper.addArmorMaterial("BRONZE", "bronze",
 				Settings.bronzeArmor.getDurability(), new int[] {
-						Settings.bronzeArmor.getHelmReduction(),
-						Settings.bronzeArmor.getChestReduction(),
-						Settings.bronzeArmor.getLegsReduction(),
-						Settings.bronzeArmor.getBootsReduction()},
+                        Settings.bronzeArmor.getBootsReduction(),
+                        Settings.bronzeArmor.getLegsReduction(),
+                        Settings.bronzeArmor.getChestReduction(),
+						Settings.bronzeArmor.getHelmReduction()
+						},
 				Settings.bronzeArmor.getEnchantability(), armorNoise, 0.0F);
 		armorThyrium = EnumHelper.addArmorMaterial("THYRIUM", "thyrium",
 				Settings.thyriumArmor.getDurability(), new int[] {
-						Settings.thyriumArmor.getHelmReduction(),
-						Settings.thyriumArmor.getChestReduction(),
-						Settings.thyriumArmor.getLegsReduction(),
-						Settings.thyriumArmor.getBootsReduction()},
+                        Settings.thyriumArmor.getBootsReduction(),
+                        Settings.thyriumArmor.getLegsReduction(),
+                        Settings.thyriumArmor.getChestReduction(),
+						Settings.thyriumArmor.getHelmReduction()
+						},
 				Settings.thyriumArmor.getEnchantability(), armorNoise, 1.0F );
 		armorSinisite = EnumHelper.addArmorMaterial("SINISITE", "sinisite",
 				Settings.sinisiteArmor.getDurability(), new int[] {
-						Settings.sinisiteArmor.getHelmReduction(),
-						Settings.sinisiteArmor.getChestReduction(),
-						Settings.sinisiteArmor.getLegsReduction(),
-						Settings.sinisiteArmor.getBootsReduction()},
+		                Settings.sinisiteArmor.getBootsReduction(),
+                        Settings.sinisiteArmor.getLegsReduction(),
+                        Settings.sinisiteArmor.getChestReduction(),
+						Settings.sinisiteArmor.getHelmReduction()
+						},
 				Settings.sinisiteArmor.getEnchantability(), armorNoise, 2.0F );
 	}
 	

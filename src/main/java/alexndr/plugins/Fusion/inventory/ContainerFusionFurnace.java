@@ -11,6 +11,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
+import mcjty.lib.tools.InventoryTools;
+import mcjty.lib.tools.ItemStackTools;
 
 /**
  * Lots of cutting & pasting fron ContainerFurnace here, except for the parts that aren't.
@@ -107,18 +109,18 @@ public class ContainerFusionFurnace extends Container
     @Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
     {
-    	ItemStack itemstack = null;
+    	ItemStack itemstack = ItemStackTools.getEmptyStack();
     	Slot slot = (Slot)this.inventorySlots.get(index);
     	
     	if(slot != null && slot.getHasStack())
     	{
     		ItemStack stackInSlot = slot.getStack();
-    		itemstack = stackInSlot.copy();
+    		itemstack = ItemStackTools.safeCopy(stackInSlot);
     		
     		if(index == 2)
     		{
     			if(!this.mergeItemStack(stackInSlot, 5, 39, true))
-    				return null;
+    				return ItemStackTools.getEmptyStack();
     			slot.onSlotChange(stackInSlot, itemstack);
     		}
     		else if(index >= 5)
@@ -134,49 +136,49 @@ public class ContainerFusionFurnace extends Container
     							try
     							{
     								if(!this.mergeItemStack(stackInSlot, 4, 5, false) || !FusionFurnaceRecipes.isItemCatalyst(stackInSlot))
-    									return null;
+    									return ItemStackTools.getEmptyStack();
     							}
     							catch(Exception e)
     							{
-    								return null;
+    								return ItemStackTools.getEmptyStack();
     							}
     						}
     					}
     					catch(Exception e)
     					{
-    						return null;
+    						return ItemStackTools.getEmptyStack();
     					}
     				}
     			}
     			else if(FusionFurnaceRecipes.isItemCatalyst(stackInSlot))
     			{
     				if(!this.mergeItemStack(stackInSlot, 4, 5, false))
-    					return null;
+    					return ItemStackTools.getEmptyStack();
     			}
     			else if(FusionFurnaceRecipes.isItemInput(stackInSlot))
     			{
     				if(!this.mergeItemStack(stackInSlot, 0, 1, false) && !this.mergeItemStack(stackInSlot, 3, 4, false))
-    					return null;
+    					return ItemStackTools.getEmptyStack();
     			}
     			else if(index < 32)
     			{
     				if(!this.mergeItemStack(stackInSlot, 32, 41, false))
-    					return null;
+    					return ItemStackTools.getEmptyStack();
     			}
     			else if(index < 41 && !this.mergeItemStack(stackInSlot, 5, 32, false))
-    				return null;
+    				return ItemStackTools.getEmptyStack();
     		}
     		else if(!this.mergeItemStack(stackInSlot, 5, 41, false))
-    			return null;
+    			return ItemStackTools.getEmptyStack();
     		
-    		if(stackInSlot.stackSize == 0)
-    			slot.putStack((ItemStack)null);
+    		if (ItemStackTools.isEmpty(stackInSlot)) 
+    			slot.putStack(ItemStackTools.getEmptyStack());
     		else
     			slot.onSlotChanged();
     		
-    		if(stackInSlot.stackSize == itemstack.stackSize)
-    			return null;
-    		slot.onPickupFromSlot(par1EntityPlayer, stackInSlot);
+    		if ( ItemStackTools.getStackSize(stackInSlot) == ItemStackTools.getStackSize(itemstack))
+    			return ItemStackTools.getEmptyStack();
+    		InventoryTools.onPickup(slot, par1EntityPlayer, stackInSlot);
     	}
     	return itemstack;
     }

@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 
 import alexndr.api.logger.LogHelper;
+import mcjty.lib.tools.ItemStackTools;
 
 import com.google.common.collect.Lists;
 
@@ -147,7 +148,7 @@ public abstract class FusionMaterial
 		@Override
 		public boolean matches(ItemStack item) 
 		{
-			return item == null;
+		    return ItemStackTools.isEmpty(item);
 		}
 
 		@Override
@@ -193,7 +194,7 @@ public abstract class FusionMaterial
 		@Override
 		public boolean matches(ItemStack item) 
 		{
-			if(item == null || item.stackSize < amount)
+			if(ItemStackTools.isEmpty(item) || ItemStackTools.getStackSize(item) < amount)
 				return false;
 			
 			for(ItemStack stack : OreDictionary.getOres(ore))
@@ -254,7 +255,8 @@ public abstract class FusionMaterial
 		@Override
 		public boolean matches(ItemStack item) 
 		{
-			if(item == null || item.stackSize < stack.stackSize)
+            if(ItemStackTools.isEmpty(item) 
+               || ItemStackTools.getStackSize(item) < ItemStackTools.getStackSize(stack))
 				return false;
 			
 			return FusionFurnaceRecipes.matches(stack, item);

@@ -186,13 +186,13 @@ public class Content
     	toolSteel = EnumHelper.addToolMaterial("STEEL", Settings.steelTools.getHarvestLevel(), Settings.steelTools.getUses(), 
     											Settings.steelTools.getHarvestSpeed(), Settings.steelTools.getDamageVsEntity(), 
     											Settings.steelTools.getEnchantability());
-    	armorSteel = EnumHelper.addArmorMaterial("STEEL", "steel", Settings.steelArmor.getDurability(), 
-    											new int[] {Settings.steelArmor.getHelmReduction(), 
-    													   Settings.steelArmor.getChestReduction(), 
-    													   Settings.steelArmor.getLegsReduction(), 
-    													   Settings.steelArmor.getBootsReduction()}, 
-    													   Settings.steelArmor.getEnchantability(), 
-    													   armorNoise, 0.5F);
+        armorSteel = EnumHelper.addArmorMaterial("STEEL", "steel",
+                        Settings.steelArmor.getDurability(),
+                        new int[] { Settings.steelArmor.getBootsReduction(),
+                                    Settings.steelArmor.getLegsReduction(),
+                                    Settings.steelArmor.getChestReduction(),
+                                    Settings.steelArmor.getHelmReduction() },
+                        Settings.steelArmor.getEnchantability(), armorNoise, 0.5F);
     } // end setToolAndArmorStats()
     
 	public static void setAchievementTriggers()

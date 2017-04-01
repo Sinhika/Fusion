@@ -1,13 +1,15 @@
 package alexndr.plugins.Fusion.tiles;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.MathHelper;
 import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
+import mcjty.lib.tools.ItemStackTools;
+import mcjty.lib.tools.MathTools;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 
 /**
  * @author AleXndrTheGr8st
@@ -21,11 +23,6 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
     protected static final int NDX_CATALYST_SLOT = 4;
     
     protected static boolean initDone = false;
-	
-//	private static final int[] slots_catalyst = new int[] {4};
-//	private static final int[] slots_output = new int[] {2, 1};
-//	private static final int[] slots_fuel = new int[] {1};
-//	private ItemStack[] furnaceItemStacks = new ItemStack[5];
 	
 	protected static final int[] slots_input1 = new int[] {NDX_LEFT_SLOT};
 	protected static final int[] slots_input2 = new int[] {NDX_RIGHT_SLOT};
@@ -53,13 +50,14 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) 
 	{
-        boolean flag = stack != null && stack.isItemEqual(this.furnaceItemStacks[index]) 
-				&& ItemStack.areItemStackTagsEqual(stack, this.furnaceItemStacks[index]);
-        this.furnaceItemStacks[index] = stack;
+        ItemStack itemstack = (ItemStack)this.getStackInSlot(index);
+        boolean flag = ItemStackTools.isValid(stack) && stack.isItemEqual(itemstack) 
+                && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        this.furnaceItemStacks.set(index, stack);
         
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        if (ItemStackTools.getStackSize(stack) > this.getInventoryStackLimit())
         {
-            stack.stackSize = this.getInventoryStackLimit();
+            ItemStackTools.setStackSize(stack, this.getInventoryStackLimit());
         }
         
         // Fusion Furnace has 3 (!) input stacks to account for.
@@ -84,27 +82,28 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 
 		if(!this.getWorld().isRemote)
 		{
-            if (this.isBurning() || this.furnaceItemStacks[NDX_FUEL_SLOT] != null 
-                            && this.furnaceItemStacks[NDX_LEFT_SLOT] != null
-            	 && this.furnaceItemStacks[NDX_RIGHT_SLOT] != null 
-            	 && this.furnaceItemStacks[NDX_CATALYST_SLOT] != null )
+            ItemStack fuelstack = (ItemStack)this.getStackInSlot(NDX_FUEL_SLOT);
+            ItemStack leftstack = (ItemStack)this.getStackInSlot(NDX_LEFT_SLOT);
+            ItemStack rightstack = (ItemStack)this.getStackInSlot(NDX_RIGHT_SLOT);
+            ItemStack catastack = (ItemStack)this.getStackInSlot(NDX_CATALYST_SLOT);
+            
+            if (this.isBurning() || ItemStackTools.isValid(fuelstack) && ItemStackTools.isValid(leftstack)
+                && ItemStackTools.isValid(rightstack) && ItemStackTools.isValid(catastack))
             {
                 if (!this.isBurning() && this.canSmelt())
                 {
-                    this.currentItemBurnTime = this.furnaceBurnTime = 
-                                    getItemBurnTime(this.furnaceItemStacks[NDX_FUEL_SLOT]);
+                    this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(fuelstack);
 
                     if (this.isBurning())
                     {
                         flag1 = true;
-                        if (this.furnaceItemStacks[NDX_FUEL_SLOT] != null)
+                        if (ItemStackTools.isValid(fuelstack))
                         {
-                            --this.furnaceItemStacks[NDX_FUEL_SLOT].stackSize;
-                            if (this.furnaceItemStacks[NDX_FUEL_SLOT].stackSize == 0)
-                            {
-                                this.furnaceItemStacks[NDX_FUEL_SLOT] = 
-                                    furnaceItemStacks[NDX_FUEL_SLOT].getItem().getContainerItem(
-                                                    furnaceItemStacks[NDX_FUEL_SLOT]);
+                            Item item = fuelstack.getItem();
+                            ItemStackTools.incStackSize(fuelstack, -1);
+                            if (ItemStackTools.isEmpty(fuelstack)) {
+                                ItemStack item1 = item.getContainerItem(fuelstack);
+                                this.furnaceItemStacks.set(NDX_FUEL_SLOT, item1);
                             }
                         } // end-if
                     } // end-if
@@ -117,7 +116,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
                     if (this.cookTime == this.totalCookTime)
                     {
                         this.cookTime = 0;
-                        this.totalCookTime = this.getCookTime(this.furnaceItemStacks[NDX_LEFT_SLOT]);
+                        this.totalCookTime = this.getCookTime(this.getStackInSlot(NDX_LEFT_SLOT));
                         this.smeltItem();
                         flag1 = true;
                     }
@@ -129,7 +128,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
             }
             else if (!this.isBurning() && this.cookTime > 0)
             {
-                this.cookTime = MathHelper.clamp_int(this.cookTime - 2, 0, this.totalCookTime);
+                this.cookTime = MathTools.clamp(this.cookTime - 2, 0, this.totalCookTime);
             }
 
             if (flag != this.isBurning())
@@ -150,19 +149,25 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	@Override
 	protected boolean canSmelt()
 	{
-		if(this.furnaceItemStacks[NDX_LEFT_SLOT] != null && this.furnaceItemStacks[NDX_RIGHT_SLOT] != null 
-		                && this.furnaceItemStacks[NDX_CATALYST_SLOT] != null)
+        if (ItemStackTools.isValid(this.getStackInSlot(NDX_LEFT_SLOT))
+                        && ItemStackTools.isValid(this.getStackInSlot(NDX_RIGHT_SLOT))
+                        && ItemStackTools.isValid(this.getStackInSlot(NDX_CATALYST_SLOT)))
 		{
-			ItemStack itemstack = FusionFurnaceRecipes.getSmeltingResult(
-			                                            this.furnaceItemStacks[NDX_LEFT_SLOT], 
-														this.furnaceItemStacks[NDX_RIGHT_SLOT], 
-														this.furnaceItemStacks[NDX_CATALYST_SLOT]);
-			if(itemstack == null) return false;
-			if(this.furnaceItemStacks[NDX_OUTPUT_SLOT] == null) return true;
-			if(!this.furnaceItemStacks[NDX_OUTPUT_SLOT].isItemEqual(itemstack)) return false;
-			int result = furnaceItemStacks[NDX_OUTPUT_SLOT].stackSize + itemstack.stackSize;
-			return (result <= getInventoryStackLimit() 
-			                && result <= this.furnaceItemStacks[NDX_OUTPUT_SLOT].getMaxStackSize());
+			ItemStack result_stack = FusionFurnaceRecipes.getSmeltingResult(
+			                                            this.getStackInSlot(NDX_LEFT_SLOT), 
+														this.getStackInSlot(NDX_RIGHT_SLOT), 
+														this.getStackInSlot(NDX_CATALYST_SLOT));
+            if (ItemStackTools.isEmpty(result_stack)) {
+                return false;
+            }
+            ItemStack outstack = (ItemStack)this.getStackInSlot(NDX_OUTPUT_SLOT);
+            if (ItemStackTools.isEmpty(outstack)) return true;
+            if (!outstack.isItemEqual(result_stack)) return false;
+            
+            int result = ItemStackTools.getStackSize(outstack) 
+                    + ItemStackTools.getStackSize(result_stack);
+            return (result <= getInventoryStackLimit() 
+                     && result <= outstack.getMaxStackSize()); // Forge fix: make furnace respect stack sizes in furnace recipes
 		}
 		return false;
 	} // end canSmelt()
@@ -172,27 +177,31 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	{
 		if(this.canSmelt())
 		{
-			ItemStack itemstack = FusionFurnaceRecipes.applyFusion(this.furnaceItemStacks[NDX_LEFT_SLOT], 
-																this.furnaceItemStacks[NDX_RIGHT_SLOT], 
-																this.furnaceItemStacks[NDX_CATALYST_SLOT]);
-			
-			if(this.furnaceItemStacks[NDX_OUTPUT_SLOT] == null) {
-				this.furnaceItemStacks[NDX_OUTPUT_SLOT] = itemstack.copy();
-			}
-			else if(this.furnaceItemStacks[NDX_OUTPUT_SLOT].getItem() == itemstack.getItem()) 
-			{
-				furnaceItemStacks[NDX_OUTPUT_SLOT].stackSize += itemstack.stackSize;
-			}
-			
-			// Check for empty input slots 0, 3, 4
-            if (this.furnaceItemStacks[NDX_LEFT_SLOT].stackSize <= 0) {
-				furnaceItemStacks[NDX_LEFT_SLOT] = null;
+            ItemStack leftstack = (ItemStack)this.getStackInSlot(NDX_LEFT_SLOT);
+            ItemStack rightstack = (ItemStack)this.getStackInSlot(NDX_RIGHT_SLOT);
+            ItemStack catastack = (ItemStack)this.getStackInSlot(NDX_CATALYST_SLOT);
+		    ItemStack itemstack = 
+                 FusionFurnaceRecipes.applyFusion(this.getStackInSlot(NDX_LEFT_SLOT), 
+                                                  this.getStackInSlot(NDX_RIGHT_SLOT), 
+                                                  this.getStackInSlot(NDX_CATALYST_SLOT));
+            ItemStack outstack = (ItemStack) this.getStackInSlot(NDX_OUTPUT_SLOT);
+            
+		    if (ItemStackTools.isEmpty(outstack)) {
+		        this.furnaceItemStacks.set(NDX_OUTPUT_SLOT, ItemStackTools.safeCopy(itemstack));
+		    }
+		    else if (outstack.getItem() == itemstack.getItem())
+		    {
+		        ItemStackTools.incStackSize(outstack, ItemStackTools.getStackSize(itemstack));
+		    }
+
+		    if (ItemStackTools.isEmpty(leftstack)) {
+		        this.furnaceItemStacks.set(NDX_LEFT_SLOT, ItemStackTools.getEmptyStack());
+		    }
+            if (ItemStackTools.isEmpty(rightstack)) {
+                this.furnaceItemStacks.set(NDX_RIGHT_SLOT, ItemStackTools.getEmptyStack());
             }
-            if (this.furnaceItemStacks[NDX_RIGHT_SLOT].stackSize <= 0) {
-				furnaceItemStacks[NDX_RIGHT_SLOT] = null;
-            }
-            if (this.furnaceItemStacks[NDX_CATALYST_SLOT].stackSize <= 0) {
-				furnaceItemStacks[NDX_CATALYST_SLOT] = null;
+            if (ItemStackTools.isEmpty(catastack)) {
+                this.furnaceItemStacks.set(NDX_CATALYST_SLOT, ItemStackTools.getEmptyStack());
             }
 		} // end-if canSmelt
 	} // end smeltItem()
