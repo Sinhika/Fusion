@@ -52,10 +52,10 @@ public class SlotFusionFurnace extends CompatSlot
     }
 
     @Override
-	public ItemStack onTake(EntityPlayer playerIn, ItemStack stack)
+	public ItemStack onPickup(EntityPlayer playerIn, ItemStack stack)
     {
         this.onCrafting(stack);
-        return super.onTake(playerIn, stack);
+        return super.onPickup(playerIn, stack);
      }
 
     /**
