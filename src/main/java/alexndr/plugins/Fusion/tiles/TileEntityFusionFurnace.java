@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
+import alexndr.api.helpers.game.FurnaceHelper;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
 import mcjty.lib.tools.ItemStackTools;
@@ -55,7 +56,8 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
         ItemStack itemstack = (ItemStack)this.getStackInSlot(index);
         boolean flag = ItemStackTools.isValid(stack) && stack.isItemEqual(itemstack) 
                 && ItemStack.areItemStackTagsEqual(stack, itemstack);
-        this.furnaceItemStacks.set(index, stack);
+        
+        FurnaceHelper.SetInSlot(this.furnaceItemStacks, index, stack);
         
         if (ItemStackTools.getStackSize(stack) > this.getInventoryStackLimit())
         {
@@ -105,7 +107,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
                             ItemStackTools.incStackSize(fuelstack, -1);
                             if (ItemStackTools.isEmpty(fuelstack)) {
                                 ItemStack item1 = item.getContainerItem(fuelstack);
-                                this.furnaceItemStacks.set(NDX_FUEL_SLOT, item1);
+                                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_FUEL_SLOT, item1);
                             }
                         } // end-if
                     } // end-if
@@ -189,7 +191,8 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
             ItemStack outstack = (ItemStack) this.getStackInSlot(NDX_OUTPUT_SLOT);
             
 		    if (ItemStackTools.isEmpty(outstack)) {
-		        this.furnaceItemStacks.set(NDX_OUTPUT_SLOT, ItemStackTools.safeCopy(itemstack));
+		        FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_OUTPUT_SLOT, 
+		                                ItemStackTools.safeCopy(itemstack));
 		    }
 		    else if (outstack.getItem() == itemstack.getItem())
 		    {
@@ -197,13 +200,14 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 		    }
 
 		    if (ItemStackTools.isEmpty(leftstack)) {
-		        this.furnaceItemStacks.set(NDX_LEFT_SLOT, ItemStackTools.getEmptyStack());
+		        FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_LEFT_SLOT, ItemStackTools.getEmptyStack());
 		    }
             if (ItemStackTools.isEmpty(rightstack)) {
-                this.furnaceItemStacks.set(NDX_RIGHT_SLOT, ItemStackTools.getEmptyStack());
+                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_RIGHT_SLOT, ItemStackTools.getEmptyStack());
             }
             if (ItemStackTools.isEmpty(catastack)) {
-                this.furnaceItemStacks.set(NDX_CATALYST_SLOT, ItemStackTools.getEmptyStack());
+                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_CATALYST_SLOT, 
+                                        ItemStackTools.getEmptyStack());
             }
 		} // end-if canSmelt
 	} // end smeltItem()
