@@ -1,5 +1,7 @@
 package alexndr.plugins.Fusion.tiles;
 
+import javax.annotation.Nullable;
+
 import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
@@ -48,7 +50,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	} // end ctor()
 	
 	@Override
-	public void setInventorySlotContents(int index, ItemStack stack) 
+	public void setInventorySlotContents(int index, @Nullable ItemStack stack) 
 	{
         ItemStack itemstack = (ItemStack)this.getStackInSlot(index);
         boolean flag = ItemStackTools.isValid(stack) && stack.isItemEqual(itemstack) 
