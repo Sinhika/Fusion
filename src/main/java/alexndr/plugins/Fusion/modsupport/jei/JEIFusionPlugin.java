@@ -2,6 +2,7 @@ package alexndr.plugins.Fusion.modsupport.jei;
 
 import alexndr.plugins.Fusion.Content;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
+import mcjty.lib.jei.JeiCompatTools;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -21,7 +22,8 @@ public class JEIFusionPlugin extends BlankModPlugin
         
         registry.addRecipeCategories(new FusionFurnaceRecipeCategory(guiHelper));
         registry.addRecipeHandlers(new FusionFurnaceRecipeHandler(jeiHelpers));
-        registry.addRecipes(FusionFurnaceRecipes.getRecipeList());
+        JeiCompatTools.addRecipes(registry, FusionFurnaceRecipes.getRecipeList());
+        //registry.addRecipes(FusionFurnaceRecipes.getRecipeList());
         registry.addRecipeCategoryCraftingItem(new ItemStack(Content.fusion_furnace), 
                                                 FusionFurnaceRecipeCategory.UID);
      } // end register()
