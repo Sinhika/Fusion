@@ -177,8 +177,7 @@ public class RecipesSimpleOres
 		//Smelting Recipes
 			//Fusion Furnace
 		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"),
-				FusionMaterial.of("ingotTin"), FusionMaterial.of(Items.DYE, 1,
-						15),
+				FusionMaterial.of("ingotTin"), FusionMaterial.of(Items.DYE, 1, 15),
 				new ItemStack(ContentSimpleOres.small_bronze_chunk), 2.0F);
 		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"),
 				FusionMaterial.of("ingotTin"), FusionMaterial
@@ -220,4 +219,4 @@ public class RecipesSimpleOres
 			GameRegistry.addSmelting(ContentSimpleOres.large_thyrium_chunk, new ItemStack(ContentSimpleOres.thyrium_ingot), 0.6F);
 			GameRegistry.addSmelting(ContentSimpleOres.large_sinisite_chunk, new ItemStack(ContentSimpleOres.sinisite_ingot), 1.0F);
 	}
-}
+} // end class

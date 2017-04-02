@@ -275,8 +275,9 @@ public abstract class FusionMaterial
 		{
             if(ItemStackTools.isEmpty(item) 
                || ItemStackTools.getStackSize(item) < ItemStackTools.getStackSize(stack))
+            {
 				return false;
-			
+            }
 			return FusionFurnaceRecipes.matches(stack, item);
 		}
 

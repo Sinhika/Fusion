@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-
 import com.google.common.collect.Lists;
 
 import mcjty.lib.tools.ItemStackTools;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * @author AleXndrTheGr8st, zo201
@@ -119,9 +118,12 @@ public class FusionFurnaceRecipes
 	
 	public static boolean matches(ItemStack target, ItemStack stack)
 	{
-        if (target.getItem() == stack.getItem() 
-        && (target.getItemDamage() == stack.getItemDamage() || target.getItemDamage() == WILDCARD_VALUE))
-        {
+	    if (ItemStack.areItemsEqual(target, stack)) {
+	        return true;
+	    }
+	    if ((target.getMetadata() == WILDCARD_VALUE) 
+	                    && ItemStack.areItemsEqualIgnoreDurability(target, stack))
+	    {
             return true;
         }
 		return false;
