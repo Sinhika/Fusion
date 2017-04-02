@@ -23,6 +23,7 @@ import alexndr.api.content.items.SimpleItem;
 import alexndr.api.content.items.SimplePickaxe;
 import alexndr.api.content.items.SimpleShovel;
 import alexndr.api.content.items.SimpleSword;
+import alexndr.api.helpers.game.ArmorMaterialHelper;
 import alexndr.api.helpers.game.StatTriggersHelper;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.registry.ContentCategories;
@@ -237,9 +238,9 @@ public class ContentSimpleOres
 		toolThyrium.setRepairItem(new ItemStack(thyrium_ingot));
 		toolSinisite.setRepairItem(new ItemStack(sinisite_ingot));
 		
-		armorBronze.customCraftingMaterial = bronze_ingot;
-		armorThyrium.customCraftingMaterial = thyrium_ingot;
-		armorSinisite.customCraftingMaterial = sinisite_ingot;
+		ArmorMaterialHelper.setRepairItem(armorBronze, new ItemStack(bronze_ingot));
+		ArmorMaterialHelper.setRepairItem(armorThyrium, new ItemStack(thyrium_ingot));
+		ArmorMaterialHelper.setRepairItem(armorSinisite,new ItemStack(sinisite_ingot));
 	}
 	
 	public static void setToolAndArmorStats()

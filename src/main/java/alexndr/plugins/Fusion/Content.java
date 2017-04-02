@@ -23,6 +23,7 @@ import alexndr.api.content.items.SimplePickaxe;
 import alexndr.api.content.items.SimpleShears;
 import alexndr.api.content.items.SimpleShovel;
 import alexndr.api.content.items.SimpleSword;
+import alexndr.api.helpers.game.ArmorMaterialHelper;
 import alexndr.api.helpers.game.StatTriggersHelper;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.logger.LogHelper;
@@ -208,7 +209,7 @@ public class Content
 	public static void setRepairMaterials()
 	{
 		toolSteel.setRepairItem(new ItemStack(Content.steel_ingot));
-		armorSteel.customCraftingMaterial = Content.steel_ingot;
+		ArmorMaterialHelper.setRepairItem(armorSteel, new ItemStack(Content.steel_ingot));
 	}
 	
 	//Tool Materials
