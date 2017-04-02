@@ -103,7 +103,7 @@ public class ContainerFusionFurnace extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player) 
 	{
-		return this.furnace.isUseableByPlayer(player);
+		return this.furnace.isUsable(player);
 	}
 	
     @Override

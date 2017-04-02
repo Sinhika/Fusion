@@ -3,11 +3,12 @@ package alexndr.plugins.Fusion.inventory;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import mcjty.lib.compat.CompatSlot;
 import mcjty.lib.tools.ItemStackTools;
+import mcjty.lib.tools.MathTools;
+import mcjty.lib.tools.WorldTools;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 
 /**
  * this class is the FusionFurnace version of SlotFurnaceOutput, and is almost
@@ -51,10 +52,10 @@ public class SlotFusionFurnace extends CompatSlot
     }
 
     @Override
-	public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+	public ItemStack onTake(EntityPlayer playerIn, ItemStack stack)
     {
         this.onCrafting(stack);
-        super.onPickupFromSlot(playerIn, stack);
+        return super.onTake(playerIn, stack);
      }
 
     /**
@@ -88,9 +89,9 @@ public class SlotFusionFurnace extends CompatSlot
             }
             else if (f <= 100.0F)
             {
-                j = MathHelper.floor_float(i * f);
+                j = MathTools.floor(i * f);
 
-                if (j < MathHelper.ceiling_float_int(i * f) && (float)Math.random() < i * f - j)
+                if (j < MathTools.ceiling(i * f) && (float)Math.random() < i * f - j)
                 {
                     ++j;
                 }
@@ -102,12 +103,12 @@ public class SlotFusionFurnace extends CompatSlot
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-                this.thePlayer.getEntityWorld().spawnEntityInWorld(
-                        new EntityXPOrb(this.thePlayer.getEntityWorld(), 
-                                        this.thePlayer.posX, 
-                                        this.thePlayer.posY + 0.5D, 
-                                        this.thePlayer.posZ + 0.5D, j));
-            }
+				WorldTools.spawnEntity(this.thePlayer.getEntityWorld(), 
+										new EntityXPOrb(this.thePlayer.getEntityWorld(),
+														this.thePlayer.posX, 
+														this.thePlayer.posY + 0.5D, 
+														this.thePlayer.posZ + 0.5D, j));
+            } // end-while
         }
 
         this.removeCount = 0;
