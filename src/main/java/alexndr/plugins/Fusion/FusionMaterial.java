@@ -216,12 +216,11 @@ public abstract class FusionMaterial
 			if(ItemStackTools.isEmpty(item) || ItemStackTools.getStackSize(item) < amount)
 				return false;
 			
-			for(ItemStack stack : OreDictionary.getOres(ore))
+			for(ItemStack stack : ItemStackTools.getOres(ore))
 			{
 				if(FusionFurnaceRecipes.matches(stack, item))
 					return true;
 			}
-			
 			return false;
 		}
 
