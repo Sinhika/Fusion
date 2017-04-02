@@ -88,7 +88,11 @@ public abstract class FusionMaterial
 	 * @param meta The metadata of the item.
 	 * @return StackMaterial.
 	 */
-	public static FusionMaterial of(Item item, int amount, int meta){return of(new ItemStack(item, amount, meta));}
+    public static FusionMaterial of(Item item, int amount, int meta)
+    {
+        return of(new ItemStack(item, amount, meta));
+    }
+
 	
 	/**
 	 * Creates a new StackMaterial from an item and a stacksize. Metadata is set to 0.
@@ -96,15 +100,21 @@ public abstract class FusionMaterial
 	 * @param amount The stacksize of the item.
 	 * @return StackMaterial.
 	 */
-	public static FusionMaterial of(Item item, int amount){return of(new ItemStack(item, amount, 0));}
-	
+    public static FusionMaterial of(Item item, int amount)
+    {
+        return of(new ItemStack(item, amount, 0));
+    }
+
 	/**
 	 * Creates a new StackMaterial from an item. Stacksize is set to 1. Metadata is set to 0.
 	 * @param item The item to use.
 	 * @return StackMaterial.
 	 */
-	public static FusionMaterial of(Item item){return of(new ItemStack(item, 1, 0));}
-	
+    public static FusionMaterial of(Item item)
+    {
+        return of(new ItemStack(item, 1, 0));
+    }
+
 	/**
 	 * Creates a new StackMaterial from a block, a stacksize and the metadata of the block.
 	 * @param block The block to use.
@@ -112,22 +122,31 @@ public abstract class FusionMaterial
 	 * @param meta The metadata of the block.
 	 * @return StackMaterial.
 	 */
-	public static FusionMaterial of(Block block, int amount, int meta){return of(new ItemStack(block, amount, meta));}
-	
+    public static FusionMaterial of(Block block, int amount, int meta)
+    {
+        return of(new ItemStack(block, amount, meta));
+    }
+
 	/**
 	 * Creates a new StackMaterial from a block and a stacksize. Metadata is set to 0.
 	 * @param block The block to use.
 	 * @param amount The stacksize of the block.
 	 * @return StackMaterial.
 	 */
-	public static FusionMaterial of(Block block, int amount){return of(new ItemStack(block, amount, 0));}
-	
+    public static FusionMaterial of(Block block, int amount)
+    {
+        return of(new ItemStack(block, amount, 0));
+    }
+
 	/**
 	 * Creates a new StackMaterial from a block. Stacksize is set to 1. Metadata is set to 0.
 	 * @param block The block to use.
 	 * @return StackMaterial.
 	 */
-	public static FusionMaterial of(Block block){return of(new ItemStack(block, 1, 0));}
+    public static FusionMaterial of(Block block)
+    {
+        return of(new ItemStack(block, 1, 0));
+    }
 
 	public abstract boolean matches(ItemStack item);
 	public abstract void decrStackSize(ItemStack item);
@@ -209,7 +228,7 @@ public abstract class FusionMaterial
 		@Override
 		public void decrStackSize(ItemStack item) 
 		{
-			item.stackSize -= amount;
+		    ItemStackTools.incStackSize(item, -1 * amount);
 		}
 
 		@Override
@@ -247,7 +266,7 @@ public abstract class FusionMaterial
 		
 		private StackMaterial(ItemStack stack)
 		{
-			if(stack.stackSize < 0)
+			if(ItemStackTools.isEmpty(stack))
 				throw new IllegalArgumentException(stack.toString());
 			this.stack = stack.copy();
 		}
@@ -265,19 +284,19 @@ public abstract class FusionMaterial
 		@Override
 		public void decrStackSize(ItemStack item) 
 		{
-			item.stackSize -= stack.stackSize;
+		    ItemStackTools.incStackSize(item, -1 * ItemStackTools.getStackSize(stack));
 		}
 
 		@Override
 		public List<ItemStack> itemsList() 
 		{
-			return Lists.newArrayList(stack.copy());
+			return Lists.newArrayList(ItemStackTools.safeCopy(stack));
 		}
 
 		@Override
 		public int getAmount() 
 		{
-			return stack.stackSize;
+			return ItemStackTools.getStackSize(stack);
 		}
 		
 		@Override
@@ -295,4 +314,4 @@ public abstract class FusionMaterial
 		@Override
 		public String getOre() {return null;}
 	}
-}
+} // end class

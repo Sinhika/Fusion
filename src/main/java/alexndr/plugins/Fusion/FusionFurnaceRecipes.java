@@ -10,6 +10,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.collect.Lists;
 
+import mcjty.lib.tools.ItemStackTools;
+
 /**
  * @author AleXndrTheGr8st, zo201
  */
@@ -29,11 +31,13 @@ public class FusionFurnaceRecipes
 	 * @param output ItemStack for the output.
 	 * @param experience Float amount of experience to give when the output is taken from the furnace.
 	 */
-	public static void addSmelting(FusionMaterial input1, FusionMaterial input2, FusionMaterial catalyst, ItemStack output, float experience)
-	{
-		recipeList.add(new RecipeEntry(input1, input2, catalyst, output));
-		setExperience(output.copy(), experience);
-	}
+    public static void addSmelting(FusionMaterial input1, FusionMaterial input2,
+                    FusionMaterial catalyst, ItemStack output, float experience)
+    {
+        recipeList.add(new RecipeEntry(input1, input2, catalyst, output));
+        setExperience(ItemStackTools.safeCopy(output), experience);
+    }
+
 	
 	/**
 	 * Adds a smelting recipes to the Fusion Furnace. ItemStack version, does not support OreDictionary. Inputs 1 and 2 are interchangeable. 
@@ -43,10 +47,13 @@ public class FusionFurnaceRecipes
 	 * @param output ItemStack for the output.
 	 * @param experience Float amount of experience to give when the output is taken from the furnace.
 	 */
-	public static void addSmelting(ItemStack input1, ItemStack input2, ItemStack catalyst, ItemStack output, float experience)
-	{
-		addSmelting(FusionMaterial.of(input1), FusionMaterial.of(input2), FusionMaterial.of(catalyst), output, experience);
-	}
+    public static void addSmelting(ItemStack input1, ItemStack input2, ItemStack catalyst,
+                    ItemStack output, float experience)
+    {
+        addSmelting(FusionMaterial.of(input1), FusionMaterial.of(input2),
+                        FusionMaterial.of(catalyst), output, experience);
+    }
+
 	
 	public static ItemStack getSmeltingResult(ItemStack input1, ItemStack input2, ItemStack catalyst)
 	{
@@ -55,13 +62,13 @@ public class FusionFurnaceRecipes
 			if(e.matches(input1, input2, catalyst))
 				return e.getOutput();
 		}
-		return null;
+		return ItemStackTools.getEmptyStack();
 	}
 	
 	public static void setExperience(ItemStack output, float experience)
 	{
 		if(!experienceMap.containsKey(output))
-			experienceMap.put(output.copy(), experience);
+			experienceMap.put(ItemStackTools.safeCopy(output), experience);
 	}
 	
 	public static ItemStack applyFusion(ItemStack input1, ItemStack input2, ItemStack catalyst)
@@ -71,7 +78,7 @@ public class FusionFurnaceRecipes
 			if(e.matches(input1, input2, catalyst))
 				return e.applyFusion(input1, input2, catalyst);
 		}
-		return null;
+		return ItemStackTools.getEmptyStack();
 	}
 	
 	public static float getExperience(ItemStack item)
@@ -112,8 +119,11 @@ public class FusionFurnaceRecipes
 	
 	public static boolean matches(ItemStack target, ItemStack stack)
 	{
-		if(target.getItem() == stack.getItem() && (target.getItemDamage() == stack.getItemDamage() || target.getItemDamage() == WILDCARD_VALUE))
-			return true;
+        if (target.getItem() == stack.getItem() 
+        && (target.getItemDamage() == stack.getItemDamage() || target.getItemDamage() == WILDCARD_VALUE))
+        {
+            return true;
+        }
 		return false;
 	}
-}
+} // end class
