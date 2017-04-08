@@ -96,7 +96,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
             {
                 if (!this.isBurning() && this.canSmelt())
                 {
-                    this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(fuelstack);
+                    this.currentItemBurnTime = this.furnaceBurnTime = TileEntityFusionFurnace.getItemBurnTime(fuelstack);
 
                     if (this.isBurning())
                     {
