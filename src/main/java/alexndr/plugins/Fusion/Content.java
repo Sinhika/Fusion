@@ -23,6 +23,7 @@ import alexndr.api.content.items.SimplePickaxe;
 import alexndr.api.content.items.SimpleShears;
 import alexndr.api.content.items.SimpleShovel;
 import alexndr.api.content.items.SimpleSword;
+import alexndr.api.core.SimpleCoreAPI;
 import alexndr.api.helpers.game.ArmorMaterialHelper;
 import alexndr.api.helpers.game.StatTriggersHelper;
 import alexndr.api.helpers.game.TabHelper;
@@ -90,19 +91,19 @@ public class Content
 	{
 		steel_helmet = new SimpleArmor(Fusion.plugin, Content.armorSteel,
 				EntityEquipmentSlot.HEAD).setConfigEntry(Settings.steelArmor)
-				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setType("steel").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
 				.setUnlocalizedName("steel_helmet");
 		steel_chestplate = new SimpleArmor(Fusion.plugin, Content.armorSteel,
 				EntityEquipmentSlot.CHEST).setConfigEntry(Settings.steelArmor)
-				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setType("steel").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
 				.setUnlocalizedName("steel_chestplate");
 		steel_leggings = new SimpleArmor(Fusion.plugin, Content.armorSteel,
 				EntityEquipmentSlot.LEGS).setConfigEntry(Settings.steelArmor)
-				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setType("steel").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
 				.setUnlocalizedName("steel_leggings");
 		steel_boots = new SimpleArmor(Fusion.plugin, Content.armorSteel,
 				EntityEquipmentSlot.FEET).setConfigEntry(Settings.steelArmor)
-				.setType("steel").setCreativeTab(TabHelper.combatTab())
+				.setType("steel").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
 				.setUnlocalizedName("steel_boots");
 	} // end doArmor()
 	
@@ -120,7 +121,7 @@ public class Content
 				ContentCategories.Block.GENERAL)
 				.setConfigEntry(Settings.steelBlock)
 				.setStepSound(SoundType.METAL)
-				.setUnlocalizedName("steel_block").setCreativeTab(TabHelper.decorationsTab());
+				.setUnlocalizedName("steel_block").setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
 	}
 	
 	/**
@@ -129,16 +130,16 @@ public class Content
 	public static void doItems()
 	{
 		steel_ingot = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.steelIngot)
-				.setUnlocalizedName("steel_ingot").setCreativeTab(TabHelper.materialsTab());
+				.setUnlocalizedName("steel_ingot").setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 		small_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
 				.setConfigEntry(Settings.steelIngot).setUnlocalizedName("small_steel_chunk")
-				.setCreativeTab(TabHelper.materialsTab());
+				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 		medium_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
 				.setConfigEntry(Settings.steelIngot).setUnlocalizedName("medium_steel_chunk")
-				.setCreativeTab(TabHelper.materialsTab());
+				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 		large_steel_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
 				.setConfigEntry(Settings.steelIngot).setUnlocalizedName("large_steel_chunk")
-				.setCreativeTab(TabHelper.materialsTab());
+				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 	}
 	
 	/**
@@ -147,17 +148,17 @@ public class Content
 	public static void doTools()
 	{
 		steel_pickaxe = new SimplePickaxe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
-				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_pickaxe");
+				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("steel_pickaxe");
 		steel_axe = new SimpleAxe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
-				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_axe");
+				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("steel_axe");
 		steel_shovel = new SimpleShovel(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
-				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shovel");
+				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("steel_shovel");
 		steel_hoe = new SimpleHoe(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
-				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_hoe");
+				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("steel_hoe");
 		steel_sword = new SimpleSword(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
-				.setCreativeTab(TabHelper.combatTab()).setUnlocalizedName("steel_sword");
+				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin)).setUnlocalizedName("steel_sword");
 		steel_shears = new SimpleShears(Fusion.plugin, toolSteel).setConfigEntry(Settings.steelTools)
-				.setCreativeTab(TabHelper.toolsTab()).setUnlocalizedName("steel_shears");
+				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("steel_shears");
 	}
 	
 	/**
@@ -176,7 +177,7 @@ public class Content
 	public static void setTabs()
 	{
 		// TODO handle in BlockFusionFurnace class...
-		// fusion_furnace.setCreativeTab(TabHelper.decorationsTab());
+		// fusion_furnace.setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
 	}
 	
     protected static void setToolAndArmorStats()

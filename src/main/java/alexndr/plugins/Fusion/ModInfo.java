@@ -14,7 +14,7 @@ public class ModInfo
 	public static final String VERSION = "@MODVERSION@";
 	public static final String DESCRIPTION = "A plugin for SimpleCore API that adds a unique alloying process.";
 	public static final String ACCEPTED_VERSIONS = "[1.10.2, 1.11.2]";
-	public static final String DEPENDENCIES = "required-after:simplecore@[1.4.5.1,);after:simpleores;after:netherrocks";
+	public static final String DEPENDENCIES = "required-after:simplecore@[1.4.6.1,);after:simpleores;after:netherrocks";
 	public static final String URL = "http://minecraft.curseforge.com/projects/fusion";
 	public static final List<String> AUTHORS = Lists.newArrayList("AleXndrTheGr8st", "Sinhika");
 	public static final String CREDITS = "Created by AleXndrTheGr8st, with help from Zot201. Maintained by Sinhika";
