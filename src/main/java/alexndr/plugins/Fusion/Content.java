@@ -113,7 +113,8 @@ public class Content
 	public static void doBlocks()
 	{
 		fusion_furnace = new BlockFusionFurnace(false).setConfigEntry(
-				Settings.fusionFurnace).setUnlocalizedName("fusion_furnace");
+				Settings.fusionFurnace).setUnlocalizedName("fusion_furnace")
+				.setCreativeTab(TabHelper.redstoneTab(SimpleCoreAPI.plugin));
 		fusion_furnace_lit = new BlockFusionFurnace(true).setConfigEntry(
 				Settings.fusionFurnace)
 				.setUnlocalizedName("fusion_furnace_lit");
@@ -121,7 +122,8 @@ public class Content
 				ContentCategories.Block.GENERAL)
 				.setConfigEntry(Settings.steelBlock)
 				.setStepSound(SoundType.METAL)
-				.setUnlocalizedName("steel_block").setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
+				.setUnlocalizedName("steel_block")
+				.setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
 	}
 	
 	/**

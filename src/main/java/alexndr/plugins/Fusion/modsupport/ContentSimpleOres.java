@@ -200,25 +200,24 @@ public class ContentSimpleOres
 				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin)).setUnlocalizedName("sinisite_sword");
 
 		thyrium_bow = new SimpleBow(Fusion.plugin, 900)
-				.setEffect(SimpleBowEffects.damageEffect,
-						Settings.thyriumBowDamageModifier.asFloat())
+				.setEffect(SimpleBowEffects.damageEffect, Settings.thyriumBow.getDamageModifier())
 				.addToolTip("tips.damageTooltip", TextFormatting.GREEN)
-				.setZoomAmount(Settings.thyriumBowZoomAmount.asFloat())
+				.setZoomAmount(Settings.thyriumBow.getZoomAmount())
 				.addToolTip("tips.zoomTooltip")
 				.setRepairMaterial(new ItemStack(thyrium_rod))
 				.setConfigEntry(Settings.thyriumBow)
-				.setUnlocalizedName("thyrium_bow").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
+				.setUnlocalizedName("thyrium_bow")
+				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 		
 		sinisite_bow = new SimpleBow(Fusion.plugin, 1200)
-				.setEffect(SimpleBowEffects.damageEffect,
-						Settings.sinisiteBowDamageModifier.asFloat())
+				.setEffect(SimpleBowEffects.damageEffect, Settings.sinisiteBow.getDamageModifier())
 				.addToolTip("tips.damageTooltip", TextFormatting.GREEN)
-				.setEffect(SimpleBowEffects.knockbackEffect,
-						Settings.sinisiteBowKnockbackAmount.asInt())
+				.setEffect(SimpleBowEffects.knockbackEffect, Settings.sinisiteBow.getKnockBackFactor())
 				.addToolTip("tips.knockbackTooltip")
 				.setRepairMaterial(new ItemStack(sinisite_rod))
 				.setConfigEntry(Settings.sinisiteBow)
-				.setUnlocalizedName("sinisite_bow").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
+				.setUnlocalizedName("sinisite_bow")
+				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 	} // doTools()
 	
 	public static void doAchievements()

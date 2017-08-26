@@ -1,26 +1,20 @@
 package alexndr.plugins.Fusion.modsupport;
 
-import net.minecraftforge.fml.common.Loader;
 import alexndr.api.helpers.game.RenderItemHelper;
 import alexndr.plugins.Fusion.Fusion;
 import alexndr.plugins.Fusion.Settings;
+import net.minecraftforge.fml.common.Loader;
 
 public class ModSupport 
 {
 	private static boolean use_simpleores = false;
-
-	@SuppressWarnings("unused")
-	private static boolean use_netherrocks = false;
 
 	/**
 	 * find out and initialize what mods are loaded.
 	 */
 	public static void preInit()
 	{
-		use_simpleores = Loader.isModLoaded("simpleores") 
-							&& Settings.enableSimpleOres.asBoolean();	
-		use_netherrocks = Loader.isModLoaded("netherrocks") 
-							&& Settings.enableNetherrocks.asBoolean();
+		use_simpleores = Loader.isModLoaded("simpleores") && Settings.enableSimpleOres;	
 	} // end preInit()
 	
 	/**
@@ -34,7 +28,6 @@ public class ModSupport
 			ContentSimpleOres.doTools();
 			ContentSimpleOres.doAchievements();
 		}
-		// TODO netherrocks
 	} // end ContentPreInit()
 	
 	/**
@@ -74,7 +67,6 @@ public class ModSupport
 		if(use_simpleores) {
 			ContentSimpleOres.setToolAndArmorStats();
 		}
-		// TODO Netherrocks
 	} // end setToolAndArmorStats
 	
 	/**
@@ -84,7 +76,6 @@ public class ModSupport
 		if (use_simpleores) {
 			RecipesSimpleOres.doOreDictRecipes();
 		}
-		// TODO Netherrocks
 	} // end doOreDictEntries
 	
 	/**
@@ -94,7 +85,6 @@ public class ModSupport
 		if (use_simpleores) {
 			RecipesSimpleOres.doRecipes();
 		}		
-		// TODO Netherrocks
 	} // end doRecipes()
 
 } // end class

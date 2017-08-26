@@ -51,7 +51,7 @@ public class Recipes
 	public static void postInitialize()
 	{
 		try {
-			if (Settings.customRecipes.asBoolean() == true) {
+			if (Settings.customRecipes == true) {
 				doCustomFusionRecipes();
 			}
 		}
@@ -95,7 +95,7 @@ public class Recipes
 			Content.medium_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
 
 		//Extra Chunk Recipes
-		if(Settings.extraChunkRecipes.asBoolean())
+		if(Settings.extraChunkRecipes)
 		{
 			GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
 				Content.small_steel_chunk, Content.small_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
@@ -154,7 +154,7 @@ public class Recipes
 	private static void doCustomFusionRecipes()
 	{
 		// avoid NPE
-		if (Settings.numCustomRecipes == null || Settings.customFusionRecipes == null) {
+		if (Settings.numCustomRecipes == 0 || Settings.customFusionRecipes == null) {
 			return;
 		}
 		for (int ii=0; ii < Settings.customFusionRecipes.length; ii++)
