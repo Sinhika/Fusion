@@ -1,5 +1,6 @@
 package alexndr.plugins.Fusion.modsupport.jei;
 
+import alexndr.plugins.Fusion.ModInfo;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -114,5 +115,10 @@ public class FusionFurnaceRecipeCategory extends BlankRecipeCategory<FusionFurna
 //        
 //        guiItemStacks.set(OUTPUT_SLOT, ingredients.getOutputs(ItemStack.class));
     } // setRecipe
+
+	@Override
+	public String getModName() {
+		return ModInfo.NAME;
+	}
 
 } // end class
