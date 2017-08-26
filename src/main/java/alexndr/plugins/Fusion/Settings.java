@@ -8,7 +8,6 @@ import alexndr.api.config.types.ConfigFusionRecipe;
 import alexndr.api.config.types.ConfigItem;
 import alexndr.api.config.types.ConfigTool;
 import alexndr.api.logger.LogHelper;
-import alexndr.plugins.SimpleOres.ModInfo;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -46,6 +45,9 @@ public class Settings
 		}
 	} // end createOrLoadSettings()
 
+	/**
+	 * completed revised config.
+	 */
 	public static void configureBlocks()
 	{
 		// Blocks
@@ -79,6 +81,9 @@ public class Settings
 		fusionFurnace.GetConfig(settings);
 	} // end configBlocks()
 	
+	/**
+	 * completed revised config.
+	 */
 	public static void configureTools()
 	{
 		// Tools
@@ -103,6 +108,9 @@ public class Settings
 		sinisiteTools.GetConfig(settings);
 	} // end configureTools()
 	
+	/**
+	 * completed revised config.
+	 */
 	public static void configureArmor()
 	{
 		// Armor
@@ -132,6 +140,9 @@ public class Settings
 
 	} // end configureArmor()
 	
+	/**
+	 * completed revised config.
+	 */
 	public static void configureBows()
 	{
 		thyriumBow = new ConfigBow("Thyrium Bow").setHasDamageModifier(true)
@@ -139,11 +150,14 @@ public class Settings
 		thyriumBow.GetConfig(settings);
 
 		sinisiteBow = new ConfigBow("Sinisite Bow").setHasDamageModifier(true)
-				.setDamageModifier(6.0F).setHasKnockback(true).setKnockBackFactor(2.0F);
+				.setDamageModifier(6.0F).setHasKnockback(true).setKnockBackFactor(2);
 		sinisiteBow.GetConfig(settings);
 
 	} // end configureBows()
 	
+	/**
+	 * completed revised config.
+	 */
 	public static void configureItems()
 	{
 		// Items
@@ -157,6 +171,9 @@ public class Settings
 		sinisiteIngot.GetConfig(settings);
 	} // end configureItems()
 	
+	/**
+	 * completed revised config.
+	 */
 	public static void configureRecipes()
 	{
 		// Toggles
@@ -192,7 +209,10 @@ public class Settings
 		}
 	} // end configureRecipes()
 	
-	public static void configureGeneral()
+	/**
+	 * completed revised config.
+	 */
+public static void configureGeneral()
 	{
 		enableSimpleOres = settings.getBoolean("EnableSimpleOres", Configuration.CATEGORY_GENERAL,
 											    false, "if true, enable Simple Ores alloy recipes");
