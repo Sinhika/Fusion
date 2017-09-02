@@ -9,6 +9,7 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.item.ItemStack;
 
 @JEIPlugin
 public class JEIFusionPlugin extends BlankModPlugin
@@ -21,7 +22,7 @@ public class JEIFusionPlugin extends BlankModPlugin
         registry.handleRecipes(RecipeEntry.class, new FusionFurnaceRecipeHandler(jeiHelpers), 
         					   FusionFurnaceRecipeCategory.UID);
         registry.addRecipes(FusionFurnaceRecipes.getRecipeList(), FusionFurnaceRecipeCategory.UID);
-        registry.addRecipeCatalyst(Content.fusion_furnace, FusionFurnaceRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(Content.fusion_furnace), FusionFurnaceRecipeCategory.UID);
      } // end register()
 
 	@Override
