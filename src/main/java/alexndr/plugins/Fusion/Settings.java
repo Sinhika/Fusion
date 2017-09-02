@@ -75,7 +75,7 @@ public class Settings
 						.setBeaconBase(true);
 		sinisiteBlock.GetConfig(settings);
 
-		fusionFurnace = new ConfigBlock("Fusion Furnace", "Machines")
+		fusionFurnace = new ConfigBlock("Fusion Furnace", ConfigHelper.CATEGORY_MACHINE)
 						.setHardness(3.5F).setResistance(10.0F)
 						.setLightValue(1.0F).setHarvestTool("pickaxe");
 		fusionFurnace.GetConfig(settings);

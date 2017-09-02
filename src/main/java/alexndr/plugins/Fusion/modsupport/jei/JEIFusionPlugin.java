@@ -2,13 +2,13 @@ package alexndr.plugins.Fusion.modsupport.jei;
 
 import alexndr.plugins.Fusion.Content;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
-import mcjty.lib.jei.JeiCompatTools;
+import alexndr.plugins.Fusion.RecipeEntry;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
-import net.minecraft.item.ItemStack;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 
 @JEIPlugin
 public class JEIFusionPlugin extends BlankModPlugin
@@ -18,14 +18,17 @@ public class JEIFusionPlugin extends BlankModPlugin
     public void register(IModRegistry registry)
     {
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
-        IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
-        
-        registry.addRecipeCategories(new FusionFurnaceRecipeCategory(guiHelper));
-        registry.addRecipeHandlers(new FusionFurnaceRecipeHandler(jeiHelpers));
-        JeiCompatTools.addRecipes(registry, FusionFurnaceRecipes.getRecipeList());
-        //registry.addRecipes(FusionFurnaceRecipes.getRecipeList());
-        registry.addRecipeCategoryCraftingItem(new ItemStack(Content.fusion_furnace), 
-                                                FusionFurnaceRecipeCategory.UID);
+        registry.handleRecipes(RecipeEntry.class, new FusionFurnaceRecipeHandler(jeiHelpers), 
+        					   FusionFurnaceRecipeCategory.UID);
+        registry.addRecipes(FusionFurnaceRecipes.getRecipeList(), FusionFurnaceRecipeCategory.UID);
+        registry.addRecipeCatalyst(Content.fusion_furnace, FusionFurnaceRecipeCategory.UID);
      } // end register()
+
+	@Override
+	public void registerCategories(IRecipeCategoryRegistration registry) 
+	{
+        IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
+        registry.addRecipeCategories(new FusionFurnaceRecipeCategory(guiHelper));
+	} // end registerCategories()
 
 } // end class
