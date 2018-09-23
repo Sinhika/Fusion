@@ -34,203 +34,19 @@ import alexndr.plugins.Fusion.Settings;
 
 public class ContentSimpleOres 
 {
-	public static void doArmor()
-	{
-		bronze_helmet = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorBronze, EntityEquipmentSlot.HEAD)
-				.setConfigEntry(Settings.bronzeArmor).setType("bronze")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("bronze_helmet");
-		bronze_chestplate = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorBronze, EntityEquipmentSlot.CHEST)
-				.setConfigEntry(Settings.bronzeArmor).setType("bronze")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("bronze_chestplate");
-		bronze_leggings = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorBronze, EntityEquipmentSlot.LEGS)
-				.setConfigEntry(Settings.bronzeArmor).setType("bronze")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("bronze_leggings");
-		bronze_boots = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorBronze, EntityEquipmentSlot.FEET)
-				.setConfigEntry(Settings.bronzeArmor).setType("bronze")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("bronze_boots");
-		thyrium_helmet = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorThyrium, EntityEquipmentSlot.HEAD)
-				.setConfigEntry(Settings.thyriumArmor).setType("thyrium")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("thyrium_helmet");
-		thyrium_chestplate = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorThyrium, EntityEquipmentSlot.CHEST)
-				.setConfigEntry(Settings.thyriumArmor).setType("thyrium")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("thyrium_chestplate");
-		thyrium_leggings = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorThyrium,EntityEquipmentSlot.LEGS)
-				.setConfigEntry(Settings.thyriumArmor).setType("thyrium")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("thyrium_leggings");
-		thyrium_boots = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorThyrium, EntityEquipmentSlot.FEET)
-				.setConfigEntry(Settings.thyriumArmor).setType("thyrium")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("thyrium_boots");
-		sinisite_helmet = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorSinisite, EntityEquipmentSlot.HEAD)
-				.setConfigEntry(Settings.sinisiteArmor).setType("sinisite")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("sinisite_helmet");
-		sinisite_chestplate = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorSinisite, EntityEquipmentSlot.CHEST)
-				.setConfigEntry(Settings.sinisiteArmor).setType("sinisite")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("sinisite_chestplate");
-		sinisite_leggings = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorSinisite, EntityEquipmentSlot.LEGS)
-				.setConfigEntry(Settings.sinisiteArmor).setType("sinisite")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("sinisite_leggings");
-		sinisite_boots = new SimpleArmor(Fusion.plugin,
-				ContentSimpleOres.armorSinisite, EntityEquipmentSlot.FEET)
-				.setConfigEntry(Settings.sinisiteArmor).setType("sinisite")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin))
-				.setUnlocalizedName("sinisite_boots");
-	}
 	
-	public static void doBlocks()
-	{
-		bronze_block = new SimpleBlock(Fusion.plugin, Material.IRON,
-				ContentCategories.Block.GENERAL)
-				.setConfigEntry(Settings.bronzeBlock)
-				.setStepSound(SoundType.METAL)
-				.setUnlocalizedName("bronze_block").setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
-		thyrium_block = new SimpleBlock(Fusion.plugin, Material.IRON,
-				ContentCategories.Block.GENERAL)
-				.setConfigEntry(Settings.thyriumBlock)
-				.setStepSound(SoundType.METAL)
-				.setUnlocalizedName("thyrium_block").setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
-		sinisite_block = new SimpleBlock(Fusion.plugin, Material.IRON,
-				ContentCategories.Block.GENERAL)
-				.setConfigEntry(Settings.sinisiteBlock)
-				.setStepSound(SoundType.METAL)
-				.setUnlocalizedName("sinisite_block").setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
-	}
 	
-	public static void doItems()
-	{
-		bronze_ingot = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.bronzeIngot)
-				.setUnlocalizedName("bronze_ingot").setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		small_bronze_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.bronzeIngot).setUnlocalizedName("small_bronze_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		medium_bronze_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.bronzeIngot).setUnlocalizedName("medium_bronze_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		large_bronze_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.bronzeIngot).setUnlocalizedName("large_bronze_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-
-		thyrium_ingot = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.thyriumIngot).setUnlocalizedName("thyrium_ingot")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		small_thyrium_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.thyriumIngot).setUnlocalizedName("small_thyrium_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		medium_thyrium_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.thyriumIngot).setUnlocalizedName("medium_thyrium_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		large_thyrium_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.thyriumIngot).setUnlocalizedName("large_thyrium_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-
-		sinisite_ingot = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.sinisiteIngot).setUnlocalizedName("sinisite_ingot")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		small_sinisite_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.sinisiteIngot).setUnlocalizedName("small_sinisite_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		medium_sinisite_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.sinisiteIngot).setUnlocalizedName("medium_sinisite_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		large_sinisite_chunk = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.sinisiteIngot).setUnlocalizedName("large_sinisite_chunk")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-
-		thyrium_rod = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT).setConfigEntry(Settings.thyriumIngot)
-				.setUnlocalizedName("thyrium_rod").setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-		sinisite_rod = new SimpleItem(Fusion.plugin, ContentCategories.Item.INGOT)
-				.setConfigEntry(Settings.sinisiteIngot).setUnlocalizedName("sinisite_rod")
-				.setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
-	} // end doItems()
-	
-	public static void doTools()
-	{
-		bronze_pickaxe = new SimplePickaxe(Fusion.plugin, toolBronze).setConfigEntry(Settings.bronzeTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("bronze_pickaxe");
-		bronze_axe = new SimpleAxe(Fusion.plugin, toolBronze).setConfigEntry(Settings.bronzeTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("bronze_axe");
-		bronze_shovel = new SimpleShovel(Fusion.plugin, toolBronze).setConfigEntry(Settings.bronzeTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("bronze_shovel");
-		bronze_hoe = new SimpleHoe(Fusion.plugin, toolBronze).setConfigEntry(Settings.bronzeTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("bronze_hoe");
-		bronze_sword = new SimpleSword(Fusion.plugin, toolBronze).setConfigEntry(Settings.bronzeTools)
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin)).setUnlocalizedName("bronze_sword");
-
-		thyrium_pickaxe = new SimplePickaxe(Fusion.plugin, toolThyrium).setConfigEntry(Settings.thyriumTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("thyrium_pickaxe");
-		thyrium_axe = new SimpleAxe(Fusion.plugin, toolThyrium).setConfigEntry(Settings.thyriumTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("thyrium_axe");
-		thyrium_shovel = new SimpleShovel(Fusion.plugin, toolThyrium).setConfigEntry(Settings.thyriumTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("thyrium_shovel");
-		thyrium_hoe = new SimpleHoe(Fusion.plugin, toolThyrium).setConfigEntry(Settings.thyriumTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("thyrium_hoe");
-		thyrium_sword = new SimpleSword(Fusion.plugin, toolThyrium).setConfigEntry(Settings.thyriumTools)
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin)).setUnlocalizedName("thyrium_sword");
-
-		sinisite_pickaxe = new SimplePickaxe(Fusion.plugin, toolSinisite).setConfigEntry(Settings.sinisiteTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("sinisite_pickaxe");
-		sinisite_axe = new SimpleAxe(Fusion.plugin, toolSinisite).setConfigEntry(Settings.sinisiteTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("sinisite_axe");
-		sinisite_shovel = new SimpleShovel(Fusion.plugin, toolSinisite).setConfigEntry(Settings.sinisiteTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("sinisite_shovel");
-		sinisite_hoe = new SimpleHoe(Fusion.plugin, toolSinisite).setConfigEntry(Settings.sinisiteTools)
-				.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin)).setUnlocalizedName("sinisite_hoe");
-		sinisite_sword = new SimpleSword(Fusion.plugin, toolSinisite).setConfigEntry(Settings.sinisiteTools)
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin)).setUnlocalizedName("sinisite_sword");
-
-		thyrium_bow = new SimpleBow(Fusion.plugin, 900)
-				.setEffect(SimpleBowEffects.damageEffect, Settings.thyriumBow.getDamageModifier())
-				.addToolTip("tips.damageTooltip", TextFormatting.GREEN)
-				.setZoomAmount(Settings.thyriumBow.getZoomAmount())
-				.addToolTip("tips.zoomTooltip")
-				.setRepairMaterial(new ItemStack(thyrium_rod))
-				.setConfigEntry(Settings.thyriumBow)
-				.setUnlocalizedName("thyrium_bow")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
-		
-		sinisite_bow = new SimpleBow(Fusion.plugin, 1200)
-				.setEffect(SimpleBowEffects.damageEffect, Settings.sinisiteBow.getDamageModifier())
-				.addToolTip("tips.damageTooltip", TextFormatting.GREEN)
-				.setEffect(SimpleBowEffects.knockbackEffect, Settings.sinisiteBow.getKnockBackFactor())
-				.addToolTip("tips.knockbackTooltip")
-				.setRepairMaterial(new ItemStack(sinisite_rod))
-				.setConfigEntry(Settings.sinisiteBow)
-				.setUnlocalizedName("sinisite_bow")
-				.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
-	} // doTools()
-	
-	public static void doAchievements()
-	{
-		bronzeAch = new Achievement("achievement.bronzeAch", "bronzeAch", 10, 11, bronze_ingot, Content.fusionAch).registerStat();
-		bronzeHelmetAch = new Achievement("achievement.bronzeHelmetAch", "bronzeHelmetAch", 10, 9, bronze_helmet, bronzeAch).registerStat();
-		thyriumAch = new Achievement("achievement.thyriumAch", "thyriumAch", 13, 11, thyrium_ingot, bronzeAch).registerStat();
-		thyriumAxeAch = new Achievement("achievement.thyriumAxeAch", "thyriumAxeAch", 12, 9, thyrium_axe, thyriumAch).registerStat();
-		thyriumBowAch = new Achievement("achievement.thyriumBowAch", "thyriumBowAch", 14, 9, thyrium_bow, thyriumAch).registerStat();
-		sinisiteAch = new Achievement("achievement.sinisiteAch", "sinisiteAch", 16, 11, sinisite_ingot, thyriumAch).setSpecial().registerStat();
-		sinisiteSwordAch = new Achievement("achievement.sinisiteSwordAch", "sinisiteSwordAch", 15, 9, sinisite_sword, sinisiteAch).registerStat();
-		sinisiteBowAch = new Achievement("achievement.sinisiteBowAch", "sinisiteBowAch", 17, 9, sinisite_bow, sinisiteAch).registerStat();
-	}
+//	public static void doAchievements()
+//	{
+//		bronzeAch = new Achievement("achievement.bronzeAch", "bronzeAch", 10, 11, bronze_ingot, Content.fusionAch).registerStat();
+//		bronzeHelmetAch = new Achievement("achievement.bronzeHelmetAch", "bronzeHelmetAch", 10, 9, bronze_helmet, bronzeAch).registerStat();
+//		thyriumAch = new Achievement("achievement.thyriumAch", "thyriumAch", 13, 11, thyrium_ingot, bronzeAch).registerStat();
+//		thyriumAxeAch = new Achievement("achievement.thyriumAxeAch", "thyriumAxeAch", 12, 9, thyrium_axe, thyriumAch).registerStat();
+//		thyriumBowAch = new Achievement("achievement.thyriumBowAch", "thyriumBowAch", 14, 9, thyrium_bow, thyriumAch).registerStat();
+//		sinisiteAch = new Achievement("achievement.sinisiteAch", "sinisiteAch", 16, 11, sinisite_ingot, thyriumAch).setSpecial().registerStat();
+//		sinisiteSwordAch = new Achievement("achievement.sinisiteSwordAch", "sinisiteSwordAch", 15, 9, sinisite_sword, sinisiteAch).registerStat();
+//		sinisiteBowAch = new Achievement("achievement.sinisiteBowAch", "sinisiteBowAch", 17, 9, sinisite_bow, sinisiteAch).registerStat();
+//	}
 	
 	public static void setRepairMaterials()
 	{
@@ -294,50 +110,24 @@ public class ContentSimpleOres
 				Settings.sinisiteArmor.getEnchantability(), armorNoise, 2.0F );
 	}
 	
-	public static void setAchievementTriggers()
-	{
-		//Smelting Triggers
-		StatTriggersHelper.addSmeltingTrigger(bronze_ingot, bronzeAch);
-		StatTriggersHelper.addSmeltingTrigger(thyrium_ingot, thyriumAch);
-		StatTriggersHelper.addSmeltingTrigger(sinisite_ingot, sinisiteAch);
-		
-		//Crafting Triggers
-		StatTriggersHelper.addCraftingTrigger(bronze_helmet, bronzeHelmetAch);
-		StatTriggersHelper.addCraftingTrigger(thyrium_axe, thyriumAxeAch);
-		StatTriggersHelper.addCraftingTrigger(thyrium_bow, thyriumBowAch);
-		StatTriggersHelper.addCraftingTrigger(sinisite_sword, sinisiteSwordAch);
-		StatTriggersHelper.addCraftingTrigger(sinisite_bow, sinisiteBowAch);
-	}
+//	public static void setAchievementTriggers()
+//	{
+//		//Smelting Triggers
+//		StatTriggersHelper.addSmeltingTrigger(bronze_ingot, bronzeAch);
+//		StatTriggersHelper.addSmeltingTrigger(thyrium_ingot, thyriumAch);
+//		StatTriggersHelper.addSmeltingTrigger(sinisite_ingot, sinisiteAch);
+//		
+//		//Crafting Triggers
+//		StatTriggersHelper.addCraftingTrigger(bronze_helmet, bronzeHelmetAch);
+//		StatTriggersHelper.addCraftingTrigger(thyrium_axe, thyriumAxeAch);
+//		StatTriggersHelper.addCraftingTrigger(thyrium_bow, thyriumBowAch);
+//		StatTriggersHelper.addCraftingTrigger(sinisite_sword, sinisiteSwordAch);
+//		StatTriggersHelper.addCraftingTrigger(sinisite_bow, sinisiteBowAch);
+//	}
 	
 	//Blocks
-	public static Block bronze_block, thyrium_block, sinisite_block;
-	
-	//Items
-	public static Item bronze_ingot, sinisite_ingot, thyrium_ingot, thyrium_rod, sinisite_rod;
-	public static Item small_bronze_chunk, small_thyrium_chunk, small_sinisite_chunk;
-	public static Item medium_bronze_chunk, medium_thyrium_chunk, medium_sinisite_chunk;
-	public static Item large_bronze_chunk, large_thyrium_chunk, large_sinisite_chunk;
-	
-	//Tools
-	public static Item bronze_pickaxe, thyrium_pickaxe, sinisite_pickaxe;
-	public static Item bronze_axe, thyrium_axe, sinisite_axe;
-	public static Item bronze_shovel, thyrium_shovel, sinisite_shovel;
-	public static Item bronze_sword, thyrium_sword, sinisite_sword;
-	public static Item bronze_hoe, thyrium_hoe, sinisite_hoe;
-	public static Item thyrium_bow, sinisite_bow;
-	
-	//Armor
-	public static Item bronze_helmet, thyrium_helmet, sinisite_helmet;
-	public static Item bronze_chestplate, thyrium_chestplate, sinisite_chestplate;
-	public static Item bronze_leggings, thyrium_leggings, sinisite_leggings;
-	public static Item bronze_boots, thyrium_boots, sinisite_boots;
 	
 	//Achievements
-	public static Achievement bronzeAch, thyriumAch, sinisiteAch, bronzeHelmetAch, thyriumAxeAch, sinisiteSwordAch, thyriumBowAch, sinisiteBowAch;
+//	public static Achievement bronzeAch, thyriumAch, sinisiteAch, bronzeHelmetAch, thyriumAxeAch, sinisiteSwordAch, thyriumBowAch, sinisiteBowAch;
 	
-	//Tool Materials
-	public static ToolMaterial toolBronze, toolThyrium, toolSinisite;
-	
-	//Armor Materials
-	public static ArmorMaterial armorBronze, armorThyrium, armorSinisite;
 }

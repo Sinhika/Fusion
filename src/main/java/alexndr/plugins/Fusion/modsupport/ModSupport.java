@@ -7,27 +7,18 @@ import net.minecraftforge.fml.common.Loader;
 
 public class ModSupport 
 {
-	private static boolean use_simpleores = false;
-
-	/**
-	 * find out and initialize what mods are loaded.
-	 */
-	public static void preInit()
-	{
-		use_simpleores = Loader.isModLoaded("simpleores") && Settings.enableSimpleOres;	
-	} // end preInit()
 	
 	/**
 	 * called during pre-init phase by ProxyCommon, for Content-related stuff.
 	 */
 	public static void ContentPreInit() {
-		if(use_simpleores) {
-			ContentSimpleOres.doItems();
-			ContentSimpleOres.doBlocks();
-			ContentSimpleOres.doArmor();
-			ContentSimpleOres.doTools();
-			ContentSimpleOres.doAchievements();
-		}
+//		if(use_simpleores) {
+//			ContentSimpleOres.doItems();
+//			ContentSimpleOres.doBlocks();
+//			ContentSimpleOres.doArmor();
+//			ContentSimpleOres.doTools();
+////			ContentSimpleOres.doAchievements();
+//		}
 	} // end ContentPreInit()
 	
 	/**
@@ -45,10 +36,10 @@ public class ModSupport
 	 * called during init phase by ProxyCommon.
 	 */
 	public static void Init() {
-		if (use_simpleores) {
-			ContentSimpleOres.setRepairMaterials(); 
-			ContentSimpleOres.setAchievementTriggers();
-		}
+//		if (use_simpleores) {
+//			ContentSimpleOres.setRepairMaterials(); 
+//			ContentSimpleOres.setAchievementTriggers();
+//		}
 		// TODO add Netherrocks
 	} // end Init()
 	
@@ -64,27 +55,27 @@ public class ModSupport
 	 * setToolAndArmorStats() methods.
 	 */
 	public static void setToolAndArmorStats() {
-		if(use_simpleores) {
-			ContentSimpleOres.setToolAndArmorStats();
-		}
+//		if(use_simpleores) {
+//			ContentSimpleOres.setToolAndArmorStats();
+//		}
 	} // end setToolAndArmorStats
 	
 	/**
 	 * set up plugin ore dictionary entries.
 	 */
 	public static void doOreDictEntries() {
-		if (use_simpleores) {
-			RecipesSimpleOres.doOreDictRecipes();
-		}
+//		if (use_simpleores) {
+//			RecipesSimpleOres.doOreDictRecipes();
+//		}
 	} // end doOreDictEntries
 	
 	/**
 	 * set up plugin recipes.
 	 */
 	public static void doRecipes() {
-		if (use_simpleores) {
-			RecipesSimpleOres.doRecipes();
-		}		
+//		if (use_simpleores) {
+//			RecipesSimpleOres.doRecipes();
+//		}		
 	} // end doRecipes()
 
 } // end class
