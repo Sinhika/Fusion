@@ -2,17 +2,15 @@ package alexndr.plugins.Fusion;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
+import alexndr.api.logger.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
-
-import alexndr.api.logger.LogHelper;
-import mcjty.lib.tools.ItemStackTools;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author AleXndrTheGr8st, zot201
@@ -167,7 +165,7 @@ public abstract class FusionMaterial
 		@Override
 		public boolean matches(ItemStack item) 
 		{
-		    return ItemStackTools.isEmpty(item);
+		    return item.isEmpty();
 		}
 
 		@Override
@@ -213,10 +211,10 @@ public abstract class FusionMaterial
 		@Override
 		public boolean matches(ItemStack item) 
 		{
-			if(ItemStackTools.isEmpty(item) || ItemStackTools.getStackSize(item) < amount)
+			if(item.isEmpty() || item.getCount() < amount)
 				return false;
 			
-			for(ItemStack stack : ItemStackTools.getOres(ore))
+			for(ItemStack stack : OreDictionary.getOres(ore, false))
 			{
 				if(FusionFurnaceRecipes.matches(stack, item))
 					return true;
@@ -227,7 +225,7 @@ public abstract class FusionMaterial
 		@Override
 		public void decrStackSize(ItemStack item) 
 		{
-		    ItemStackTools.incStackSize(item, -1 * amount);
+			item.shrink(amount);
 		}
 
 		@Override
@@ -265,7 +263,7 @@ public abstract class FusionMaterial
 		
 		private StackMaterial(ItemStack stack)
 		{
-			if(ItemStackTools.isEmpty(stack))
+			if(stack.isEmpty())
 				throw new IllegalArgumentException(stack.toString());
 			this.stack = stack.copy();
 		}
@@ -273,8 +271,8 @@ public abstract class FusionMaterial
 		@Override
 		public boolean matches(ItemStack item) 
 		{
-            if(ItemStackTools.isEmpty(item) 
-               || ItemStackTools.getStackSize(item) < ItemStackTools.getStackSize(stack))
+            if(item.isEmpty() 
+               || item.getCount() < stack.getCount())
             {
 				return false;
             }
@@ -284,19 +282,19 @@ public abstract class FusionMaterial
 		@Override
 		public void decrStackSize(ItemStack item) 
 		{
-		    ItemStackTools.incStackSize(item, -1 * ItemStackTools.getStackSize(stack));
+			item.shrink(stack.getCount());
 		}
 
 		@Override
 		public List<ItemStack> itemsList() 
 		{
-			return Lists.newArrayList(ItemStackTools.safeCopy(stack));
+			return Lists.newArrayList(stack.copy());
 		}
 
 		@Override
 		public int getAmount() 
 		{
-			return ItemStackTools.getStackSize(stack);
+			return stack.getCount();
 		}
 		
 		@Override

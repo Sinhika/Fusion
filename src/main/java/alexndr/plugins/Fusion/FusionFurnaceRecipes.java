@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.google.common.collect.Lists;
 
-import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -34,7 +33,7 @@ public class FusionFurnaceRecipes
                     FusionMaterial catalyst, ItemStack output, float experience)
     {
         recipeList.add(new RecipeEntry(input1, input2, catalyst, output));
-        setExperience(ItemStackTools.safeCopy(output), experience);
+        setExperience(output.copy(), experience);
     }
 
 	
@@ -61,13 +60,13 @@ public class FusionFurnaceRecipes
 			if(e.matches(input1, input2, catalyst))
 				return e.getOutput();
 		}
-		return ItemStackTools.getEmptyStack();
+		return ItemStack.EMPTY;
 	}
 	
 	public static void setExperience(ItemStack output, float experience)
 	{
 		if(!experienceMap.containsKey(output))
-			experienceMap.put(ItemStackTools.safeCopy(output), experience);
+			experienceMap.put(output.copy(), experience);
 	}
 	
 	public static ItemStack applyFusion(ItemStack input1, ItemStack input2, ItemStack catalyst)
@@ -77,7 +76,7 @@ public class FusionFurnaceRecipes
 			if(e.matches(input1, input2, catalyst))
 				return e.applyFusion(input1, input2, catalyst);
 		}
-		return ItemStackTools.getEmptyStack();
+		return ItemStack.EMPTY;
 	}
 	
 	public static float getExperience(ItemStack item)

@@ -2,6 +2,13 @@ package alexndr.plugins.Fusion;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
+import alexndr.api.core.SimpleCoreAPI;
+import alexndr.api.helpers.game.TabHelper;
+import alexndr.api.logger.LogHelper;
+import alexndr.api.registry.ContentRegistry;
+import alexndr.api.registry.Plugin;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -10,14 +17,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import alexndr.api.core.SimpleCoreAPI;
-import alexndr.api.helpers.game.TabHelper;
-import alexndr.api.logger.LogHelper;
-import alexndr.api.registry.ContentRegistry;
-import alexndr.api.registry.Plugin;
-import alexndr.plugins.Fusion.modsupport.ModSupport;
-
-import com.google.common.collect.Lists;
 
 @Mod.EventBusSubscriber
 public class ProxyCommon
@@ -32,38 +31,41 @@ public class ProxyCommon
 		if (! TabHelper.wereTabsInitialized()) {
 			SimpleCoreAPI.tabPreInit();
 		}
-		ModSupport.preInit();
 		Content.preInitialize();
-		Recipes.preInitialize();
 	} // end PreInit
 
 	public void Init(FMLInitializationEvent event)
 	{
-		Content.initialize();
-		Recipes.initialize();
-		
 		setTabIcons();
 		Content.setRepairMaterials();
-//		Content.setAchievementTriggers();
-		
-		ModSupport.Init();
+		Content.addSmeltingRecipes();
+		Content.addFusionRecipes();
 	} // end Init()
 
 	public void PostInit(FMLPostInitializationEvent event)
 	{
-		ModSupport.PostInit();
-		Recipes.postInitialize();
+		try {
+			if (Settings.customRecipes == true) {
+				Content.doCustomFusionRecipes();
+			}
+		}
+		catch (Exception e) {
+			LogHelper.severe("Fusion",
+					"Custom recipes were not added successfully. This is a problem!");
+			e.printStackTrace();
+		}
 	} // end PostInit()
+	
 	/**
 	 * sets tab icons, if they haven't been set by an earlier mod.
 	 */
 	private static void setTabIcons() {
 		LogHelper.verbose("Fusion", "Setting tab icons");
-		List<Item> list = Lists.newArrayList(Item.getItemFromBlock(Content.steel_block), 
-								Item.getItemFromBlock(Content.steel_block), 
-								Content.steel_ingot, Content.steel_pickaxe, 
-								Content.steel_sword, 
-								Item.getItemFromBlock(Content.fusion_furnace));
+		List<Item> list = Lists.newArrayList(Item.getItemFromBlock(ModBlocks.steel_block), 
+								Item.getItemFromBlock(ModBlocks.steel_block), 
+								ModItems.steel_ingot, ModItems.steel_pickaxe, 
+								ModItems.steel_sword, 
+								Item.getItemFromBlock(ModBlocks.fusion_furnace));
 		SimpleCoreAPI.setTabIcons(list);
 	}
 	

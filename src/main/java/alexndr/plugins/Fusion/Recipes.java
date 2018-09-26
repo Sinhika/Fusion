@@ -1,74 +1,10 @@
 package alexndr.plugins.Fusion;
 
-import alexndr.api.config.types.ConfigFusionRecipe;
-import alexndr.api.logger.LogHelper;
-import alexndr.plugins.Fusion.modsupport.ModSupport;
-import alexndr.plugins.Fusion.modsupport.RecipesSimpleOres;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-
 /**
  * @author AleXndrTheGr8st
  */
 public class Recipes 
 {
-	@SuppressWarnings("unused")
-	private static final int WILDCARD_VALUE = OreDictionary.WILDCARD_VALUE;
-	
-	public static void preInitialize()
-	{
-		try {
-			doOreDictEntries();
-			ModSupport.doOreDictEntries();
-			LogHelper.verbose("Fusion",
-					"All OreDictionary entries were added successfully");
-		} 
-		catch (Exception e) {
-			LogHelper.severe("Fusion",
-							"OreDictionary entries were not added successfully. This is a serious problem!");
-			e.printStackTrace();
-		}
-	} // end preInitialize
-	
-	public static void initialize()
-	{
-		try {
-			doRecipes();
-			ModSupport.doRecipes();
-			LogHelper.verbose("Fusion", "All recipes were added successfully");
-		} 
-		catch (Exception e) {
-			LogHelper.severe("Fusion",
-							"Recipes were not added successfully. This is a serious problem!");
-			e.printStackTrace();
-		}
-	} // end initialize
-	
-	public static void postInitialize()
-	{
-		try {
-			if (Settings.customRecipes == true) {
-				doCustomFusionRecipes();
-			}
-		}
-		catch (Exception e) {
-			LogHelper.severe("Fusion",
-					"Custom recipes were not added successfully. This is a problem!");
-			e.printStackTrace();
-		}
-	} // end postInitialzie()
-	
-	public static void doOreDictEntries()
-	{
-//		OreDictionary.registerOre("ingotSteel", new ItemStack(Content.steel_ingot));
-//		OreDictionary.registerOre("blockSteel", new ItemStack(Content.steel_block));
-//		if (Content.use_simpleores) {
-//			RecipesSimpleOres.doOreDictRecipes();
-//		}
-//
-	}
 	
 	public static void doRecipes()
 	{	
@@ -135,44 +71,10 @@ public class Recipes
 //		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_boots, true, new Object[]{
 //				"X X", "X X", Character.valueOf('X'), "ingotSteel"}));
 		
-		if (Content.use_simpleores) {
-			RecipesSimpleOres.doRecipes();
-		}		
-
-		//Smelting Recipes
-		//Fusion Furnace
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
-				FusionMaterial.of(Items.COAL), FusionMaterial.of(Items.COAL),
-				new ItemStack(Content.small_steel_chunk), 2.0F);
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
-				FusionMaterial.of(Items.COAL), FusionMaterial
-				.of("gunpowder"), new ItemStack(
-						Content.medium_steel_chunk), 4.0F);
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
-				FusionMaterial.of(Items.COAL), FusionMaterial
-				.of("dustRedstone"), new ItemStack(
-						Content.large_steel_chunk), 8.0F);
-		
-		//Regular Furnace
-		GameRegistry.addSmelting(Content.large_steel_chunk, new ItemStack(Content.steel_ingot), 0.4F);
+//		if (Content.use_simpleores) {
+//			RecipesSimpleOres.doRecipes();
+//		}		
+//
 	} // end doRecipes
 	
-	private static void doCustomFusionRecipes()
-	{
-		// avoid NPE
-		if (Settings.numCustomRecipes == 0 || Settings.customFusionRecipes == null) {
-			return;
-		}
-		for (int ii=0; ii < Settings.customFusionRecipes.length; ii++)
-		{
-			ConfigFusionRecipe r = Settings.customFusionRecipes[ii];
-			ItemStack outStack = new ItemStack(FusionMaterial.of(r.getOutput()).getItem());
-			
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of(r.getInput1()), 
-										     FusionMaterial.of(r.getInput2()), 
-										     FusionMaterial.of(r.getCatalyst()),
-											 outStack, 1.0F);
-			LogHelper.info(ModInfo.ID, r.getName() + " registered.");
-		} // end-for
-	} // end doCustomFusionRecipes()
 } // end class Recipes
