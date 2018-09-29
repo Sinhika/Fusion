@@ -1,72 +1,29 @@
 package alexndr.plugins.Fusion.inventory;
 
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
-import mcjty.lib.compat.CompatSlot;
-import mcjty.lib.tools.ItemStackTools;
-import mcjty.lib.tools.MathTools;
-import mcjty.lib.tools.WorldTools;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * this class is the FusionFurnace version of SlotFurnaceOutput, and is almost
  * identical.
  * @author AleXndrTheGr8st
  */
-public class SlotFusionFurnace extends CompatSlot
+public class SlotFusionFurnace extends SlotFurnaceOutput
 {
 	/** The player that is using the GUI where this slot resides. */
     protected EntityPlayer thePlayer;
     protected int removeCount;
 
-    public SlotFusionFurnace(EntityPlayer par1EntityPlayer, IInventory inventoryIn, 
+    public SlotFusionFurnace(EntityPlayer player, IInventory inventoryIn, 
     						 int index, int xPosition, int yPosition)
     {
-        super(inventoryIn, index, xPosition, yPosition);
-        this.thePlayer = par1EntityPlayer;
-    }
-
-    /**
-     * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
-     */
-    @Override
-	public boolean isItemValid(ItemStack par1ItemStack)
-    {
-        return false;
-    }
-
-    /**
-     * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new
-     * stack.
-     */
-    @Override
-	public ItemStack decrStackSize(int amount)
-    {
-        if (this.getHasStack())
-        {
-            this.removeCount += Math.min(amount, ItemStackTools.getStackSize(this.getStack()));
-        }
-        return super.decrStackSize(amount);
-    }
-
-    @Override
-	public ItemStack onPickup(EntityPlayer playerIn, ItemStack stack)
-    {
-        this.onCrafting(stack);
-        return super.onPickup(playerIn, stack);
-     }
-
-    /**
-     * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an
-     * internal count then calls onCrafting(item).
-     */
-    @Override
-	protected void onCrafting(ItemStack stack, int par2)
-    {
-        this.removeCount += par2;
-        this.onCrafting(stack);
+        super(player, inventoryIn, index, xPosition, yPosition);
+         this.thePlayer = player;
     }
 
     /**
@@ -87,11 +44,11 @@ public class SlotFusionFurnace extends CompatSlot
             {
                 i = 0;
             }
-            else if (f <= 100.0F)
+            else if (f < 1.0F)
             {
-                j = MathTools.floor(i * f);
+                j = MathHelper.floor((float)i * f);
 
-                if (j < MathTools.ceiling(i * f) && (float)Math.random() < i * f - j)
+                if (j < MathHelper.ceil((float)i * f) && Math.random() < (double)((float)i * f - (float)j))
                 {
                     ++j;
                 }
@@ -103,11 +60,8 @@ public class SlotFusionFurnace extends CompatSlot
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-				WorldTools.spawnEntity(this.thePlayer.getEntityWorld(), 
-										new EntityXPOrb(this.thePlayer.getEntityWorld(),
-														this.thePlayer.posX, 
-														this.thePlayer.posY + 0.5D, 
-														this.thePlayer.posZ + 0.5D, j));
+                this.thePlayer.world.spawnEntity(new EntityXPOrb(this.thePlayer.world, 
+                		this.thePlayer.posX, this.thePlayer.posY + 0.5D, this.thePlayer.posZ + 0.5D, j));
             } // end-while
         }
 

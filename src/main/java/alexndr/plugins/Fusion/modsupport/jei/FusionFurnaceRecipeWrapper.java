@@ -7,11 +7,11 @@ import alexndr.plugins.Fusion.FusionMaterial.DictMaterial;
 import alexndr.plugins.Fusion.RecipeEntry;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IStackHelper;
 import net.minecraft.item.ItemStack;
 
-public class FusionFurnaceRecipeWrapper extends BlankRecipeWrapper
+public class FusionFurnaceRecipeWrapper implements IRecipeWrapper
 {
     private final RecipeEntry recipe;
     private final List<ItemStack> input1, input2, catalyst;

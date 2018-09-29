@@ -1,6 +1,5 @@
 package alexndr.plugins.Fusion;
 
-import alexndr.api.config.types.ConfigFusionRecipe;
 import alexndr.api.helpers.game.ArmorMaterialHelper;
 import alexndr.api.logger.LogHelper;
 import net.minecraft.init.Items;
@@ -250,24 +249,24 @@ public class Content
 		
 	} // end addSimpleOresFusionRecipes()
 
-	public static void doCustomFusionRecipes()
-	{
-		// avoid NPE
-		if (Settings.numCustomRecipes == 0 || Settings.customFusionRecipes == null) {
-			return;
-		}
-		for (int ii=0; ii < Settings.customFusionRecipes.length; ii++)
-		{
-			ConfigFusionRecipe r = Settings.customFusionRecipes[ii];
-			ItemStack outStack = new ItemStack(FusionMaterial.of(r.getOutput()).getItem());
-			
-			FusionFurnaceRecipes.addSmelting(FusionMaterial.of(r.getInput1()), 
-										     FusionMaterial.of(r.getInput2()), 
-										     FusionMaterial.of(r.getCatalyst()),
-											 outStack, 1.0F);
-			LogHelper.info(ModInfo.ID, r.getName() + " registered.");
-		} // end-for
-	} // end doCustomFusionRecipes()
+//	public static void doCustomFusionRecipes()
+//	{
+//		// avoid NPE
+//		if (Settings.numCustomRecipes == 0 || Settings.customFusionRecipes == null) {
+//			return;
+//		}
+//		for (int ii=0; ii < Settings.customFusionRecipes.length; ii++)
+//		{
+//			ConfigFusionRecipe r = Settings.customFusionRecipes[ii];
+//			ItemStack outStack = new ItemStack(FusionMaterial.of(r.getOutput()).getItem());
+//			
+//			FusionFurnaceRecipes.addSmelting(FusionMaterial.of(r.getInput1()), 
+//										     FusionMaterial.of(r.getInput2()), 
+//										     FusionMaterial.of(r.getCatalyst()),
+//											 outStack, 1.0F);
+//			LogHelper.info(ModInfo.ID, r.getName() + " registered.");
+//		} // end-for
+//	} // end doCustomFusionRecipes()
 
 	/**
 	 * Loads Fusion Achievements.

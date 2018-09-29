@@ -44,16 +44,16 @@ public class ProxyCommon
 
 	public void PostInit(FMLPostInitializationEvent event)
 	{
-		try {
-			if (Settings.customRecipes == true) {
-				Content.doCustomFusionRecipes();
-			}
-		}
-		catch (Exception e) {
-			LogHelper.severe("Fusion",
-					"Custom recipes were not added successfully. This is a problem!");
-			e.printStackTrace();
-		}
+//		try {
+//			if (Settings.customRecipes == true) {
+//				Content.doCustomFusionRecipes();
+//			}
+//		}
+//		catch (Exception e) {
+//			LogHelper.severe("Fusion",
+//					"Custom recipes were not added successfully. This is a problem!");
+//			e.printStackTrace();
+//		}
 	} // end PostInit()
 	
 	/**

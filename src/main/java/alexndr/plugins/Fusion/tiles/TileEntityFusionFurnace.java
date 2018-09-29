@@ -5,213 +5,50 @@ import javax.annotation.Nullable;
 import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.api.helpers.game.FurnaceHelper;
+import alexndr.api.logger.LogHelper;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
-import mcjty.lib.tools.ItemStackTools;
-import mcjty.lib.tools.MathTools;
+import alexndr.plugins.Fusion.helpers.FacingHelper;
+import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * @author AleXndrTheGr8st
  */
 public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 {
-	protected static final int NDX_LEFT_SLOT = 0;
-	protected static final int NDX_FUEL_SLOT = 1;
-	protected static final int NDX_OUTPUT_SLOT = 2;
-    protected static final int NDX_RIGHT_SLOT = 3;
-    protected static final int NDX_CATALYST_SLOT = 4;
+	public static final int NDX_INPUT1_SLOT = 0;
+	public static final int NDX_FUEL_SLOT = 1;
+	public static final int NDX_OUTPUT_SLOT = 2;
+	public static final int NDX_INPUT2_SLOT = 3;
+	public static final int NDX_CATALYST_SLOT = 4;
     
-    protected static boolean initDone = false;
+	public final static String tilename = "container.fusion_furnace";
+	public final static String guiID = "fusion:fusion_furnace_gui";
 	
-	protected static final int[] slots_input1 = new int[] {NDX_LEFT_SLOT};
-	protected static final int[] slots_input2 = new int[] {NDX_RIGHT_SLOT};
-	protected static final int[] slots_fuel = new int[] {NDX_FUEL_SLOT};
-	protected static final int[] slots_output = new int [] {NDX_OUTPUT_SLOT};
-	
-	public static void initThis()
-	{
-		if (initDone) return;
-		
-		slotsTop = new int[] {NDX_CATALYST_SLOT}; 		// slots_catalyst
-		slotsBottom = new int[] {NDX_OUTPUT_SLOT, NDX_FUEL_SLOT}; // slots_output, slots_fuel
-		// slotsSides = new int[] {0, 3};  // slots_input1, slots_input2
-		
-		initDone = true;
-	}
+//	protected static final int[] slots_input1 = new int[] {NDX_LEFT_SLOT};
+//	protected static final int[] slots_input2 = new int[] {NDX_RIGHT_SLOT};
+//	protected static final int[] slots_fuel = new int[] {NDX_FUEL_SLOT};
+//	protected static final int[] slots_output = new int [] {NDX_OUTPUT_SLOT};
+    protected static int[] slotsTop = new int[] {NDX_CATALYST_SLOT};
+	protected static int[] slotsLeft = new int[] {NDX_INPUT1_SLOT};
+	protected static int[] slotsRight = new int[] {NDX_INPUT2_SLOT};
+	protected static int[] slotsBottom = new int[] {NDX_FUEL_SLOT, NDX_OUTPUT_SLOT};
 	
 	public TileEntityFusionFurnace() 
 	{
-		super("container.fusion_furnace", 600, 
-			  "fusion:fusion_furnace_gui", 5);
-		initThis();
+		super(TileEntityFusionFurnace.tilename, 600, TileEntityFusionFurnace.guiID, 5);
+		LogHelper.verbose("fusion", "finished TileEntityFusionFurnace ctor for " 
+				+ this.getDisplayName().getUnformattedText());
 	} // end ctor()
-	
-	@Override
-	public void setInventorySlotContents(int index, @Nullable ItemStack stack) 
-	{
-        ItemStack itemstack = (ItemStack)this.getStackInSlot(index);
-        boolean flag = ItemStackTools.isValid(stack) && stack.isItemEqual(itemstack) 
-                && ItemStack.areItemStackTagsEqual(stack, itemstack);
-        
-        FurnaceHelper.SetInSlot(this.furnaceItemStacks, index, stack);
-        
-        if (ItemStackTools.getStackSize(stack) > this.getInventoryStackLimit())
-        {
-            ItemStackTools.setStackSize(stack, this.getInventoryStackLimit());
-        }
-        
-        // Fusion Furnace has 3 (!) input stacks to account for.
-        if ((index == NDX_LEFT_SLOT || index == NDX_RIGHT_SLOT || index == NDX_CATALYST_SLOT) && !flag)
-        {
-            this.totalCookTime = this.getCookTime(stack);
-            this.cookTime = 0;
-            this.markDirty();
-        }
-	} // end ()
-
-	@Override
-	public void update()
-	{
-        boolean flag = this.isBurning();
-        boolean flag1 = false;
-
-        if (this.isBurning())
-        {
-            --this.furnaceBurnTime;
-        }
-
-		if(!this.getWorld().isRemote)
-		{
-            ItemStack fuelstack = (ItemStack)this.getStackInSlot(NDX_FUEL_SLOT);
-            ItemStack leftstack = (ItemStack)this.getStackInSlot(NDX_LEFT_SLOT);
-            ItemStack rightstack = (ItemStack)this.getStackInSlot(NDX_RIGHT_SLOT);
-            ItemStack catastack = (ItemStack)this.getStackInSlot(NDX_CATALYST_SLOT);
-            
-            if (this.isBurning() || ItemStackTools.isValid(fuelstack) && ItemStackTools.isValid(leftstack)
-                && ItemStackTools.isValid(rightstack) && ItemStackTools.isValid(catastack))
-            {
-                if (!this.isBurning() && this.canSmelt())
-                {
-                    this.currentItemBurnTime = this.furnaceBurnTime = TileEntityFusionFurnace.getItemBurnTime(fuelstack);
-
-                    if (this.isBurning())
-                    {
-                        flag1 = true;
-                        if (ItemStackTools.isValid(fuelstack))
-                        {
-                            Item item = fuelstack.getItem();
-                            ItemStackTools.incStackSize(fuelstack, -1);
-                            if (ItemStackTools.isEmpty(fuelstack)) {
-                                ItemStack item1 = item.getContainerItem(fuelstack);
-                                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_FUEL_SLOT, item1);
-                            }
-                        } // end-if
-                    } // end-if
-                } // end-if
-                
-                if (this.isBurning() && this.canSmelt())
-                {
-                    ++this.cookTime;
-
-                    if (this.cookTime == this.totalCookTime)
-                    {
-                        this.cookTime = 0;
-                        this.totalCookTime = this.getCookTime(this.getStackInSlot(NDX_LEFT_SLOT));
-                        this.smeltItem();
-                        flag1 = true;
-                    }
-                }
-                else
-                {
-                    this.cookTime = 0;
-                }
-            }
-            else if (!this.isBurning() && this.cookTime > 0)
-            {
-                this.cookTime = MathTools.clamp(this.cookTime - 2, 0, this.totalCookTime);
-            }
-
-            if (flag != this.isBurning())
-            {
-                flag1 = true;
-				BlockFusionFurnace.setState(this.isBurning(), this.getWorld(), this.pos);
-			}
-		} // end-if
-		
-		if(flag1)
-			this.markDirty();
-	} // end update()
-	
-	/**
-	 * Returns true if the furnace can smelt at that time. ie. has inputs, catalyst, destination stack isn't full, etc.
-	 * @return True if furnace can smelt.
-	 */
-	@Override
-	protected boolean canSmelt()
-	{
-        if (ItemStackTools.isValid(this.getStackInSlot(NDX_LEFT_SLOT))
-                        && ItemStackTools.isValid(this.getStackInSlot(NDX_RIGHT_SLOT))
-                        && ItemStackTools.isValid(this.getStackInSlot(NDX_CATALYST_SLOT)))
-		{
-			ItemStack result_stack = FusionFurnaceRecipes.getSmeltingResult(
-			                                            this.getStackInSlot(NDX_LEFT_SLOT), 
-														this.getStackInSlot(NDX_RIGHT_SLOT), 
-														this.getStackInSlot(NDX_CATALYST_SLOT));
-            if (ItemStackTools.isEmpty(result_stack)) {
-                return false;
-            }
-            ItemStack outstack = (ItemStack)this.getStackInSlot(NDX_OUTPUT_SLOT);
-            if (ItemStackTools.isEmpty(outstack)) return true;
-            if (!outstack.isItemEqual(result_stack)) return false;
-            
-            int result = ItemStackTools.getStackSize(outstack) 
-                    + ItemStackTools.getStackSize(result_stack);
-            return (result <= getInventoryStackLimit() 
-                     && result <= outstack.getMaxStackSize()); // Forge fix: make furnace respect stack sizes in furnace recipes
-		}
-		return false;
-	} // end canSmelt()
-	
-	@Override
-	public void smeltItem()
-	{
-		if(this.canSmelt())
-		{
-            ItemStack leftstack = (ItemStack)this.getStackInSlot(NDX_LEFT_SLOT);
-            ItemStack rightstack = (ItemStack)this.getStackInSlot(NDX_RIGHT_SLOT);
-            ItemStack catastack = (ItemStack)this.getStackInSlot(NDX_CATALYST_SLOT);
-		    ItemStack itemstack = 
-                 FusionFurnaceRecipes.applyFusion(this.getStackInSlot(NDX_LEFT_SLOT), 
-                                                  this.getStackInSlot(NDX_RIGHT_SLOT), 
-                                                  this.getStackInSlot(NDX_CATALYST_SLOT));
-            ItemStack outstack = (ItemStack) this.getStackInSlot(NDX_OUTPUT_SLOT);
-            
-		    if (ItemStackTools.isEmpty(outstack)) {
-		        FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_OUTPUT_SLOT, 
-		                                ItemStackTools.safeCopy(itemstack));
-		    }
-		    else if (outstack.getItem() == itemstack.getItem())
-		    {
-		        ItemStackTools.incStackSize(outstack, ItemStackTools.getStackSize(itemstack));
-		    }
-
-		    if (ItemStackTools.isEmpty(leftstack)) {
-		        FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_LEFT_SLOT, ItemStackTools.getEmptyStack());
-		    }
-            if (ItemStackTools.isEmpty(rightstack)) {
-                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_RIGHT_SLOT, ItemStackTools.getEmptyStack());
-            }
-            if (ItemStackTools.isEmpty(catastack)) {
-                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_CATALYST_SLOT, 
-                                        ItemStackTools.getEmptyStack());
-            }
-		} // end-if canSmelt
-	} // end smeltItem()
-	
 	
 	/**
 	 * Gets the burn time from an itemstack.
@@ -225,102 +62,288 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	} // end ()
 	
 	
-	@SuppressWarnings("incomplete-switch")
+    /**
+	 * Sets the given item stack to the specified slot in the inventory (can be
+	 * crafting or armor sections). Note that the Fusion Furnace has 3 input
+	 * stacks to account for.
+	 * 
+	 * @see net.minecraft.inventory.IInventory#setInventorySlotContents(int,
+	 *      net.minecraft.item.ItemStack)
+	 */
+	@Override
+	public void setInventorySlotContents(int index, @Nullable ItemStack stack) 
+	{
+        ItemStack itemstack = (ItemStack)this.getStackInSlot(index);
+        boolean flag = ! stack.isEmpty() && stack.isItemEqual(itemstack) 
+                && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        
+        FurnaceHelper.SetInSlot(this.furnaceItemStacks, index, stack);
+        
+        if (stack.getCount() > this.getInventoryStackLimit())
+        {
+        	stack.setCount(this.getInventoryStackLimit());
+        }
+        
+        // Fusion Furnace has 3 (!) input stacks to account for.
+        if ((index == NDX_INPUT1_SLOT || index == NDX_INPUT2_SLOT || index == NDX_CATALYST_SLOT) 
+        		&& !flag)
+        {
+            this.totalCookTime = this.getCookTime(stack);
+            this.cookTime = 0;
+            this.markDirty();
+        }
+	} // end ()
+
+	/* (non-Javadoc)
+	 * @see alexndr.api.content.tiles.TileEntitySimpleFurnace#createContainer(net.minecraft.entity.player.InventoryPlayer, net.minecraft.entity.player.EntityPlayer)
+	 */
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+		return new ContainerFusionFurnace(playerInventory, this);
+	}
+
+	/* (non-Javadoc)
+	 * @see alexndr.api.content.tiles.TileEntitySimpleFurnace#isItemValidForSlot(int, net.minecraft.item.ItemStack)
+	 */
+	@Override
+	public boolean isItemValidForSlot(int index, ItemStack stack) 
+	{
+        if (index == TileEntityFusionFurnace.NDX_OUTPUT_SLOT)
+        {
+            return false;
+        }
+        else if (index != TileEntityFusionFurnace.NDX_FUEL_SLOT)
+        {
+            return true;
+        }
+        else
+        {
+            ItemStack itemstack = this.getStackInSlot(TileEntityFusionFurnace.NDX_FUEL_SLOT);
+            return isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack) 
+            							&& itemstack.getItem() != Items.BUCKET;
+        }
+	} // end isItemValidForSlot()
+
+	
+	/* (non-Javadoc)
+	 * @see net.minecraft.inventory.ISidedInventory#getSlotsForFace(net.minecraft.util.EnumFacing)
+	 */
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) 
 	{
-		EnumFacing furnaceFace = this.getWorld().getBlockState(this.pos).getValue(SimpleFurnace.FACING);
-		switch (side)
+		EnumFacing furnaceFace = 
+				this.getWorld().getBlockState(this.pos).getValue(SimpleFurnace.FACING);
+		EnumFacing relativeSide = FacingHelper.withDefaultFacing(furnaceFace, side);
+		
+		switch (relativeSide)
 		{
+			case NORTH:
+			case SOUTH:
 			case DOWN :
 				return slotsBottom;
 			case UP :
 				return slotsTop;
 			case WEST:
-				switch (furnaceFace) {
-				case NORTH:
-					return slots_input2;
-				case SOUTH:
-					return slots_input1;
-				case EAST:
-                    return slots_fuel;
-				case WEST:
-				    return slots_output;
-				}
+				return slotsRight;
 			case EAST:
-				switch (furnaceFace) {
-				case NORTH:
-					return slots_input1;
-				case SOUTH:
-					return slots_input2;
-				case WEST:
-                    return slots_fuel;
-				case EAST:
-                    return slots_output;
-				}
-			case NORTH:
-				switch (furnaceFace) {
-				case WEST:
-					return slots_input1;
-				case EAST:
-					return slots_input2;
-				case SOUTH:
-				    return slots_fuel;
-				case NORTH:
-				    return slots_output;
-				}
-			case SOUTH:
-				switch (furnaceFace) {
-				case WEST:
-					return slots_input2;
-				case EAST:
-					return slots_input1;
-				case NORTH:
-                    return slots_fuel;
-                case SOUTH:
-                    return slots_output;
-				}
+				return slotsLeft;
 		}
 		return null;
 	} // end getSlotsForFace()
-
-
-	@Override
-	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) 
-	{
-		return index != NDX_FUEL_SLOT || stack.getItem() == Items.BUCKET;
-	}
 	
-	   net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);
-	    net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
-	    net.minecraftforge.items.IItemHandler handlerLeftSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.EAST);
-        net.minecraftforge.items.IItemHandler handlerRightSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);
-        net.minecraftforge.items.IItemHandler handlerBackSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.SOUTH);
-        net.minecraftforge.items.IItemHandler handlerFrontSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.NORTH);
+	/* (non-Javadoc)
+	 * @see net.minecraft.util.ITickable#update()
+	 */
+	@Override
+	public void update()
+	{
+        boolean flag = this.isBurning();
+        boolean flag1 = false;
+        int burnTime = 0;
 
-	    @SuppressWarnings("unchecked")
-	    @Override
-	    public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, net.minecraft.util.EnumFacing facing)
-	    {
-	        if (facing != null && 
-	             capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-	        {
-	            if (facing == EnumFacing.DOWN)
-	                return (T) handlerBottom;
-	            else if (facing == EnumFacing.UP)
-	                return (T) handlerTop;
-	            else if (facing == EnumFacing.EAST)
-	                return (T) handlerLeftSide;
-	            else if (facing == EnumFacing.WEST)
-	                return (T) handlerRightSide;
-	            else if (facing == EnumFacing.SOUTH)
-                    return (T) handlerBackSide;
-	            else if (facing == EnumFacing.NORTH)
-                    return (T) handlerFrontSide;
-	            else
-	                return null;
-	        }   
-	        return super.getCapability(capability, facing);
-	    }
+        if (this.isBurning())
+        {
+            --this.furnaceBurnTime;
+        }
+
+		if(!this.getWorld().isRemote)
+		{
+            ItemStack fuelstack = (ItemStack)this.getStackInSlot(NDX_FUEL_SLOT);
+            if (!fuelstack.isEmpty()) 
+			{
+                burnTime = TileEntityFusionFurnace.getItemBurnTime(fuelstack);
+            }
+            flag1 = default_cooking_update(flag1, fuelstack, burnTime);
+
+            if (flag != this.isBurning())
+            {
+                flag1 = true;
+				BlockFusionFurnace.setState(this.isBurning(), this.getWorld(), this.pos);
+			}
+		} // end-if
+		
+		if(flag1) {
+			this.markDirty();
+		}
+	} // end update()
+
+	/**
+	 * Guts of fusion furnace alloying update. Must sort out cooking and smelting, and return a flag
+	 * that indicates whether something changed.
+	 * @param flag1 Flag to be set if changed.
+	 * @param fuelStack stack of fuel items being burned.
+	 * @param burnTime current burnTime of itemstackFuel
+	 * @return true if state has changed, false if not.
+	 */
+	@Override
+	protected boolean default_cooking_update(boolean flag1, ItemStack fuelStack, int burnTime)
+	{
+		ItemStack leftstack = (ItemStack)this.getStackInSlot(NDX_INPUT1_SLOT);
+		ItemStack rightstack = (ItemStack)this.getStackInSlot(NDX_INPUT2_SLOT);
+		ItemStack catastack = (ItemStack)this.getStackInSlot(NDX_CATALYST_SLOT);
+
+		if (this.isBurning() || ! (fuelStack.isEmpty() || leftstack.isEmpty() 
+				|| rightstack.isEmpty() || catastack.isEmpty()) ) 
+		{
+			if (!this.isBurning() && this.canSmelt())
+			{
+				this.currentItemBurnTime = this.furnaceBurnTime = 
+						TileEntityFusionFurnace.getItemBurnTime(fuelStack);
+
+				if (this.isBurning())
+				{
+					flag1 = true;
+					if (!fuelStack.isEmpty())
+					{
+						Item item = fuelStack.getItem();
+						fuelStack.shrink(1);
+						if (fuelStack.isEmpty()) 
+						{
+							ItemStack item1 = item.getContainerItem(fuelStack);
+							FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_FUEL_SLOT, item1);
+						}
+					} // end-if
+				} // end-if
+			} // end-if
+
+			if (this.isBurning() && this.canSmelt())
+			{
+				++this.cookTime;
+
+				if (this.cookTime == this.totalCookTime)
+				{
+					this.cookTime = 0;
+					this.totalCookTime = this.getCookTime(this.getStackInSlot(NDX_INPUT1_SLOT));
+					this.smeltItem();
+					flag1 = true;
+				}
+			}
+			else
+			{
+				this.cookTime = 0;
+			}
+		}
+		else if (!this.isBurning() && this.cookTime > 0)
+		{
+			this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
+		}
+		return flag1;
+	} // end 
+
+
+	/**
+	 * Returns true if the furnace can smelt at that time. ie. has inputs, catalyst, destination stack isn't full, etc.
+	 * @return True if furnace can smelt.
+	 */
+	@Override
+	protected boolean canSmelt()
+	{
+        if (this.getStackInSlot(NDX_INPUT1_SLOT).isEmpty() 
+        	|| this.getStackInSlot(NDX_INPUT2_SLOT).isEmpty() 
+        	|| this.getStackInSlot(NDX_CATALYST_SLOT).isEmpty())
+        {
+            return false;
+        }
+        
+        ItemStack result_stack = FusionFurnaceRecipes.getSmeltingResult(
+        		this.getStackInSlot(NDX_INPUT1_SLOT), 
+        		this.getStackInSlot(NDX_INPUT2_SLOT), 
+        		this.getStackInSlot(NDX_CATALYST_SLOT));
+        if (result_stack.isEmpty()) {
+        	return false;
+        }
+        ItemStack outstack = (ItemStack)this.getStackInSlot(NDX_OUTPUT_SLOT);
+        if (outstack.isEmpty()) return true;
+        if (!outstack.isItemEqual(result_stack)) return false;
+
+		int result = outstack.getCount() + result_stack.getCount();
+		 // Forge fix: make furnace respect stack sizes in furnace recipes
+		return result <= getInventoryStackLimit()&& result <= outstack.getMaxStackSize();
+	} // end canSmelt()
+	
+	@Override
+	public void smeltItem()
+	{
+		if(this.canSmelt())
+		{
+		    ItemStack itemstack = 
+                 FusionFurnaceRecipes.applyFusion(this.getStackInSlot(NDX_INPUT1_SLOT), 
+                                                  this.getStackInSlot(NDX_INPUT2_SLOT), 
+                                                  this.getStackInSlot(NDX_CATALYST_SLOT));
+            ItemStack outstack = (ItemStack) this.getStackInSlot(NDX_OUTPUT_SLOT);
+            
+		    if (outstack.isEmpty()) {
+		        FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_OUTPUT_SLOT, itemstack.copy());
+		    }
+		    else if (outstack.getItem() == itemstack.getItem())
+		    {
+		    	outstack.grow(itemstack.getCount());
+		    }
+		    this.decrStackSize(NDX_INPUT1_SLOT, 1);
+		    this.decrStackSize(NDX_INPUT2_SLOT, 1);
+		    this.decrStackSize(NDX_CATALYST_SLOT, 1);
+		} // end-if canSmelt
+	} // end smeltItem()
+	
+	
+
+	net.minecraftforge.items.IItemHandler handlerTop = 
+			new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);
+	net.minecraftforge.items.IItemHandler handlerBottom = 
+			new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
+	net.minecraftforge.items.IItemHandler handlerLeftSide = 
+			new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.EAST);
+	net.minecraftforge.items.IItemHandler handlerRightSide = 
+			new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);
+	net.minecraftforge.items.IItemHandler handlerBackSide = 
+			new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.SOUTH);
+	net.minecraftforge.items.IItemHandler handlerFrontSide = 
+			new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.NORTH);
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, net.minecraft.util.EnumFacing facing)
+	{
+		if (facing != null && 
+				capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		{
+			if (facing == EnumFacing.DOWN)
+				return (T) handlerBottom;
+			else if (facing == EnumFacing.UP)
+				return (T) handlerTop;
+			else if (facing == EnumFacing.EAST)
+				return (T) handlerLeftSide;
+			else if (facing == EnumFacing.WEST)
+				return (T) handlerRightSide;
+			else if (facing == EnumFacing.SOUTH)
+				return (T) handlerBackSide;
+			else if (facing == EnumFacing.NORTH)
+				return (T) handlerFrontSide;
+			else
+				return null;
+		}   
+		return super.getCapability(capability, facing);
+	}
 
 } // end class
