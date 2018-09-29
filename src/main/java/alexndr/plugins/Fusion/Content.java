@@ -74,15 +74,11 @@ public class Content
                                     Settings.steelArmor.getChestReduction(),
                                     Settings.steelArmor.getHelmReduction() },
                         Settings.steelArmor.getEnchantability(), armorNoise, 0.5F);
-        
-		if(use_simpleores) {
-			setSimpleOresToolAndArmorStats();
-		}
+		setSimpleOresToolAndArmorStats();
     } // end setToolAndArmorStats()
 
     protected static void setSimpleOresToolAndArmorStats()
     {
-		if(!use_simpleores) return;
 		toolBronze = EnumHelper.addToolMaterial("BRONZE",
 				Settings.bronzeTools.getHarvestLevel(),
 				Settings.bronzeTools.getUses(),
@@ -137,14 +133,11 @@ public class Content
 	{
 		toolSteel.setRepairItem(new ItemStack(ModItems.steel_ingot));
 		ArmorMaterialHelper.setRepairItem(armorSteel, new ItemStack(ModItems.steel_ingot));
-		if (use_simpleores) {
-			setSimpleOresRepairMaterials(); 
-		}
+		setSimpleOresRepairMaterials(); 
 	} // end setRepairMaterials()
 	
 	public static void setSimpleOresRepairMaterials()
 	{
-		if (! use_simpleores) return;
 		toolBronze.setRepairItem(new ItemStack(ModItems.bronze_ingot));
 		toolThyrium.setRepairItem(new ItemStack(ModItems.thyrium_ingot));
 		toolSinisite.setRepairItem(new ItemStack(ModItems.sinisite_ingot));
