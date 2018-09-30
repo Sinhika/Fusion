@@ -378,6 +378,7 @@ public class ModItems
 			steel_shears.registerItemModel();
 			steel_shovel.registerItemModel();
 			steel_sword.registerItemModel();
+			steel_hoe.registerItemModel();
 		}
 		if (Content.use_simpleores) 
 		{
@@ -398,6 +399,7 @@ public class ModItems
 				bronze_pickaxe.registerItemModel();
 				bronze_shovel.registerItemModel();
 				bronze_sword.registerItemModel();
+				bronze_hoe.registerItemModel();
 			}
 			if (Settings.sinisiteIngot.isEnabled()) {
 				sinisite_ingot.registerItemModel();
@@ -417,6 +419,7 @@ public class ModItems
 				sinisite_pickaxe.registerItemModel();
 				sinisite_shovel.registerItemModel();
 				sinisite_sword.registerItemModel();
+				sinisite_hoe.registerItemModel();
 			}
 			if (Settings.sinisiteBow.isEnabled()) {
 				sinisite_bow.registerItemModel();
@@ -439,6 +442,7 @@ public class ModItems
 				thyrium_pickaxe.registerItemModel();
 				thyrium_shovel.registerItemModel();
 				thyrium_sword.registerItemModel();
+				thyrium_hoe.registerItemModel();
 			}
 			if (Settings.thyriumBow.isEnabled()) {
 				thyrium_bow.registerItemModel();
