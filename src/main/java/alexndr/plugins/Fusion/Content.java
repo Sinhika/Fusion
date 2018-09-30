@@ -35,7 +35,6 @@ public class Content
 		use_simpleores = Loader.isModLoaded("simpleores") && Settings.enableSimpleOres;	
 		
 		setToolAndArmorStats();
-//		ModSupport.setToolAndArmorStats();
 		
 		try {
 			ModItems.configureItems();

@@ -5,11 +5,13 @@ import alexndr.api.core.SimpleCoreAPI;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.registry.ContentCategories;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
+import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -43,8 +45,13 @@ public class ModBlocks
 	{
 		if (Settings.fusionFurnace.isEnabled()) {
 			fusion_furnace.setConfigEntry( Settings.fusionFurnace)
-			.setCreativeTab(TabHelper.redstoneTab(SimpleCoreAPI.plugin));
-			fusion_furnace_lit.setConfigEntry(Settings.fusionFurnace);
+				.setStepSound(SoundType.STONE)
+				.setCreativeTab(TabHelper.redstoneTab(SimpleCoreAPI.plugin));
+			fusion_furnace_lit.setConfigEntry(Settings.fusionFurnace)
+				.setStepSound(SoundType.STONE).setDropItem(true)
+				.setItemToDrop(fusion_furnace.getItemToDrop());
+			BlockFusionFurnace.setUnlit_furnace(fusion_furnace);
+			BlockFusionFurnace.setLit_furnace(fusion_furnace_lit);
 		}
 		if (Settings.steelBlock.isEnabled()) {
 			steel_block.setConfigEntry(Settings.steelBlock)
@@ -82,6 +89,7 @@ public class ModBlocks
 		if (Settings.fusionFurnace.isEnabled()) {
 			registry.register(fusion_furnace);
 			registry.register(fusion_furnace_lit);
+			TileEntity.register(TileEntityFusionFurnace.tilename, TileEntityFusionFurnace.class);
 		} // end-if fusionFurnace
 	} // end register()
 	

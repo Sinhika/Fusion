@@ -2,13 +2,11 @@ package alexndr.plugins.Fusion.tiles;
 
 import javax.annotation.Nullable;
 
-import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.api.helpers.game.FurnaceHelper;
 import alexndr.api.logger.LogHelper;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
-import alexndr.plugins.Fusion.helpers.FacingHelper;
 import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -34,10 +32,6 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	public final static String tilename = "container.fusion_furnace";
 	public final static String guiID = "fusion:fusion_furnace_gui";
 	
-//	protected static final int[] slots_input1 = new int[] {NDX_LEFT_SLOT};
-//	protected static final int[] slots_input2 = new int[] {NDX_RIGHT_SLOT};
-//	protected static final int[] slots_fuel = new int[] {NDX_FUEL_SLOT};
-//	protected static final int[] slots_output = new int [] {NDX_OUTPUT_SLOT};
     protected static int[] slotsTop = new int[] {NDX_CATALYST_SLOT};
 	protected static int[] slotsLeft = new int[] {NDX_INPUT1_SLOT};
 	protected static int[] slotsRight = new int[] {NDX_INPUT2_SLOT};
@@ -132,11 +126,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) 
 	{
-		EnumFacing furnaceFace = 
-				this.getWorld().getBlockState(this.pos).getValue(SimpleFurnace.FACING);
-		EnumFacing relativeSide = FacingHelper.withDefaultFacing(furnaceFace, side);
-		
-		switch (relativeSide)
+		switch (side)
 		{
 			case NORTH:
 			case SOUTH:
@@ -145,9 +135,9 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 			case UP :
 				return slotsTop;
 			case WEST:
-				return slotsRight;
-			case EAST:
 				return slotsLeft;
+			case EAST:
+				return slotsRight;
 		}
 		return null;
 	} // end getSlotsForFace()

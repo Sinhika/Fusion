@@ -11,7 +11,7 @@ import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 
 public class FusionGuiHandler implements IGuiHandler 
 {
-	public static final int FUSION_FURNACE_TILE_ID	= 0;
+	public static final int FUSION_FURNACE_TILE_ID	= 2;
 	
     /**
      * Returns a Server side Container to be displayed to the user.
