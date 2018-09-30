@@ -9,13 +9,6 @@ public class Recipes
 	public static void doRecipes()
 	{	
 //		//Block Recipes
-//		//Special Furnace Recipes
-//		GameRegistry.addRecipe(new ShapedOreRecipe(Content.fusion_furnace, true, new Object[]{
-//				"XWX", "ZYZ", "XWX", Character.valueOf('X'), Blocks.BRICK_BLOCK, 
-//				Character.valueOf('Y'), Blocks.FURNACE, 
-//				Character.valueOf('W'), Items.COAL, 
-//				Character.valueOf('Z'), "ingotIron"}));
-//
 //
 //		//Storage Blocks
 //		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{

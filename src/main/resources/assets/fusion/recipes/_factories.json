@@ -1,0 +1,5 @@
+{
+  "conditions": {
+  		"fusion_furnace_enabled" : "alexndr.plugins.Fusion.conditions.FusionConditionFactory"
+  }
+}
