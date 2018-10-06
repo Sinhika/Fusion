@@ -1,5 +1,10 @@
 {
   "conditions": {
-  		"fusion_furnace_enabled" : "alexndr.plugins.Fusion.conditions.FusionConditionFactory"
+    "fusion_furnace_enabled" : "alexndr.plugins.Fusion.conditions.FusionConditionFactory",
+    "extra_chunks_enabled" : "alexndr.plugins.Fusion.conditions.FusionConditionFactory",
+    "steel_ingot_enabled" : "alexndr.plugins.Fusion.conditions.SteelConditionFactory",
+    "steel_block_enabled" : "alexndr.plugins.Fusion.conditions.SteelConditionFactory",
+    "steel_tools_enabled" : "alexndr.plugins.Fusion.conditions.SteelConditionFactory",
+    "steel_armor_enabled" : "alexndr.plugins.Fusion.conditions.SteelConditionFactory"
   }
 }

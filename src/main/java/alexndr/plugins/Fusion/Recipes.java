@@ -8,36 +8,6 @@ public class Recipes
 	
 	public static void doRecipes()
 	{	
-//		//Block Recipes
-//
-//		//Storage Blocks
-//		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_block, true, new Object[]{
-//				"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotSteel"}));
-//
-//		//Item Recipes
-//		//Ingot Recipes
-//		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Content.steel_ingot, 9), 
-//				new Object[]{"blockSteel"}));
-//
-//		//Steel Ingot
-//		GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
-//			Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk});
-//		GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
-//			Content.medium_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
-//
-//		//Extra Chunk Recipes
-//		if(Settings.extraChunkRecipes)
-//		{
-//			GameRegistry.addShapelessRecipe(new ItemStack(Content.large_steel_chunk), new Object[]{
-//				Content.small_steel_chunk, Content.small_steel_chunk, Content.medium_steel_chunk, Content.medium_steel_chunk});
-//			GameRegistry.addShapelessRecipe(new ItemStack(Content.medium_steel_chunk), new Object[]{
-//				Content.small_steel_chunk, Content.small_steel_chunk, Content.small_steel_chunk});
-//			GameRegistry.addShapelessRecipe(new ItemStack(Content.medium_steel_chunk, 2), new Object[]{
-//				Content.large_steel_chunk});
-//			GameRegistry.addShapelessRecipe(new ItemStack(Content.small_steel_chunk, 2), new Object[]{
-//				Content.medium_steel_chunk});
-//		}
-//
 //		//Tools Recipes
 //		//Steel Tools
 //		GameRegistry.addRecipe(new ShapedOreRecipe(Content.steel_pickaxe, true, new Object[]{

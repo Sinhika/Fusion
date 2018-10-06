@@ -1,0 +1,16 @@
+{
+	"conditions": [
+		{
+			"type": "fusion:steel_ingot_enabled",
+			"value": true
+		}
+	],
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "fusion:small_steel_chunk",
+			"count": 5
+		}
+	],
+	"result": { "item": "fusion:large_steel_chunk" }
+}

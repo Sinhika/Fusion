@@ -9,7 +9,7 @@ import net.minecraft.util.JsonUtils;
 import net.minecraftforge.common.crafting.IConditionFactory;
 import net.minecraftforge.common.crafting.JsonContext;
 
-public class FusionConditionFactory implements IConditionFactory 
+public class SteelConditionFactory implements IConditionFactory 
 {
 
 	@Override
@@ -18,13 +18,18 @@ public class FusionConditionFactory implements IConditionFactory
 		boolean value = JsonUtils.getBoolean(json , "value", true);
 		String key = JsonUtils.getString(json, "type");
 
-		if (key.equals(ModInfo.ID + ":fusion_furnace_enabled")) {
-			return () -> Settings.fusionFurnace.isEnabled() == value;
+		if (key.equals(ModInfo.ID + ":steel_ingot_enabled")) {
+			return () -> Settings.steelIngot.isEnabled() == value;
 		}
-		if (key.equals(ModInfo.ID + ":extra_chunks_enabled")) {
-			return () -> Settings.extraChunkRecipes == value;
+		if (key.equals(ModInfo.ID + ":steel_block_enabled")) {
+			return () -> Settings.steelBlock.isEnabled() == value;
 		}
-
+		if (key.equals(ModInfo.ID + ":steel_tools_enabled")) {
+			return () -> Settings.steelTools.isEnabled() == value;
+		}
+		if (key.equals(ModInfo.ID + ":steel_armor_enabled")) {
+			return () -> Settings.steelArmor.isEnabled() == value;
+		}
 		return null;
 	} // end parse()
 
