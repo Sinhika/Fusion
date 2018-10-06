@@ -1,0 +1,31 @@
+{
+	"conditions": [
+		{
+			"type": "fusion:bronze_ingot_enabled",
+			"value": true
+		},
+		{
+			"type": "fusion:simple_ores_enabled",
+			"value": true
+		}
+	],
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "fusion:small_bronze_chunk"
+		},
+		{
+			"item": "fusion:small_bronze_chunk"
+		},
+		{
+			"item": "fusion:small_bronze_chunk"
+		},
+		{
+			"item": "fusion:small_bronze_chunk"
+		},
+		{
+			"item": "fusion:small_bronze_chunk"
+		}
+	],
+	"result": { "item": "fusion:large_bronze_chunk" }
+}
