@@ -3,15 +3,13 @@ package alexndr.plugins.Fusion.conditions;
 import java.util.function.BooleanSupplier;
 
 import com.google.gson.JsonObject;
-
-import alexndr.plugins.Fusion.Content;
 import alexndr.plugins.Fusion.ModInfo;
 import alexndr.plugins.Fusion.Settings;
 import net.minecraft.util.JsonUtils;
 import net.minecraftforge.common.crafting.IConditionFactory;
 import net.minecraftforge.common.crafting.JsonContext;
 
-public class FusionConditionFactory implements IConditionFactory 
+public class BronzeConditionFactory implements IConditionFactory 
 {
 
 	@Override
@@ -20,14 +18,17 @@ public class FusionConditionFactory implements IConditionFactory
 		boolean value = JsonUtils.getBoolean(json , "value", true);
 		String key = JsonUtils.getString(json, "type");
 
-		if (key.equals(ModInfo.ID + ":fusion_furnace_enabled")) {
-			return () -> Settings.fusionFurnace.isEnabled() == value;
+		if (key.equals(ModInfo.ID + ":bronze_ingot_enabled")) {
+			return () -> Settings.bronzeIngot.isEnabled() == value;
 		}
-		if (key.equals(ModInfo.ID + ":extra_chunks_enabled")) {
-			return () -> Settings.extraChunkRecipes == value;
+		if (key.equals(ModInfo.ID + ":bronze_block_enabled")) {
+			return () -> Settings.bronzeBlock.isEnabled() == value;
 		}
-		if (key.equals(ModInfo.ID + ":simple_ores_enabled")) {
-			return () -> (Settings.enableSimpleOres == value && Content.use_simpleores == value);
+		if (key.equals(ModInfo.ID + ":bronze_tools_enabled")) {
+			return () -> Settings.bronzeTools.isEnabled() == value;
+		}
+		if (key.equals(ModInfo.ID + ":bronze_armor_enabled")) {
+			return () -> Settings.bronzeArmor.isEnabled() == value;
 		}
 		return null;
 	} // end parse()
