@@ -3,7 +3,7 @@
 		{
 			"type" : "fusion:bronze_armor_enabled",
 			"value" : true
-		} ,
+		},
 		{
 			"type": "fusion:simple_ores_enabled",
 			"value": true
