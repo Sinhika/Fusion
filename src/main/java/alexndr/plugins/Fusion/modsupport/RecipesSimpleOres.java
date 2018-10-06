@@ -65,15 +65,5 @@ public class RecipesSimpleOres
 //			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_boots, true, new Object[]{
 //				"X X", "X X", Character.valueOf('X'), "ingotThyrium"}));
 //			
-//			//Sinisite Armour Recipes
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_helmet, true, new Object[]{
-//				"XXX", "X X", Character.valueOf('X'), "ingotSinisite"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_chestplate, true, new Object[]{
-//				"X X", "XXX", "XXX", Character.valueOf('X'), "ingotSinisite"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_leggings, true, new Object[]{
-//				"XXX", "X X", "X X", Character.valueOf('X'), "ingotSinisite"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_boots, true, new Object[]{
-//				"X X", "X X", Character.valueOf('X'), "ingotSinisite"}));
-			
 	}
 } // end class
