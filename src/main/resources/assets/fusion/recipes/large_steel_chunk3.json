@@ -12,12 +12,16 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "fusion:small_steel_chunk",
-			"count": 2
+			"item": "fusion:small_steel_chunk"
 		},
 		{
-			"item": "fusion:medium_steel_chunk",
-			"count": 2
+			"item": "fusion:small_steel_chunk"
+		},
+		{
+			"item": "fusion:medium_steel_chunk"
+		},
+		{
+			"item": "fusion:medium_steel_chunk"
 		}
 	],
 	"result": {
