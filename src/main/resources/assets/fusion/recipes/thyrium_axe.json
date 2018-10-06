@@ -1,7 +1,7 @@
 {
 	"conditions" : [
 		{
-			"type" : "fusion:bronze_tools_enabled",
+			"type" : "fusion:thyrium_tools_enabled",
 			"value" : true
 		},
 		{
@@ -10,7 +10,7 @@
 		} 
 	],
 	"result" : {
-		"item" : "fusion:bronze_axe"
+		"item" : "fusion:thyrium_axe"
 	},
 	"pattern" : [
 		"SS ",
@@ -19,7 +19,7 @@
 	],
 	"type" : "forge:ore_shaped",
 	"key" : {
-		"S" : { "item" : "#INGOTBRONZE"},
+		"S" : { "item" : "#INGOTTHYRIUM"},
 		"T" : { "item" : "#STICKWOOD"}
 	}
 }
