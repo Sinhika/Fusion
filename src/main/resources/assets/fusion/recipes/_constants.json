@@ -28,6 +28,13 @@
 	"name" : "INGOTTHYRIUM"
 },
 {
+    "ingredient" : {
+       "type" : "forge:ore_dict",
+       "ore" : "gemOnyx"
+   	},
+	"name" : "GEMONYX"
+},
+{
     "ingredient": {
       "type": "forge:ore_dict",
       "ore": "stickWood"

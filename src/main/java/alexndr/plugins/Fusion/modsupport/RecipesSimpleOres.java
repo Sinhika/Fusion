@@ -50,23 +50,9 @@ public class RecipesSimpleOres
 //			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_hoe, true, new Object[]{
 //				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotThyrium", Character.valueOf('Y'), "stickWood"}));
 //			
-//			//Sinisite Tool Recipes
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_pickaxe, true, new Object[]{
-//				"XXX", " Y ", " Y ", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_axe, true, new Object[]{
-//				"XX ", "XY ", " Y ", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_shovel, true, new Object[]{
-//				"X", "Y", "Y", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_sword, true, new Object[]{
-//				"X", "X", "Y", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_hoe, true, new Object[]{
-//				"XX ", " Y ", " Y ", Character.valueOf('X'), "ingotSinisite", Character.valueOf('Y'), "stickWood"}));
-//			
-//			//Bow Recipes
+			//Bow Recipes
 //			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_bow, true, new Object[]{
 //				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.thyrium_rod, Character.valueOf('Y'), "string", Character.valueOf('Z'), "ingotGold"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_bow, true, new Object[]{
-//				" XY", "Z Y", " XY", Character.valueOf('X'), ContentSimpleOres.sinisite_rod, Character.valueOf('Y'), "string", Character.valueOf('Z'), "gemOnyx"}));
 //			
 //		//Armour Recipes
 //			//Thyrium Armour Recipes

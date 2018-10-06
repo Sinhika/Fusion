@@ -1,0 +1,25 @@
+{
+	"conditions" : [
+		{
+			"type" : "fusion:sinisite_tools_enabled",
+			"value" : true
+		},
+		{
+			"type": "fusion:simple_ores_enabled",
+			"value": true
+		} 
+	],
+	"result" : {
+		"item" : "fusion:sinisite_axe"
+	},
+	"pattern" : [
+		"SS ",
+		"ST ",
+		" T "
+	],
+	"type" : "forge:ore_shaped",
+	"key" : {
+		"S" : { "item" : "#INGOTSINISITE"},
+		"T" : { "item" : "#STICKWOOD"}
+	}
+}
