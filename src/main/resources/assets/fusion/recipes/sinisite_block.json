@@ -1,0 +1,24 @@
+{
+	"conditions" : [
+		{
+			"type" : "fusion:sinisite_ingot_enabled",
+			"value" : true
+		},
+		{
+			"type": "fusion:simple_ores_enabled",
+			"value": true
+		} 
+	],
+	"type" : "minecraft:crafting_shaped",
+	"result" : {
+		"item" : "fusion:sinisite_block"
+	},
+	"pattern" : [
+		"SSS",
+		"SSS",
+		"SSS"
+	],
+	"key" : {
+		"S" : { "item" : "fusion:sinisite_ingot"}
+	}
+}

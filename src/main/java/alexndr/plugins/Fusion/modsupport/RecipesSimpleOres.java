@@ -8,27 +8,17 @@ public class RecipesSimpleOres
 			//Storage Content
 //			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_block, true, new Object[]{
 //				"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotThyrium"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_block, true, new Object[]{
-//				"XXX", "XXX", "XXX", Character.valueOf('X'), "ingotSinisite"}));
-//			
-//		//Item Recipes
+
+		//		//Item Recipes
 //			//Ingot Recipes
 //			GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.thyrium_ingot, 9), new Object[] { 
 //				ContentSimpleOres.thyrium_block });
-//			GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.sinisite_ingot, 9), new Object[] { 
-//				ContentSimpleOres.sinisite_block });
 //			
 //			//Thyrium Ingot
 //			GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.large_thyrium_chunk, 1), new Object[] { 
 //				ContentSimpleOres.small_thyrium_chunk, ContentSimpleOres.small_thyrium_chunk, ContentSimpleOres.small_thyrium_chunk, ContentSimpleOres.small_thyrium_chunk, ContentSimpleOres.small_thyrium_chunk });
 //			GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.large_thyrium_chunk, 1), new Object[] { 
 //				ContentSimpleOres.medium_thyrium_chunk, ContentSimpleOres.medium_thyrium_chunk, ContentSimpleOres.medium_thyrium_chunk });
-//			
-//			//Sinisite Ingot
-//			GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.large_sinisite_chunk, 1), new Object[] { 
-//				ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.small_sinisite_chunk });
-//			GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.large_sinisite_chunk, 1), new Object[] { 
-//				ContentSimpleOres.medium_sinisite_chunk, ContentSimpleOres.medium_sinisite_chunk, ContentSimpleOres.medium_sinisite_chunk });
 //			
 //			//Extra Chunk Recipes
 //			if(Settings.extraChunkRecipes)
@@ -41,22 +31,11 @@ public class RecipesSimpleOres
 //					ContentSimpleOres.large_thyrium_chunk});
 //				GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.small_thyrium_chunk, 2), new Object[] { 
 //					ContentSimpleOres.medium_thyrium_chunk});
-//				
-//				GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.large_sinisite_chunk, 1), new Object[] { 
-//					ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.medium_sinisite_chunk, ContentSimpleOres.medium_sinisite_chunk });
-//				GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.medium_sinisite_chunk, 1), new Object[] { 
-//					ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.small_sinisite_chunk, ContentSimpleOres.small_sinisite_chunk});
-//				GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.medium_sinisite_chunk, 2), new Object[] { 
-//					ContentSimpleOres.large_sinisite_chunk});
-//				GameRegistry.addShapelessRecipe(new ItemStack(ContentSimpleOres.small_sinisite_chunk, 2), new Object[] { 
-//					ContentSimpleOres.medium_sinisite_chunk});
 //			}
 //			
 //			//Rods
 //			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.thyrium_rod, true, new Object[]{
 //				"X", "X", Character.valueOf('X'), "ingotThyrium"}));
-//			GameRegistry.addRecipe(new ShapedOreRecipe(ContentSimpleOres.sinisite_rod, true, new Object[]{
-//				"X", "X", Character.valueOf('X'), "ingotSinisite"}));
 //			
 //		//Tool Recipes
 //			//Thyrium Tool Recipes

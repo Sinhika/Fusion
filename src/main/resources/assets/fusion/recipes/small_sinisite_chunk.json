@@ -1,0 +1,26 @@
+{
+	"conditions": [
+		{
+			"type": "fusion:sinisite_ingot_enabled",
+			"value": true
+		},
+		{
+			"type": "fusion:extra_chunks_enabled",
+			"value": true
+		},
+		{
+			"type": "fusion:simple_ores_enabled",
+			"value": true
+		}
+	],
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "fusion:medium_sinisite_chunk"
+		}
+	],
+	"result": {
+		"item": "fusion:small_sinisite_chunk",
+		"count": 2
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"conditions" : [
+		{
+			"type" : "fusion:sinisite_block_enabled",
+			"value" : true
+		},
+		{
+			"type": "fusion:simple_ores_enabled",
+			"value": true
+		} 
+	],
+	"type" : "minecraft:crafting_shapeless",
+	"ingredients" : [
+		{ "item" : "fusion:sinisite_block" }
+	],
+	"result" : {
+		"item" : "fusion:sinisite_ingot",
+		"count" : 9
+	}
+}
