@@ -1,0 +1,23 @@
+{
+	"conditions" : [
+		{
+			"type" : "fusion:thyrium_ingot_enabled",
+			"value" : true
+		},
+		{
+			"type": "fusion:simple_ores_enabled",
+			"value": true
+		} 
+	],
+	"type" : "minecraft:crafting_shaped",
+	"result" : {
+		"item" : "fusion:thyrium_rod"
+	},
+	"pattern" : [
+		"S",
+		"S"
+	],
+	"key" : {
+		"S" : { "item" : "fusion:thyrium_ingot"}
+	}
+}
