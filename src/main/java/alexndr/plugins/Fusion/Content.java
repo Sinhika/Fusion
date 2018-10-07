@@ -260,51 +260,5 @@ public class Content
 //		} // end-for
 //	} // end doCustomFusionRecipes()
 
-	/**
-	 * Loads Fusion Achievements.
-	 */
-//	public static void doAchievements()
-//	{
-//		fusionAch = new Achievement("achievement.fusionAch", "fusionAch", 9, 7, fusion_furnace, AchievementList.BUILD_FURNACE).setSpecial().registerStat();
-//		steelAch = new Achievement("achievement.steelAch", "steelAch", 8, 9, steel_ingot, fusionAch).registerStat();
-//		steelChestplateAch = new Achievement("achievement.steelChestplateAch", "steelChestplateAch", 8, 11, steel_chestplate, steelAch).registerStat();
-//	}
-	
-//	public static void doAchievements()
-//	{
-//		bronzeAch = new Achievement("achievement.bronzeAch", "bronzeAch", 10, 11, bronze_ingot, Content.fusionAch).registerStat();
-//		bronzeHelmetAch = new Achievement("achievement.bronzeHelmetAch", "bronzeHelmetAch", 10, 9, bronze_helmet, bronzeAch).registerStat();
-//		thyriumAch = new Achievement("achievement.thyriumAch", "thyriumAch", 13, 11, thyrium_ingot, bronzeAch).registerStat();
-//		thyriumAxeAch = new Achievement("achievement.thyriumAxeAch", "thyriumAxeAch", 12, 9, thyrium_axe, thyriumAch).registerStat();
-//		thyriumBowAch = new Achievement("achievement.thyriumBowAch", "thyriumBowAch", 14, 9, thyrium_bow, thyriumAch).registerStat();
-//		sinisiteAch = new Achievement("achievement.sinisiteAch", "sinisiteAch", 16, 11, sinisite_ingot, thyriumAch).setSpecial().registerStat();
-//		sinisiteSwordAch = new Achievement("achievement.sinisiteSwordAch", "sinisiteSwordAch", 15, 9, sinisite_sword, sinisiteAch).registerStat();
-//		sinisiteBowAch = new Achievement("achievement.sinisiteBowAch", "sinisiteBowAch", 17, 9, sinisite_bow, sinisiteAch).registerStat();
-//	}
-		
-//	public static void setAchievementTriggers()
-//	{
-//		//Crafting Triggers
-//		StatTriggersHelper.addCraftingTrigger(new ItemStack(Content.fusion_furnace).getItem(), Content.fusionAch);
-//		StatTriggersHelper.addCraftingTrigger(new ItemStack(Content.steel_chestplate).getItem(), Content.steelChestplateAch);
-//		
-//		//Smelting Triggers
-//		StatTriggersHelper.addSmeltingTrigger(new ItemStack(Content.steel_ingot).getItem(), Content.steelAch);
-//	}
-//	public static void setAchievementTriggers()
-//	{
-//		//Smelting Triggers
-//		StatTriggersHelper.addSmeltingTrigger(bronze_ingot, bronzeAch);
-//		StatTriggersHelper.addSmeltingTrigger(thyrium_ingot, thyriumAch);
-//		StatTriggersHelper.addSmeltingTrigger(sinisite_ingot, sinisiteAch);
-//		
-//		//Crafting Triggers
-//		StatTriggersHelper.addCraftingTrigger(bronze_helmet, bronzeHelmetAch);
-//		StatTriggersHelper.addCraftingTrigger(thyrium_axe, thyriumAxeAch);
-//		StatTriggersHelper.addCraftingTrigger(thyrium_bow, thyriumBowAch);
-//		StatTriggersHelper.addCraftingTrigger(sinisite_sword, sinisiteSwordAch);
-//		StatTriggersHelper.addCraftingTrigger(sinisite_bow, sinisiteBowAch);
-//	}
-
 
 } // end class

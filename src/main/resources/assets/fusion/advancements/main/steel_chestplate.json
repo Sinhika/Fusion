@@ -1,0 +1,26 @@
+{
+    "display":  {
+        "icon": {
+            "item": "fusion:steel_chestplate"
+        },
+        "title": {
+            "translate": "advancements.steelChestplateAch"
+        },
+        "description": {
+            "translate": "advancements.steelChestplateAch.desc"
+        },
+        "show_toast": true,
+        "announce_to_chat": true
+    },
+    "parent" : "fusion:main/steel",
+     "criteria" : {
+    	"got_fusion_furnace" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      			{"item" : "fusion:steel_chestplate"}
+      			]
+      		}
+    	}
+    }
+}

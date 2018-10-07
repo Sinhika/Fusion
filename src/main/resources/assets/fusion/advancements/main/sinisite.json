@@ -1,0 +1,26 @@
+{
+    "display":  {
+        "icon": {
+            "item": "fusion:sinisite_ingot"
+        },
+        "title": {
+            "translate": "advancements.sinisiteAch"
+        },
+        "description": {
+            "translate": "advancements.sinisiteAch.desc"
+        },
+        "show_toast": true,
+        "announce_to_chat": true
+    },
+    "parent" : "fusion:main/thyrium",
+     "criteria" : {
+    	"got_fusion_furnace" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      			{"item" : "fusion:sinisite_ingot"}
+      			]
+      		}
+    	}
+    }
+}

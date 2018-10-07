@@ -1,0 +1,26 @@
+{
+    "display":  {
+        "icon": {
+            "item": "fusion:sinisite_bow"
+        },
+        "title": {
+            "translate": "advancements.sinisiteBowAch"
+        },
+        "description": {
+            "translate": "advancements.sinisiteBowAch.desc"
+        },
+        "show_toast": true,
+        "announce_to_chat": true
+    },
+    "parent" : "fusion:main/sinisite",
+     "criteria" : {
+    	"got_fusion_furnace" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      			{"item" : "fusion:sinisite_bow"}
+      			]
+      		}
+    	}
+    }
+}

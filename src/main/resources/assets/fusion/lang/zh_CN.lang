@@ -55,10 +55,10 @@ item.sinisite_leggings.name=逆银护腿
 item.sinisite_boots.name=逆银靴子
 
 //Achievements
-achievement.fusionAch=合二为一
-achievement.fusionAch.desc=制造融合熔炉，开拓新的可能性
-achievement.bronzeAch=我的首次融合
-achievement.bronzeAch.desc=合成出你的第一块合金――青铜锭
+advancements.fusionAch=合二为一
+advancements.fusionAch.desc=制造融合熔炉，开拓新的可能性
+advancements.bronzeAch=我的首次融合
+advancements.bronzeAch.desc=合成出你的第一块合金――青铜锭
 
 //Update
 fusionplugin.updateMessage1=你的§3简单矿石§r不是最新版本.最新的版本§c
