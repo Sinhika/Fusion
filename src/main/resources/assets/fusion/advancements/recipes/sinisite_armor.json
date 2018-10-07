@@ -1,0 +1,50 @@
+{
+	"parent" : "fusion:recipes/fusion_furnace",
+   	"rewards": {
+    	"recipes": [
+      		"fusion:sinisite_boots", "fusion:sinisite_chestplate",
+      		"fusion:sinisite_helmet", "fusion:sinisite_leggings"
+    	]
+  	},
+    "criteria" : {
+    	"has_sinisite" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      				{
+      				"item" : "fusion:sinisite_ingot"
+      				}
+      			]
+      		}
+    	},
+    	"has_recipe1" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_boots"
+      		}
+    	},
+    	"has_recipe2" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_chestplate"
+      		}
+    	},
+    	"has_recipe3" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_helmet"
+      		}
+    	},
+    	"has_recipe4" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_leggings"
+      		}
+    	}
+    },
+  "requirements": [
+    [
+      "has_sinisite", "has_recipe1", "has_recipe2","has_recipe3","has_recipe4"
+   	]
+  ]
+}

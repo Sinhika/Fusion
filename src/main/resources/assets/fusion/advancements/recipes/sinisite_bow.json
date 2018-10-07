@@ -1,0 +1,35 @@
+{
+  "parent": "fusion:recipes/sinisite_tools",
+  "rewards": {
+    "recipes": [
+      "fusion:sinisite_bow","fusion:sinisite_rod"
+    ]
+  },
+  "criteria": {
+    	"has_string": {
+      		"trigger": "minecraft:inventory_changed",
+      			"conditions": {
+        			"items": [
+          			{
+            			"item": "minecraft:string"
+          			}
+        		]
+      	}
+    	},
+    	"has_recipe1": {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_bow"
+      		}
+    	},
+    	"has_recipe2": {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_rod"
+      		}
+    	}
+  },
+  "requirements": [
+    		[ "has_string", "has_recipe1", "has_recipe2" ]
+ 	]
+}

@@ -1,0 +1,36 @@
+{
+	"parent" : "fusion:recipes/root",
+   	"rewards": {
+    	"recipes": [
+      		"fusion:fusion_furnace"
+    	]
+  	},
+    "criteria" : {
+    	"has_brick" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      				{
+      				"item" : "minecraft:brick_block"
+      				}
+      			]
+      		}
+    	},
+    	"has_furnace" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      				{
+      				"item" : "minecraft:furnace"
+      				}
+      			]
+      		}
+    	}
+    	
+     },
+  "requirements": [
+    [
+      "has_brick", "has_furnace"
+   	]
+  ]
+}

@@ -1,0 +1,50 @@
+{
+	"parent" : "fusion:recipes/fusion_furnace",
+   	"rewards": {
+    	"recipes": [
+      		"fusion:steel_boots", "fusion:steel_chestplate",
+      		"fusion:steel_helmet", "fusion:steel_leggings"
+    	]
+  	},
+    "criteria" : {
+    	"has_steel" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      				{
+      				"item" : "fusion:steel_ingot"
+      				}
+      			]
+      		}
+    	},
+    	"has_recipe1" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:steel_boots"
+      		}
+    	},
+    	"has_recipe2" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:steel_chestplate"
+      		}
+    	},
+    	"has_recipe3" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:steel_helmet"
+      		}
+    	},
+    	"has_recipe4" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:steel_leggings"
+      		}
+    	}
+    },
+  "requirements": [
+    [
+      "has_steel", "has_recipe1", "has_recipe2","has_recipe3","has_recipe4"
+   	]
+  ]
+}

@@ -1,0 +1,56 @@
+{
+	"parent" : "fusion:recipes/fusion_furnace",
+   	"rewards": {
+    	"recipes": [
+      		"fusion:thyrium_axe", "fusion:thyrium_hoe", "fusion:thyrium_pickaxe",
+      		"fusion:thyrium_shovel", "fusion:thyrium_sword"
+    	]
+  	},
+    "criteria" : {
+    	"has_thyrium" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      				{
+      				"item" : "fusion:thyrium_ingot"
+      				}
+      			]
+      		}
+    	},
+    	"has_recipe1" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:thyrium_axe"
+      		}
+    	},
+    	"has_recipe2" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:thyrium_hoe"
+      		}
+    	},
+    	"has_recipe3" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:thyrium_pickaxe"
+      		}
+    	},
+    	"has_recipe5" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:thyrium_shovel"
+      		}
+    	},
+    	"has_recipe6" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:thyrium_sword"
+      		}
+    	}
+    },
+  "requirements": [
+    [
+      "has_thyrium", "has_recipe1", "has_recipe2","has_recipe3","has_recipe5","has_recipe6"
+   	]
+  ]
+}

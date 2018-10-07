@@ -1,0 +1,56 @@
+{
+	"parent" : "fusion:recipes/fusion_furnace",
+   	"rewards": {
+    	"recipes": [
+      		"fusion:sinisite_axe", "fusion:sinisite_hoe", "fusion:sinisite_pickaxe",
+      		"fusion:sinisite_shovel", "fusion:sinisite_sword"
+    	]
+  	},
+    "criteria" : {
+    	"has_sinisite" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      				{
+      				"item" : "fusion:sinisite_ingot"
+      				}
+      			]
+      		}
+    	},
+    	"has_recipe1" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_axe"
+      		}
+    	},
+    	"has_recipe2" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_hoe"
+      		}
+    	},
+    	"has_recipe3" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_pickaxe"
+      		}
+    	},
+    	"has_recipe5" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_shovel"
+      		}
+    	},
+    	"has_recipe6" : {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:sinisite_sword"
+      		}
+    	}
+    },
+  "requirements": [
+    [
+      "has_sinisite", "has_recipe1", "has_recipe2","has_recipe3","has_recipe5","has_recipe6"
+   	]
+  ]
+}

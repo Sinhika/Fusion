@@ -1,0 +1,35 @@
+{
+  "parent": "fusion:recipes/thyrium_tools",
+  "rewards": {
+    "recipes": [
+      "fusion:thyrium_bow","fusion:thyrium_rod"
+    ]
+  },
+  "criteria": {
+    	"has_string": {
+      		"trigger": "minecraft:inventory_changed",
+      			"conditions": {
+        			"items": [
+          			{
+            			"item": "minecraft:string"
+          			}
+        		]
+      	}
+    	},
+    	"has_recipe1": {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:thyrium_bow"
+      		}
+    	},
+    	"has_recipe2": {
+      		"trigger": "minecraft:recipe_unlocked",
+      		"conditions": {
+        		"recipe": "fusion:thyrium_rod"
+      		}
+    	}
+  },
+  "requirements": [
+    		[ "has_string", "has_recipe1", "has_recipe2" ]
+ 	]
+}
