@@ -4,10 +4,10 @@
             "item": "fusion:steel_ingot"
         },
         "title": {
-            "translate": "advancements.welcome"
+            "translate": "advancements.fusion_welcome"
         },
         "description": {
-            "translate": "advancements.welcome"
+            "translate": "advancements.fusion_welcome"
         },
         "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
         "show_toast": false,

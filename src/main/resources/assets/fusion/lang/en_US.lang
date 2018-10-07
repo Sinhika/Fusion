@@ -91,6 +91,7 @@ item.sinisite_leggings.name=Sinisite Leggings
 item.sinisite_boots.name=Sinisite Boots
 
 //Achievements
+advancements.fusion_welcome=Learn the fine art of fusion alloying!
 advancements.fusionAch=Coalescence
 advancements.fusionAch.desc=Craft a Fusion Furnace to open up new possibilities
 advancements.steelAch=Better Than Iron

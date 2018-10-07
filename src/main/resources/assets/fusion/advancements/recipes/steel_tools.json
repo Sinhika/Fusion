@@ -3,8 +3,7 @@
    	"rewards": {
     	"recipes": [
       		"fusion:steel_axe", "fusion:steel_hoe", "fusion:steel_pickaxe",
-      		"fusion:steel_shears", "fusion:steel_shovel", "fusion:steel_sword",
-      		"fusion:steel_bucket"
+      		"fusion:steel_shears", "fusion:steel_shovel", "fusion:steel_sword"
     	]
   	},
     "criteria" : {
