@@ -1,9 +1,9 @@
-﻿//Tabs
+//Tabs
 itemGroup.SimpleMachines=Simple Machines
 
 //Blocks
 tile.steel_block.name=Bloc d'acier
-tile.slimy_diamond_block.name=Bloc de Diamant coulant
+tile.slimy_diamond_block.name=Bloc de Diamant colant
 
 tile.bronze_block.name=Bloc de Bronze
 tile.thyrium_block.name=Bloc de Thyrium
@@ -17,7 +17,7 @@ fusion_furnace_gui=Fourneau à Fusion
 
 //Items
 item.steel_ingot.name=Lingot d'Acier 
-item.slimy_diamond.name=Diamant coulant
+item.slimy_diamond.name=Diamant colant
 item.small_steel_chunk.name=Petit Éclat d'Acier
 item.medium_steel_chunk.name=Éclat d'Acier moyen
 item.large_steel_chunk.name=Grand Éclat d'Acier
@@ -91,7 +91,8 @@ item.sinisite_leggings.name=Jambières en Sinisite
 item.sinisite_boots.name=Bottes en Sinisite
 
 //Achievements
-advancements.fusionAch=Fuuusion!
+advancements.fusion_welcome=Apprend l'art de l'alliage par fusion
+advancements.fusionAch=Fuuusion ha!
 advancements.fusionAch.desc=Fabrique un Fourneau à Fusion pour ouvrir de nouvelles possibilitées
 advancements.steelAch=Mieux que le Fer
 advancements.steelAch.desc=Fabrique ton premier alliage, l'Acier!
@@ -120,3 +121,6 @@ advancements.sinisiteBowAch.desc=Garde tes ennemis à distance avec ce puissant 
 
 //Tool Tips
 fusion.slimy_diamond_tools.info=§aColant!
+
+// Other strings
+fusion.jei.fusionCategory=Fourneau à Fusion
