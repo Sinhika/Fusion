@@ -74,13 +74,13 @@ public class BlockFusionFurnace extends SimpleFurnace<TileEntityFusionFurnace>
 
         if (active)
         {
-            worldIn.setBlockState(pos, BlockFusionFurnace.unlit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockFusionFurnace.lit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
             worldIn.setBlockState(pos, BlockFusionFurnace.lit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
         else
         {
             worldIn.setBlockState(pos, BlockFusionFurnace.unlit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, BlockFusionFurnace.lit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockFusionFurnace.unlit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;

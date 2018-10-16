@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.api.helpers.game.FurnaceHelper;
-import alexndr.api.logger.LogHelper;
 import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
 import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
@@ -40,8 +39,8 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	public TileEntityFusionFurnace() 
 	{
 		super(TileEntityFusionFurnace.tilename, 600, TileEntityFusionFurnace.guiID, 5);
-		LogHelper.verbose("fusion", "finished TileEntityFusionFurnace ctor for " 
-				+ this.getDisplayName().getUnformattedText());
+//		LogHelper.verbose("fusion", "finished TileEntityFusionFurnace ctor for " 
+//				+ this.getDisplayName().getUnformattedText());
 	} // end ctor()
 	
 	/**
@@ -148,7 +147,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 	@Override
 	public void update()
 	{
-        boolean flag = this.isBurning();
+        boolean was_burning_flag = this.isBurning();
         boolean flag1 = false;
         int burnTime = 0;
 
@@ -166,7 +165,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
             }
             flag1 = default_cooking_update(flag1, fuelstack, burnTime);
 
-            if (flag != this.isBurning())
+            if (was_burning_flag != this.isBurning())
             {
                 flag1 = true;
 				BlockFusionFurnace.setState(this.isBurning(), this.getWorld(), this.pos);
@@ -198,8 +197,8 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 		{
 			if (!this.isBurning() && this.canSmelt())
 			{
-				this.currentItemBurnTime = this.furnaceBurnTime = 
-						TileEntityFusionFurnace.getItemBurnTime(fuelStack);
+                this.furnaceBurnTime = burnTime;
+                this.currentItemBurnTime = this.furnaceBurnTime;
 
 				if (this.isBurning())
 				{
