@@ -269,7 +269,7 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 
 		int result = outstack.getCount() + result_stack.getCount();
 		 // Forge fix: make furnace respect stack sizes in furnace recipes
-		return result <= getInventoryStackLimit()&& result <= outstack.getMaxStackSize();
+		return result <= getInventoryStackLimit() && result <= outstack.getMaxStackSize();
 	} // end canSmelt()
 	
 	@Override
@@ -290,9 +290,11 @@ public class TileEntityFusionFurnace extends TileEntitySimpleFurnace
 		    {
 		    	outstack.grow(itemstack.getCount());
 		    }
-		    this.decrStackSize(NDX_INPUT1_SLOT, 1);
-		    this.decrStackSize(NDX_INPUT2_SLOT, 1);
-		    this.decrStackSize(NDX_CATALYST_SLOT, 1);
+		    // this is done inside FusionFurnaceRecipes.applyFusion(), so DON'T decrement inputs here.
+		    // Yes, it's crap design. Deal.
+//		    this.decrStackSize(NDX_INPUT1_SLOT, 1);   
+//		    this.decrStackSize(NDX_INPUT2_SLOT, 1);
+//		    this.decrStackSize(NDX_CATALYST_SLOT, 1);
 		} // end-if canSmelt
 	} // end smeltItem()
 	
