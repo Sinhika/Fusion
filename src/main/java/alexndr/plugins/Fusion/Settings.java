@@ -212,10 +212,10 @@ public class Settings
 	/**
 	 * completed revised config.
 	 */
-public static void configureGeneral()
+	public static void configureGeneral()
 	{
 		enableSimpleOres = settings.getBoolean("EnableSimpleOres", Configuration.CATEGORY_GENERAL,
-											    true, "if true, enable Simple Ores alloy recipes");
+				true, "if true, enable Simple Ores alloy recipes");
 	} // end configureGeneral()
 	
 	public static ConfigItem steelIngot, bronzeIngot, thyriumIngot,
