@@ -1,0 +1,15 @@
+{
+	"conditions": [
+		{
+			"type": "fusion:steel_ingot_enabled",
+			"value": true
+		}
+	],
+	"type": "fusion:crafting_fusion",
+	"ingredients" : [
+		{ "input" : "minecraft:iron_ingot" },
+		{ "input" : "minecraft:coal" },
+		{"catalyst" : "minecraft:redstone"}
+	],
+	"result": { "item": "fusion:large_steel_chunk" }
+}
