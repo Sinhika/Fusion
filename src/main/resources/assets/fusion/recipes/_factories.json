@@ -21,5 +21,8 @@
     "thyrium_tools_enabled" : "alexndr.plugins.Fusion.conditions.ThyriumConditionFactory",
     "thyrium_armor_enabled" : "alexndr.plugins.Fusion.conditions.ThyriumConditionFactory",
     "thyrium_bow_enabled" : "alexndr.plugins.Fusion.conditions.ThyriumConditionFactory"
+  },
+  "recipes" : {
+  	"crafting_fusion" : "alexndr.plugins.Fusion.helpers.FusionRecipeFactory"
   }
 }

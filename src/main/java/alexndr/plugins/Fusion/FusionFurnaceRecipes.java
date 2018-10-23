@@ -13,6 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 /**
  * @author AleXndrTheGr8st, zo201
  */
+@Deprecated
 public class FusionFurnaceRecipes 
 {
 	// private static FusionMaterial material;

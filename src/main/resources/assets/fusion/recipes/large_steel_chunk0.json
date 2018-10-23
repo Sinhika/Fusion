@@ -6,10 +6,27 @@
 		}
 	],
 	"type": "fusion:crafting_fusion",
-	"ingredients" : [
-		{ "input" : "minecraft:iron_ingot" },
-		{ "input" : "minecraft:coal" },
-		{"catalyst" : "minecraft:redstone"}
+	"ingredients": [
+		{
+			"slot": "input",
+			"ingredient": {
+				"type": "forge:ore_dict",
+				"ore": "ingotIron"
+			}
+		},
+		{
+			"slot": "input",
+			"ingredient": {
+				"item": "minecraft:coal",
+				"data": 0
+			}
+		},
+		{
+			"slot": "catalyst",
+			"item": "minecraft:redstone"
+		}
 	],
-	"result": { "item": "fusion:large_steel_chunk" }
+	"result": {
+		"item": "fusion:large_steel_chunk"
+	}
 }
