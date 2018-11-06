@@ -4,7 +4,6 @@ import java.util.function.BooleanSupplier;
 
 import com.google.gson.JsonObject;
 
-import alexndr.plugins.Fusion.Content;
 import alexndr.plugins.Fusion.ModInfo;
 import alexndr.plugins.Fusion.Settings;
 import net.minecraft.util.JsonUtils;
@@ -27,7 +26,7 @@ public class FusionConditionFactory implements IConditionFactory
 			return () -> Settings.extraChunkRecipes == value;
 		}
 		if (key.equals(ModInfo.ID + ":simple_ores_enabled")) {
-			return () -> (Settings.enableSimpleOres == value && Content.use_simpleores == value);
+			return () -> (Settings.enableSimpleOres == value);
 		}
 		return null;
 	} // end parse()

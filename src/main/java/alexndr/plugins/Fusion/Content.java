@@ -11,6 +11,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * @author AleXndrTheGr8st
@@ -28,6 +29,18 @@ public class Content
 	public static ArmorMaterial armorBronze, armorThyrium, armorSinisite;
 	
 	/**
+	 * Because many other mods provide copper and tin, enable support for Copper & Tin blocks & items
+	 * if they exist in the ore dictionary.
+	 * 
+	 * @return true if copper or tin exists in the ore dictionary, false if not.
+	 */
+	public static boolean hasLimitedSimpleOres()
+	{
+    	return (OreDictionary.doesOreNameExist("ingotCopper") 
+    			|| OreDictionary.doesOreNameExist("ingotTin"));
+	}
+	
+	/**
 	 * Loads all the Fusion content, by calling the methods below.
 	 */
 	public static void preInitialize()
@@ -41,7 +54,7 @@ public class Content
 			ModBlocks.configureBlocks();
 			ModItems.configureTools();
 			ModItems.configureArmor();
-			if(use_simpleores) {
+			if (use_simpleores || Content.hasLimitedSimpleOres()) {
 				ModItems.configureSimpleOresItems();
 				ModBlocks.configureSimpleOresBlocks();
 				ModItems.configureSimpleOresArmor();
@@ -155,7 +168,7 @@ public class Content
 		//Regular Furnace
 		GameRegistry.addSmelting(ModItems.large_steel_chunk, new ItemStack(ModItems.steel_ingot), 0.4F);
 
-		if (Content.use_simpleores) {
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) {
 			addSimpleOresSmeltingRecipes();
 		}		
 	} // end addSmeltingRecipes
@@ -166,11 +179,13 @@ public class Content
 	 */
 	public static void addSimpleOresSmeltingRecipes() 
 	{
-		if (! Content.use_simpleores) return;
+		if (! (Content.use_simpleores || Content.hasLimitedSimpleOres() )) return;
 
 		GameRegistry.addSmelting(ModItems.large_bronze_chunk, new ItemStack(ModItems.bronze_ingot), 0.3F);
-		GameRegistry.addSmelting(ModItems.large_thyrium_chunk, new ItemStack(ModItems.thyrium_ingot), 0.6F);
-		GameRegistry.addSmelting(ModItems.large_sinisite_chunk, new ItemStack(ModItems.sinisite_ingot), 1.0F);
+		if (Content.use_simpleores) {
+			GameRegistry.addSmelting(ModItems.large_thyrium_chunk, new ItemStack(ModItems.thyrium_ingot), 0.6F);
+			GameRegistry.addSmelting(ModItems.large_sinisite_chunk, new ItemStack(ModItems.sinisite_ingot), 1.0F);
+		}
 
 	} // end addSimpleOresSmeltingRecipes()
 	
@@ -189,7 +204,8 @@ public class Content
 		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotIron"),
 				FusionMaterial.of(Items.COAL), FusionMaterial.of("dustRedstone"), 
 				new ItemStack(ModItems.large_steel_chunk), 8.0F);
-		if (Content.use_simpleores) {
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
+		{
 			addSimpleOresFusionRecipes();
 		}
 	} // end addFusionRecipes
@@ -199,7 +215,7 @@ public class Content
 	 */
 	public static void addSimpleOresFusionRecipes()
 	{
-		if (! Content.use_simpleores) return;
+		if (! (Content.use_simpleores || Content.hasLimitedSimpleOres()) ) return;
 		
 		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotCopper"),
 				FusionMaterial.of("ingotTin"), FusionMaterial.of(Items.DYE, 1, 15),
@@ -212,33 +228,35 @@ public class Content
 				FusionMaterial.of("ingotTin"), FusionMaterial
 						.of("dustRedstone"), new ItemStack(
 						ModItems.large_bronze_chunk), 10.0F);
-
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
-				FusionMaterial.of("ingotAdamantium"), FusionMaterial
-						.of("dustRedstone"), new ItemStack(
-						ModItems.small_thyrium_chunk), 6.0F);
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
-				FusionMaterial.of("ingotAdamantium"), FusionMaterial.of(
-						"gemLapis"), new ItemStack(
-						ModItems.medium_thyrium_chunk), 10.0F);
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
-				FusionMaterial.of("ingotAdamantium"), FusionMaterial
-						.of("dustGlowstone"), new ItemStack(
-						ModItems.large_thyrium_chunk), 30.0F);
-
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
-				FusionMaterial.of("ingotMythril"), FusionMaterial
-						.of("dustGlowstone"), new ItemStack(
-						ModItems.small_sinisite_chunk), 12.0F);
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
-				FusionMaterial.of("ingotMythril"), FusionMaterial
-						.of(Items.BLAZE_POWDER), new ItemStack(
-						ModItems.medium_sinisite_chunk), 20.0F);
-		FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
-				FusionMaterial.of("ingotMythril"), FusionMaterial
-						.of(Items.GHAST_TEAR), new ItemStack(
-						ModItems.large_sinisite_chunk), 60.0F);
 		
+		if (Content.use_simpleores)
+		{
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
+					FusionMaterial.of("ingotAdamantium"), FusionMaterial
+					.of("dustRedstone"), new ItemStack(
+							ModItems.small_thyrium_chunk), 6.0F);
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
+					FusionMaterial.of("ingotAdamantium"), FusionMaterial.of(
+							"gemLapis"), new ItemStack(
+									ModItems.medium_thyrium_chunk), 10.0F);
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("ingotMythril"),
+					FusionMaterial.of("ingotAdamantium"), FusionMaterial
+					.of("dustGlowstone"), new ItemStack(
+							ModItems.large_thyrium_chunk), 30.0F);
+
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
+					FusionMaterial.of("ingotMythril"), FusionMaterial
+					.of("dustGlowstone"), new ItemStack(
+							ModItems.small_sinisite_chunk), 12.0F);
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
+					FusionMaterial.of("ingotMythril"), FusionMaterial
+					.of(Items.BLAZE_POWDER), new ItemStack(
+							ModItems.medium_sinisite_chunk), 20.0F);
+			FusionFurnaceRecipes.addSmelting(FusionMaterial.of("gemOnyx"),
+					FusionMaterial.of("ingotMythril"), FusionMaterial
+					.of(Items.GHAST_TEAR), new ItemStack(
+							ModItems.large_sinisite_chunk), 60.0F);
+		} // end if full SimpleOres
 	} // end addSimpleOresFusionRecipes()
 
 //	public static void doCustomFusionRecipes()

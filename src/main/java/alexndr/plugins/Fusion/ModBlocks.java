@@ -61,16 +61,19 @@ public class ModBlocks
 	
 	public static void configureSimpleOresBlocks()
 	{
-		if (! Content.use_simpleores) return;
+		if (! (Content.use_simpleores || Content.hasLimitedSimpleOres())) return;
 		if (Settings.bronzeBlock.isEnabled()) {
 			bronze_block.setConfigEntry(Settings.bronzeBlock).setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
 		}
-		if (Settings.thyriumBlock.isEnabled()) {
-			thyrium_block.setConfigEntry(Settings.thyriumBlock).setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
-		}
-		if (Settings.sinisiteBlock.isEnabled()) {
-			sinisite_block.setConfigEntry(Settings.sinisiteBlock).setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
-		}
+		if (Content.use_simpleores) 
+		{
+			if (Settings.thyriumBlock.isEnabled()) {
+				thyrium_block.setConfigEntry(Settings.thyriumBlock).setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
+			}
+			if (Settings.sinisiteBlock.isEnabled()) {
+				sinisite_block.setConfigEntry(Settings.sinisiteBlock).setCreativeTab(TabHelper.decorationsTab(SimpleCoreAPI.plugin));
+			}
+		} // end-if use_simpleores
 	} // end configureSimpleOresBlocks()
 	
 	/**
@@ -81,10 +84,14 @@ public class ModBlocks
 	public static void register(IForgeRegistry<Block> registry) 
 	{
 		if (Settings.steelBlock.isEnabled())  registry.register(steel_block);
-		if (Content.use_simpleores) {
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
+		{
 			if (Settings.bronzeBlock.isEnabled()) registry.register(bronze_block);
-			if (Settings.sinisiteBlock.isEnabled()) registry.register(sinisite_block);
-			if (Settings.thyriumBlock.isEnabled()) registry.register(thyrium_block);
+			if (Content.use_simpleores) 
+			{
+				if (Settings.sinisiteBlock.isEnabled()) registry.register(sinisite_block);
+				if (Settings.thyriumBlock.isEnabled()) registry.register(thyrium_block);
+			}
 		} // end-if use_simpleores
 		if (Settings.fusionFurnace.isEnabled()) {
 			registry.register(fusion_furnace);
@@ -101,8 +108,12 @@ public class ModBlocks
 	public static void registerItemBlocks(IForgeRegistry<Item> registry) 
 	{
 		if (Settings.steelBlock.isEnabled())  registry.register(steel_block.createItemBlock());
-		if (Content.use_simpleores) {
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
+		{
 			if (Settings.bronzeBlock.isEnabled()) registry.register(bronze_block.createItemBlock());
+		}
+		if (Content.use_simpleores) 
+		{
 			if (Settings.sinisiteBlock.isEnabled()) registry.register(sinisite_block.createItemBlock());
 			if (Settings.thyriumBlock.isEnabled()) registry.register(thyrium_block.createItemBlock());
 		} // end-if use_simpleores
@@ -119,9 +130,13 @@ public class ModBlocks
 		if (Settings.steelBlock.isEnabled()) 
 			steel_block.registerItemModel(Item.getItemFromBlock(steel_block));
 		
-		if (Content.use_simpleores) {
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
+		{
 			if (Settings.bronzeBlock.isEnabled())
 				bronze_block.registerItemModel(Item.getItemFromBlock(bronze_block));
+		}
+		if (Content.use_simpleores) 
+		{
 			if (Settings.sinisiteBlock.isEnabled())
 				sinisite_block.registerItemModel(Item.getItemFromBlock(sinisite_block));
 			if (Settings.thyriumBlock.isEnabled())
@@ -140,10 +155,13 @@ public class ModBlocks
 		if (Settings.steelBlock.isEnabled()) {
 			OreDictionary.registerOre("blockSteel", new ItemStack(ModBlocks.steel_block));
 		}
-		if (Content.use_simpleores) {
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
+		{
 			if (Settings.bronzeBlock.isEnabled()) {
 				OreDictionary.registerOre("blockBronze", new ItemStack(ModBlocks.bronze_block));
 			}
+		}
+		if (Content.use_simpleores) {
 			if (Settings.thyriumBlock.isEnabled()) {
 				OreDictionary.registerOre("blockThyrium", new ItemStack(ModBlocks.thyrium_block));
 			}
