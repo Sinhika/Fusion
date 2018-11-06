@@ -160,7 +160,7 @@ public abstract class FusionMaterial
 	 */
 	public static class NullMaterial extends FusionMaterial
 	{
-		private NullMaterial(){}
+		NullMaterial(){}
 		
 		@Override
 		public boolean matches(ItemStack item) 
@@ -199,7 +199,7 @@ public abstract class FusionMaterial
 		public final String ore;
 		public final int amount;
 		
-		private DictMaterial(String ore, int amount)
+		DictMaterial(String ore, int amount)
 		{
 			if(amount < 0)
 				throw new IllegalArgumentException(Integer.valueOf(amount).toString());
@@ -211,7 +211,7 @@ public abstract class FusionMaterial
 		@Override
 		public boolean matches(ItemStack item) 
 		{
-			if(item.isEmpty() || item.getCount() < amount)
+			if(item.isEmpty() || item.getCount() < this.amount)
 				return false;
 			
 			for(ItemStack stack : OreDictionary.getOres(ore, false))
@@ -261,7 +261,7 @@ public abstract class FusionMaterial
 	{
 		private final ItemStack stack;
 		
-		private StackMaterial(ItemStack stack)
+		StackMaterial(ItemStack stack)
 		{
 			if(stack.isEmpty())
 				throw new IllegalArgumentException(stack.toString());
