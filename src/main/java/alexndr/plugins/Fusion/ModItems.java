@@ -149,7 +149,7 @@ public class ModItems
 
 	public static void configureSimpleOresItems()
 	{
-		if (! Content.use_simpleores) return;
+		if (! (Content.use_simpleores || Content.hasLimitedSimpleOres())) return;
 
 		if (Settings.bronzeIngot.isEnabled()) {
 			bronze_ingot.setConfigEntry(Settings.bronzeIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
@@ -157,14 +157,17 @@ public class ModItems
 			medium_bronze_chunk.setConfigEntry(Settings.bronzeIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 			large_bronze_chunk.setConfigEntry(Settings.bronzeIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 		} // end-if bronze
-		if (Settings.thyriumIngot.isEnabled()) {
+		
+		if (Content.use_simpleores && Settings.thyriumIngot.isEnabled()) 
+		{
 			thyrium_ingot.setConfigEntry(Settings.thyriumIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 			small_thyrium_chunk.setConfigEntry(Settings.thyriumIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 			medium_thyrium_chunk.setConfigEntry(Settings.thyriumIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 			large_thyrium_chunk.setConfigEntry(Settings.thyriumIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 			thyrium_rod.setConfigEntry(Settings.thyriumIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 		} // end-if thyrium
-		if (Settings.sinisiteIngot.isEnabled()) {
+		if (Content.use_simpleores && Settings.sinisiteIngot.isEnabled()) 
+		{
 			sinisite_ingot.setConfigEntry(Settings.sinisiteIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 			small_sinisite_chunk.setConfigEntry(Settings.sinisiteIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
 			medium_sinisite_chunk.setConfigEntry(Settings.sinisiteIngot).setCreativeTab(TabHelper.materialsTab(SimpleCoreAPI.plugin));
@@ -199,7 +202,7 @@ public class ModItems
 	
 	public static void configureSimpleOresTools()
 	{
-		if (! Content.use_simpleores) return;
+		if (! (Content.use_simpleores || Content.hasLimitedSimpleOres())) return;
 		
 		if (Settings.bronzeTools.isEnabled())
 		{
@@ -210,7 +213,7 @@ public class ModItems
 			bronze_hoe.setConfigEntry(Settings.bronzeTools).setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin));
 			bronze_sword.setConfigEntry(Settings.bronzeTools).setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 		} // end-if bronzeTools
-		if (Settings.thyriumTools.isEnabled())
+		if (Settings.thyriumTools.isEnabled() && Content.use_simpleores)
 		{
 			thyrium_pickaxe.setConfigEntry(Settings.thyriumTools)
 					.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin));
@@ -221,7 +224,7 @@ public class ModItems
 			thyrium_sword.setConfigEntry(Settings.thyriumTools)
 					.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 		} // end-if thyriumTools
-		if (Settings.sinisiteTools.isEnabled())
+		if (Settings.sinisiteTools.isEnabled() && Content.use_simpleores)
 		{
 			sinisite_pickaxe.setConfigEntry(Settings.sinisiteTools)
 					.setCreativeTab(TabHelper.toolsTab(SimpleCoreAPI.plugin));
@@ -234,7 +237,7 @@ public class ModItems
 			sinisite_sword.setConfigEntry(Settings.sinisiteTools)
 					.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 		}
-		if (Settings.thyriumBow.isEnabled()) 
+		if (Settings.thyriumBow.isEnabled() && Content.use_simpleores) 
 		{
 			thyrium_bow.setEffect(SimpleBowEffects.damageEffect, Settings.thyriumBow.getDamageModifier())
 					.addToolTip("tips.damageTooltip", TextFormatting.GREEN)
@@ -242,7 +245,7 @@ public class ModItems
 					.setRepairMaterial(new ItemStack(thyrium_rod)).setConfigEntry(Settings.thyriumBow)
 					.setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 		}
-		if (Settings.sinisiteBow.isEnabled()) 
+		if (Settings.sinisiteBow.isEnabled() && Content.use_simpleores) 
 		{
 			sinisite_bow.setEffect(SimpleBowEffects.damageEffect, Settings.sinisiteBow.getDamageModifier())
 					.addToolTip("tips.damageTooltip", TextFormatting.GREEN)
@@ -268,7 +271,7 @@ public class ModItems
 
 	public static void configureSimpleOresArmor()
 	{
-		if (! Content.use_simpleores) return;
+		if (! (Content.use_simpleores || Content.hasLimitedSimpleOres())) return;
 		if (Settings.bronzeArmor.isEnabled()) 
 		{
 			bronze_helmet.setConfigEntry(Settings.bronzeArmor).setType("bronze").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
@@ -276,14 +279,14 @@ public class ModItems
 			bronze_leggings.setConfigEntry(Settings.bronzeArmor).setType("bronze").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 			bronze_boots.setConfigEntry(Settings.bronzeArmor).setType("bronze").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 		} // end-if bronzeArmor
-		if (Settings.thyriumArmor.isEnabled())
+		if (Settings.thyriumArmor.isEnabled() && Content.use_simpleores)
 		{
 			thyrium_helmet.setConfigEntry(Settings.thyriumArmor).setType("thyrium").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 			thyrium_chestplate.setConfigEntry(Settings.thyriumArmor).setType("thyrium").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 			thyrium_leggings.setConfigEntry(Settings.thyriumArmor).setType("thyrium").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 			thyrium_boots.setConfigEntry(Settings.thyriumArmor).setType("thyrium").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 		} // end-if thyriumArmor
-		if (Settings.sinisiteArmor.isEnabled())
+		if (Settings.sinisiteArmor.isEnabled() && Content.use_simpleores)
 		{
 			sinisite_helmet.setConfigEntry(Settings.sinisiteArmor).setType("sinisite").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
 			sinisite_chestplate.setConfigEntry(Settings.sinisiteArmor).setType("sinisite").setCreativeTab(TabHelper.combatTab(SimpleCoreAPI.plugin));
@@ -310,7 +313,7 @@ public class ModItems
 			registry.registerAll(steel_axe, steel_hoe, steel_pickaxe, steel_shears, 
 								 steel_shovel, steel_sword);
 		}
-		if (Content.use_simpleores) 
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
 		{
 			if (Settings.bronzeIngot.isEnabled()) {
 				registry.registerAll(bronze_ingot, large_bronze_chunk, medium_bronze_chunk, 
@@ -322,37 +325,40 @@ public class ModItems
 			if (Settings.bronzeTools.isEnabled()) {
 				registry.registerAll(bronze_axe, bronze_hoe, bronze_pickaxe, bronze_shovel, bronze_sword);
 			}
-			if (Settings.sinisiteIngot.isEnabled()) {
-				registry.registerAll(sinisite_ingot, large_sinisite_chunk, medium_sinisite_chunk, 
-						 small_sinisite_chunk, sinisite_rod);
-			}
-			if (Settings.sinisiteArmor.isEnabled()) {
-				registry.registerAll(sinisite_boots, sinisite_chestplate, sinisite_helmet, 
-						sinisite_leggings);
-			}
-			if (Settings.sinisiteTools.isEnabled()) {
-				registry.registerAll(sinisite_axe, sinisite_hoe, sinisite_pickaxe, sinisite_shovel, 
-										sinisite_sword);
-			}
-			if (Settings.sinisiteBow.isEnabled()) {
-				registry.register(sinisite_bow);
-			}
-			if (Settings.thyriumIngot.isEnabled()) {
-				registry.registerAll(thyrium_ingot, large_thyrium_chunk, medium_thyrium_chunk, 
-						 small_thyrium_chunk, thyrium_rod);
-			}
-			if (Settings.thyriumArmor.isEnabled()) {
-				registry.registerAll(thyrium_boots, thyrium_chestplate, thyrium_helmet, 
-						thyrium_leggings);
-			}
-			if (Settings.thyriumTools.isEnabled()) {
-				registry.registerAll(thyrium_axe, thyrium_hoe, thyrium_pickaxe, thyrium_shovel, 
-						thyrium_sword);
-			}
-			if (Settings.thyriumBow.isEnabled()) {
-				registry.register(thyrium_bow);
-			}
-		} // end-if use_simpleores
+			if (Content.use_simpleores)
+			{
+				if (Settings.sinisiteIngot.isEnabled()) {
+					registry.registerAll(sinisite_ingot, large_sinisite_chunk, medium_sinisite_chunk, 
+							small_sinisite_chunk, sinisite_rod);
+				}
+				if (Settings.sinisiteArmor.isEnabled()) {
+					registry.registerAll(sinisite_boots, sinisite_chestplate, sinisite_helmet, 
+							sinisite_leggings);
+				}
+				if (Settings.sinisiteTools.isEnabled()) {
+					registry.registerAll(sinisite_axe, sinisite_hoe, sinisite_pickaxe, sinisite_shovel, 
+							sinisite_sword);
+				}
+				if (Settings.sinisiteBow.isEnabled()) {
+					registry.register(sinisite_bow);
+				}
+				if (Settings.thyriumIngot.isEnabled()) {
+					registry.registerAll(thyrium_ingot, large_thyrium_chunk, medium_thyrium_chunk, 
+							small_thyrium_chunk, thyrium_rod);
+				}
+				if (Settings.thyriumArmor.isEnabled()) {
+					registry.registerAll(thyrium_boots, thyrium_chestplate, thyrium_helmet, 
+							thyrium_leggings);
+				}
+				if (Settings.thyriumTools.isEnabled()) {
+					registry.registerAll(thyrium_axe, thyrium_hoe, thyrium_pickaxe, thyrium_shovel, 
+							thyrium_sword);
+				}
+				if (Settings.thyriumBow.isEnabled()) {
+					registry.register(thyrium_bow);
+				}
+			} // end-if use full simpleores
+		} // end-if use_simpleores or limited simpleores
 	} // end register()
 
 	/**
@@ -380,7 +386,7 @@ public class ModItems
 			steel_sword.registerItemModel();
 			steel_hoe.registerItemModel();
 		}
-		if (Content.use_simpleores) 
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
 		{
 			if (Settings.bronzeIngot.isEnabled()) {
 				bronze_ingot.registerItemModel();
@@ -401,6 +407,9 @@ public class ModItems
 				bronze_sword.registerItemModel();
 				bronze_hoe.registerItemModel();
 			}
+		}
+		if (Content.use_simpleores) 
+		{
 			if (Settings.sinisiteIngot.isEnabled()) {
 				sinisite_ingot.registerItemModel();
 				small_sinisite_chunk.registerItemModel();
@@ -458,14 +467,17 @@ public class ModItems
 		if (Settings.steelIngot.isEnabled()) {
 			OreDictionary.registerOre("ingotSteel", new ItemStack(steel_ingot));
 		}
-		if (Content.use_simpleores) {
+		if (Content.use_simpleores || Content.hasLimitedSimpleOres()) 
+		{
 			if (Settings.bronzeIngot.isEnabled()) {
 				OreDictionary.registerOre("ingotBronze", new ItemStack(bronze_ingot));
 			}
-			if (Settings.thyriumIngot.isEnabled()) {
+			if (Settings.thyriumIngot.isEnabled() && Content.use_simpleores) 
+			{
 				OreDictionary.registerOre("ingotThyrium", new ItemStack(thyrium_ingot));
 			}
-			if (Settings.sinisiteIngot.isEnabled()) {
+			if (Settings.sinisiteIngot.isEnabled() && Content.use_simpleores) 
+			{
 				OreDictionary.registerOre("ingotSinisite", new ItemStack(sinisite_ingot));
 			}
 		} // end-if use_simpleores
