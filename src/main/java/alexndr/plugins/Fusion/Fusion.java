@@ -2,6 +2,7 @@ package alexndr.plugins.Fusion;
 
 import alexndr.api.logger.LogHelper;
 import alexndr.api.registry.Plugin;
+import alexndr.plugins.Fusion.crafting.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.helpers.FusionGuiHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

@@ -1,4 +1,4 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.crafting;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -4,8 +4,8 @@ import javax.annotation.Nullable;
 
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.api.helpers.game.FurnaceHelper;
-import alexndr.plugins.Fusion.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.blocks.BlockFusionFurnace;
+import alexndr.plugins.Fusion.crafting.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.inventory.ContainerFusionFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

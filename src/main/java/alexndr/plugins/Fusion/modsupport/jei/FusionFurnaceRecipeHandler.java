@@ -1,6 +1,6 @@
 package alexndr.plugins.Fusion.modsupport.jei;
 
-import alexndr.plugins.Fusion.RecipeEntry;
+import alexndr.plugins.Fusion.crafting.RecipeEntry;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;

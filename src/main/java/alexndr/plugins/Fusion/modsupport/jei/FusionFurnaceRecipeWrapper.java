@@ -3,8 +3,8 @@ package alexndr.plugins.Fusion.modsupport.jei;
 import java.util.ArrayList;
 import java.util.List;
 
-import alexndr.plugins.Fusion.FusionMaterial.DictMaterial;
-import alexndr.plugins.Fusion.RecipeEntry;
+import alexndr.plugins.Fusion.crafting.RecipeEntry;
+import alexndr.plugins.Fusion.crafting.FusionMaterial.DictMaterial;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;

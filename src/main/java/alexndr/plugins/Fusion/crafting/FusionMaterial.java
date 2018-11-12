@@ -1,10 +1,11 @@
-package alexndr.plugins.Fusion;
+package alexndr.plugins.Fusion.crafting;
 
 import java.util.List;
 
 import com.google.common.collect.Lists;
 
 import alexndr.api.logger.LogHelper;
+import alexndr.plugins.Fusion.ModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

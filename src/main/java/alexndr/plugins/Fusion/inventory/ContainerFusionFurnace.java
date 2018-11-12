@@ -1,7 +1,7 @@
 package alexndr.plugins.Fusion.inventory;
 
 import alexndr.api.content.inventory.SimpleFurnaceContainer;
-import alexndr.plugins.Fusion.FusionFurnaceRecipes;
+import alexndr.plugins.Fusion.crafting.FusionFurnaceRecipes;
 import alexndr.plugins.Fusion.tiles.TileEntityFusionFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

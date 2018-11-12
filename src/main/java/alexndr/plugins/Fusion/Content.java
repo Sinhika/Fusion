@@ -2,6 +2,8 @@ package alexndr.plugins.Fusion;
 
 import alexndr.api.helpers.game.ArmorMaterialHelper;
 import alexndr.api.logger.LogHelper;
+import alexndr.plugins.Fusion.crafting.FusionFurnaceRecipes;
+import alexndr.plugins.Fusion.crafting.FusionMaterial;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
