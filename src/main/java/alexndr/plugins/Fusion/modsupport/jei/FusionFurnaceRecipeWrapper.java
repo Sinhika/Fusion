@@ -32,13 +32,13 @@ public class FusionFurnaceRecipeWrapper implements IRecipeWrapper
             this.input1 = stackHelper.toItemStackList(recipe.input1.getOre());
         }
         else {
-        	this.input1 = new ArrayList<ItemStack>(recipe.catalyst.itemsList());
+        	this.input1 = new ArrayList<ItemStack>(recipe.input1.itemsList());
         }
         if (recipe.input2 instanceof DictMaterial) {
             this.input2 = stackHelper.toItemStackList(recipe.input2.getOre());
         }
         else {
-        	this.input2 = new ArrayList<ItemStack>(recipe.catalyst.itemsList());
+        	this.input2 = new ArrayList<ItemStack>(recipe.input2.itemsList());
         }
         
     } // end ctor
