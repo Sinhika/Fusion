@@ -14,3 +14,4 @@ gradlew.bat
 bin/
 .gradle/
 build.number
+.project

@@ -1,7 +1,3 @@
-//Tabs
-itemGroup.SimpleMachines=Simple Machines
-
-//Blocks
 tile.steel_block.name=Bloc d'acier
 tile.slimy_diamond_block.name=Bloc de Diamant colant
 
@@ -11,11 +7,9 @@ tile.sinisite_block.name=Bloc de Sinisite
 tile.fusion_furnace.name=Fourneau à Fusion
 tile.fusion_furnace_lit.name=Fourneau à Fusion
 
-// Containers
 container.fusion_furnace=Fourneau        à Fusion
 fusion_furnace_gui=Fourneau à Fusion
 
-//Items
 item.steel_ingot.name=Lingot d'Acier 
 item.slimy_diamond.name=Diamant colant
 item.small_steel_chunk.name=Petit Éclat d'Acier
@@ -40,7 +34,6 @@ item.small_sinisite_chunk.name=Petit Éclat de Sinisite
 item.medium_sinisite_chunk.name=Éclat de Sinisite moyen
 item.large_sinisite_chunk.name=Grand Éclat de Sinisite
 
-//Tools
 item.steel_pickaxe.name=Pioche en Acier
 item.steel_axe.name=Hache en Acier
 item.steel_shovel.name=Pelle en Acier
@@ -71,7 +64,6 @@ item.sinisite_hoe.name=Houe en Sinisite
 item.thyrium_bow.name=Arc en Thyrium
 item.sinisite_bow.name=Arc en Sinisite
 
-//Armor
 item.steel_helmet.name=Casque en Acier
 item.steel_chestplate.name=Plastron en Acier
 item.steel_leggings.name=Jambières en Acier
@@ -90,7 +82,6 @@ item.sinisite_chestplate.name=Plastron en Sinisite
 item.sinisite_leggings.name=Jambières en Sinisite
 item.sinisite_boots.name=Bottes en Sinisite
 
-//Achievements
 advancements.fusion_welcome=Apprend l'art de l'alliage par fusion
 advancements.fusionAch=Fuuusion ha!
 advancements.fusionAch.desc=Fabrique un Fourneau à Fusion pour ouvrir de nouvelles possibilitées
@@ -119,8 +110,6 @@ advancements.sinisiteSwordAch.desc=Personne ne pourra se dresser en travers de t
 advancements.sinisiteBowAch=Inarrêtable
 advancements.sinisiteBowAch.desc=Garde tes ennemis à distance avec ce puissant arc
 
-//Tool Tips
 fusion.slimy_diamond_tools.info=§aColant!
 
-// Other strings
 fusion.jei.fusionCategory=Fourneau à Fusion
