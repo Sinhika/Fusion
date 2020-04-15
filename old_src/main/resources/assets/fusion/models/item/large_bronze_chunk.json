@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "fusion:items/large_bronze_chunk"
-    }
-}
