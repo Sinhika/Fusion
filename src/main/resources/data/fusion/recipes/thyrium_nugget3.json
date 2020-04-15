@@ -2,11 +2,11 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "fusion:medium_steel_chunk"
+			"item": "fusion:large_bronze_chunk"
 		}
 	],
 	"result": {
-		"item": "fusion:steel_nugget",
-		"count": 4
+		"item": "fusion:bronze_nugget",
+		"count": 8
 	}
 }

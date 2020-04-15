@@ -1,9 +1,4 @@
 {
-	"conditions" : [
-		{
-			"type" : "fusion:steel_block_enabled",
-			"value" : true
-		} ],
 	"type" : "minecraft:crafting_shapeless",
 	"ingredients" : [
 		{ "item" : "fusion:steel_block" }
