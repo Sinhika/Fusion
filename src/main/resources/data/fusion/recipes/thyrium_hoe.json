@@ -1,13 +1,4 @@
 {
-	"conditions" : [
-		{
-			"type" : "fusion:thyrium_tools_enabled",
-			"value" : true
-		},
-		{
-			"type": "fusion:simple_ores_enabled",
-			"value": true
-		} ],
 	"result" : {
 		"item" : "fusion:thyrium_hoe"
 	},
@@ -16,9 +7,9 @@
 		" T ",
 		" T "
 	],
-	"type" : "forge:ore_shaped",
+	"type" : "minecraft:crafting_shaped",
 	"key" : {
-		"S" : { "item" : "#INGOTTHYRIUM"},
-		"T" : { "item" : "#STICKWOOD"}
+		"S" : { "item" : "fusion:thyrium_ingot"},
+		"T" : { "tag" : "forge:rods/wooden"}
 	}
 }

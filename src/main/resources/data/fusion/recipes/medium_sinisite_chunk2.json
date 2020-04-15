@@ -1,18 +1,4 @@
 {
-	"conditions": [
-		{
-			"type": "fusion:sinisite_ingot_enabled",
-			"value": true
-		},
-		{
-			"type": "fusion:extra_chunks_enabled",
-			"value": true
-		},
-		{
-			"type": "fusion:simple_ores_enabled",
-			"value": true
-		}
-	],
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
