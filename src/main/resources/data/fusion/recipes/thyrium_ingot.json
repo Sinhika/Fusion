@@ -1,14 +1,4 @@
 {
-	"conditions" : [
-		{
-			"type" : "fusion:thyrium_block_enabled",
-			"value" : true
-		},
-		{
-			"type": "fusion:simple_ores_enabled",
-			"value": true
-		} 
-	],
 	"type" : "minecraft:crafting_shapeless",
 	"ingredients" : [
 		{ "item" : "fusion:thyrium_block" }

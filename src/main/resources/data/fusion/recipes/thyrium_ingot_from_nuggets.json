@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "sinisite_ingot",
+  "group": "thyrium_ingot",
   "pattern": [
     "###",
     "###",
@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "fusion:sinisite_nugget"
+      "item": "fusion:thyrium_nugget"
     }
   },
   "result": {
-    "item": "fusion:sinisite_ingot"
+    "item": "fusion:thyrium_ingot"
   }
 }

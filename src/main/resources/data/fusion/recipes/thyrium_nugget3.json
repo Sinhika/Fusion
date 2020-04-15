@@ -2,11 +2,11 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "fusion:large_bronze_chunk"
+			"item": "fusion:large_thyrium_chunk"
 		}
 	],
 	"result": {
-		"item": "fusion:bronze_nugget",
+		"item": "fusion:thyrium_nugget",
 		"count": 8
 	}
 }

@@ -2,11 +2,11 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "fusion:bronze_ingot"
+			"item": "fusion:thyrium_ingot"
 		}
 	],
 	"result": {
-		"item": "fusion:bronze_nugget",
+		"item": "fusion:thyrium_nugget",
 		"count": 9
 	}
 }
