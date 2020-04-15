@@ -1,0 +1,14 @@
+{
+	"result" : {
+		"item" : "fusion:sinisite_chestplate"
+	},
+	"pattern" : [
+		"S S",
+		"SSS",
+		"SSS"
+	],
+	"type" : "minecraft:crafting_shaped",
+	"key" : {
+		"S" : { "item" : "fusion:sinisite_ingot"}
+	}
+}

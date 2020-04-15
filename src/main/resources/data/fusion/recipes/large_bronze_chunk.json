@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "fusion:bronze_nugget"
+		},
+		{
+			"item": "fusion:bronze_nugget"
+		},
+		{
+			"item": "fusion:bronze_nugget"
+		},
+		{
+			"item": "fusion:bronze_nugget"
+		},
+		{
+			"item": "fusion:bronze_nugget"
+		},
+		{
+			"item": "fusion:bronze_nugget"
+		},
+		{
+			"item": "fusion:bronze_nugget"
+		},
+		{
+			"item": "fusion:bronze_nugget"
+		}
+	],
+	"result": { "item": "fusion:large_bronze_chunk" }
+}

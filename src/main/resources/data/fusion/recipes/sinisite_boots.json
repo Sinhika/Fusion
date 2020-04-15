@@ -1,0 +1,13 @@
+{
+	"result" : {
+		"item" : "fusion:sinisite_boots"
+	},
+	"pattern" : [
+		"S S",
+		"S S"
+	],
+	"type" : "minecraft:crafting_shaped",
+	"key" : {
+		"S" : { "item" : "fusion:sinisite_ingot"}
+	}
+}

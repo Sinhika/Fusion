@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "fusion:medium_sinisite_chunk"
+		},
+		{
+			"item": "fusion:medium_sinisite_chunk"
+		}
+	],
+	"result": {
+		"item": "fusion:large_sinisite_chunk"
+	}
+}

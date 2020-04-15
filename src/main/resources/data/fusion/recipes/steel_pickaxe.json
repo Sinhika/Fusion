@@ -1,0 +1,20 @@
+{
+	"conditions" : [
+		{
+			"type" : "fusion:steel_tools_enabled",
+			"value" : true
+		} ],
+	"result" : {
+		"item" : "fusion:steel_pickaxe"
+	},
+	"pattern" : [
+		"SSS",
+		" T ",
+		" T "
+	],
+	"type" : "forge:ore_shaped",
+	"key" : {
+		"S" : { "item" : "#INGOTSTEEL"},
+		"T" : { "item" : "#STICKWOOD"}
+	}
+}
