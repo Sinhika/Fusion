@@ -1,9 +1,4 @@
 {
-	"conditions" : [
-		{
-			"type" : "fusion:steel_armor_enabled",
-			"value" : true
-		} ],
 	"result" : {
 		"item" : "fusion:steel_chestplate"
 	},
@@ -12,8 +7,8 @@
 		"SSS",
 		"SSS"
 	],
-	"type" : "forge:ore_shaped",
+	"type" : "minecraft:crafting_shaped",
 	"key" : {
-		"S" : { "item" : "#INGOTSTEEL"}
+		"S" : { "tag" : "forge:ingots/steel"}
 	}
 }

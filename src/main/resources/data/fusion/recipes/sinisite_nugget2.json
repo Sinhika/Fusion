@@ -2,11 +2,11 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "fusion:medium_steel_chunk"
+			"item": "fusion:sinisite_ingot"
 		}
 	],
 	"result": {
-		"item": "fusion:steel_nugget",
-		"count": 4
+		"item": "fusion:sinisite_nugget",
+		"count": 9
 	}
 }

@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:blasting",
+	"ingredient": {
+		"item": "fusion:large_steel_chunk"
+	},
+	"result": "fusion:steel_ingot",
+	"experience": 0.4,
+	"cookingtime": 100
+}
