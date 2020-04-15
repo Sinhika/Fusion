@@ -1,0 +1,15 @@
+{
+	"result" : {
+		"item" : "fusion:bronze_shovel"
+	},
+	"pattern" : [
+		" S ",
+		" T ",
+		" T "
+	],
+	"type" : "minecraft:crafting_shaped",
+	"key" : {
+		"S" : {"tag" :"forge:ingots/bronze"},
+		"T" : { "tag" :"forge:rods/wooden"}
+	}
+}

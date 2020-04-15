@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "fusion:sinisite_nugget"
+		},
+		{
+			"item": "fusion:sinisite_nugget"
+		},
+		{
+			"item": "fusion:sinisite_nugget"
+		},
+		{
+			"item": "fusion:sinisite_nugget"
+		},
+		{
+			"item": "fusion:sinisite_nugget"
+		},
+		{
+			"item": "fusion:sinisite_nugget"
+		},
+		{
+			"item": "fusion:sinisite_nugget"
+		},
+		{
+			"item": "fusion:sinisite_nugget"
+		}
+	],
+	"result": { "item": "fusion:large_sinisite_chunk" }
+}

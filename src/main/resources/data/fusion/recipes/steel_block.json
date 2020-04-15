@@ -1,0 +1,19 @@
+{
+	"conditions" : [
+		{
+			"type" : "fusion:steel_ingot_enabled",
+			"value" : true
+		} ],
+	"type" : "minecraft:crafting_shaped",
+	"result" : {
+		"item" : "fusion:steel_block"
+	},
+	"pattern" : [
+		"SSS",
+		"SSS",
+		"SSS"
+	],
+	"key" : {
+		"S" : { "item" : "fusion:steel_ingot"}
+	}
+}

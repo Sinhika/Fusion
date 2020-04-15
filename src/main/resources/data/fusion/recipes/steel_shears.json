@@ -1,0 +1,18 @@
+{
+	"conditions" : [
+		{
+			"type" : "fusion:steel_tools_enabled",
+			"value" : true
+		} ],
+	"result" : {
+		"item" : "fusion:steel_shears"
+	},
+	"pattern" : [
+		"S ",
+		" S"
+	],
+	"type" : "forge:ore_shaped",
+	"key" : {
+		"S" : { "item" : "#INGOTSTEEL"}
+	}
+}

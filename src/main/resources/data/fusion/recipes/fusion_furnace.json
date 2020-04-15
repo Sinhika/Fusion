@@ -1,0 +1,20 @@
+{
+	"type" : "minecraft:crafting_shaped",
+	"result" : {
+		"item" : "fusion:fusion_furnace"
+	},
+	"pattern" : [
+		"XWX",
+		"ZYZ",
+		"XWX"
+	],
+	"key" : {
+		"W" : { 
+			"item" : "minecraft:coal",      
+			"data": 0
+		},
+		"X" : { "item" : "minecraft:brick_block"},
+		"Y" : { "item" : "minecraft:furnace"},
+		"Z" : { "item" : "minecraft:iron_ingot"}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"result" : {
+		"item" : "fusion:sinisite_sword"
+	},
+	"pattern" : [
+		" S ",
+		" S ",
+		" T "
+	],
+	"type" : "minecraft:crafting_shaped",
+	"key" : {
+		"S" : { "item" : "fusion:sinisite_ingot"},
+		"T" : {"tag" :"forge:rods/wooden"}
+	}
+}
