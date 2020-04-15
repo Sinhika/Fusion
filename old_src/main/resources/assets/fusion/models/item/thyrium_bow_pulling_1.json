@@ -1,6 +1,0 @@
-{
-    "parent": "item/bow",
-    "textures": {
-        "layer0": "fusion:items/thyrium_bow_pulling_1"
-    }
-}
