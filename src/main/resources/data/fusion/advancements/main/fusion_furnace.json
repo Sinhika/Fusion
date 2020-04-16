@@ -4,10 +4,10 @@
             "item": "fusion:fusion_furnace"
         },
         "title": {
-            "translate": "advancements.fusionAch"
+            "translate": "advancements.fusion_ach"
         },
         "description": {
-            "translate": "advancements.fusionAch.desc"
+            "translate": "advancements.fusion_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true

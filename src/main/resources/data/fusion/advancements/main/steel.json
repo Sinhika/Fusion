@@ -1,24 +1,24 @@
 {
     "display":  {
         "icon": {
-            "item": "fusion:thyrium_axe"
+            "item": "fusion:steel_ingot"
         },
         "title": {
-            "translate": "advancements.thyriumAxeAch"
+            "translate": "advancements.steel_ach"
         },
         "description": {
-            "translate": "advancements.thyriumAxeAch.desc"
+            "translate": "advancements.steel_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true
     },
-    "parent" : "fusion:main/thyrium",
+    "parent" : "fusion:main/fusion_furnace",
      "criteria" : {
     	"got_fusion_furnace" : {
       		"trigger": "minecraft:inventory_changed",
       		"conditions" : {
       			"items" : [
-      			{"item" : "fusion:thyrium_axe"}
+      			{"item" : "fusion:steel_ingot"}
       			]
       		}
     	}

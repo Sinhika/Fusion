@@ -1,13 +1,13 @@
 {
     "display":  {
         "icon": {
-            "item": "fusion:sinisite_bow"
+            "item": "fusion:sinisite_sword"
         },
         "title": {
-            "translate": "advancements.sinisiteBowAch"
+            "translate": "advancements.sinisite_sword_ach"
         },
         "description": {
-            "translate": "advancements.sinisiteBowAch.desc"
+            "translate": "advancements.sinisite_sword_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true
@@ -18,7 +18,7 @@
       		"trigger": "minecraft:inventory_changed",
       		"conditions" : {
       			"items" : [
-      			{"item" : "fusion:sinisite_bow"}
+      			{"item" : "fusion:sinisite_sword"}
       			]
       		}
     	}

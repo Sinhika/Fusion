@@ -1,24 +1,24 @@
 {
     "display":  {
         "icon": {
-            "item": "fusion:thyrium_ingot"
+            "item": "fusion:thyrium_bow"
         },
         "title": {
-            "translate": "advancements.thyriumAch"
+            "translate": "advancements.thyrium_bow_ach"
         },
         "description": {
-            "translate": "advancements.thyriumAch.desc"
+            "translate": "advancements.thyrium_bow_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true
     },
-    "parent" : "fusion:main/bronze",
+    "parent" : "fusion:main/thyrium",
      "criteria" : {
     	"got_fusion_furnace" : {
       		"trigger": "minecraft:inventory_changed",
       		"conditions" : {
       			"items" : [
-      			{"item" : "fusion:thyrium_ingot"}
+      			{"item" : "fusion:thyrium_bow"}
       			]
       		}
     	}
