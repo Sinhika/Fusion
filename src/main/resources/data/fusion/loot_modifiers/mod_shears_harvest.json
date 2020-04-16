@@ -1,0 +1,11 @@
+{
+	"type": "fusion:mod_shears_harvest",
+	"conditions": [
+		{
+			"condition": "minecraft:match_tool",
+			"predicate": {
+				"item": "fusion:steel_shears"
+			}
+		}
+	]
+}

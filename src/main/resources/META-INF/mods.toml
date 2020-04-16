@@ -18,24 +18,18 @@ authors="AleXndrTheGr8st, Sinhika"
 description='''
 An add-on for SimpleOres that adds a unique alloying process.
 '''
-[[dependencies.fusion]] #optional
-    modId="netherrocks"
-    mandatory=false
-    versionRange="[2.1,)"
-    ordering="BEFORE"
-    side="BOTH"
 
 [[dependencies.fusion]] #optional
     modId="simpleores"
-    mandatory=false
+    mandatory=true
     versionRange="[2.1,)"
-    ordering="BEFORE"
+    ordering="NONE"
     side="BOTH"
 
 [[dependencies.fusion]] #optional
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[31.1.34,)"
     ordering="NONE"
     side="BOTH"
 
