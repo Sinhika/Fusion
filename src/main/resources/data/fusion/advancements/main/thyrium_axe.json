@@ -1,13 +1,13 @@
 {
     "display":  {
         "icon": {
-            "item": "fusion:sinisite_ingot"
+            "item": "fusion:thyrium_axe"
         },
         "title": {
-            "translate": "advancements.sinisiteAch"
+            "translate": "advancements.thyrium_axe_ach"
         },
         "description": {
-            "translate": "advancements.sinisiteAch.desc"
+            "translate": "advancements.thyrium_axe_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true
@@ -18,7 +18,7 @@
       		"trigger": "minecraft:inventory_changed",
       		"conditions" : {
       			"items" : [
-      			{"item" : "fusion:sinisite_ingot"}
+      			{"item" : "fusion:thyrium_axe"}
       			]
       		}
     	}

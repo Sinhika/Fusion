@@ -1,24 +1,24 @@
 {
     "display":  {
         "icon": {
-            "item": "fusion:bronze_ingot"
+            "item": "fusion:bronze_helmet"
         },
         "title": {
-            "translate": "advancements.bronzeAch"
+            "translate": "advancements.bronze_helmet_ach"
         },
         "description": {
-            "translate": "advancements.bronzeAch.desc"
+            "translate": "advancements.bronze_helmet_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true
     },
-    "parent" : "fusion:main/fusion_furnace",
+    "parent" : "fusion:main/bronze",
      "criteria" : {
     	"got_fusion_furnace" : {
       		"trigger": "minecraft:inventory_changed",
       		"conditions" : {
       			"items" : [
-      			{"item" : "fusion:bronze_ingot"}
+      			{"item" : "fusion:bronze_helmet"}
       			]
       		}
     	}

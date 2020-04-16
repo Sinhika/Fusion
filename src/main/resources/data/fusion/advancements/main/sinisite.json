@@ -1,24 +1,24 @@
 {
     "display":  {
         "icon": {
-            "item": "fusion:steel_chestplate"
+            "item": "fusion:sinisite_ingot"
         },
         "title": {
-            "translate": "advancements.steelChestplateAch"
+            "translate": "advancements.sinisite_ach"
         },
         "description": {
-            "translate": "advancements.steelChestplateAch.desc"
+            "translate": "advancements.sinisite_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true
     },
-    "parent" : "fusion:main/steel",
+    "parent" : "fusion:main/thyrium",
      "criteria" : {
     	"got_fusion_furnace" : {
       		"trigger": "minecraft:inventory_changed",
       		"conditions" : {
       			"items" : [
-      			{"item" : "fusion:steel_chestplate"}
+      			{"item" : "fusion:sinisite_ingot"}
       			]
       		}
     	}

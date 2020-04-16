@@ -1,24 +1,24 @@
 {
     "display":  {
         "icon": {
-            "item": "fusion:bronze_helmet"
+            "item": "fusion:steel_chestplate"
         },
         "title": {
-            "translate": "advancements.bronzeHelmetAch"
+            "translate": "advancements.steel_chestplate_ach"
         },
         "description": {
-            "translate": "advancements.bronzeHelmetAch.desc"
+            "translate": "advancements.steel_chestplate_ach.desc"
         },
         "show_toast": true,
         "announce_to_chat": true
     },
-    "parent" : "fusion:main/bronze",
+    "parent" : "fusion:main/steel",
      "criteria" : {
     	"got_fusion_furnace" : {
       		"trigger": "minecraft:inventory_changed",
       		"conditions" : {
       			"items" : [
-      			{"item" : "fusion:bronze_helmet"}
+      			{"item" : "fusion:steel_chestplate"}
       			]
       		}
     	}
