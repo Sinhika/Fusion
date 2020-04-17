@@ -5,10 +5,18 @@ import javax.annotation.Nonnull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import mod.alexndr.fusion.config.ConfigHelper;
+import mod.alexndr.fusion.config.ConfigHolder;
+import mod.alexndr.fusion.helpers.FusionLootModifiers;
+import mod.alexndr.fusion.init.ModBlocks;
+import mod.alexndr.fusion.init.ModTabGroups;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -26,7 +34,24 @@ public final class ModEventSubscriber
     public static void onRegisterItems(final RegistryEvent.Register<Item> event)
     {
         final IForgeRegistry<Item> registry = event.getRegistry();
-        // TODO
+        // We need to go over the entire registry so that we include any potential Registry Overrides
+        // Automatically register BlockItems for all our Blocks
+        ModBlocks.BLOCKS.getEntries().stream()
+                .map(RegistryObject::get)
+                // You can do extra filtering here if you don't want some blocks to have an BlockItem automatically registered for them
+                // .filter(block -> needsItemBlock(block))
+                // Register the BlockItem for the block
+                .forEach(block -> {
+                    // Make the properties, and make it so that the item will be on our ItemGroup (CreativeTab)
+                    final Item.Properties properties = 
+                            new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP);
+                    // Create the new BlockItem with the block and it's properties
+                    final BlockItem blockItem = new BlockItem(block, properties);
+                    // Set the new BlockItem's registry name to the block's registry name
+                    blockItem.setRegistryName(block.getRegistryName());
+                    // Register the BlockItem
+                    registry.register(blockItem);
+                });
         LOGGER.debug("Registered BlockItems");
     }  // end onRegisterItems()
 
@@ -36,16 +61,18 @@ public final class ModEventSubscriber
         final ModConfig config = event.getConfig();
 
         // Rebake the configs when they change
-//        if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
-//            ConfigHelper.bakeServer(config);
-//        }
+        if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
+            ConfigHelper.bakeServer(config);
+        }
     } // onModConfigEvent
 
     @SubscribeEvent
     public static void onRegisterModifierSerializers(
             @Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event)
     {
-        // TODO
+        event.getRegistry().register(
+                new FusionLootModifiers.ShearsLootModifier.Serializer().setRegistryName(
+                        new ResourceLocation(Fusion.MODID, "mod_shears_harvest")) );
     } // end registerModifierSerializers
 
     
