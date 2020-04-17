@@ -15,8 +15,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public enum FusionArmorMaterial implements IArmorMaterial 
 {
     BRONZE("fusion:bronze", 16, new int [] {3,5,3,1}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 
-            ()-> { return Ingredient.fromItems(ModItems.bronze_ingot.get());} );
-    // TODO all the rest
+            ()-> { return Ingredient.fromItems(ModItems.bronze_ingot.get());} ),
+    SINISITE("fusion:sinisite", 56, new int [] {5,8,6,5}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 
+            ()-> { return Ingredient.fromItems(ModItems.sinisite_ingot.get());} ),
+    THYRIUM("fusion:thyrium", 39, new int [] {4,7,6,3}, 28, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 
+            ()-> { return Ingredient.fromItems(ModItems.thyrium_ingot.get());} ),
+    STEEL("fusion:steel", 20, new int [] {3,6,5,3}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 
+            ()-> { return Ingredient.fromItems(ModItems.steel_ingot.get());} );
+   // TODO all the rest
     
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final String name;

@@ -27,5 +27,9 @@ public final class ModItems
             () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<Item> steel_ingot = ITEMS.register("steel_ingot", 
             () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> sinisite_ingot = ITEMS.register("sinisite_ingot", 
+            () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> thyrium_ingot = ITEMS.register("thyrium_ingot", 
+            () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     
 } // end class
