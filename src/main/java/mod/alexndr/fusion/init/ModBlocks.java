@@ -1,7 +1,12 @@
 package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.content.SimpleMetalBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -20,4 +25,34 @@ public final class ModBlocks
 {
     public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, Fusion.MODID);
     
+    // Metal Blocks
+    // bronze
+    public static final RegistryObject<SimpleMetalBlock> bronze_block = BLOCKS.register("bronze_block",
+            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+                    MaterialColor.YELLOW_TERRACOTTA)
+                    .hardnessAndResistance(5.0F, 10.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
+    // steel
+    public static final RegistryObject<SimpleMetalBlock> steel_block = BLOCKS.register("steel_block",
+            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+                    MaterialColor.IRON)
+                    .hardnessAndResistance(7.0F, 12.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
+    
+    // sinisite
+    public static final RegistryObject<SimpleMetalBlock> sinisite_block = BLOCKS.register("sinisite_block",
+            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+                    MaterialColor.BLUE)
+                    .hardnessAndResistance(10.0F, 24.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
+    
+    // thyrium
+    public static final RegistryObject<SimpleMetalBlock> thyrium_block = BLOCKS.register("thyrium_block",
+            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+                    MaterialColor.CYAN)
+                    .hardnessAndResistance(7.0F, 12.0F)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
+     
+    // Furnace
+    // TODO fusion_furnace
 } // end class

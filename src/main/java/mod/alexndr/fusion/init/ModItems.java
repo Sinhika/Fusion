@@ -6,6 +6,7 @@ import mod.alexndr.fusion.content.FusionItemTier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
@@ -169,7 +170,38 @@ public final class ModItems
                     new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     
     // sinisite
+    public static final RegistryObject<SwordItem> sinisite_sword = ITEMS.register("sinisite_sword",
+            () -> new SwordItem(FusionItemTier.SINISITE, 3, -2.4F,
+                                new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<PickaxeItem> sinisite_pickaxe = ITEMS.register("sinisite_pickaxe",
+            () -> new PickaxeItem(FusionItemTier.SINISITE, 1, -2.8F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<AxeItem> sinisite_axe = ITEMS.register("sinisite_axe",
+            () -> new AxeItem(FusionItemTier.SINISITE, 7.0F, -3.1F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<ShovelItem> sinisite_shovel = ITEMS.register("sinisite_shovel",
+            () -> new ShovelItem(FusionItemTier.SINISITE, 1.5F, -3.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<HoeItem> sinisite_hoe = ITEMS.register("sinisite_hoe",
+            () -> new HoeItem(FusionItemTier.SINISITE,-2.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    
     // thyrium
+    public static final RegistryObject<SwordItem> thyrium_sword = ITEMS.register("thyrium_sword",
+            () -> new SwordItem(FusionItemTier.THYRIUM, 3, -2.4F,
+                                new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<PickaxeItem> thyrium_pickaxe = ITEMS.register("thyrium_pickaxe",
+            () -> new PickaxeItem(FusionItemTier.THYRIUM, 1, -2.8F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<AxeItem> thyrium_axe = ITEMS.register("thyrium_axe",
+            () -> new AxeItem(FusionItemTier.THYRIUM, 7.0F, -3.1F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<ShovelItem> thyrium_shovel = ITEMS.register("thyrium_shovel",
+            () -> new ShovelItem(FusionItemTier.THYRIUM, 1.5F, -3.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<HoeItem> thyrium_hoe = ITEMS.register("thyrium_hoe",
+            () -> new HoeItem(FusionItemTier.THYRIUM,-2.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     
     // shears
     public static final RegistryObject<ShearsItem> steel_shears = ITEMS.register("steel_shears",
@@ -177,5 +209,11 @@ public final class ModItems
                     .group(ModTabGroups.MOD_ITEM_GROUP)));
 
     // bows
+    public static final RegistryObject<BowItem> sinisite_bow = ITEMS.register("sinisite_bow",
+            () -> new BowItem(new Item.Properties().maxDamage(1200)
+                    .group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<BowItem> thyrium_bow = ITEMS.register("thyrium_bow",
+            () -> new BowItem(new Item.Properties().maxDamage(900)
+                    .group(ModTabGroups.MOD_ITEM_GROUP)));
     
 } // end class

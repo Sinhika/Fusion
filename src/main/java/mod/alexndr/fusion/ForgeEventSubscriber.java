@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Fusion.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class ForgeEventSubscriber
 {
+    @SuppressWarnings("unused")
     private static final Logger LOGGER = LogManager.getLogger(Fusion.MODID + " Forge Event Subscriber");
 
 } // end class
