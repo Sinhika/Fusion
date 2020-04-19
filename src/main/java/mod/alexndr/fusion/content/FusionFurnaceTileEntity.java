@@ -149,7 +149,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
         // TODO: fix after implementing Fusion's alloy recipes.
         // Due to vanilla's code we need to pass an IInventory into RecipeManager#getRecipe so we make one here.
         // return getRecipe(new Inventory(input));
-        return null;
+        return Optional.empty();
     }
     
     /**
@@ -158,7 +158,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     private Optional<FurnaceRecipe> getRecipe(final IInventory inventory) {
         // TODO: fix after implementing Fusion's alloy recipes.
 //        return world.getRecipeManager().getRecipe(IRecipeType.SMELTING, inventory, world);
-        return null;
+        return  Optional.empty();
     }
 
     /**
@@ -168,7 +168,8 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
                                           final ItemStack catalyst) 
     {
         // TODO: fix after implementing Fusion's alloy recipes.
-        return null;
+        Optional<ItemStack> result = Optional.empty();
+        return result;
     }
 
     public boolean isBurning() {
