@@ -16,9 +16,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid = Fusion.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -26,6 +28,17 @@ public final class ModEventSubscriber
 {
     private static final Logger LOGGER = LogManager.getLogger(Fusion.MODID + " Mod Event Subscriber");
 
+    /**
+     * @param event
+     */
+    @SubscribeEvent
+    public static void onCommonSetup(final FMLCommonSetupEvent event)
+    {
+        Fusion.isSimpleOresLoaded = ModList.get().isLoaded("simpleores");
+        LOGGER.info("Simple Ores is" + (Fusion.isSimpleOresLoaded ? " " : " not ") + "loaded.");
+        LOGGER.debug("Common setup done");
+    }
+    
     /**
      * This method will be called by Forge when it is time for the mod to register its Items.
      * This method will always be called after the Block registry method.
