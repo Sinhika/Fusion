@@ -28,6 +28,7 @@ public class Fusion
         LOGGER.info("Hello from Fusion!");
         final ModLoadingContext modLoadingContext = ModLoadingContext.get();
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModContainers.CONTAINER_TYPES.register(modEventBus);
