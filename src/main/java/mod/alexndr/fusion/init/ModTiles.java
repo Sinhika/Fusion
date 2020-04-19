@@ -1,6 +1,7 @@
 package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.content.FusionFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,9 +14,8 @@ public final class ModTiles
 
     // tile entity type
     // We don't have a datafixer for our TileEntities, so we pass null into build.
-    // TODO - comment in after creating FusionFurnaceTileEntity
-//    public static RegistryObject<TileEntityType<FusionFurnaceTileEntity>> FUSION_FURNACE =
-//            TILE_ENTITY_TYPES.register("fusion_furnace", 
-//                    () -> TileEntityType.Builder.create(FusionFurnaceTileEntity::new, 
-//                            ModBlocks.fusion_furnace.get()).build(null));
+    public static RegistryObject<TileEntityType<FusionFurnaceTileEntity>> FUSION_FURNACE =
+            TILE_ENTITY_TYPES.register("fusion_furnace", 
+                    () -> TileEntityType.Builder.create(FusionFurnaceTileEntity::new, 
+                            ModBlocks.fusion_furnace.get()).build(null));
 } // end class
