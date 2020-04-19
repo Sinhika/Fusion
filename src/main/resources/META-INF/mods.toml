@@ -22,7 +22,7 @@ An add-on for SimpleOres that adds a unique alloying process.
 [[dependencies.fusion]] #optional
     modId="simpleores"
     mandatory=true
-    versionRange="[2.1,)"
+    versionRange="[1.15.2-2.1,)"
     ordering="NONE"
     side="BOTH"
 

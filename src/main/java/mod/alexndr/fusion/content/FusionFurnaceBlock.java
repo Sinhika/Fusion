@@ -6,6 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -24,6 +26,9 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class FusionFurnaceBlock extends HorizontalBlock
 {
@@ -47,7 +52,6 @@ public class FusionFurnaceBlock extends HorizontalBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        // TODO Auto-generated method stub
         return super.createTileEntity(state, world);
     }
 
@@ -73,15 +77,14 @@ public class FusionFurnaceBlock extends HorizontalBlock
    @Override
     public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
-        // TODO - uncomment when FusionFurnaceTileEntity is created.
-//        if (oldState.getBlock() != newState.getBlock()) {
-//            TileEntity tileEntity = worldIn.getTileEntity(pos);
-//            if (tileEntity instanceof FusionFurnaceTileEntity) {
-//                final ItemStackHandler inventory = ((FusionFurnaceTileEntity) tileEntity).inventory;
-//                for (int slot = 0; slot < inventory.getSlots(); ++slot)
-//                    InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
-//            }
-//        }
+        if (oldState.getBlock() != newState.getBlock()) {
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if (tileEntity instanceof FusionFurnaceTileEntity) {
+                final ItemStackHandler inventory = ((FusionFurnaceTileEntity) tileEntity).inventory;
+                for (int slot = 0; slot < inventory.getSlots(); ++slot)
+                    InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
+            }
+        }
         super.onReplaced(oldState, worldIn, pos, newState, isMoving);
     } // end onReplaced
 
@@ -106,10 +109,9 @@ public class FusionFurnaceBlock extends HorizontalBlock
             Hand handIn, BlockRayTraceResult p_225533_6_)
     {
         if (!worldIn.isRemote) {
-            // TODO - uncomment when FusionFurnaceTileEntity is created.
-//            final TileEntity tileEntity = worldIn.getTileEntity(pos);
-//            if (tileEntity instanceof FusionFurnaceTileEntity)
-//                NetworkHooks.openGui((ServerPlayerEntity) player, (FusionFurnaceTileEntity) tileEntity, pos);
+            final TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if (tileEntity instanceof FusionFurnaceTileEntity)
+                NetworkHooks.openGui((ServerPlayerEntity) player, (FusionFurnaceTileEntity) tileEntity, pos);
         }
         return ActionResultType.SUCCESS;
     }
@@ -124,9 +126,8 @@ public class FusionFurnaceBlock extends HorizontalBlock
     public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos)
     {
         final TileEntity tileEntity = worldIn.getTileEntity(pos);
-        // TODO - uncomment when FusionFurnaceTileEntity is created.
-///        if (tileEntity instanceof FusionFurnaceTileEntity)
-//            return ItemHandlerHelper.calcRedstoneFromInventory(((FusionFurnaceTileEntity) tileEntity).inventory);
+        if (tileEntity instanceof FusionFurnaceTileEntity)
+            return ItemHandlerHelper.calcRedstoneFromInventory(((FusionFurnaceTileEntity) tileEntity).inventory);
         return super.getComparatorInputOverride(blockState, worldIn, pos);
     }
 

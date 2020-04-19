@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.client.gui.FusionFurnaceScreen;
+import mod.alexndr.fusion.init.ModContainers;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
  *
  * @author Sinhika
  */
+@SuppressWarnings("deprecation")
 @EventBusSubscriber(modid=Fusion.MODID, bus=EventBusSubscriber.Bus.MOD, value=Dist.CLIENT)
 public class ClientModEventSubscriber
 {
@@ -34,10 +37,10 @@ public class ClientModEventSubscriber
     {
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
-//        DeferredWorkQueue.runLater(() -> {
-//            ScreenManager.registerFactory(ModContainers.NETHER_FURNACE.get(), NetherFurnaceScreen::new);
-//            LOGGER.debug("Registered ContainerType Screens");
-//        });
+        DeferredWorkQueue.runLater(() -> {
+            ScreenManager.registerFactory(ModContainers.FUSION_FURNACE.get(), FusionFurnaceScreen::new);
+            LOGGER.debug("Registered ContainerType Screens");
+        });
    }
     
 } // end class
