@@ -2,6 +2,8 @@ package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -21,4 +23,8 @@ public final class ModContainers
     public static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES = 
             new DeferredRegister<>(ForgeRegistries.CONTAINERS, Fusion.MODID);
 
+    // TODO - comment back in when FusionFurnaceContainer is created.
+//    public static RegistryObject<ContainerType<FusionFurnaceContainer>> FUSION_FURNACE =
+//            CONTAINER_TYPES.register("fusion_furnace", 
+//                    () -> IForgeContainerType.create(FusionFurnaceContainer::new));
 } // end class

@@ -1,6 +1,7 @@
 package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.content.FusionFurnaceBlock;
 import mod.alexndr.fusion.content.SimpleMetalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -54,5 +55,8 @@ public final class ModBlocks
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
      
     // Furnace
-    // TODO fusion_furnace
+    public static final RegistryObject<FusionFurnaceBlock> fusion_furnace = BLOCKS.register("fusion_furnace",
+            () -> new FusionFurnaceBlock(Block.Properties.create(Material.ROCK)
+                    .hardnessAndResistance(3.5F, 12.0F)
+                    .lightValue(13).harvestTool(ToolType.PICKAXE)));
 } // end class
