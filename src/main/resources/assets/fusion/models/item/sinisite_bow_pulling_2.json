@@ -1,0 +1,6 @@
+{
+    "parent": "fusion:item/sinisite_bow",
+    "textures": {
+        "layer0": "fusion:item/sinisite_bow_pulling_2"
+    }
+}

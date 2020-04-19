@@ -2,6 +2,7 @@ package mod.alexndr.fusion.content;
 
 import java.util.Random;
 
+import mod.alexndr.fusion.init.ModTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -52,7 +53,8 @@ public class FusionFurnaceBlock extends HorizontalBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return super.createTileEntity(state, world);
+        // Always use TileEntityType#create to allow registry overrides to work.
+        return ModTiles.FUSION_FURNACE.get().create();
     }
 
     /**
