@@ -5,8 +5,6 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import io.github.cadiboo.examplemod.block.ElectricFurnaceBlock;
-import io.github.cadiboo.examplemod.container.ModFurnaceContainer;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModTiles;
 import net.minecraft.block.BlockState;
