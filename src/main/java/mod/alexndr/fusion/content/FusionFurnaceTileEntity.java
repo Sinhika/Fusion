@@ -62,7 +62,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
                 case INPUT2_SLOT:
                     return isInput(stack);
                 case CATALYST_SLOT:
-                    return isCatalyst(stack); // TODO
+                    return isCatalyst(stack);
                 case OUTPUT_SLOT:
                     return isOutput(stack);
                  default:
@@ -417,7 +417,6 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     @Override
     public Container createMenu(final int windowId, final PlayerInventory inventory, final PlayerEntity player) 
     {
-        // TODO - fix when FusionFurnaceContainer is filled in.
         return new FusionFurnaceContainer(windowId, inventory, this);
     }
 
