@@ -11,6 +11,6 @@
 	"key" : {
 		"X" : { "item" : "fusion:sinisite_rod"},
 		"Y" : { "item" : "minecraft:string"},
-		"Z" : { "item" : "simpleores:onyx_gem"}
+		"Z" : { "item" : "minecraft:diamond"}
 	}
 }
