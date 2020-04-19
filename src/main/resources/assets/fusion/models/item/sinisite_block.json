@@ -1,3 +1,6 @@
 {
-	"parent": "block/fusion:sinisite_block"
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "fusion:block/sinisite_block"
+	}
 }
