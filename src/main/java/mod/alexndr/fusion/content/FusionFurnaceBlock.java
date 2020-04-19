@@ -29,7 +29,7 @@ public class FusionFurnaceBlock extends HorizontalBlock
 {
     public static final BooleanProperty BURNING = BooleanProperty.create("lit");
 
-    protected FusionFurnaceBlock(Properties builder)
+    public FusionFurnaceBlock(Properties builder)
     {
         super(builder);
         // Set the default values for our blockstate properties
