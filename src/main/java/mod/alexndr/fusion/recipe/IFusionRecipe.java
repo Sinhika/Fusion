@@ -1,6 +1,8 @@
 package mod.alexndr.fusion.recipe;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.init.ModBlocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
@@ -21,6 +23,12 @@ public interface IFusionRecipe extends IRecipe<RecipeWrapper>
     default IRecipeType<?> getType()
     {
         return Registry.RECIPE_TYPE.getValue(TYPE_ID).get();
+    }
+
+    @Override
+    default ItemStack getIcon()
+    {
+        return new ItemStack(ModBlocks.fusion_furnace.get());
     }
     
     

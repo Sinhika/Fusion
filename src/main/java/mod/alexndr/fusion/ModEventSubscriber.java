@@ -11,6 +11,7 @@ import mod.alexndr.fusion.helpers.FusionLootModifiers;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTabGroups;
+import mod.alexndr.fusion.recipe.IFusionRecipe;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -109,9 +110,8 @@ public final class ModEventSubscriber
     @SubscribeEvent
     public static void onRegisterRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> evt) 
     {
-        ResourceLocation id = new ResourceLocation(Fusion.MODID, "alloying");
-        Registry.register(Registry.RECIPE_TYPE, id, ModRecipeTypes.FUSION_TYPE);
-        evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(id));
+        Registry.register(Registry.RECIPE_TYPE, IFusionRecipe.TYPE_ID, ModRecipeTypes.FUSION_TYPE);
+        evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(IFusionRecipe.TYPE_ID));
     } // end onRegisterRecipeSerializers
     
 } // end class
