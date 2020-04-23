@@ -29,6 +29,10 @@ public class FusionRecipe implements IFusionRecipe
     private final int cook_time;
     private final float experience;
     
+    private final int INPUT1_SLOT = 0;
+    private final int INPUT2_SLOT = 1;
+    private final int CATALYST_SLOT = 2;
+    
     
     public FusionRecipe(ResourceLocation id, ItemStack output,  int cook_time, float experience,
                         Ingredient catalyst, Ingredient... inputs)
@@ -41,20 +45,61 @@ public class FusionRecipe implements IFusionRecipe
         this.experience = experience;
     }
 
+    /**
+     * Used to check if a recipe matches current crafting inventory
+     */
     @Override
     public boolean matches(RecipeWrapper inv, World worldIn)
     {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        List<Ingredient> ingredientsMissing = new ArrayList<>(inputs);
+        
+        // check inputs, could be in either slot...
+        for (int ii = INPUT1_SLOT; ii <= INPUT2_SLOT; ii++)
+        {
+            ItemStack input = inv.getStackInSlot(ii);
+            if (input.isEmpty()) {
+                break;
+            }
+            int stackIndex = -1;
+            for (int jj = 0; jj < ingredientsMissing.size(); jj++)
+            {
+                Ingredient ingr = ingredientsMissing.get(jj);
+                if (ingr.test(input)) {
+                    stackIndex = jj;
+                    break;
+                }
+            }
+            if (stackIndex != -1) {
+                ingredientsMissing.remove(stackIndex);
+            } 
+            else {
+                return false;
+            }
+        } // end-for ii
+        
+        // check catalyst
+        ItemStack cata = inv.getStackInSlot(CATALYST_SLOT);
+        if (this.catalyst.test(cata)) {
+            return ingredientsMissing.isEmpty();
+        }
+        else {
+            return false;
+        }
+    } // end matches()
 
+    /**
+     * Returns an Item that is the result of this recipe
+     */
     @Override
     public ItemStack getCraftingResult(RecipeWrapper inv)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return getRecipeOutput().copy();
     }
 
+    /**
+     * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
+     * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
+     */
     @Override
     public ItemStack getRecipeOutput()
     {

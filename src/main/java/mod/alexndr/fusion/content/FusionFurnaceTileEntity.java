@@ -6,12 +6,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import mod.alexndr.fusion.init.ModBlocks;
+import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTiles;
 import mod.alexndr.fusion.recipe.FusionRecipe;
+import mod.alexndr.fusion.recipe.IFusionRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -30,7 +33,9 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.RangedWrapper;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public class FusionFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider
 {
@@ -112,7 +117,8 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     /**
      * @return If the stack is not empty and has an alloying recipe associated with it
      */
-    private boolean isInput(final ItemStack stack) {
+    private boolean isInput(final ItemStack stack) 
+    {
         if (stack.isEmpty())
             return false;
         // TODO: fix after implementing Fusion's alloy recipes.
@@ -131,7 +137,8 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     /**
      * @return If the stack's item is equal to the result of smelting our input
      */
-    private boolean isOutput(final ItemStack stack) {
+    private boolean isOutput(final ItemStack stack) 
+    {
         final Optional<ItemStack> result = 
                 getResult(inventory.getStackInSlot(INPUT1_SLOT), inventory.getStackInSlot(INPUT2_SLOT),
                           inventory.getStackInSlot(CATALYST_SLOT));
@@ -142,22 +149,21 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     /**
      * @return The smelting recipe for the input stack
      */
-    private Optional<FusionRecipe> getRecipe(final ItemStack input1, final ItemStack input2, 
+    private Optional<IFusionRecipe> getRecipe(final ItemStack input1, final ItemStack input2, 
                                               final ItemStack catalyst) 
     {
-        // TODO: fix after implementing Fusion's alloy recipes.
-        // Due to vanilla's code we need to pass an IInventory into RecipeManager#getRecipe so we make one here.
-        // return getRecipe(new Inventory(input));
-        return Optional.empty();
+        // Due to vanilla's code we need to pass an IInventory into 
+        // RecipeManager#getRecipe so we make one here.
+        return getRecipe(new Inventory(input1, input2, catalyst));
     }
     
     /**
      * @return The alloying recipe for the inventory
      */
-    private Optional<FusionRecipe> getRecipe(final IInventory inventory) {
-        // TODO: fix after implementing Fusion's alloy recipes.
-//        return world.getRecipeManager().getRecipe(IRecipeType.SMELTING, inventory, world);
-        return  Optional.empty();
+    private Optional<IFusionRecipe> getRecipe(final IInventory inv) 
+    {
+        RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(inv));
+        return world.getRecipeManager().getRecipe(ModRecipeTypes.FUSION_TYPE, inv0, world);
     }
 
     /**
@@ -166,9 +172,12 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     private Optional<ItemStack> getResult(final ItemStack input1, final ItemStack input2,
                                           final ItemStack catalyst) 
     {
-        // TODO: fix after implementing Fusion's alloy recipes.
-        Optional<ItemStack> result = Optional.empty();
-        return result;
+        RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(new Inventory(input1, input2, catalyst)));
+        Optional<IFusionRecipe> recipe = getRecipe(input1, input2, catalyst);
+        ItemStack result = recipe.isPresent() 
+                            ? recipe.get().getCraftingResult(inv0)
+                            : null;
+        return Optional.ofNullable(result);
     }
 
     public boolean isBurning() {
@@ -278,11 +287,14 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
      */
     private short getAlloyTime(final ItemStack input1,final ItemStack input2,final ItemStack catalyst) 
     {
-        return getRecipe(input1, input2, catalyst)
-                .map(FusionRecipe::getCookTime)
-                .orElse(200)
-                .shortValue();
-    }
+        Optional<IFusionRecipe> maybeRecipe = getRecipe(input1, input2, catalyst); 
+        if (maybeRecipe.isPresent()) {
+            return (short) ((FusionRecipe) maybeRecipe.get()).getCookTime(); 
+        }
+        else {
+            return 200;
+        }
+    } // end getAlloyTime
 
     /**
      * @return If the fuel was burnt
