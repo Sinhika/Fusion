@@ -9,10 +9,13 @@ import mod.alexndr.fusion.config.ConfigHelper;
 import mod.alexndr.fusion.config.ConfigHolder;
 import mod.alexndr.fusion.helpers.FusionLootModifiers;
 import mod.alexndr.fusion.init.ModBlocks;
+import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTabGroups;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,7 +32,7 @@ public final class ModEventSubscriber
     private static final Logger LOGGER = LogManager.getLogger(Fusion.MODID + " Mod Event Subscriber");
 
     /**
-     * @param event
+     * FMLCommonSetupEvent handler.
      */
     @SubscribeEvent
     public static void onCommonSetup(final FMLCommonSetupEvent event)
@@ -38,6 +41,7 @@ public final class ModEventSubscriber
         LOGGER.info("Simple Ores is" + (Fusion.isSimpleOresLoaded ? " " : " not ") + "loaded.");
         LOGGER.debug("Common setup done");
     }
+    
     
     /**
      * This method will be called by Forge when it is time for the mod to register its Items.
@@ -68,6 +72,11 @@ public final class ModEventSubscriber
         LOGGER.debug("Registered BlockItems");
     }  // end onRegisterItems()
 
+    
+    /**
+     * ModConfig.ModConfigEvent handler.
+     * @param event
+     */
     @SubscribeEvent
     public static void onModConfigEvent(final ModConfig.ModConfigEvent event)
     {
@@ -79,6 +88,10 @@ public final class ModEventSubscriber
         }
     } // onModConfigEvent
 
+    /**
+     * Register<GlobalLootModifierSerializer<?>> event handler.
+     * @param event
+     */
     @SubscribeEvent
     public static void onRegisterModifierSerializers(
             @Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event)
@@ -88,5 +101,17 @@ public final class ModEventSubscriber
                         new ResourceLocation(Fusion.MODID, "mod_shears_harvest")) );
     } // end registerModifierSerializers
 
+
+    /**
+     * Recipe Serializer event handler.
+     * @param evt
+     */
+    @SubscribeEvent
+    public static void onRegisterRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> evt) 
+    {
+        ResourceLocation id = new ResourceLocation(Fusion.MODID, "alloying");
+        Registry.register(Registry.RECIPE_TYPE, id, ModRecipeTypes.FUSION_TYPE);
+        evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(id));
+    } // end onRegisterRecipeSerializers
     
 } // end class

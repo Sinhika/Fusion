@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModTiles;
+import mod.alexndr.fusion.recipe.FusionRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -14,8 +15,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.FurnaceRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.FurnaceTileEntity;
@@ -143,7 +142,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     /**
      * @return The smelting recipe for the input stack
      */
-    private Optional<FurnaceRecipe> getRecipe(final ItemStack input1, final ItemStack input2, 
+    private Optional<FusionRecipe> getRecipe(final ItemStack input1, final ItemStack input2, 
                                               final ItemStack catalyst) 
     {
         // TODO: fix after implementing Fusion's alloy recipes.
@@ -155,7 +154,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     /**
      * @return The alloying recipe for the inventory
      */
-    private Optional<FurnaceRecipe> getRecipe(final IInventory inventory) {
+    private Optional<FusionRecipe> getRecipe(final IInventory inventory) {
         // TODO: fix after implementing Fusion's alloy recipes.
 //        return world.getRecipeManager().getRecipe(IRecipeType.SMELTING, inventory, world);
         return  Optional.empty();
@@ -280,7 +279,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     private short getAlloyTime(final ItemStack input1,final ItemStack input2,final ItemStack catalyst) 
     {
         return getRecipe(input1, input2, catalyst)
-                .map(AbstractCookingRecipe::getCookTime)
+                .map(FusionRecipe::getCookTime)
                 .orElse(200)
                 .shortValue();
     }
