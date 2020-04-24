@@ -30,7 +30,7 @@ public class FusionRecipe implements IFusionRecipe
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> inputs;
-    private final Ingredient catalyst;
+    private final ItemStack catalyst;
     private final int cook_time;
     private final float experience;
     
@@ -42,7 +42,7 @@ public class FusionRecipe implements IFusionRecipe
     private static Set<ItemStack> legal_catalysts = new HashSet<ItemStack>();
     
     public FusionRecipe(ResourceLocation id, ItemStack output,  int cook_time, float experience,
-                        Ingredient catalyst, Ingredient... inputs)
+            ItemStack catalyst, Ingredient... inputs)
     {
         this.id = id;
         this.output = output;
@@ -62,7 +62,7 @@ public class FusionRecipe implements IFusionRecipe
              if (recipe.getType() != ModRecipeTypes.FUSION_TYPE) {
                  continue;
              }
-             legal_catalysts.add(((FusionRecipe) recipe).getCatalyst().getMatchingStacks()[0]);
+             legal_catalysts.add(((FusionRecipe) recipe).getCatalyst());
              NonNullList<Ingredient> ingrs = recipe.getIngredients();
              for (Ingredient ingr: ingrs)
              {
@@ -121,7 +121,7 @@ public class FusionRecipe implements IFusionRecipe
         
         // check catalyst
         ItemStack cata = inv.getStackInSlot(CATALYST_SLOT);
-        if (this.catalyst.test(cata)) {
+        if (ItemStack.areItemStacksEqual(this.catalyst, cata)) {
             return ingredientsMissing.isEmpty();
         }
         else {
@@ -148,7 +148,7 @@ public class FusionRecipe implements IFusionRecipe
         return this.output;
     }
     
-    public Ingredient getCatalyst()
+    public ItemStack getCatalyst()
     {
         return this.catalyst;
     } // end class FusionRecipe
@@ -197,8 +197,12 @@ public class FusionRecipe implements IFusionRecipe
             for (JsonElement e : ingrs) {
                 inputs.add(Ingredient.deserialize(e));
             }
-            Ingredient catalyst = Ingredient.fromStacks(CraftingHelper.getItemStack(
-                                                    JSONUtils.getJsonObject(json, "catalyst"),true));
+            ItemStack catalyst = Ingredient.deserializeItemList(
+                                    JSONUtils.getJsonObject(json, "catalyst"))
+                                .getStacks()
+                                .stream()
+                                .findFirst()
+                                .get();
             
             int cook_time = JSONUtils.getInt(json, "cookingtime");
             float experience = JSONUtils.getFloat(json, "experience");
@@ -215,7 +219,7 @@ public class FusionRecipe implements IFusionRecipe
                 inputs[ii] = Ingredient.read(buf);
             }
             ItemStack output = buf.readItemStack();
-            Ingredient catalyst = Ingredient.read(buf);
+            ItemStack catalyst = buf.readItemStack();
             int cook_time = buf.readVarInt();
             float exp = buf.readFloat();
             
@@ -229,8 +233,8 @@ public class FusionRecipe implements IFusionRecipe
             for (Ingredient input : recipe.getIngredients()) {
                 input.write(buf);
             }
-            buf.writeItemStack(recipe.getRecipeOutput(), false);
-            recipe.getCatalyst().write(buf);
+            buf.writeItemStack(recipe.getRecipeOutput(), true);
+            buf.writeItemStack(recipe.getCatalyst(), true);
             buf.writeVarInt(recipe.getCookTime());
             buf.writeFloat(recipe.getExperience());
         } // end write(packet)
