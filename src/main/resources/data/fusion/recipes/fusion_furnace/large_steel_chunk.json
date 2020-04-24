@@ -1,0 +1,19 @@
+{
+	"type" : "fusion:alloying",
+	"output" : {
+			"item" : "fusion:large_steel_chunk"
+		},
+	"inputs" : [
+			{
+				"tag" : "minecraft:coals"
+			},
+			{
+				"item" : "minecraft:iron_ingot"
+			}
+		],
+	"catalyst" : {
+		"item" : "minecraft:redstone"
+	},
+	"experience": 8.0,
+	"cookingtime": 600
+}
