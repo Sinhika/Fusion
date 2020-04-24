@@ -1,7 +1,10 @@
 package mod.alexndr.fusion.recipe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -9,6 +12,7 @@ import com.google.gson.JsonObject;
 
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
@@ -17,6 +21,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -32,7 +37,9 @@ public class FusionRecipe implements IFusionRecipe
     private final int INPUT1_SLOT = 0;
     private final int INPUT2_SLOT = 1;
     private final int CATALYST_SLOT = 2;
-    
+ 
+    private static Set<ItemStack> legal_inputs = new HashSet<ItemStack>();
+    private static Set<ItemStack> legal_catalysts = new HashSet<ItemStack>();
     
     public FusionRecipe(ResourceLocation id, ItemStack output,  int cook_time, float experience,
                         Ingredient catalyst, Ingredient... inputs)
@@ -45,6 +52,41 @@ public class FusionRecipe implements IFusionRecipe
         this.experience = experience;
     }
 
+    private static void initLegalisms()
+    {
+        Iterable<IRecipe<?>> recipes = 
+                ServerLifecycleHooks.getCurrentServer().getRecipeManager().getRecipes();
+        for (IRecipe<?> recipe: recipes)
+        {
+            // we only want Fusion recipes.
+             if (recipe.getType() != ModRecipeTypes.FUSION_TYPE) {
+                 continue;
+             }
+             legal_catalysts.add(((FusionRecipe) recipe).getCatalyst().getMatchingStacks()[0]);
+             NonNullList<Ingredient> ingrs = recipe.getIngredients();
+             for (Ingredient ingr: ingrs)
+             {
+                 legal_inputs.addAll(Arrays.asList(ingr.getMatchingStacks()));
+             } // end-for
+        } // end-for
+    } // end initLegalisms
+
+    public static boolean isInput(ItemStack stack)
+    {
+        if (legal_inputs.isEmpty()) {
+            initLegalisms();
+        }
+        return legal_inputs.contains(stack);
+    }
+   
+    public static boolean isCatalyst(ItemStack stack)
+    {
+        if (legal_catalysts.isEmpty()) {
+            initLegalisms();
+        }
+        return legal_catalysts.contains(stack);
+    }
+    
     /**
      * Used to check if a recipe matches current crafting inventory
      */
@@ -110,6 +152,13 @@ public class FusionRecipe implements IFusionRecipe
     {
         return this.catalyst;
     } // end class FusionRecipe
+
+    
+    @Override
+    public NonNullList<Ingredient> getIngredients()
+    {
+        return inputs;
+    }
 
     @Override
     public ResourceLocation getId()

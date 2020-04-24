@@ -113,7 +113,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     {
         super(ModTiles.FUSION_FURNACE.get());
     }
-
+    
     /**
      * @return If the stack is not empty and has an alloying recipe associated with it
      */
@@ -121,17 +121,14 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     {
         if (stack.isEmpty())
             return false;
-        // TODO: fix after implementing Fusion's alloy recipes.
-//        return getRecipe(stack).isPresent();
-        return false;
+        return FusionRecipe.isInput(stack);
     }
     
-    private boolean isCatalyst(final ItemStack stack) {
+    private boolean isCatalyst(final ItemStack stack) 
+    {
         if (stack.isEmpty())
             return false;
-        // TODO: fix after implementing Fusion's alloy recipes.
-//        return getRecipe(stack).isPresent();
-        return false;
+        return FusionRecipe.isCatalyst(stack);
     }
     
     /**
