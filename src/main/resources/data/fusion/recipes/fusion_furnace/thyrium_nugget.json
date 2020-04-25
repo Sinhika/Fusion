@@ -1,0 +1,19 @@
+{
+	"type" : "fusion:alloying",
+	"output" : {
+			"item" : "fusion:thyrium_nugget"
+		},
+	"inputs" : [
+			{
+				"tag" : "forge:ingots/mythril"
+			},
+			{
+				"tag" : "forge:ingots/adamantium"
+			}
+		],
+	"catalyst" : {
+		"item" : "minecraft:redstone"
+	},
+	"experience": 6.0,
+	"cookingtime": 600
+}

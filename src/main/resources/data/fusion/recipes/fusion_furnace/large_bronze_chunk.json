@@ -1,0 +1,19 @@
+{
+	"type" : "fusion:alloying",
+	"output" : {
+			"item" : "fusion:large_bronze_chunk"
+		},
+	"inputs" : [
+			{
+				"tag" : "forge:ingots/copper"
+			},
+			{
+				"tag" : "forge:ingots/tin"
+			}
+		],
+	"catalyst" : {
+		"item" : "minecraft:redstone"
+	},
+	"experience": 10.0,
+	"cookingtime": 600
+}
