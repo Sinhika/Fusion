@@ -1,7 +1,6 @@
 package mod.alexndr.fusion.recipe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +9,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModRecipeTypes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -38,8 +39,8 @@ public class FusionRecipe implements IFusionRecipe
     private final int INPUT2_SLOT = 1;
     private final int CATALYST_SLOT = 2;
  
-    private static Set<ItemStack> legal_inputs = new HashSet<ItemStack>();
-    private static Set<ItemStack> legal_catalysts = new HashSet<ItemStack>();
+    private static Set<Item> legal_inputs = new HashSet<Item>();
+    private static Set<Item> legal_catalysts = new HashSet<Item>();
     
     public FusionRecipe(ResourceLocation id, ItemStack output,  int cook_time, float experience,
             ItemStack catalyst, Ingredient... inputs)
@@ -54,6 +55,7 @@ public class FusionRecipe implements IFusionRecipe
 
     private static void initLegalisms()
     {
+        Fusion.LOGGER.info(Fusion.MODID + ": in FusionRecipe.InitLegalisms()");
         Iterable<IRecipe<?>> recipes = 
                 ServerLifecycleHooks.getCurrentServer().getRecipeManager().getRecipes();
         for (IRecipe<?> recipe: recipes)
@@ -62,11 +64,14 @@ public class FusionRecipe implements IFusionRecipe
              if (recipe.getType() != ModRecipeTypes.FUSION_TYPE) {
                  continue;
              }
-             legal_catalysts.add(((FusionRecipe) recipe).getCatalyst());
+             
+             legal_catalysts.add(((FusionRecipe) recipe).getCatalyst().getItem());
              NonNullList<Ingredient> ingrs = recipe.getIngredients();
              for (Ingredient ingr: ingrs)
              {
-                 legal_inputs.addAll(Arrays.asList(ingr.getMatchingStacks()));
+                 for (ItemStack stack : ingr.getMatchingStacks()) {
+                     legal_inputs.add(stack.getItem());
+                 }
              } // end-for
         } // end-for
     } // end initLegalisms
@@ -76,7 +81,7 @@ public class FusionRecipe implements IFusionRecipe
         if (legal_inputs.isEmpty()) {
             initLegalisms();
         }
-        return legal_inputs.contains(stack);
+        return legal_inputs.contains(stack.getItem());
     }
    
     public static boolean isCatalyst(ItemStack stack)
@@ -84,7 +89,7 @@ public class FusionRecipe implements IFusionRecipe
         if (legal_catalysts.isEmpty()) {
             initLegalisms();
         }
-        return legal_catalysts.contains(stack);
+        return legal_catalysts.contains(stack.getItem());
     }
     
     /**
@@ -121,7 +126,7 @@ public class FusionRecipe implements IFusionRecipe
         
         // check catalyst
         ItemStack cata = inv.getStackInSlot(CATALYST_SLOT);
-        if (ItemStack.areItemStacksEqual(this.catalyst, cata)) {
+        if (ItemStack.areItemsEqual(this.catalyst, cata)) {
             return ingredientsMissing.isEmpty();
         }
         else {

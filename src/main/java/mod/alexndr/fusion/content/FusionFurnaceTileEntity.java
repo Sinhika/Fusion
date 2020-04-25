@@ -91,10 +91,10 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalUp = 
             LazyOptional.of(() -> new RangedWrapper(this.inventory, CATALYST_SLOT, CATALYST_SLOT + 1));
     // Machines (hoppers, pipes) connected to this furnace's left can only insert/extract items from the input1 slot
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalLeft = 
+    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalRight = 
             LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT1_SLOT, INPUT1_SLOT + 1));
     // Machines (hoppers, pipes) connected to this furnace's right can only insert/extract items from the input2 slot
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalRight = 
+    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalLeft = 
             LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT2_SLOT, INPUT2_SLOT + 1));
     // Machines (hoppers, pipes) connected to this furnace's bottom can only insert/extract items from the output slot
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = 
@@ -121,14 +121,18 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     {
         if (stack.isEmpty())
             return false;
-        return FusionRecipe.isInput(stack);
+        boolean is_input = FusionRecipe.isInput(stack);
+//        Fusion.LOGGER.debug(Fusion.MODID + ": isInput() returns " + is_input);
+        return is_input;
     }
     
     private boolean isCatalyst(final ItemStack stack) 
     {
         if (stack.isEmpty())
             return false;
-        return FusionRecipe.isCatalyst(stack);
+        boolean is_cata = FusionRecipe.isCatalyst(stack); 
+//        Fusion.LOGGER.debug(Fusion.MODID + ": isCatalyst() returns " + is_cata);
+        return is_cata;
     }
     
     /**
