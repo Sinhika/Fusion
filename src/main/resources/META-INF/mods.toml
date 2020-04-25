@@ -21,9 +21,9 @@ An add-on for SimpleOres that adds a unique alloying process.
 
 [[dependencies.fusion]] #optional
     modId="simpleores"
-    mandatory=false
+    mandatory=true
     versionRange="[1.15.2-2.1,)"
-    ordering="BEFORE"
+    ordering="NONE"
     side="BOTH"
 
 [[dependencies.fusion]] #optional
