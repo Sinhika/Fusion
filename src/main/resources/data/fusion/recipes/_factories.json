@@ -1,0 +1,11 @@
+{
+  "conditions": {
+    "fusion_furnace_enabled" : "mod.alexndr.fusion.conditions.FusionConditionFactory",
+    "extra_chunks_enabled" : "mod.alexndr.fusion.conditions.FusionConditionFactory",
+    "simple_ores_enabled" :  "mod.alexndr.fusion.conditions.FusionConditionFactory",
+    "steel_enabled" : "mod.alexndr.fusion.conditions.conditions.SteelConditionFactory",
+    "bronze_enabled" : "mod.alexndr.fusion.conditions.BronzeConditionFactory",
+    "sinisite_enabled" : "mod.alexndr.fusion.conditions.SinisiteConditionFactory",
+    "thyrium_enabled" : "mod.alexndr.fusion.conditions.ThyriumConditionFactory"
+  }
+}

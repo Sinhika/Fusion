@@ -1,0 +1,19 @@
+{
+	"type" : "fusion:alloying",
+	"output" : {
+			"item" : "fusion:sinisite_nugget"
+		},
+	"inputs" : [
+			{
+				"tag" : "forge:ingots/mythril"
+			},
+			{
+				"tag" : "forge:gems/onyx"
+			}
+		],
+	"catalyst" : {
+		"item" : "minecraft:glowstone_dust"
+	},
+	"experience": 12.0,
+	"cookingtime": 600
+}

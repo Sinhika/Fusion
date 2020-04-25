@@ -1,0 +1,19 @@
+{
+	"type" : "fusion:alloying",
+	"output" : {
+			"item" : "fusion:bronze_nugget"
+		},
+	"inputs" : [
+			{
+				"tag" : "forge:ingots/copper"
+			},
+			{
+				"tag" : "forge:ingots/tin"
+			}
+		],
+	"catalyst" : {
+		"item" : "minecraft:bone_meal"
+	},
+	"experience": 2.0,
+	"cookingtime": 600
+}
