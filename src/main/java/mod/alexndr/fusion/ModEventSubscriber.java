@@ -7,11 +7,11 @@ import org.apache.logging.log4j.Logger;
 
 import mod.alexndr.fusion.config.ConfigHelper;
 import mod.alexndr.fusion.config.ConfigHolder;
-import mod.alexndr.fusion.helpers.FusionLootModifiers;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTabGroups;
 import mod.alexndr.fusion.recipe.IFusionRecipe;
+import mod.alexndr.simpleores.helpers.SimpleOresLootModifiers;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -98,7 +98,7 @@ public final class ModEventSubscriber
             @Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event)
     {
         event.getRegistry().register(
-                new FusionLootModifiers.ShearsLootModifier.Serializer().setRegistryName(
+                new SimpleOresLootModifiers.ShearsLootModifier.Serializer().setRegistryName(
                         new ResourceLocation(Fusion.MODID, "mod_shears_harvest")) );
     } // end registerModifierSerializers
 
