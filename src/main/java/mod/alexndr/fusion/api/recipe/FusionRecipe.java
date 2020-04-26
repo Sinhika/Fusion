@@ -1,4 +1,4 @@
-package mod.alexndr.fusion.recipe;
+package mod.alexndr.fusion.api.recipe;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,7 +1,7 @@
 package mod.alexndr.fusion.init;
 
-import mod.alexndr.fusion.recipe.FusionRecipe;
-import mod.alexndr.fusion.recipe.IFusionRecipe;
+import mod.alexndr.fusion.api.recipe.FusionRecipe;
+import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
