@@ -2,7 +2,7 @@ package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionFurnaceBlock;
-import mod.alexndr.fusion.content.SimpleMetalBlock;
+import mod.alexndr.simpleores.content.SimpleMetalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
