@@ -1,4 +1,4 @@
-package mod.alexndr.fusion.recipe;
+package mod.alexndr.fusion.api.recipe;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModBlocks;

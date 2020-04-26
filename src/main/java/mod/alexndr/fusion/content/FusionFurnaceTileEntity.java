@@ -5,11 +5,11 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import mod.alexndr.fusion.api.recipe.FusionRecipe;
+import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTiles;
-import mod.alexndr.fusion.recipe.FusionRecipe;
-import mod.alexndr.fusion.recipe.IFusionRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

@@ -5,13 +5,13 @@ import javax.annotation.Nonnull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.config.ConfigHelper;
 import mod.alexndr.fusion.config.ConfigHolder;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTabGroups;
-import mod.alexndr.fusion.recipe.IFusionRecipe;
-import mod.alexndr.simpleores.helpers.SimpleOresLootModifiers;
+import mod.alexndr.simpleores.api.loot.SimpleOresLootModifiers;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
