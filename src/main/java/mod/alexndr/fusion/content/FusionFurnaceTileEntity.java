@@ -422,7 +422,7 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
 
     /**
      * Called from {@link NetworkHooks#openGui}
-     * (which is called from {@link ElectricFurnaceBlock#onBlockActivated} on the logical server)
+     * (which is called from {@link FusionFurnaceBlock#onBlockActivated} on the logical server)
      *
      * @return The logical-server-side Container for this TileEntity
      */

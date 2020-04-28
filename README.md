@@ -1,6 +1,17 @@
 # Fusion
 
-Repository for Fusion plugin for Simple Ores, by AlexndrGr8st
+Repository for Fusion plugin for Simple Ores, by AlexndrGr8st, maintained by Sinhika.
+
+Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https://github.com/Cadiboo/Example-Mod that he made free to all to borrow, in the hopes of encouraging good coding practices in Forge mods. I hope I did a good job with it.
+
+**WARNING: 1.15 is a Work-in-Progress; expect frequent changes!**
+
+TO-DO
+-----
+* add output to front of fusion furnace as well.
+* add JEI support
+* make recipes disable-able in config.
+* update or move the SimpleOres, etc. wiki
 
 License
 -------
