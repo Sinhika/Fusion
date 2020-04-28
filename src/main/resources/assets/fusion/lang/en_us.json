@@ -11,7 +11,8 @@
 
     "container.fusion_furnace": "Fusion        Furnace",
     "fusion_furnace_gui": "Fusion Furnace",
-
+	"fusion.jei.fusion_category": "Fusion Furnace Alloying", 
+	
     "item.fusion.steel_ingot": "Steel Ingot",
     "item.fusion.slimy_diamond": "Slimy Diamond",
     "item.fusion.steel_nugget": "Steel Nugget",

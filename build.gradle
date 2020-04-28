@@ -108,6 +108,27 @@ dependencies {
 	compile fg.deobf("mod.alexndr.simpleores:SimpleOres2:1.15.2-2.1.4.1")
 }
 
+repositories {
+  maven {
+    // location of the maven that hosts JEI files
+    name = "Progwml6 maven"
+    url = "https://dvs1.progwml6.com/files/maven/"
+  }
+  maven {
+    // location of a maven mirror for JEI files, as a fallback
+    name = "ModMaven"
+    url = "https://modmaven.k-4u.nl"
+  }
+}
+
+dependencies {
+  /* minecraft dependency is here */
+
+  // compile against the JEI API but do not include it at runtime
+  compileOnly fg.deobf("mezz.jei:jei-${version_minecraft}:${jei_version}:api")
+  // at runtime, use the full JEI jar
+  runtimeOnly fg.deobf("mezz.jei:jei-${version_minecraft}:${jei_version}")
+}
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'

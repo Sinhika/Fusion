@@ -14,7 +14,7 @@ public class FusionFurnaceScreen extends ContainerScreen<FusionFurnaceContainer>
 {
     private static final ResourceLocation BACKGROUND_TEXTURE = 
             new ResourceLocation(Fusion.MODID, "textures/gui/container/fusion_furnace_gui.png");
-
+    
     public FusionFurnaceScreen(final FusionFurnaceContainer screenContainer, PlayerInventory inv, 
                                ITextComponent titleIn)
     {
@@ -76,10 +76,6 @@ public class FusionFurnaceScreen extends ContainerScreen<FusionFurnaceContainer>
         this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0x404040);
         this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
 
-//        final FusionFurnaceTileEntity tileEntity = this.container.tileEntity;
-//        if (tileEntity.smeltTimeLeft > 0)
-//            this.font.drawString(tileEntity.smeltTimeLeft + " / " + tileEntity.maxSmeltTime, 8.0F, this.ySize, 0x404040);
-//        this.font.drawString(tileEntity.fuelBurnTimeLeft + " / " + tileEntity.maxFuelBurnTime, 8.0F, this.ySize + 14, 0x404040);
     } // end ()
 
     /**
