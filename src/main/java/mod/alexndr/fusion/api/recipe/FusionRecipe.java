@@ -153,6 +153,7 @@ public class FusionRecipe implements IFusionRecipe
         return this.output;
     }
     
+    @Override
     public ItemStack getCatalyst()
     {
         return this.catalyst;

@@ -9,7 +9,7 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
 TO-DO
 -----
 * add output to front of fusion furnace as well.
-* add JEI support
+* <s>add JEI support</s>  Basic JEI support done. Add remaining JEI support (transfer handler).
 * make recipes disable-able in config.
 * update or move the SimpleOres, etc. wiki
 

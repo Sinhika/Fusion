@@ -1,16 +1,23 @@
 package mod.alexndr.fusion.client.jei;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
+import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mod.alexndr.fusion.Fusion;
-import mod.alexndr.fusion.api.recipe.FusionRecipe;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
+import mod.alexndr.fusion.init.ModBlocks;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
 public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecipe>
@@ -31,12 +38,11 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     private final IDrawableAnimated arrow_right;
     private final IDrawableAnimated bubble_left;
     private final IDrawableAnimated bubble_right;
-    
-    private IGuiHelper guihelper;
+    private final IDrawable icon;
     
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper)
     {
-        this.guihelper = guiHelper;
+        this.icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.fusion_furnace.get()));
         localizedName = I18n.format("fusion.jei.fusion_category");
         backgroundLocation = 
                         new ResourceLocation(Fusion.MODID, 
@@ -86,7 +92,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     @Override
     public Class<? extends IFusionRecipe> getRecipeClass()
     {
-        return FusionRecipe.class;
+        return IFusionRecipe.class;
     }
 
     @Override
@@ -102,23 +108,28 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     @Override
     public IDrawable getIcon()
     {
-        return this.guihelper.createDrawable(
-                new ResourceLocation(Fusion.MODID, "textures/block/fusion_furnace_front_lit.png"), 
-                0, 0, 16, 16);
+        return icon;
     }
 
     @Override
     public void setIngredients(IFusionRecipe recipe, IIngredients ingredients)
     {
-        // TODO Auto-generated method stub
-        
+        List<Ingredient> inputs = new ArrayList<Ingredient>(recipe.getIngredients());
+        inputs.add(Ingredient.fromStacks(recipe.getCatalyst()));
+        ingredients.setInputIngredients(inputs);
+        ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
     }
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, IFusionRecipe recipe, IIngredients ingredients)
     {
-        // TODO Auto-generated method stub
+        IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
+        guiItemStacks.init(INPUT1_SLOT, true, 0, 30);
+        guiItemStacks.init(INPUT2_SLOT, true, 93, 30);
+        guiItemStacks.init(CATALYST_SLOT, true, 46, 2);
+        guiItemStacks.init(OUTPUT_SLOT, false, 46, 28);
         
+        guiItemStacks.set(ingredients);
     }
 
 } // end class
