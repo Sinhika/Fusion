@@ -30,6 +30,8 @@ public interface IFusionRecipe extends IRecipe<RecipeWrapper>
     {
         return new ItemStack(ModBlocks.fusion_furnace.get());
     }
+
+    ItemStack getCatalyst();
     
     
 } // end-class

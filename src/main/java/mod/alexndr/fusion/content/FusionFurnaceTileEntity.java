@@ -11,6 +11,7 @@ import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTiles;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -40,10 +41,10 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 public class FusionFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider
 {
     public static final int INPUT1_SLOT = 0;  // left
-    public static final int FUEL_SLOT = 1;    // back
-    public static final int OUTPUT_SLOT = 2;  // down
-    public static final int INPUT2_SLOT = 3;  // right
-    public static final int CATALYST_SLOT = 4;  // top
+    public static final int INPUT2_SLOT = 1;  // right
+    public static final int CATALYST_SLOT = 2;  // top
+    public static final int OUTPUT_SLOT = 3;  // down
+    public static final int FUEL_SLOT = 4;    // back
 
     private static final String INVENTORY_TAG = "inventory";
     private static final String SMELT_TIME_LEFT_TAG = "smeltTimeLeft";
@@ -90,11 +91,13 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
     // Machines (hoppers, pipes) connected to this furnace's top can only insert/extract items from the catalyst slot
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalUp = 
             LazyOptional.of(() -> new RangedWrapper(this.inventory, CATALYST_SLOT, CATALYST_SLOT + 1));
+    
     // Machines (hoppers, pipes) connected to this furnace's left can only insert/extract items from the input1 slot
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalRight = 
-            LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT1_SLOT, INPUT1_SLOT + 1));
-    // Machines (hoppers, pipes) connected to this furnace's right can only insert/extract items from the input2 slot
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalLeft = 
+            LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT1_SLOT, INPUT1_SLOT + 1));
+    
+    // Machines (hoppers, pipes) connected to this furnace's right can only insert/extract items from the input2 slot
+    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalRight = 
             LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT2_SLOT, INPUT2_SLOT + 1));
     // Machines (hoppers, pipes) connected to this furnace's bottom can only insert/extract items from the output slot
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = 
@@ -337,7 +340,29 @@ public class FusionFurnaceTileEntity extends TileEntity implements ITickableTile
         {
             if (side == null)
                 return inventoryCapabilityExternal.cast();
-            switch (side) {
+            
+            /* fix side for any rotation... */
+            Direction actual_facing = this.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
+            Direction default_facing = Direction.NORTH;
+            
+            Direction true_side;
+            if (side == Direction.UP || side == Direction.DOWN)
+            {
+                true_side = side;
+            }
+            else if (actual_facing.getOpposite() == default_facing) {
+                true_side = side.getOpposite();
+            }
+            else if (actual_facing.rotateY() == default_facing) {
+                true_side = side.rotateY();
+            }
+            else if (actual_facing.rotateYCCW() == default_facing) {
+                true_side = side.rotateYCCW();
+            }
+            else {
+                true_side = side;
+            }
+            switch (true_side) {
                 case DOWN:
                     return inventoryCapabilityExternalDown.cast();
                 case UP:
