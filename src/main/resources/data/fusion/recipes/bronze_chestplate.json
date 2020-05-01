@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:bronze_chestplate"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "bronze_armor"
+		}
+	],
 	"pattern" : [
 		"S S",
 		"SSS",

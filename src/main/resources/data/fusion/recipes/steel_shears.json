@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:steel_shears"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "steel_tools"
+		}
+	],
 	"pattern" : [
 		"S ",
 		" S"

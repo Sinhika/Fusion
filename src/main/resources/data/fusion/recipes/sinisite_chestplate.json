@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:sinisite_chestplate"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "sinisite_armor"
+		}
+	],
 	"pattern" : [
 		"S S",
 		"SSS",

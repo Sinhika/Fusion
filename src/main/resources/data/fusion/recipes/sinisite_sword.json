@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:sinisite_sword"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "sinisite_tools"
+		}
+	],
 	"pattern" : [
 		" S ",
 		" S ",

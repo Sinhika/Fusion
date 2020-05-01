@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:thyrium_leggings"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "thyrium_armor"
+		}
+	],
 	"pattern" : [
 		"SSS",
 		"S S",

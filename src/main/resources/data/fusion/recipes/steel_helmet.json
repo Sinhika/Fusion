@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:steel_helmet"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "steel_armor"
+		}
+	],
 	"pattern" : [
 		"SSS",
 		"S S"

@@ -1,5 +1,11 @@
 {
 	"type" : "minecraft:crafting_shaped",
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "fusion_bows"
+		}
+	],
 	"result" : {
 		"item" : "fusion:thyrium_bow"
 	},
