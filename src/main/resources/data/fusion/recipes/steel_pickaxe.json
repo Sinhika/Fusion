@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:steel_pickaxe"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "steel_tools"
+		}
+	],
 	"pattern" : [
 		"SSS",
 		" T ",

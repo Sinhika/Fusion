@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:sinisite_helmet"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "sinisite_armor"
+		}
+	],
 	"pattern" : [
 		"SSS",
 		"S S"

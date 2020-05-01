@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:bronze_leggings"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "bronze_armor"
+		}
+	],
 	"pattern" : [
 		"SSS",
 		"S S",

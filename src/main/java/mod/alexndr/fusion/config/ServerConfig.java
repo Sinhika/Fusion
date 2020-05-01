@@ -5,10 +5,26 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class ServerConfig
 {
+    // fusion recipes
     final ForgeConfigSpec.BooleanValue serverEnableSteelMaking;
     final ForgeConfigSpec.BooleanValue serverEnableBronzeMaking;
     final ForgeConfigSpec.BooleanValue serverEnableSinisiteMaking;
     final ForgeConfigSpec.BooleanValue serverEnableThyriumMaking;
+    
+    // tool recipes
+    final ForgeConfigSpec.BooleanValue serverEnableSteelTools;
+    final ForgeConfigSpec.BooleanValue serverEnableBronzeTools;
+    final ForgeConfigSpec.BooleanValue serverEnableSinisiteTools;
+    final ForgeConfigSpec.BooleanValue serverEnableThyriumTools;
+
+    // armor recipes
+    final ForgeConfigSpec.BooleanValue serverEnableSteelArmor;
+    final ForgeConfigSpec.BooleanValue serverEnableBronzeArmor;
+    final ForgeConfigSpec.BooleanValue serverEnableSinisiteArmor;
+    final ForgeConfigSpec.BooleanValue serverEnableThyriumArmor;
+    
+    // bow recipes
+    final ForgeConfigSpec.BooleanValue serverEnableFusionBows;
     
     ServerConfig(final ForgeConfigSpec.Builder builder)
     {
@@ -25,6 +41,39 @@ public final class ServerConfig
         serverEnableThyriumMaking = builder.comment("false disables alloy recipes")
                 .translation(SimpleOres.MODID + ".config.enableThyriumMaking")
                 .define("EnableThyriumMaking", true);
+        builder.pop();
+        builder.push("Tools");
+        serverEnableSteelTools = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableSteelTools")
+                .define("EnableSteelTools", true);
+        serverEnableBronzeTools = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableBronzeTools")
+                .define("EnableBronzeTools", true);
+        serverEnableSinisiteTools = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableSinisiteTools")
+                .define("EnableSinisiteTools", true);
+        serverEnableThyriumTools = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableThyriumTools")
+                .define("EnableThyriumTools", true);
+        builder.pop();
+        builder.push("Armor");
+        serverEnableSteelArmor = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableSteelArmor")
+                .define("EnableSteelArmor", true);
+        serverEnableBronzeArmor = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableBronzeArmor")
+                .define("EnableBronzeArmor", true);
+        serverEnableSinisiteArmor = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableSinisiteArmor")
+                .define("EnableSinisiteArmor", true);
+        serverEnableThyriumArmor = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableThyriumArmor")
+                .define("EnableThyriumArmor", true);
+        builder.pop();
+        builder.push("Bows");
+        serverEnableFusionBows = builder.comment("false disables recipes")
+                .translation(SimpleOres.MODID + ".config.enableFusionBows")
+                .define("EnableFusionBows", true);
         builder.pop();
     } // end ctor
     

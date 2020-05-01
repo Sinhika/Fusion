@@ -2,6 +2,12 @@
 	"result" : {
 		"item" : "fusion:thyrium_pickaxe"
 	},
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "thyrium_tools"
+		}
+	],
 	"pattern" : [
 		"SSS",
 		" T ",
