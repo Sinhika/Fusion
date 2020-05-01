@@ -15,6 +15,8 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModBlocks;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -82,6 +84,15 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
         arrow_right.draw(68, 30);
         bubble_left.draw(32, 0);
         bubble_right.draw(66, 0);
+        
+        float experience = recipe.getExperience();
+        if (experience > 0) {
+            String experienceString = I18n.format("gui.jei.category.fusion.experience", experience);
+            Minecraft minecraft = Minecraft.getInstance();
+            FontRenderer fontRenderer = minecraft.fontRenderer;
+            int stringWidth = fontRenderer.getStringWidth(experienceString);
+            fontRenderer.drawString(experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
+        }
     }
 
     @Override

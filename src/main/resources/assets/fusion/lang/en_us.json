@@ -9,9 +9,8 @@
     "block.fusion.fusion_furnace": "Fusion Furnace",
     "block.fusion.fusion_furnace_lit": "Fusion Furnace",
 
-    "container.fusion_furnace": "Fusion        Furnace",
-    "fusion_furnace_gui": "Fusion Furnace",
 	"fusion.jei.fusion_category": "Fusion Furnace Alloying", 
+	"gui.jei.category.fusion.experience": "%s XP",
 	
     "item.fusion.steel_ingot": "Steel Ingot",
     "item.fusion.slimy_diamond": "Slimy Diamond",

@@ -1,4 +1,5 @@
 {
+ 	"itemGroup.fusion" : "Fusion",
     "block.fusion.steel_block": "Bloc d'acier",
     "block.fusion.slimy_diamond_block": "Bloc de Diamant colant",
 
@@ -7,9 +8,6 @@
     "block.fusion.sinisite_block": "Bloc de Sinisite",
     "block.fusion.fusion_furnace": "Fourneau à Fusion",
     "block.fusion.fusion_furnace_lit": "Fourneau à Fusion",
-
-    "container.fusion_furnace": "Fourneau        à Fusion",
-    "fusion_furnace_gui": "Fourneau à Fusion",
 
     "item.fusion.steel_ingot": "Lingot d'Acier",
     "item.fusion.slimy_diamond": "Diamant colant",
