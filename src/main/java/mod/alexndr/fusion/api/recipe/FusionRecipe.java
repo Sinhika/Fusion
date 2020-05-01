@@ -177,6 +177,7 @@ public class FusionRecipe implements IFusionRecipe
         return this.cook_time;
     }
     
+    @Override
     public float getExperience()
     {
         return this.experience;

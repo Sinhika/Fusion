@@ -32,6 +32,8 @@ public interface IFusionRecipe extends IRecipe<RecipeWrapper>
     }
 
     ItemStack getCatalyst();
+
+    float getExperience();
     
     
 } // end-class
