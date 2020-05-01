@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import mod.alexndr.fusion.init.ModItems;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import net.minecraft.util.LazyLoadBase;
 
 public enum FusionItemTier implements IItemTier 
 {
@@ -19,7 +19,7 @@ public enum FusionItemTier implements IItemTier
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final LazyValue<Ingredient> repairMaterial;
+    private final LazyLoadBase<Ingredient> repairMaterial;
 
     private FusionItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn,
             int enchantabilityIn, Supplier<Ingredient> repairMaterialIn)
@@ -29,7 +29,7 @@ public enum FusionItemTier implements IItemTier
         this.efficiency = efficiencyIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
-        this.repairMaterial = new LazyValue<>(repairMaterialIn);
+        this.repairMaterial = new LazyLoadBase<>(repairMaterialIn);
     }
     
     @Override

@@ -1,6 +1,6 @@
 package mod.alexndr.fusion.client.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.GlStateManager;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionFurnaceContainer;
@@ -25,7 +25,7 @@ public class FusionFurnaceScreen extends ContainerScreen<FusionFurnaceContainer>
     protected void drawGuiContainerBackgroundLayer(final float partialTicks, final int mouseX, 
                                                    final int mouseY)
     {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+    	GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         getMinecraft().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         int startX = this.guiLeft;
         int startY = this.guiTop;
