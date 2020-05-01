@@ -1,5 +1,11 @@
 {
 	"type" : "fusion:alloying",
+	"conditions" : [
+		{
+			"type" : "fusion:flag",
+			"flag" : "sinisite_making"
+		}
+	],
 	"output" : {
 			"item" : "fusion:medium_sinisite_chunk"
 		},
