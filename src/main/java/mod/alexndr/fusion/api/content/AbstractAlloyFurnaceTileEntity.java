@@ -25,7 +25,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
@@ -492,7 +491,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         {
             player.world.getRecipeManager().getRecipe(entry.getKey()).ifPresent((p_213993_3_) -> {
                 list.add(p_213993_3_);
-                spawnExpOrbs(player, entry.getValue(), ((AbstractCookingRecipe) p_213993_3_).getExperience());
+                spawnExpOrbs(player, entry.getValue(), ((FusionRecipe) p_213993_3_).getExperience());
             });
         }
         player.unlockRecipes(list);
