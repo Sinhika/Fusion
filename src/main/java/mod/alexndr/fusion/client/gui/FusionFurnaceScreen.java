@@ -3,8 +3,8 @@ package mod.alexndr.fusion.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.content.FusionFurnaceContainer;
-import mod.alexndr.fusion.content.FusionFurnaceTileEntity;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -34,7 +34,7 @@ public class FusionFurnaceScreen extends ContainerScreen<FusionFurnaceContainer>
         // The parameters are (x, y, u, v, width, height)
         this.blit(startX, startY, 0, 0, this.xSize, this.ySize);
         
-        final FusionFurnaceTileEntity tileEntity = this.container.tileEntity;
+        final AbstractAlloyFurnaceTileEntity tileEntity = this.container.tileEntity;
 
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
@@ -92,7 +92,7 @@ public class FusionFurnaceScreen extends ContainerScreen<FusionFurnaceContainer>
      */
     private int getCookProgressScaled(int pixels)
     {
-        final FusionFurnaceTileEntity tileEntity = this.container.tileEntity;
+        final AbstractAlloyFurnaceTileEntity tileEntity = this.container.tileEntity;
         final short smeltTimeLeft = tileEntity.smeltTimeLeft;
         final short maxSmeltTime = tileEntity.maxSmeltTime;
         if (smeltTimeLeft <= 0 || maxSmeltTime <= 0)
@@ -102,7 +102,7 @@ public class FusionFurnaceScreen extends ContainerScreen<FusionFurnaceContainer>
 
     private int getBurnLeftScaled(int pixels)
     {
-        final FusionFurnaceTileEntity tileEntity = this.container.tileEntity;
+        final AbstractAlloyFurnaceTileEntity tileEntity = this.container.tileEntity;
         if (tileEntity.maxFuelBurnTime <= 0)
             return 0;
         return tileEntity.fuelBurnTimeLeft * (pixels + 2) / tileEntity.maxFuelBurnTime;
