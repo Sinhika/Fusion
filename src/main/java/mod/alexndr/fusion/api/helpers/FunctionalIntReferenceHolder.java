@@ -1,4 +1,4 @@
-package mod.alexndr.fusion.helpers;
+package mod.alexndr.fusion.api.helpers;
 
 import net.minecraft.util.IntReferenceHolder;
 
