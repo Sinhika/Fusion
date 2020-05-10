@@ -1,6 +1,6 @@
 package mod.alexndr.fusion.api.client.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.GlStateManager;
 
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceContainer;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
@@ -26,7 +26,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
     @Override
     protected void drawGuiContainerBackgroundLayer(final float partialTicks, final int mouseX, final int mouseY)
     {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         getMinecraft().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         int startX = this.guiLeft;
         int startY = this.guiTop;

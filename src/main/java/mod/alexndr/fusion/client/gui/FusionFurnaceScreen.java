@@ -1,6 +1,5 @@
 package mod.alexndr.fusion.client.gui;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.api.client.gui.AbstractAlloyFurnaceScreen;
 import mod.alexndr.fusion.content.FusionFurnaceContainer;
