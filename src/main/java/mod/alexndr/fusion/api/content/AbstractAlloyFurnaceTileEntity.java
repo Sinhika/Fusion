@@ -165,6 +165,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     }
 
     /**
+     * TODO implement recipe caching
      * @return The alloying recipe for the inventory
      */
     private Optional<IFusionRecipe> getRecipe(final IInventory inv)
@@ -233,6 +234,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
                         --smeltTimeLeft;
                         if (smeltTimeLeft == 0) 
                         {
+                            this.setRecipeUsed(getRecipe(input1, input2, catalyst).get());
                             inventory.insertItem(OUTPUT_SLOT, result, false);
                             if (input1.hasContainerItem())
                                 inventory.setStackInSlot(INPUT1_SLOT, input1.getContainerItem());
@@ -252,7 +254,6 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
                                 catalyst.shrink(1);
                                 inventory.setStackInSlot(CATALYST_SLOT, catalyst); // Update the data
                             }
-                            this.setRecipeUsed(getRecipe(input1, input2, catalyst).get());
                             smeltTimeLeft = -1; // Set to -1 so we smelt the next stack on the next tick
                         } // end-if 
                     } // end-else
