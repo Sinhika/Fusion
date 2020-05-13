@@ -24,6 +24,14 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
    }
 
     @Override
+    public void render(final int mouseX, final int mouseY, final float partialTicks)
+    {
+        this.renderBackground();
+        super.render(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
+    }
+
+    @Override
     protected void drawGuiContainerBackgroundLayer(final float partialTicks, final int mouseX, final int mouseY)
     {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
