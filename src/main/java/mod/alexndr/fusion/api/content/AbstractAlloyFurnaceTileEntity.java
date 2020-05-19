@@ -81,6 +81,10 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     
     public final ItemStackHandler inventory = new ItemStackHandler(5)
     {
+        /**
+         * this is where the CLIENT checks to see if item is valid to insert in slot. 
+         * Be relaxed in checks, don't cross the streams! (i.e, don't call server-side code here!)
+         */
         @Override
         public boolean isItemValid(final int slot, @Nonnull final ItemStack stack)
         {
@@ -90,9 +94,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
                 return FurnaceTileEntity.isFuel(stack);
             case INPUT1_SLOT:
             case INPUT2_SLOT:
-                return isInput(stack);
+                return true;
             case CATALYST_SLOT:
-                return isCatalyst(stack);
+                return true;
             case OUTPUT_SLOT:
                 return isOutput(stack);
             default:
@@ -126,7 +130,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     /**
      * @return If the stack is not empty and has an alloying recipe associated with it
      */
-    private boolean isInput(final ItemStack stack)
+    protected boolean isInput(final ItemStack stack)
     {
             if (stack.isEmpty())
                 return false;
@@ -135,26 +139,26 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             return is_input;
         }
 
-    private boolean isCatalyst(final ItemStack stack)
+    protected boolean isCatalyst(final ItemStack stack)
     {
             if (stack.isEmpty())
                 return false;
             boolean is_cata = FusionRecipe.isCatalyst(stack); 
-    //        Fusion.LOGGER.debug(Fusion.MODID + ": isCatalyst() returns " + is_cata);
+   //        Fusion.LOGGER.debug(Fusion.MODID + ": isCatalyst() returns " + is_cata);
             return is_cata;
         }
 
     /**
      * @return If the stack's item is equal to the result of smelting our input
      */
-    private boolean isOutput(final ItemStack stack)
+    
+    protected boolean isOutput(final ItemStack stack)
     {
-        final Optional<ItemStack> result = 
-                getResult(inventory.getStackInSlot(INPUT1_SLOT), inventory.getStackInSlot(INPUT2_SLOT),
-                          inventory.getStackInSlot(CATALYST_SLOT));
+        final Optional<ItemStack> result = getResult(inventory.getStackInSlot(INPUT1_SLOT),
+                inventory.getStackInSlot(INPUT2_SLOT), inventory.getStackInSlot(CATALYST_SLOT));
         return result.isPresent() && ItemStack.areItemsEqual(result.get(), stack);
     }
-
+     
     /**
      * @return The smelting recipe for the input stack
      */
