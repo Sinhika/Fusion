@@ -2,15 +2,12 @@ package mod.alexndr.fusion;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import mod.alexndr.fusion.config.ConfigHolder;
-import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModContainers;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModTiles;
-import mod.alexndr.simpleores.api.config.FlagCondition;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -40,8 +37,6 @@ public class Fusion
 
         // Register Configs
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC);
-        CraftingHelper.register(new FlagCondition.Serializer(FusionConfig.INSTANCE, 
-                new ResourceLocation(Fusion.MODID, "flag")));    
     } // end ctor()
 
 
