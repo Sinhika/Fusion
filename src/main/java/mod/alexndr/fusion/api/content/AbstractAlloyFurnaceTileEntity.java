@@ -170,7 +170,6 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     }
 
     /**
-     * TODO implement recipe caching
      * @return The alloying recipe for the inventory
      */
     private Optional<IFusionRecipe> getRecipe(final IInventory inv)
