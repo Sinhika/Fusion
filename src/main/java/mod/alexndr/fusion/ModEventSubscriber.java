@@ -8,15 +8,18 @@ import org.apache.logging.log4j.Logger;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.config.ConfigHelper;
 import mod.alexndr.fusion.config.ConfigHolder;
+import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTabGroups;
+import mod.alexndr.simpleores.api.config.FlagCondition;
 import mod.alexndr.simpleores.api.loot.SimpleOresLootModifiers;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -110,6 +113,8 @@ public final class ModEventSubscriber
     @SubscribeEvent
     public static void onRegisterRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> evt) 
     {
+        CraftingHelper.register(new FlagCondition.Serializer(FusionConfig.INSTANCE, 
+                new ResourceLocation(Fusion.MODID, "flag")));    
         Registry.register(Registry.RECIPE_TYPE, IFusionRecipe.TYPE_ID, ModRecipeTypes.FUSION_TYPE);
         evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(IFusionRecipe.TYPE_ID));
     } // end onRegisterRecipeSerializers
