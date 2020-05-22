@@ -114,7 +114,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
         final AbstractAlloyFurnaceTileEntity tileEntity = this.container.tileEntity;
         if (tileEntity.maxFuelBurnTime <= 0)
             return 0;
-        return tileEntity.fuelBurnTimeLeft * (pixels + 2) / tileEntity.maxFuelBurnTime;
+        return (tileEntity.fuelBurnTimeLeft * (pixels + 2)) / tileEntity.maxFuelBurnTime;
     }
 
 } // end-class
