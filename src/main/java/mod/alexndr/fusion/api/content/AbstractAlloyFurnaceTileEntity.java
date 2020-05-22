@@ -63,8 +63,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     
     public short smeltTimeLeft = -1;
     public short maxSmeltTime = -1;
-    public short fuelBurnTimeLeft = -1;
-    public short maxFuelBurnTime = -1;
+    public int fuelBurnTimeLeft = -1;
+    public int maxFuelBurnTime = -1;
     private boolean lastBurning = false;
     
     private final Map<ResourceLocation, Integer> recipe2xp_map = Maps.newHashMap();
@@ -322,7 +322,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         {
             final int burnTime = (int) (ForgeHooks.getBurnTime(fuelStack) * BURN_TIME_MODIFIER);
             if (burnTime > 0) {
-                fuelBurnTimeLeft = maxFuelBurnTime = ((short) burnTime);
+                fuelBurnTimeLeft = maxFuelBurnTime = burnTime;
                 if (fuelStack.hasContainerItem())
                     inventory.setStackInSlot(FUEL_SLOT, fuelStack.getContainerItem());
                 else {
@@ -420,8 +420,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
         this.smeltTimeLeft = compound.getShort(SMELT_TIME_LEFT_TAG);
         this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
-        this.fuelBurnTimeLeft = compound.getShort(FUEL_BURN_TIME_LEFT_TAG);
-        this.maxFuelBurnTime = compound.getShort(MAX_FUEL_BURN_TIME_TAG);
+        this.fuelBurnTimeLeft = compound.getInt(FUEL_BURN_TIME_LEFT_TAG);
+        this.maxFuelBurnTime = compound.getInt(MAX_FUEL_BURN_TIME_TAG);
         
         // get recipe2xp map
         int ii = compound.getShort("RecipesUsedSize");
@@ -444,8 +444,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
         compound.putShort(SMELT_TIME_LEFT_TAG, this.smeltTimeLeft);
         compound.putShort(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
-        compound.putShort(FUEL_BURN_TIME_LEFT_TAG, this.fuelBurnTimeLeft);
-        compound.putShort(MAX_FUEL_BURN_TIME_TAG, this.maxFuelBurnTime);
+        compound.putInt(FUEL_BURN_TIME_LEFT_TAG, this.fuelBurnTimeLeft);
+        compound.putInt(MAX_FUEL_BURN_TIME_TAG, this.maxFuelBurnTime);
         
         // write recipe2xp map
         compound.putShort("RecipesUsedSize", (short)this.recipe2xp_map.size());
