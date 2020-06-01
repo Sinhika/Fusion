@@ -1,6 +1,6 @@
 package mod.alexndr.fusion.config;
 
-import mod.alexndr.simpleores.SimpleOres;
+import mod.alexndr.fusion.Fusion;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class ServerConfig
@@ -30,49 +30,49 @@ public final class ServerConfig
     {
         builder.push("Alloy Recipes");
         serverEnableSteelMaking = builder.comment("false disables alloy recipes")
-                .translation(SimpleOres.MODID + ".config.enableSteelMaking")
+                .translation(Fusion.MODID + ".config.enableSteelMaking")
                 .define("EnableSteelMaking", true);
         serverEnableBronzeMaking = builder.comment("false disables alloy recipes")
-                .translation(SimpleOres.MODID + ".config.enableBronzeMaking")
+                .translation(Fusion.MODID + ".config.enableBronzeMaking")
                 .define("EnableBronzeMaking", true);
         serverEnableSinisiteMaking = builder.comment("false disables alloy recipes")
-                .translation(SimpleOres.MODID + ".config.enableSinisiteMaking")
+                .translation(Fusion.MODID + ".config.enableSinisiteMaking")
                 .define("EnableSinisiteMaking", true);
         serverEnableThyriumMaking = builder.comment("false disables alloy recipes")
-                .translation(SimpleOres.MODID + ".config.enableThyriumMaking")
+                .translation(Fusion.MODID + ".config.enableThyriumMaking")
                 .define("EnableThyriumMaking", true);
         builder.pop();
         builder.push("Tools");
         serverEnableSteelTools = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableSteelTools")
+                .translation(Fusion.MODID + ".config.enableSteelTools")
                 .define("EnableSteelTools", true);
         serverEnableBronzeTools = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableBronzeTools")
+                .translation(Fusion.MODID + ".config.enableBronzeTools")
                 .define("EnableBronzeTools", true);
         serverEnableSinisiteTools = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableSinisiteTools")
+                .translation(Fusion.MODID + ".config.enableSinisiteTools")
                 .define("EnableSinisiteTools", true);
         serverEnableThyriumTools = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableThyriumTools")
+                .translation(Fusion.MODID + ".config.enableThyriumTools")
                 .define("EnableThyriumTools", true);
         builder.pop();
         builder.push("Armor");
         serverEnableSteelArmor = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableSteelArmor")
+                .translation(Fusion.MODID + ".config.enableSteelArmor")
                 .define("EnableSteelArmor", true);
         serverEnableBronzeArmor = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableBronzeArmor")
+                .translation(Fusion.MODID + ".config.enableBronzeArmor")
                 .define("EnableBronzeArmor", true);
         serverEnableSinisiteArmor = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableSinisiteArmor")
+                .translation(Fusion.MODID + ".config.enableSinisiteArmor")
                 .define("EnableSinisiteArmor", true);
         serverEnableThyriumArmor = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableThyriumArmor")
+                .translation(Fusion.MODID + ".config.enableThyriumArmor")
                 .define("EnableThyriumArmor", true);
         builder.pop();
         builder.push("Bows");
         serverEnableFusionBows = builder.comment("false disables recipes")
-                .translation(SimpleOres.MODID + ".config.enableFusionBows")
+                .translation(Fusion.MODID + ".config.enableFusionBows")
                 .define("EnableFusionBows", true);
         builder.pop();
     } // end ctor
