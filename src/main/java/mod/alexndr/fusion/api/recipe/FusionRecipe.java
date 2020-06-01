@@ -31,7 +31,7 @@ public class FusionRecipe implements IFusionRecipe
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> inputs;
-    private final ItemStack catalyst;
+    private final Ingredient catalyst;
     private final int cook_time;
     private final float experience;
     
@@ -43,7 +43,7 @@ public class FusionRecipe implements IFusionRecipe
     private static Set<Item> legal_catalysts = new HashSet<Item>();
     
     public FusionRecipe(ResourceLocation id, ItemStack output,  int cook_time, float experience,
-            ItemStack catalyst, Ingredient... inputs)
+            Ingredient catalyst, Ingredient... inputs)
     {
         this.id = id;
         this.output = output;
@@ -65,7 +65,6 @@ public class FusionRecipe implements IFusionRecipe
                  continue;
              }
              
-             legal_catalysts.add(((FusionRecipe) recipe).getCatalyst().getItem());
              NonNullList<Ingredient> ingrs = recipe.getIngredients();
              for (Ingredient ingr: ingrs)
              {
@@ -73,6 +72,10 @@ public class FusionRecipe implements IFusionRecipe
                      legal_inputs.add(stack.getItem());
                  }
              } // end-for
+             for (ItemStack stack : ((FusionRecipe) recipe).getCatalyst().getMatchingStacks())
+             {
+                 legal_catalysts.add(stack.getItem());
+             }
         } // end-for
     } // end initLegalisms
 
@@ -126,7 +129,7 @@ public class FusionRecipe implements IFusionRecipe
         
         // check catalyst
         ItemStack cata = inv.getStackInSlot(CATALYST_SLOT);
-        if (ItemStack.areItemsEqual(this.catalyst, cata)) {
+        if (this.catalyst.test(cata)) {
             return ingredientsMissing.isEmpty();
         }
         else {
@@ -154,7 +157,7 @@ public class FusionRecipe implements IFusionRecipe
     }
     
     @Override
-    public ItemStack getCatalyst()
+    public Ingredient getCatalyst()
     {
         return this.catalyst;
     } // end class FusionRecipe
@@ -204,12 +207,8 @@ public class FusionRecipe implements IFusionRecipe
             for (JsonElement e : ingrs) {
                 inputs.add(Ingredient.deserialize(e));
             }
-            ItemStack catalyst = Ingredient.deserializeItemList(
-                                    JSONUtils.getJsonObject(json, "catalyst"))
-                                .getStacks()
-                                .stream()
-                                .findFirst()
-                                .get();
+            Ingredient catalyst = Ingredient.deserialize(
+                                    JSONUtils.getJsonObject(json, "catalyst"));
             
             int cook_time = JSONUtils.getInt(json, "cookingtime");
             float experience = JSONUtils.getFloat(json, "experience");
@@ -226,7 +225,7 @@ public class FusionRecipe implements IFusionRecipe
                 inputs[ii] = Ingredient.read(buf);
             }
             ItemStack output = buf.readItemStack();
-            ItemStack catalyst = buf.readItemStack();
+            Ingredient catalyst = Ingredient.read(buf);
             int cook_time = buf.readVarInt();
             float exp = buf.readFloat();
             
@@ -241,7 +240,7 @@ public class FusionRecipe implements IFusionRecipe
                 input.write(buf);
             }
             buf.writeItemStack(recipe.getRecipeOutput(), true);
-            buf.writeItemStack(recipe.getCatalyst(), true);
+            recipe.getCatalyst().write(buf);
             buf.writeVarInt(recipe.getCookTime());
             buf.writeFloat(recipe.getExperience());
         } // end write(packet)
