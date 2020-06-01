@@ -5,6 +5,7 @@ import mod.alexndr.fusion.init.ModBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
@@ -31,7 +32,7 @@ public interface IFusionRecipe extends IRecipe<RecipeWrapper>
         return new ItemStack(ModBlocks.fusion_furnace.get());
     }
 
-    ItemStack getCatalyst();
+    Ingredient getCatalyst();
 
     float getExperience();
     

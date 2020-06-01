@@ -126,7 +126,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     public void setIngredients(IFusionRecipe recipe, IIngredients ingredients)
     {
         List<Ingredient> inputs = new ArrayList<Ingredient>(recipe.getIngredients());
-        inputs.add(Ingredient.fromStacks(recipe.getCatalyst()));
+        inputs.add(recipe.getCatalyst());
         ingredients.setInputIngredients(inputs);
         ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
     }
