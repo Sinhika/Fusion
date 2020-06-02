@@ -3,6 +3,7 @@ package mod.alexndr.fusion.init;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionArmorMaterial;
 import mod.alexndr.fusion.content.FusionItemTier;
+import mod.alexndr.simpleores.api.content.SimpleShearsItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
@@ -10,7 +11,6 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShearsItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
@@ -204,8 +204,8 @@ public final class ModItems
                     new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     
     // shears
-    public static final RegistryObject<ShearsItem> steel_shears = ITEMS.register("steel_shears",
-            () -> new ShearsItem(new Item.Properties().maxDamage(FusionItemTier.STEEL.getMaxUses())
+    public static final RegistryObject<SimpleShearsItem> steel_shears = ITEMS.register("steel_shears",
+            () -> new SimpleShearsItem(new Item.Properties().maxDamage(FusionItemTier.STEEL.getMaxUses())
                     .group(ModTabGroups.MOD_ITEM_GROUP)));
 
     // bows
