@@ -17,6 +17,9 @@ credits="Created by AleXndrTheGr8st, with help from Zot201. Maintained by Sinhik
 authors="AleXndrTheGr8st, Sinhika"
 description='''
 An add-on for SimpleOres that adds a unique alloying process.
+
+Additional Credits: fearheaven (French translation), AzazEL3095 (Spanish), Unknown (Simplified
+	Chinese, Traditional Chinese).
 '''
 [[dependencies.fusion]] #optional
     modId="jei"
