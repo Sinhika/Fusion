@@ -12,6 +12,8 @@ TO-DO
 * <s>add JEI support</s>  Basic JEI support done. Add remaining JEI support (transfer handler).
 * <s>make recipes disable-able in config.</s>
 * update or move the SimpleOres, etc. wiki
+* add chance of fusion furnace in villages, and if exists, chance of bronze or steel stuff in blacksmith chest loot.
+* add chance of bronze or steel stuff in appropriate treasure chest loot tables.
 
 License
 -------
