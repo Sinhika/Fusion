@@ -11,6 +11,12 @@ public final class ServerConfig
     final ForgeConfigSpec.BooleanValue serverEnableSinisiteMaking;
     final ForgeConfigSpec.BooleanValue serverEnableThyriumMaking;
     
+    // fusion recycling
+    final ForgeConfigSpec.BooleanValue serverEnableVanillaRecycling;
+    final ForgeConfigSpec.BooleanValue serverEnableSimpleOresRecycling;
+    final ForgeConfigSpec.BooleanValue serverEnableNetherrocksRecycling;
+    final ForgeConfigSpec.BooleanValue serverEnableFusionRecycling;
+    
     // tool recipes
     final ForgeConfigSpec.BooleanValue serverEnableSteelTools;
     final ForgeConfigSpec.BooleanValue serverEnableBronzeTools;
@@ -75,6 +81,22 @@ public final class ServerConfig
                 .translation(Fusion.MODID + ".config.enableFusionBows")
                 .define("EnableFusionBows", true);
         builder.pop();
+        
+        builder.push("Simple Fusion Recycling");
+        serverEnableVanillaRecycling = builder.comment("Enable Simple Fusion Recycling recipes for vanilla metals?")
+                .translation(Fusion.MODID + ".config.enableVanillaRecycling")
+                .define("enableVanillaRecycling", true);
+        serverEnableSimpleOresRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Simple Ores?")
+                .translation(Fusion.MODID + ".config.enableSimpleOresRecycling")
+                .define("enableSimpleOresRecycling", true);
+        serverEnableNetherrocksRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Netherrocks?")
+                .translation(Fusion.MODID + ".config.enableNetherrocksRecycling")
+                .define("enableNetherrocksRecycling", true);
+        serverEnableFusionRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Fusion?")
+                .translation(Fusion.MODID + ".config.enableFusionRecycling")
+                .define("enableFusionRecycling", true);
+        builder.pop();
+        
     } // end ctor
     
 } // end class

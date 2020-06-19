@@ -1,0 +1,25 @@
+{
+    "catalyst": {
+        "tag": "minecraft:items/coals"
+    },
+    "conditions": [
+        {
+            "flag": "recycle_vanilla",
+            "type": "fusion:flag"
+        }
+    ],
+    "cookingtime": 600,
+    "experience": 15.0,
+    "inputs": [
+        {
+            "item": "minecraft:golden_helmet"
+        },
+        {
+            "item": "minecraft:gravel"
+        }
+    ],
+    "output": {
+        "item": "minecraft:gold_ore"
+    },
+    "type": "fusion:alloying"
+}

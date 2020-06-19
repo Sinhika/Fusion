@@ -14,6 +14,12 @@ public final class ConfigHelper
         FusionConfig.INSTANCE.putFlag("sinisite_making", ConfigHolder.SERVER.serverEnableSinisiteMaking.get());
         FusionConfig.INSTANCE.putFlag("thyrium_making", ConfigHolder.SERVER.serverEnableThyriumMaking.get());
 
+        // fusion recycling recipe flags
+        FusionConfig.INSTANCE.putFlag("recycle_vanilla", ConfigHolder.SERVER.serverEnableVanillaRecycling.get());
+        FusionConfig.INSTANCE.putFlag("recycle_simpleores", ConfigHolder.SERVER.serverEnableSimpleOresRecycling.get());
+        FusionConfig.INSTANCE.putFlag("recycle_netherrocks", ConfigHolder.SERVER.serverEnableNetherrocksRecycling.get());
+        FusionConfig.INSTANCE.putFlag("recycle_fusion", ConfigHolder.SERVER.serverEnableFusionRecycling.get());
+        
         // tool recipe flags
         FusionConfig.INSTANCE.putFlag("steel_tools", ConfigHolder.SERVER.serverEnableSteelTools.get());
         FusionConfig.INSTANCE.putFlag("bronze_tools", ConfigHolder.SERVER.serverEnableBronzeTools.get());
