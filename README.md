@@ -8,13 +8,16 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
 
 TO-DO
 -----
-* add output to front of fusion furnace as well -- Why?
 * <s>add JEI support</s>  Basic JEI support done. Add remaining JEI support (transfer handler).
 * <s>make recipes disable-able in config.</s>
+* Roll the fusion recycling part of akkamaddi's Addenda into Fusion - in progress.
+* Roll the fusion recycling part of akkamaddi's Netherrocks Addenda into Fusion - in progress.
 * add shears for rest of metals (bronze, sinisite, thyrium)
 * update or move the SimpleOres, etc. wiki
-* add chance of fusion furnace in villages, and if exists, chance of bronze or steel stuff in blacksmith chest loot.
+* add chance of fusion furnace in villages, and if exists, chance of bronze or steel stuff in toolsmith & weaponsmith chest loot.
 * add chance of bronze or steel stuff in appropriate treasure chest loot tables.
+* should we add fusion items to monster worn/carried items? Probably not, that leads to tears.
+* add output to front of fusion furnace as well -- Why?
 
 License
 -------
