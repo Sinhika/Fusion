@@ -1,0 +1,25 @@
+{
+    "type": "fusion:alloying",
+    "conditions": [
+        {
+            "type": "fusion:flag",
+            "flag": "recycle_vanilla"
+        }
+    ],
+    "output": {
+        "item": "minecraft:iron_ore"
+    },
+    "inputs": [
+        {
+            "item": "minecraft:chainmail_helmet"
+        },
+        {
+            "item": "minecraft:gravel"
+        }
+    ],
+    "catalyst": {
+         "tag": "minecraft:coals"
+    },
+    "experience": 10.0,
+    "cookingtime": 600
+}
