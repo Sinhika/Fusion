@@ -91,7 +91,7 @@ public final class ServerConfig
                 .define("enableSimpleOresRecycling", true);
         serverEnableNetherrocksRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Netherrocks?")
                 .translation(Fusion.MODID + ".config.enableNetherrocksRecycling")
-                .define("enableNetherrocksRecycling", true);
+                .define("enableNetherrocksRecycling", false);
         serverEnableFusionRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Fusion?")
                 .translation(Fusion.MODID + ".config.enableFusionRecycling")
                 .define("enableFusionRecycling", true);
