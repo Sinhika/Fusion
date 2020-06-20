@@ -3,22 +3,22 @@
     "conditions": [
         {
             "type": "fusion:flag",
-            "flag": "recycle_vanilla"
+            "flag": "recycle_fusion"
         }
     ],
     "output": {
-        "item": "minecraft:gold_ore"
+        "item": "fusion:large_thyrium_chunk"
     },
     "inputs": [
         {
-            "item": "minecraft:golden_helmet"
+            "item": "fusion:thyrium_helmet"
         },
         {
             "item": "minecraft:gravel"
         }
     ],
     "catalyst": {
-        "tag": "minecraft:coals"
+        "item": "minecraft:lava_bucket"
     },
     "experience": 15.0,
     "cookingtime": 600

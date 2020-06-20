@@ -3,15 +3,15 @@
     "conditions": [
         {
             "type": "fusion:flag",
-            "flag": "recycle_vanilla"
+            "flag": "recycle_fusion"
         }
     ],
     "output": {
-        "item": "minecraft:gold_ore"
+        "item": "fusion:large_steel_chunk"
     },
     "inputs": [
         {
-            "item": "minecraft:golden_helmet"
+            "item": "fusion:steel_helmet"
         },
         {
             "item": "minecraft:gravel"
@@ -20,6 +20,6 @@
     "catalyst": {
         "tag": "minecraft:coals"
     },
-    "experience": 15.0,
+    "experience": 10.0,
     "cookingtime": 600
 }

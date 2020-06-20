@@ -7,19 +7,19 @@
         }
     ],
     "output": {
-        "item": "minecraft:gold_ore"
+        "item": "minecraft:iron_ore"
     },
     "inputs": [
         {
-            "item": "minecraft:golden_helmet"
+            "item": "minecraft:iron_helmet"
         },
         {
             "item": "minecraft:gravel"
         }
     ],
     "catalyst": {
-        "tag": "minecraft:coals"
+         "tag": "minecraft:coals"
     },
-    "experience": 15.0,
+    "experience": 10.0,
     "cookingtime": 600
 }

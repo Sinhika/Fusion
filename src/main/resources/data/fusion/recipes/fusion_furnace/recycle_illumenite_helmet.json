@@ -1,0 +1,29 @@
+{
+    "type": "fusion:alloying",
+    "conditions": [
+        {
+            "type": "fusion:flag",
+            "flag": "recycle_netherrocks"
+        },
+        {
+        	"type" : "forge:mod_loaded",
+        	"modid" : "netherrocks"
+        }
+    ],
+    "output": {
+        "item": "netherrocks:illumenite_ore"
+    },
+    "inputs": [
+        {
+            "item": "netherrocks:illumenite_helmet"
+        },
+        {
+            "item": "minecraft:netherrack"
+        }
+    ],
+    "catalyst": {
+        "item": "minecraft:glowstone_dust"
+    },
+    "experience": 10.0,
+    "cookingtime": 600
+}
