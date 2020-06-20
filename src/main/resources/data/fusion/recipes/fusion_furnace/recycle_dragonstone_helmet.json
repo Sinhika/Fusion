@@ -4,6 +4,10 @@
         {
             "type": "fusion:flag",
             "flag": "recycle_netherrocks"
+        },
+        {
+        	"type" : "forge:mod_loaded",
+        	"modid" : "netherrocks"
         }
     ],
     "output": {
