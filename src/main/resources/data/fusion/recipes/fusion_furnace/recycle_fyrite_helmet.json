@@ -1,0 +1,29 @@
+{
+    "type": "fusion:alloying",
+    "conditions": [
+        {
+            "type": "fusion:flag",
+            "flag": "recycle_netherrocks"
+        },
+        {
+        	"type" : "forge:mod_loaded",
+        	"modid" : "netherrocks"
+        }
+    ],
+    "output": {
+        "item": "netherrocks:fyrite_ore"
+    },
+    "inputs": [
+        {
+            "item": "netherrocks:fyrite_helmet"
+        },
+        {
+            "item": "minecraft:netherrack"
+        }
+    ],
+    "catalyst": {
+        "item": "minecraft:quartz"
+    },
+    "experience": 10.0,
+    "cookingtime": 600
+}

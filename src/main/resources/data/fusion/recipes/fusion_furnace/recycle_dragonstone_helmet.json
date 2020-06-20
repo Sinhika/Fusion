@@ -3,23 +3,23 @@
     "conditions": [
         {
             "type": "fusion:flag",
-            "flag": "recycle_vanilla"
+            "flag": "recycle_netherrocks"
         }
     ],
     "output": {
-        "item": "minecraft:gold_ore"
+        "item": "netherrocks:dragonstone_ore"
     },
     "inputs": [
         {
-            "item": "minecraft:golden_helmet"
+            "item": "netherrocks:dragonstone_helmet"
         },
         {
-            "item": "minecraft:gravel"
+            "item": "minecraft:netherrack"
         }
     ],
     "catalyst": {
-        "tag": "minecraft:coals"
+        "item": "minecraft:lava_bucket"
     },
-    "experience": 15.0,
+    "experience": 20.0,
     "cookingtime": 600
 }

@@ -3,15 +3,15 @@
     "conditions": [
         {
             "type": "fusion:flag",
-            "flag": "recycle_vanilla"
+            "flag": "recycle_simpleores"
         }
     ],
     "output": {
-        "item": "minecraft:gold_ore"
+        "item": "simpleores:adamantium_ore"
     },
     "inputs": [
         {
-            "item": "minecraft:golden_helmet"
+            "item": "simpleores:adamantium_helmet"
         },
         {
             "item": "minecraft:gravel"
