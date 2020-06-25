@@ -1,0 +1,25 @@
+{
+    "type": "fusion:alloying",
+    "conditions": [
+        {
+            "type": "fusion:flag",
+            "flag": "recycle_simpleores"
+        }
+    ],
+    "output": {
+        "item": "simpleores:adamantium_ore"
+    },
+    "inputs": [
+        {
+            "item": "simpleores:adamantium_axe"
+        },
+        {
+            "item": "minecraft:gravel"
+        }
+    ],
+    "catalyst": {
+        "tag": "minecraft:coals"
+    },
+    "experience": 15.0,
+    "cookingtime": 600
+}
