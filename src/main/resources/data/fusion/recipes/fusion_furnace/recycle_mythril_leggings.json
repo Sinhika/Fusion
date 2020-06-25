@@ -1,0 +1,26 @@
+{
+    "type": "fusion:alloying",
+    "conditions": [
+        {
+            "type": "fusion:flag",
+            "flag": "recycle_simpleores"
+        }
+    ],
+    "output": {
+        "item": "simpleores:mythril_ore",
+        "count": 2
+    },
+    "inputs": [
+        {
+            "item": "simpleores:mythril_leggings"
+        },
+        {
+            "item": "minecraft:gravel"
+        }
+    ],
+    "catalyst": {
+        "tag": "minecraft:coals"
+    },
+    "experience": 30.0,
+    "cookingtime": 600
+}
