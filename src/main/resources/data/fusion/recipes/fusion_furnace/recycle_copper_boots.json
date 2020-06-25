@@ -1,0 +1,25 @@
+{
+    "type": "fusion:alloying",
+    "conditions": [
+        {
+            "type": "fusion:flag",
+            "flag": "recycle_simpleores"
+        }
+    ],
+    "output": {
+        "item": "simpleores:copper_ore"
+    },
+    "inputs": [
+        {
+            "item": "simpleores:copper_boots"
+        },
+        {
+            "item": "minecraft:gravel"
+        }
+    ],
+    "catalyst": {
+        "tag": "minecraft:coals"
+    },
+    "experience": 10.0,
+    "cookingtime": 600
+}
