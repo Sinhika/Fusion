@@ -11,19 +11,20 @@
         }
     ],
     "output": {
-        "item": "netherrocks:argonite_ore"
+        "item": "netherrocks:illumenite_ore",
+        "count" : 2
     },
     "inputs": [
         {
-            "item": "netherrocks:argonite_pickaxe"
+            "item": "netherrocks:illumenite_chestplate"
         },
         {
             "item": "minecraft:netherrack"
         }
     ],
     "catalyst": {
-        "item": "minecraft:quartz"
+        "item": "minecraft:glowstone_dust"
     },
-    "experience": 15.0,
+    "experience": 20.0,
     "cookingtime": 600
 }

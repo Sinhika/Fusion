@@ -11,11 +11,11 @@
         }
     ],
     "output": {
-        "item": "netherrocks:argonite_ore"
+        "item": "netherrocks:fyrite_ore"
     },
     "inputs": [
         {
-            "item": "netherrocks:argonite_pickaxe"
+            "item": "netherrocks:fyrite_sword"
         },
         {
             "item": "minecraft:netherrack"
@@ -24,6 +24,6 @@
     "catalyst": {
         "item": "minecraft:quartz"
     },
-    "experience": 15.0,
+    "experience": 10.0,
     "cookingtime": 600
 }

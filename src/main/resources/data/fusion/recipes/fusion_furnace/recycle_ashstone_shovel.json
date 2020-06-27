@@ -11,11 +11,11 @@
         }
     ],
     "output": {
-        "item": "netherrocks:argonite_ore"
+        "item": "netherrocks:ashstone_ore"
     },
     "inputs": [
         {
-            "item": "netherrocks:argonite_pickaxe"
+            "item": "netherrocks:ashstone_shovel"
         },
         {
             "item": "minecraft:netherrack"
