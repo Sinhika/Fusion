@@ -7,19 +7,20 @@
         }
     ],
     "output": {
-        "item": "fusion:large_sinisite_chunk"
+        "item": "fusion:large_thyrium_chunk",
+        "count" : 2
     },
     "inputs": [
         {
-            "item": "fusion:sinisite_helmet"
+            "item": "fusion:thyrium_leggings"
         },
         {
-            "item": "minecraft:netherrack"
+            "item": "minecraft:gravel"
         }
     ],
     "catalyst": {
         "item": "minecraft:lava_bucket"
     },
-    "experience": 20.0,
+    "experience": 30.0,
     "cookingtime": 600
 }

@@ -7,18 +7,19 @@
         }
     ],
     "output": {
-        "item": "fusion:large_sinisite_chunk"
+        "item": "fusion:large_steel_chunk",
+        "count": 2
     },
     "inputs": [
         {
-            "item": "fusion:sinisite_helmet"
+            "item": "fusion:steel_leggings"
         },
         {
-            "item": "minecraft:netherrack"
+            "item": "minecraft:gravel"
         }
     ],
     "catalyst": {
-        "item": "minecraft:lava_bucket"
+        "tag": "minecraft:coals"
     },
     "experience": 20.0,
     "cookingtime": 600
