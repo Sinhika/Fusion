@@ -11,19 +11,19 @@
         }
     ],
     "output": {
-        "item": "netherrocks:malachite_ore"
+        "item": "netherrocks:dragonstone_ore"
     },
     "inputs": [
         {
-            "item": "netherrocks:malachite_helmet"
+            "item": "netherrocks:dragonstone_hoe"
         },
         {
             "item": "minecraft:netherrack"
         }
     ],
     "catalyst": {
-        "item": "minecraft:quartz"
+        "item": "minecraft:lava_bucket"
     },
-    "experience": 10.0,
+    "experience": 20.0,
     "cookingtime": 600
 }
