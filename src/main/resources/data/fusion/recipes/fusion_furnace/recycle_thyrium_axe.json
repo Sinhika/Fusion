@@ -7,19 +7,19 @@
         }
     ],
     "output": {
-        "item": "fusion:large_sinisite_chunk"
+        "item": "fusion:large_thyrium_chunk"
     },
     "inputs": [
         {
-            "item": "fusion:sinisite_helmet"
+            "item": "fusion:thyrium_axe"
         },
         {
-            "item": "minecraft:netherrack"
+            "item": "minecraft:gravel"
         }
     ],
     "catalyst": {
         "item": "minecraft:lava_bucket"
     },
-    "experience": 20.0,
+    "experience": 15.0,
     "cookingtime": 600
 }
