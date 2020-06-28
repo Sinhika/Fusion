@@ -30,8 +30,7 @@ import net.minecraftforge.registries.ForgeRegistries;
  */
 public final class ModItems
 {
-    public static final DeferredRegister<Item> ITEMS = 
-            new DeferredRegister<>(ForgeRegistries.ITEMS, Fusion.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Fusion.MODID);
 
     // BASIC ITEMS
     // ingots, chunks, and nuggets

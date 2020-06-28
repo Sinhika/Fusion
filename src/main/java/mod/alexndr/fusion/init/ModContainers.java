@@ -22,7 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public final class ModContainers
 {
     public static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES = 
-            new DeferredRegister<>(ForgeRegistries.CONTAINERS, Fusion.MODID);
+            DeferredRegister.create(ForgeRegistries.CONTAINERS, Fusion.MODID);
 
     public static RegistryObject<ContainerType<FusionFurnaceContainer>> FUSION_FURNACE =
             CONTAINER_TYPES.register("fusion_furnace", 

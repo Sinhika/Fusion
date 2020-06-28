@@ -31,14 +31,14 @@ Additional Credits: fearheaven (French translation), AzazEL3095 (Spanish), Unkno
 [[dependencies.fusion]]
     modId="simpleores"
     mandatory=true
-    versionRange="[1.15.2-2.1.6.0,)"
+    versionRange="[1.15.2-2.1.8.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="forge"
     mandatory=true
-    versionRange="[31.1.34,)"
+    versionRange="[31.2.26,)"
     ordering="NONE"
     side="BOTH"
 
