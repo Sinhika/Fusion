@@ -7,11 +7,11 @@
         }
     ],
     "output": {
-        "item": "simpleores:mythril_bow"
+        "item": "simpleores:mythril_ore"
     },
     "inputs": [
         {
-            "item": "simpleores:mythril_helmet"
+            "item": "simpleores:mythril_bow"
         },
         {
             "item": "minecraft:gravel"
