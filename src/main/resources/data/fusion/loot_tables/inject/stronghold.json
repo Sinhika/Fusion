@@ -7,166 +7,166 @@
             "entries": [
                 {
                         "type": "item",
-                        "name": "fusion:bronze_helmet.json",
+                        "name": "fusion:bronze_helmet",
                         "weight": 2,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:bronze_chestplate.json",
+                        "name": "fusion:bronze_chestplate",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_leggings.json",
+                        "name": "fusion:bronze_leggings",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_boots.json",
+                        "name": "fusion:bronze_boots",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_sword.json",
+                        "name": "fusion:bronze_sword",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_axe.json",
+                        "name": "fusion:bronze_axe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_pickaxe.json",
+                        "name": "fusion:bronze_pickaxe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_shovel.json",
+                        "name": "fusion:bronze_shovel",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_helmet.json",
+                        "name": "fusion:steel_helmet",
                         "weight": 2,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:steel_chestplate.json",
+                        "name": "fusion:steel_chestplate",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_leggings.json",
+                        "name": "fusion:steel_leggings",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_boots.json",
+                        "name": "fusion:steel_boots",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_sword.json",
+                        "name": "fusion:steel_sword",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_axe.json",
+                        "name": "fusion:steel_axe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_pickaxe.json",
+                        "name": "fusion:steel_pickaxe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_shovel.json",
+                        "name": "fusion:steel_shovel",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_helmet.json",
+                        "name": "fusion:thyrium_helmet",
                         "weight": 1,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_chestplate.json",
+                        "name": "fusion:thyrium_chestplate",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_leggings.json",
+                        "name": "fusion:thyrium_leggings",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_boots.json",
+                        "name": "fusion:thyrium_boots",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_sword.json",
+                        "name": "fusion:thyrium_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_axe.json",
+                        "name": "fusion:thyrium_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_pickaxe.json",
+                        "name": "fusion:thyrium_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_shovel.json",
+                        "name": "fusion:thyrium_shovel",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_helmet.json",
+                        "name": "fusion:sinisite_helmet",
                         "weight": 1,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_chestplate.json",
+                        "name": "fusion:sinisite_chestplate",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_leggings.json",
+                        "name": "fusion:sinisite_leggings",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_boots.json",
+                        "name": "fusion:sinisite_boots",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_sword.json",
+                        "name": "fusion:sinisite_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_axe.json",
+                        "name": "fusion:sinisite_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_pickaxe.json",
+                        "name": "fusion:sinisite_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_shovel.json",
+                        "name": "fusion:sinisite_shovel",
                         "weight": 1
                 }
             ]

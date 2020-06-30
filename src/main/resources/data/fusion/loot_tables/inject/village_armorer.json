@@ -8,43 +8,44 @@
                 {
                         "type": "item",
                         "name": "fusion:bronze_helmet",
-                        "weight": 1,
+                        "weight": 2,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
                         "name": "fusion:bronze_chestplate",
-                        "weight": 1
+                        "weight": 2
                 },
                 {
                         "type": "item",
                         "name": "fusion:bronze_leggings",
-                        "weight": 1
+                        "weight": 2
                 },
                 {
                         "type": "item",
                         "name": "fusion:bronze_boots",
-                        "weight": 1
+                        "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_sword",
-                        "weight": 1
+                        "name": "fusion:steel_helmet",
+                        "weight": 2,
+                        "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
+                }, 
+                {
+                        "type": "item",
+                        "name": "fusion:steel_chestplate",
+                        "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_axe",
-                        "weight": 1
+                        "name": "fusion:steel_leggings",
+                        "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_pickaxe",
-                        "weight": 1
-                },
-                {
-                        "type": "item",
-                        "name": "fusion:bronze_shovel",
-                        "weight": 1
+                        "name": "fusion:steel_boots",
+                        "weight": 2
                 },
                 {
                         "type": "item",
@@ -65,26 +66,6 @@
                 {
                         "type": "item",
                         "name": "fusion:thyrium_boots",
-                        "weight": 1
-                },
-                {
-                        "type": "item",
-                        "name": "fusion:thyrium_sword",
-                        "weight": 1
-                },
-                {
-                        "type": "item",
-                        "name": "fusion:thyrium_axe",
-                        "weight": 1
-                },
-                {
-                        "type": "item",
-                        "name": "fusion:thyrium_pickaxe",
-                        "weight": 1
-                },
-                {
-                        "type": "item",
-                        "name": "fusion:thyrium_shovel",
                         "weight": 1
                 },
                 {
@@ -110,29 +91,21 @@
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_sword",
-                        "weight": 1
-                },
+                        "name": "fusion:large_bronze_chunk",
+                        "weight": 2,
+                        "functions": [{ "function": "set_count", "count": {"min": 1,"max": 3} }]
+                }, 
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_axe",
-                        "weight": 1
-                },
-                {
-                        "type": "item",
-                        "name": "fusion:sinisite_pickaxe",
-                        "weight": 1
-                },
-                {
-                        "type": "item",
-                        "name": "fusion:sinisite_shovel",
-                        "weight": 1
-                },
+                        "name": "fusion:large_thyrium_chunk",
+                        "weight": 1,
+                        "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
+                }, 
                 {
                         "type": "item",
                         "name": "fusion:bronze_ingot",
                         "weight": 3,
-                        "functions": [{ "function": "set_count", "count": {"min": 3,"max": 7} }]
+                        "functions": [{ "function": "set_count", "count": {"min": 2,"max": 4} }]
                 }, 
                 {
                         "type": "item",
@@ -144,7 +117,7 @@
                         "type": "item",
                         "name": "fusion:sinisite_ingot",
                         "weight": 1,
-                        "functions": [{ "function": "set_count", "count": {"min": 1,"max": 2} }]
+                        "functions": [{ "function": "set_count", "count": {"min": 1,"max": 3} }]
                 }
             ]
         }

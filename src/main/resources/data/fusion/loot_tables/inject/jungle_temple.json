@@ -7,157 +7,157 @@
             "entries": [
                 {
                         "type": "item",
-                        "name": "fusion:bronze_helmet.json",
+                        "name": "fusion:bronze_helmet",
                         "weight": 1,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:bronze_chestplate.json",
+                        "name": "fusion:bronze_chestplate",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_leggings.json",
+                        "name": "fusion:bronze_leggings",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_boots.json",
+                        "name": "fusion:bronze_boots",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_sword.json",
+                        "name": "fusion:bronze_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_axe.json",
+                        "name": "fusion:bronze_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_pickaxe.json",
+                        "name": "fusion:bronze_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_shovel.json",
+                        "name": "fusion:bronze_shovel",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_hoe.json",
+                        "name": "fusion:bronze_hoe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_helmet.json",
+                        "name": "fusion:thyrium_helmet",
                         "weight": 1,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_chestplate.json",
+                        "name": "fusion:thyrium_chestplate",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_leggings.json",
+                        "name": "fusion:thyrium_leggings",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_boots.json",
+                        "name": "fusion:thyrium_boots",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_sword.json",
+                        "name": "fusion:thyrium_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_axe.json",
+                        "name": "fusion:thyrium_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_pickaxe.json",
+                        "name": "fusion:thyrium_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_shovel.json",
+                        "name": "fusion:thyrium_shovel",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_hoe.json",
+                        "name": "fusion:thyrium_hoe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_helmet.json",
+                        "name": "fusion:sinisite_helmet",
                         "weight": 1,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_chestplate.json",
+                        "name": "fusion:sinisite_chestplate",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_leggings.json",
+                        "name": "fusion:sinisite_leggings",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_boots.json",
+                        "name": "fusion:sinisite_boots",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_sword.json",
+                        "name": "fusion:sinisite_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_axe.json",
+                        "name": "fusion:sinisite_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_pickaxe.json",
+                        "name": "fusion:sinisite_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_shovel.json",
+                        "name": "fusion:sinisite_shovel",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_hoe.json",
+                        "name": "fusion:sinisite_hoe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_ingot.json",
+                        "name": "fusion:bronze_ingot",
                         "weight": 1,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 3} }]
                 }, 
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_ingot.json",
+                        "name": "fusion:thyrium_ingot",
                         "weight": 2,
                         "functions": [{ "function": "set_count", "count": {"min": 3,"max": 7} }]
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_ingot.json",
+                        "name": "fusion:sinisite_ingot",
                         "weight": 1,
                         "functions": [{ "function": "set_count", "count": {"min": 1,"max": 1} }]
                 }
