@@ -1,0 +1,31 @@
+{
+    "__comment": "This table is injected as its own pool into minecraft:chests/simple_dungeon",
+    "pools": [
+        {
+            "name": "main",
+            "rolls": 1,
+            "entries": [
+                {
+                        "type": "item",
+                        "name": "fusion:bronze_pickaxe.json",
+                        "weight": 2
+                },
+                {
+                        "type": "item",
+                        "name": "fusion:steel_pickaxe.json",
+                        "weight": 2
+                },
+                {
+                        "type": "item",
+                        "name": "fusion:thyrium_pickaxe.json",
+                        "weight": 1
+                },
+                {
+                        "type": "item",
+                        "name": "fusion:sinisite_pickaxe.json",
+                        "weight": 1
+                }
+            ]
+        }
+    ]
+}

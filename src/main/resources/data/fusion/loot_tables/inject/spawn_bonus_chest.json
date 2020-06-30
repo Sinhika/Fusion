@@ -1,0 +1,36 @@
+{
+    "__comment": "This table is injected as its own pool into minecraft:chests/simple_dungeon",
+    "pools": [
+        {
+            "name": "main",
+            "rolls": 1,
+            "entries": [
+                {
+                        "type": "item",
+                        "name": "fusion:bronze_sword.json",
+                        "weight": 1
+                },
+                {
+                        "type": "item",
+                        "name": "fusion:bronze_axe.json",
+                        "weight": 1
+                },
+                {
+                        "type": "item",
+                        "name": "fusion:bronze_pickaxe.json",
+                        "weight": 1
+                },
+                {
+                        "type": "item",
+                        "name": "fusion:bronze_shovel.json",
+                        "weight": 1
+                },
+                {
+                        "type": "item",
+                        "name": "fusion:bronze_hoe.json",
+                        "weight": 1
+                }
+            ]
+        }
+    ]
+}
