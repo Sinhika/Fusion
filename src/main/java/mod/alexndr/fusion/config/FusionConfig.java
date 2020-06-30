@@ -9,6 +9,7 @@ public class FusionConfig implements ISimpleConfig
 {
     private static Map<String, Boolean> flags = new HashMap<>();
     public static FusionConfig INSTANCE = new FusionConfig();
+    public static boolean addChestLoot;
     
     @Override
     public void clear() {

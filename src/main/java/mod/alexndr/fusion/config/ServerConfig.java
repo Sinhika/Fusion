@@ -5,6 +5,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class ServerConfig
 {
+    // general
+    final ForgeConfigSpec.BooleanValue serverAddChestLoot;
+    
     // fusion recipes
     final ForgeConfigSpec.BooleanValue serverEnableSteelMaking;
     final ForgeConfigSpec.BooleanValue serverEnableBronzeMaking;
@@ -34,6 +37,12 @@ public final class ServerConfig
     
     ServerConfig(final ForgeConfigSpec.Builder builder)
     {
+        builder.push("General");
+        serverAddChestLoot = builder.comment("Allow Fusion loot to be added to chests?")
+                .translation(Fusion.MODID + ".config.addChestLoot")
+                .define("AddChestLoot", true);
+        builder.pop();
+        
         builder.push("Alloy Recipes");
         serverEnableSteelMaking = builder.comment("false disables alloy recipes")
                 .translation(Fusion.MODID + ".config.enableSteelMaking")
