@@ -7,27 +7,27 @@
             "entries": [
                 {
                         "type": "item",
-                        "name": "fusion:bronze_sword.json",
+                        "name": "fusion:bronze_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_axe.json",
+                        "name": "fusion:bronze_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_pickaxe.json",
+                        "name": "fusion:bronze_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_shovel.json",
+                        "name": "fusion:bronze_shovel",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_hoe.json",
+                        "name": "fusion:bronze_hoe",
                         "weight": 1
                 }
             ]

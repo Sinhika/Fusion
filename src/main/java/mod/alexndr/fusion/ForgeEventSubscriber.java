@@ -3,9 +3,8 @@ package mod.alexndr.fusion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import mod.alexndr.simpleores.SimpleOres;
+import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.simpleores.api.loot.ChestLootHandler;
-import mod.alexndr.simpleores.config.SimpleOresConfig;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,7 +21,7 @@ public final class ForgeEventSubscriber
     @SubscribeEvent
     public static void LootLoad(final LootTableLoadEvent event)
     {
-        if (SimpleOresConfig.addModLootToChests)
+        if (FusionConfig.addChestLoot)
         {
             String prefix = "minecraft:chests/";
             String name = event.getName().toString();
@@ -53,7 +52,7 @@ public final class ForgeEventSubscriber
                 case "underwater_ruin_small":
                 case "underwater_ruin_big":
                     LOGGER.debug("Attempting to inject loot pool for " + file);
-                    event.getTable().addPool(ChestLootHandler.getInjectPool(SimpleOres.MODID, "simple_dungeon"));
+                    event.getTable().addPool(ChestLootHandler.getInjectPool(Fusion.MODID, "simple_dungeon"));
                     break;
                 case "stronghold":
                 case "village_weaponsmith":
@@ -68,7 +67,7 @@ public final class ForgeEventSubscriber
                 case "spawn_bonus_chest":
                 case "igloo_chest":
                     LOGGER.debug("Attempting to inject loot pool for " + file);
-                    event.getTable().addPool(ChestLootHandler.getInjectPool(SimpleOres.MODID, file));
+                    event.getTable().addPool(ChestLootHandler.getInjectPool(Fusion.MODID, file));
                     break;
                 default:
                     // cases deliberately ignored:

@@ -7,82 +7,82 @@
             "entries": [
                 {
                         "type": "item",
-                        "name": "fusion:bronze_sword.json",
+                        "name": "fusion:bronze_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_axe.json",
+                        "name": "fusion:bronze_axe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_pickaxe.json",
+                        "name": "fusion:bronze_pickaxe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:bronze_shovel.json",
+                        "name": "fusion:bronze_shovel",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_sword.json",
+                        "name": "fusion:steel_sword",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_axe.json",
+                        "name": "fusion:steel_axe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_pickaxe.json",
+                        "name": "fusion:steel_pickaxe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_shovel.json",
+                        "name": "fusion:steel_shovel",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_sword.json",
+                        "name": "fusion:thyrium_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_axe.json",
+                        "name": "fusion:thyrium_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_pickaxe.json",
+                        "name": "fusion:thyrium_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_shovel.json",
+                        "name": "fusion:thyrium_shovel",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_sword.json",
+                        "name": "fusion:sinisite_sword",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_axe.json",
+                        "name": "fusion:sinisite_axe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_pickaxe.json",
+                        "name": "fusion:sinisite_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_shovel.json",
+                        "name": "fusion:sinisite_shovel",
                         "weight": 1
                 }
             ]

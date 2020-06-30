@@ -7,22 +7,22 @@
             "entries": [
                 {
                         "type": "item",
-                        "name": "fusion:bronze_pickaxe.json",
+                        "name": "fusion:bronze_pickaxe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:steel_pickaxe.json",
+                        "name": "fusion:steel_pickaxe",
                         "weight": 2
                 },
                 {
                         "type": "item",
-                        "name": "fusion:thyrium_pickaxe.json",
+                        "name": "fusion:thyrium_pickaxe",
                         "weight": 1
                 },
                 {
                         "type": "item",
-                        "name": "fusion:sinisite_pickaxe.json",
+                        "name": "fusion:sinisite_pickaxe",
                         "weight": 1
                 }
             ]
