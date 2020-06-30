@@ -8,6 +8,8 @@ public final class ConfigHelper
 
     public static void bakeServer(final ModConfig config)
     {
+        FusionConfig.addChestLoot = ConfigHolder.SERVER.serverAddChestLoot.get();
+        
         // fusion alloy recipe flags
         FusionConfig.INSTANCE.putFlag("steel_making", ConfigHolder.SERVER.serverEnableSteelMaking.get());
         FusionConfig.INSTANCE.putFlag("bronze_making", ConfigHolder.SERVER.serverEnableBronzeMaking.get());
