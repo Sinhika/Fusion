@@ -10,7 +10,7 @@ TO-DO
 -----
 * add output to front of fusion furnace as well.
 * <s>add JEI support</s>  Basic JEI support done. Add remaining JEI support (transfer handler).
-* make recipes disable-able in config.
+* <s>make recipes disable-able in config.</s>
 * update or move the SimpleOres, etc. wiki
 
 License
