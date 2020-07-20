@@ -2,7 +2,6 @@ package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionFurnaceBlock;
-import mod.alexndr.simpleores.api.content.SimpleMetalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -28,28 +27,28 @@ public final class ModBlocks
     
     // Metal Blocks
     // bronze
-    public static final RegistryObject<SimpleMetalBlock> bronze_block = BLOCKS.register("bronze_block",
-            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+    public static final RegistryObject<Block> bronze_block = BLOCKS.register("bronze_block",
+            () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.YELLOW_TERRACOTTA)
                     .hardnessAndResistance(5.0F, 10.0F)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
     // steel
-    public static final RegistryObject<SimpleMetalBlock> steel_block = BLOCKS.register("steel_block",
-            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+    public static final RegistryObject<Block> steel_block = BLOCKS.register("steel_block",
+            () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.IRON)
                     .hardnessAndResistance(7.0F, 12.0F)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
     
     // sinisite
-    public static final RegistryObject<SimpleMetalBlock> sinisite_block = BLOCKS.register("sinisite_block",
-            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+    public static final RegistryObject<Block> sinisite_block = BLOCKS.register("sinisite_block",
+            () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.BLUE)
                     .hardnessAndResistance(10.0F, 24.0F)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
     
     // thyrium
-    public static final RegistryObject<SimpleMetalBlock> thyrium_block = BLOCKS.register("thyrium_block",
-            () -> new SimpleMetalBlock(Block.Properties.create(Material.IRON,
+    public static final RegistryObject<Block> thyrium_block = BLOCKS.register("thyrium_block",
+            () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.CYAN)
                     .hardnessAndResistance(7.0F, 12.0F)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0)));
@@ -58,5 +57,5 @@ public final class ModBlocks
     public static final RegistryObject<FusionFurnaceBlock> fusion_furnace = BLOCKS.register("fusion_furnace",
             () -> new FusionFurnaceBlock(Block.Properties.create(Material.ROCK)
                     .hardnessAndResistance(3.5F, 12.0F)
-                    .lightValue(13).harvestTool(ToolType.PICKAXE)));
+                    .setLightLevel((foo) -> { return 13;}).harvestTool(ToolType.PICKAXE)));
 } // end class
