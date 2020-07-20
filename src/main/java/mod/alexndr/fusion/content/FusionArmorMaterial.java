@@ -87,4 +87,11 @@ public enum FusionArmorMaterial implements IArmorMaterial
         return this.toughness;
     }
 
+    @Override
+    public float func_230304_f_()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 } // end enum

@@ -414,9 +414,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      * Read saved data from disk into the tile.
      */
     @Override
-    public void read(final CompoundNBT compound)
+    public void read(BlockState stateIn, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(stateIn, compound);
         this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
         this.smeltTimeLeft = compound.getShort(SMELT_TIME_LEFT_TAG);
         this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);

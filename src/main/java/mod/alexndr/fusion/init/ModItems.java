@@ -148,8 +148,8 @@ public final class ModItems
             () -> new ShovelItem(FusionItemTier.BRONZE, 1.5F, -3.0F,
                     new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<HoeItem> bronze_hoe = ITEMS.register("bronze_hoe",
-            () -> new HoeItem(FusionItemTier.BRONZE,-2.0F,
-                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+            () -> new HoeItem(FusionItemTier.BRONZE, -1, -2.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)) {});
     
     // steel
     public static final RegistryObject<SwordItem> steel_sword = ITEMS.register("steel_sword",
@@ -165,8 +165,8 @@ public final class ModItems
             () -> new ShovelItem(FusionItemTier.STEEL, 1.5F, -3.0F,
                     new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<HoeItem> steel_hoe = ITEMS.register("steel_hoe",
-            () -> new HoeItem(FusionItemTier.STEEL,-2.0F,
-                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+            () -> new HoeItem(FusionItemTier.STEEL, -3, -2.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)) {});
     
     // sinisite
     public static final RegistryObject<SwordItem> sinisite_sword = ITEMS.register("sinisite_sword",
@@ -182,8 +182,8 @@ public final class ModItems
             () -> new ShovelItem(FusionItemTier.SINISITE, 1.5F, -3.0F,
                     new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<HoeItem> sinisite_hoe = ITEMS.register("sinisite_hoe",
-            () -> new HoeItem(FusionItemTier.SINISITE,-2.0F,
-                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+            () -> new HoeItem(FusionItemTier.SINISITE, -3, -2.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)) {});
     
     // thyrium
     public static final RegistryObject<SwordItem> thyrium_sword = ITEMS.register("thyrium_sword",
@@ -199,8 +199,8 @@ public final class ModItems
             () -> new ShovelItem(FusionItemTier.THYRIUM, 1.5F, -3.0F,
                     new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<HoeItem> thyrium_hoe = ITEMS.register("thyrium_hoe",
-            () -> new HoeItem(FusionItemTier.THYRIUM,-2.0F,
-                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+            () -> new HoeItem(FusionItemTier.THYRIUM, -3, -2.0F,
+                    new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)) {});
     
     // shears
     public static final RegistryObject<SimpleShearsItem> steel_shears = ITEMS.register("steel_shears",
