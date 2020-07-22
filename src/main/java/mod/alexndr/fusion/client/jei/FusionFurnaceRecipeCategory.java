@@ -3,6 +3,8 @@ package mod.alexndr.fusion.client.jei;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -76,14 +78,14 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     } // end ctor
     
     @Override
-    public void draw(IFusionRecipe recipe, double mouseX, double mouseY)
+    public void draw(IFusionRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY)
     {
-        flame.draw(23, 51);
-        flame.draw(73, 51);
-        arrow_left.draw(19, 30);
-        arrow_right.draw(68, 30);
-        bubble_left.draw(32, 0);
-        bubble_right.draw(66, 0);
+        flame.draw(matrixStack, 23, 51);
+        flame.draw(matrixStack, 73, 51);
+        arrow_left.draw(matrixStack, 19, 30);
+        arrow_right.draw(matrixStack, 68, 30);
+        bubble_left.draw(matrixStack, 32, 0);
+        bubble_right.draw(matrixStack, 66, 0);
         
         float experience = recipe.getExperience();
         if (experience > 0) {
@@ -91,7 +93,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
             Minecraft minecraft = Minecraft.getInstance();
             FontRenderer fontRenderer = minecraft.fontRenderer;
             int stringWidth = fontRenderer.getStringWidth(experienceString);
-            fontRenderer.drawString(experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
+            fontRenderer.drawString(matrixStack, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
         }
     }
 

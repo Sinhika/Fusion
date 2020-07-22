@@ -12,6 +12,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -30,7 +31,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
 {
-    public static final BooleanProperty BURNING = BooleanProperty.create("lit");
+    public static final BooleanProperty BURNING = BlockStateProperties.LIT;
 
     public AbstractAlloyFurnaceBlock(Properties builder)
     {
@@ -53,19 +54,6 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
     @Override
     public abstract TileEntity createTileEntity(final BlockState state, final IBlockReader world);
 
-    
-    /**
-     * Amount of light emitted
-     *
-     * @deprecated Call via {@link BlockState#getLightValue())}
-     * Implementing/overriding is fine.
-     */
-    @Override
-    public int getLightValue(BlockState state)
-    {
-        return state.get(BURNING) ? super.getLightValue(state) : 0;
-    }
-
     /**
      * Called on the logical server when a BlockState with a TileEntity is replaced by another BlockState.
      * We use this method to drop all the items from our tile entity's inventory and update comparators near our block.
@@ -77,6 +65,12 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
     public abstract void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving);
 
     /**
+     * Interface for handling interaction with blocks that implement AbstractAlloyFurnaceBlock. Called in onBlockActivated
+     * inside AbstractAlloyFurnaceBlock.
+     */
+    protected abstract void interactWith(World worldIn, BlockPos pos, PlayerEntity player);
+    
+    /**
      * Called when a player right clicks our block.
      * We use this method to open our gui.
      *
@@ -84,7 +78,15 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public abstract ActionResultType onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit);
+    public ActionResultType onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit)
+    {
+        if (worldIn.isRemote) {
+            return ActionResultType.SUCCESS;
+         } else {
+            this.interactWith(worldIn, pos, player);
+            return ActionResultType.CONSUME;
+         }        
+    }
 
     /**
      * Makes the block face the player when placed

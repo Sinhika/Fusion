@@ -8,10 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -41,34 +38,27 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
    @Override
     public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
-        if (oldState.getBlock() != newState.getBlock()) {
+        if (!oldState.isIn(newState.getBlock())) 
+        {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof AbstractAlloyFurnaceTileEntity) {
+            if (tileEntity instanceof AbstractAlloyFurnaceTileEntity) 
+            {
                 final ItemStackHandler inventory = ((AbstractAlloyFurnaceTileEntity) tileEntity).inventory;
                 for (int slot = 0; slot < inventory.getSlots(); ++slot)
                     InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
+                worldIn.updateComparatorOutputLevel(pos, this);
             }
         }
     } // end onReplaced
 
-    /**
-    * Called when a player right clicks our block.
-    * We use this method to open our gui.
-    *
-    * @deprecated Call via {@link BlockState#onBlockActivated(World, PlayerEntity, Hand, BlockRayTraceResult)} whenever possible.
-    * Implementing/overriding is fine.
-    */
+   
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
-            Hand handIn, BlockRayTraceResult p_225533_6_)
+    protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player)
     {
-        if (!worldIn.isRemote) {
-            final TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof AbstractAlloyFurnaceTileEntity)
-                NetworkHooks.openGui((ServerPlayerEntity) player, (FusionFurnaceTileEntity) tileEntity, pos);
+        final TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (tileEntity instanceof FusionFurnaceTileEntity) {
+            NetworkHooks.openGui((ServerPlayerEntity) player, (FusionFurnaceTileEntity) tileEntity, pos);
         }
-        return ActionResultType.SUCCESS;
     }
-    
     
 } // end class
