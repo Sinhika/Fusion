@@ -31,7 +31,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
 {
-    public static final BooleanProperty BURNING = BlockStateProperties.LIT;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public AbstractAlloyFurnaceBlock(Properties builder)
     {
@@ -40,7 +40,7 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
         // Set the default values for our blockstate properties
         this.setDefaultState(this.getDefaultState()
                 .with(HORIZONTAL_FACING, Direction.NORTH)
-                .with(BURNING, false)
+                .with(LIT, false)
         );
     }
 
@@ -144,7 +144,7 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
     {
         super.fillStateContainer(builder);
         builder.add(HORIZONTAL_FACING);
-        builder.add(BURNING);
+        builder.add(LIT);
     }
 
     /**
@@ -156,7 +156,7 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
     @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-            if (stateIn.get(BURNING)) {
+            if (stateIn.get(LIT)) {
                 double d0 = (double)pos.getX() + 0.5D;
                 double d1 = (double)pos.getY();
                 double d2 = (double)pos.getZ() + 0.5D;

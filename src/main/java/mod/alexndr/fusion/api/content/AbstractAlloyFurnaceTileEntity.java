@@ -65,7 +65,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     public short maxSmeltTime = -1;
     public int fuelBurnTimeLeft = -1;
     public int maxFuelBurnTime = -1;
-    private boolean lastBurning = false;
+   // private boolean lastBurning = false;
     
     private final Map<ResourceLocation, Integer> recipe2xp_map = Maps.newHashMap();
 
@@ -203,9 +203,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     public void tick()
     {
         // Fuel burning code
-        boolean hasFuel = false;
-        if (isBurning()) {
-            hasFuel = true;
+        boolean hasFuel = this.isBurning();
+
+        if (this.isBurning()) {
             --fuelBurnTimeLeft;
         }
         
@@ -276,7 +276,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     
         // Syncing code
         // If the burning state has changed.
-        if (lastBurning != hasFuel) 
+        if (this.isBurning() != hasFuel) 
         { 
             // We use hasFuel because the current fuel may be all burnt out but we have 
             // more that will be used next tick
@@ -285,14 +285,17 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             // changed and means the game will save the chunk to disk later.
             this.markDirty();
     
-            final BlockState newState = this.getBlockState()
-                    .with(AbstractAlloyFurnaceBlock.BURNING, hasFuel);
+//            final BlockState newState = this.world.getBlockState(this.pos)
+//                    .with(AbstractAlloyFurnaceBlock.LIT, Boolean.valueOf(this.isBurning()));
     
-            // Flag 2: Send the change to clients
-            world.setBlockState(pos, newState, 2);
+            // Flag 3: Send the change to clients & update blockstate
+            this.world.setBlockState(this.pos, 
+                    this.world.getBlockState(this.pos).with(AbstractAlloyFurnaceBlock.LIT,
+                                                        Boolean.valueOf(this.isBurning())),
+                    3);
     
             // Update the last synced burning state to the current burning state
-            lastBurning = hasFuel;
+//            lastBurning = hasFuel;
         } // end-if
     } // end tick()
 
@@ -406,8 +409,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         super.onLoad();
         // We set this in onLoad instead of the constructor so that TileEntities
         // constructed from NBT (saved tile entities) have this set to the proper value
-        if (world != null && !world.isRemote)
-            lastBurning = isBurning();
+//        if (world != null && !world.isRemote)
+//            lastBurning = this.isBurning();
     }
 
     /**
