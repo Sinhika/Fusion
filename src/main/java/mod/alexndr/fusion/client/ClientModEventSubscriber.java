@@ -6,7 +6,11 @@ import org.apache.logging.log4j.Logger;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.client.gui.FusionFurnaceScreen;
 import mod.alexndr.fusion.init.ModContainers;
+import mod.alexndr.fusion.init.ModItems;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -35,6 +39,9 @@ public class ClientModEventSubscriber
     @SubscribeEvent
     public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) 
     {
+        setupBowModelProperties(ModItems.sinisite_bow.get());
+        setupBowModelProperties(ModItems.thyrium_bow.get());
+
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         DeferredWorkQueue.runLater(() -> {
@@ -42,5 +49,19 @@ public class ClientModEventSubscriber
             LOGGER.debug("Registered ContainerType Screens");
         });
    }
-    
+
+    private static void setupBowModelProperties(Item bow) 
+    {
+        ItemModelsProperties.func_239418_a_(bow, new ResourceLocation("pull"), (p0, p1, p2) -> {
+            if (p2 == null) {
+               return 0.0F;
+            } else {
+               return p2.getActiveItemStack() != p0 ? 0.0F : (float)(p0.getUseDuration() - p2.getItemInUseCount()) / 20.0F;
+            }
+         });
+        ItemModelsProperties.func_239418_a_(bow, new ResourceLocation("pulling"), (p0, p1, p2) -> {
+            return p2 != null && p2.isHandActive() && p2.getActiveItemStack() == p0 ? 1.0F : 0.0F;
+         });
+    }
+
 } // end class
