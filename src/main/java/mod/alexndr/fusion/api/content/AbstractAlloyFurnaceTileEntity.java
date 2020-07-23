@@ -65,7 +65,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     public short maxSmeltTime = -1;
     public int fuelBurnTimeLeft = -1;
     public int maxFuelBurnTime = -1;
-   // private boolean lastBurning = false;
+    private boolean lastBurning = false;
     
     private final Map<ResourceLocation, Integer> recipe2xp_map = Maps.newHashMap();
 
@@ -276,7 +276,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     
         // Syncing code
         // If the burning state has changed.
-        if (this.isBurning() != hasFuel) 
+        if (lastBurning != hasFuel) 
         { 
             // We use hasFuel because the current fuel may be all burnt out but we have 
             // more that will be used next tick
@@ -285,17 +285,14 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             // changed and means the game will save the chunk to disk later.
             this.markDirty();
     
-//            final BlockState newState = this.world.getBlockState(this.pos)
-//                    .with(AbstractAlloyFurnaceBlock.LIT, Boolean.valueOf(this.isBurning()));
-    
-            // Flag 3: Send the change to clients & update blockstate
+            // Flag 2: Send the change to clients & update blockstate
             this.world.setBlockState(this.pos, 
                     this.world.getBlockState(this.pos).with(AbstractAlloyFurnaceBlock.LIT,
                                                         Boolean.valueOf(this.isBurning())),
-                    3);
+                    2);
     
             // Update the last synced burning state to the current burning state
-//            lastBurning = hasFuel;
+           lastBurning = hasFuel;
         } // end-if
     } // end tick()
 
@@ -407,11 +404,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     public void onLoad()
     {
         super.onLoad();
-        // We set this in onLoad instead of the constructor so that TileEntities
-        // constructed from NBT (saved tile entities) have this set to the proper value
-//        if (world != null && !world.isRemote)
-//            lastBurning = this.isBurning();
-    }
+    } // end onLoad()
 
     /**
      * Read saved data from disk into the tile.
@@ -425,6 +418,12 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
         this.fuelBurnTimeLeft = compound.getInt(FUEL_BURN_TIME_LEFT_TAG);
         this.maxFuelBurnTime = compound.getInt(MAX_FUEL_BURN_TIME_TAG);
+ 
+        // We set this in read() instead of the constructor so that TileEntities
+        // constructed from NBT (saved tile entities) have this set to the proper value
+        if (this.hasWorld() && !this.world.isRemote) {
+            lastBurning = this.isBurning();
+        }
         
         // get recipe2xp map
         int ii = compound.getShort("RecipesUsedSize");
@@ -434,7 +433,13 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
            int kk = compound.getInt("RecipeAmount" + jj);
            this.recipe2xp_map.put(resourcelocation, kk);
         }
-    }
+        
+        // blockstate?
+        if (this.hasWorld()) {
+            this.world.setBlockState(getPos(), this.getBlockState().with(AbstractAlloyFurnaceBlock.LIT, Boolean.valueOf(this.isBurning())));
+        }
+
+    } // end read()
 
     /**
      * Write data from the tile into a compound tag for saving to disk.
