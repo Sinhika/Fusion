@@ -400,12 +400,6 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         return super.getCapability(cap, side);
     } // end getCapability()
 
-    @Override
-    public void onLoad()
-    {
-        super.onLoad();
-    } // end onLoad()
-
     /**
      * Read saved data from disk into the tile.
      */

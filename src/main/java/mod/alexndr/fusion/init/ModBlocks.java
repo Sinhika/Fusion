@@ -6,6 +6,7 @@ import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -34,27 +35,27 @@ public final class ModBlocks
     public static final RegistryObject<Block> bronze_block = BLOCKS.register("bronze_block",
             () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.YELLOW_TERRACOTTA)
-                    .hardnessAndResistance(5.0F, 10.0F)
+                    .hardnessAndResistance(5.0F, 10.0F).sound(SoundType.METAL)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
     // steel
     public static final RegistryObject<Block> steel_block = BLOCKS.register("steel_block",
             () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.IRON)
-                    .hardnessAndResistance(7.0F, 12.0F)
+                    .hardnessAndResistance(7.0F, 12.0F).sound(SoundType.METAL)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
     
     // sinisite
     public static final RegistryObject<Block> sinisite_block = BLOCKS.register("sinisite_block",
             () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.BLUE)
-                    .hardnessAndResistance(10.0F, 24.0F)
+                    .hardnessAndResistance(10.0F, 24.0F).sound(SoundType.METAL)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
     
     // thyrium
     public static final RegistryObject<Block> thyrium_block = BLOCKS.register("thyrium_block",
             () -> new Block(Block.Properties.create(Material.IRON,
                     MaterialColor.CYAN)
-                    .hardnessAndResistance(7.0F, 12.0F)
+                    .hardnessAndResistance(7.0F, 12.0F).sound(SoundType.METAL)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
      
     // Furnace
