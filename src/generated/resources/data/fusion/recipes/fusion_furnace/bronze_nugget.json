@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "bronze_making",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          {
+            "tag": "forge:ingots/copper"
+          },
+          {
+            "tag": "forge:ingots/tin"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:bone_meal"
+        },
+        "output": {
+          "item": "fusion:bronze_nugget"
+        },
+        "cookingtime": 600,
+        "experience": 2.0
+      }
+    }
+  ]
+}
