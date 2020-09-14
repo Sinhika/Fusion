@@ -407,7 +407,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         // We set this in onLoad instead of the constructor so that TileEntities
         // constructed from NBT (saved tile entities) have this set to the proper value
         if (world != null && !world.isRemote)
-            lastBurning = isBurning();
+            lastBurning = this.isBurning();
     }
 
     /**
