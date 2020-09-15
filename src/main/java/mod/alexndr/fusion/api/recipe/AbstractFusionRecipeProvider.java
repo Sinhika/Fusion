@@ -2,8 +2,8 @@ package mod.alexndr.fusion.api.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.JsonOps;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.JsonOps;
 
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import net.minecraft.data.DataGenerator;
