@@ -16,6 +16,7 @@ import net.minecraft.data.RecipeProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ICondition;
@@ -58,15 +59,27 @@ public class FusionDataGenerator
             super(generatorIn);
         }
 
+        /* EVERYTHING BELOW THIS POINT IS MOSTLY JUST PROOF-OF-CONCEPT, 
+         * SINCE THE RECIPES ALREADY EXIST AS JSON FILES AND WE DON'T NEED TO DO
+         * THIS WORK ALL OVER AGAIN.
+         */
         @Override
         protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
         {
             registerBronzeRecipes(consumer);
+            registerSteelRecipes(consumer);
         }
 
         protected void registerSteelRecipes(Consumer<IFinishedRecipe> consumer)
         {
-            
+            ConditionalRecipe.builder()
+                .addCondition( flag("steel_making"))
+                .addRecipe(new FinishedRecipe(id(Fusion.MODID, "steel_nugget"), 
+                           new ItemStack(ModItems.steel_nugget.get()), 600, 2.0F, 
+                           Ingredient.fromTag(ItemTags.COALS), 
+                           Ingredient.fromTag(ItemTags.COALS),
+                           Ingredient.fromItems(Items.IRON_INGOT)))
+                .build(consumer, id(Fusion.MODID, "steel_nugget"));
         }
         
         protected void registerBronzeRecipes(Consumer<IFinishedRecipe> consumer)
@@ -79,7 +92,6 @@ public class FusionDataGenerator
                            Ingredient.fromTag(ModTags.Items.INGOTS_COPPER),
                            Ingredient.fromTag(ModTags.Items.INGOTS_TIN)))
                 .build(consumer, id(Fusion.MODID, "bronze_nugget"));
-                
         }
 
         /**
@@ -136,7 +148,7 @@ public class FusionDataGenerator
 
         protected void registerFurnaceRecipes(Consumer<IFinishedRecipe> consumer)
         {
-         } // end registerFurnaceRecipes()
+        } // end registerFurnaceRecipes()
 
     } // end subclass FusionDataGenerator$Recipes.
     
