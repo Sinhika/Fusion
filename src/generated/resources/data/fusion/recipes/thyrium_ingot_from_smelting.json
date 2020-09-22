@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "fusion:large_thyrium_chunk"
+  },
+  "result": "fusion:thyrium_ingot",
+  "experience": 0.4,
+  "cookingtime": 200
+}
