@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "sinisite_making",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          {
+            "tag": "forge:ingots/mythril"
+          },
+          {
+            "tag": "forge:gems/onyx"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:blaze_powder"
+        },
+        "output": {
+          "item": "fusion:medium_sinisite_chunk"
+        },
+        "cookingtime": 600,
+        "experience": 24.0
+      }
+    }
+  ]
+}

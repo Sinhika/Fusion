@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "bronze_making",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          {
+            "tag": "forge:ingots/copper"
+          },
+          {
+            "tag": "forge:ingots/tin"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:gunpowder"
+        },
+        "output": {
+          "item": "fusion:medium_bronze_chunk"
+        },
+        "cookingtime": 600,
+        "experience": 4.0
+      }
+    }
+  ]
+}

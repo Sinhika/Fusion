@@ -17,9 +17,8 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
-public class AbstractFusionRecipeProvider extends RecipeProvider implements IConditionBuilder
+public class AbstractFusionRecipeProvider extends RecipeProvider
 {
 
     public AbstractFusionRecipeProvider(DataGenerator generatorIn)
@@ -33,13 +32,13 @@ public class AbstractFusionRecipeProvider extends RecipeProvider implements ICon
         return "SimpleOres fusion alloy recipes";
     }
 
-    protected static ResourceLocation id(String modid, String path) 
+    public static ResourceLocation id(String modid, String path) 
     {
         return new ResourceLocation(modid, "fusion_furnace/" + path);
     }
     
     
-    protected static class FinishedRecipe implements IFinishedRecipe
+    public static class FinishedRecipe implements IFinishedRecipe
     {
         private final ResourceLocation id;
         private final ItemStack output;
