@@ -28,8 +28,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
 /**
- * bundles up the GatherDataEvent handler and all the necessary data providers for
- * data generation.
+ * bundles up the GatherDataEvent handler and all the necessary data providers
+ * for data generation.
+ * 
  * @author Sinhika
  */
 @EventBusSubscriber(modid = Fusion.MODID, bus = MOD)
@@ -38,6 +39,7 @@ public class FusionDataGenerator
 
     /**
      * GatherDataEvent handler.
+     * 
      * @param event the GatherDataEvent.
      */
     @SubscribeEvent
@@ -49,15 +51,16 @@ public class FusionDataGenerator
             gen.addProvider(new Recipes(gen));
             gen.addProvider(new FusionRecipes(gen));
         }
-     } // end gatherData()
+    } // end gatherData()
 
     /**
      * Fusion RecipeProvider for Fusion
      */
-    public static class FusionRecipes extends AbstractFusionRecipeProvider implements IConditionBuilder, ISimpleConditionBuilder
+    public static class FusionRecipes extends AbstractFusionRecipeProvider
+            implements IConditionBuilder, ISimpleConditionBuilder
     {
         private FusionRecipeSetBuilder fusionbuilder;
-        
+
         public FusionRecipes(DataGenerator generatorIn)
         {
             super(generatorIn);
@@ -77,49 +80,50 @@ public class FusionDataGenerator
         {
             List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
             Ingredient[] catalysts = new Ingredient[3];
-            
+
             primary_inputs.add(Ingredient.fromTag(ItemTags.COALS));
             primary_inputs.add(Ingredient.fromItems(Items.IRON_INGOT));
             catalysts[0] = Ingredient.fromTag(ItemTags.COALS);
             catalysts[1] = Ingredient.fromItems(Items.GUNPOWDER);
             catalysts[2] = Ingredient.fromItems(Items.REDSTONE);
-            
-            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.steel_nugget.get(), 
-                    ModItems.medium_steel_chunk.get(), ModItems.large_steel_chunk.get(), 2.0F, 600, flag("steel_making"));
+
+            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.steel_nugget.get(),
+                    ModItems.medium_steel_chunk.get(), ModItems.large_steel_chunk.get(), 2.0F, 600,
+                    flag("steel_making"));
         }
-        
+
         protected void registerBronzeRecipes(Consumer<IFinishedRecipe> consumer)
         {
             List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
             Ingredient[] catalysts = new Ingredient[3];
-            
+
             primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_COPPER));
             primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_TIN));
             catalysts[0] = Ingredient.fromItems(Items.BONE_MEAL);
             catalysts[1] = Ingredient.fromItems(Items.GUNPOWDER);
             catalysts[2] = Ingredient.fromItems(Items.REDSTONE);
-            
-            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.bronze_nugget.get(), 
-                    ModItems.medium_bronze_chunk.get(), ModItems.large_bronze_chunk.get(), 2.0F, 600, flag("bronze_making"));
+
+            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.bronze_nugget.get(),
+                    ModItems.medium_bronze_chunk.get(), ModItems.large_bronze_chunk.get(), 2.0F, 600,
+                    flag("bronze_making"));
         }
 
-        
         protected void registerSinisiteRecipes(Consumer<IFinishedRecipe> consumer)
         {
             List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
             Ingredient[] catalysts = new Ingredient[3];
-            
+
             primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_MYTHRIL));
             primary_inputs.add(Ingredient.fromTag(ModTags.Items.GEMS_ONYX));
             catalysts[0] = Ingredient.fromItems(Items.GLOWSTONE_DUST);
             catalysts[1] = Ingredient.fromItems(Items.BLAZE_POWDER);
             catalysts[2] = Ingredient.fromItems(Items.GHAST_TEAR);
-           
-            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.sinisite_nugget.get(), 
-                    ModItems.medium_sinisite_chunk.get(), ModItems.large_sinisite_chunk.get(), 12.0F, 600, flag("sinisite_making"));
+
+            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.sinisite_nugget.get(),
+                    ModItems.medium_sinisite_chunk.get(), ModItems.large_sinisite_chunk.get(), 12.0F, 600,
+                    flag("sinisite_making"));
         } // end ()
-        
-        
+
         protected void registerThyriumRecipes(Consumer<IFinishedRecipe> consumer)
         {
             List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
@@ -130,12 +134,12 @@ public class FusionDataGenerator
             catalysts[0] = Ingredient.fromItems(Items.REDSTONE);
             catalysts[1] = Ingredient.fromItems(Items.LAPIS_LAZULI);
             catalysts[2] = Ingredient.fromItems(Items.GLOWSTONE_DUST);
-            
-            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.thyrium_nugget.get(), 
-                    ModItems.medium_thyrium_chunk.get(), ModItems.large_thyrium_chunk.get(), 6.0F, 600, flag("thyrium_making"));
+
+            fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.thyrium_nugget.get(),
+                    ModItems.medium_thyrium_chunk.get(), ModItems.large_thyrium_chunk.get(), 6.0F, 600,
+                    flag("thyrium_making"));
         }
-        
-        
+
         /**
          * Builds an ICondition representing FlagCondition...
          *
@@ -144,12 +148,12 @@ public class FusionDataGenerator
         {
             return impl_flag(Fusion.MODID, FusionConfig.INSTANCE, name);
         }
-        
+
     } // end-class FusionRecipes
-    
-    
-    /** 
+
+    /**
      * Basic RecipeProvider for Fusion.
+     * 
      * @author Sinhika
      *
      */
@@ -171,16 +175,14 @@ public class FusionDataGenerator
             registerToolRecipes(consumer);
             registerArmorRecipes(consumer);
             registerFurnaceRecipes(consumer);
-        } // end registerRecipes() 
-        
+        } // end registerRecipes()
+
         protected void registerToolRecipes(Consumer<IFinishedRecipe> consumer)
-        {
-        } // end registerToolRecipes()
-        
+        {} // end registerToolRecipes()
+
         protected void registerArmorRecipes(Consumer<IFinishedRecipe> consumer)
-        {
-        } // end registerArmorRecipes()
-        
+        {} // end registerArmorRecipes()
+
         protected void registerStorageRecipes(Consumer<IFinishedRecipe> consumer)
         {
             setbuilder.buildSimpleStorageRecipes(consumer, ModItems.bronze_ingot.get(), ModBlocks.bronze_block.get(),
@@ -206,14 +208,23 @@ public class FusionDataGenerator
                     ModItems.medium_thyrium_chunk.get(), ModItems.large_thyrium_chunk.get(),
                     hasItem(ModItems.thyrium_nugget.get()));
         } // end registerStorageRecipes()
-        
+
         protected void registerMiscRecipes(Consumer<IFinishedRecipe> consumer)
         {
-            
+
         } // end registerMiscRecipes()
 
         protected void registerFurnaceRecipes(Consumer<IFinishedRecipe> consumer)
         {
+            setbuilder.buildOre2IngotRecipes(consumer, Ingredient.fromItems(ModItems.large_bronze_chunk.get()),
+                    ModItems.bronze_ingot.get(), hasItem(ModItems.large_bronze_chunk.get()), 0.4F, 200);
+            setbuilder.buildOre2IngotRecipes(consumer, Ingredient.fromItems(ModItems.large_steel_chunk.get()),
+                    ModItems.steel_ingot.get(), hasItem(ModItems.large_steel_chunk.get()), 0.4F, 200);
+            setbuilder.buildOre2IngotRecipes(consumer, Ingredient.fromItems(ModItems.large_sinisite_chunk.get()),
+                    ModItems.sinisite_ingot.get(), hasItem(ModItems.large_sinisite_chunk.get()), 0.4F, 200);
+            setbuilder.buildOre2IngotRecipes(consumer, Ingredient.fromItems(ModItems.large_thyrium_chunk.get()),
+                    ModItems.thyrium_ingot.get(), hasItem(ModItems.large_thyrium_chunk.get()), 0.4F, 200);
+            
         } // end registerFurnaceRecipes()
 
         @Override
@@ -223,5 +234,5 @@ public class FusionDataGenerator
         }
 
     } // end subclass FusionDataGenerator$Recipes.
-    
+
 } // end-class FusionDataGenerator
