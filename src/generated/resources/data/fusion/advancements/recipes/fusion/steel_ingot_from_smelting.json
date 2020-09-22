@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "fusion:steel_ingot_from_smelting"
+    ]
+  },
+  "criteria": {
+    "steel_ingot_from_smelting": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "fusion:large_steel_chunk"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "fusion:steel_ingot_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "steel_ingot_from_smelting",
+      "has_the_recipe"
+    ]
+  ]
+}
