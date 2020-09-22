@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fusion:medium_thyrium_chunk"
+    },
+    {
+      "item": "fusion:medium_thyrium_chunk"
+    },
+    {
+      "item": "fusion:thyrium_nugget"
+    }
+  ],
+  "result": {
+    "item": "fusion:large_thyrium_chunk"
+  }
+}
