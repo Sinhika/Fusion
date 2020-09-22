@@ -15,8 +15,12 @@ public class ModTags
         public static final Tag<Item> INGOTS_COPPER = forgeTag("ingots/copper");
         public static final Tag<Item> INGOTS_TIN = forgeTag("ingots/tin");
         public static final Tag<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
+        public static final Tag<Item> INGOTS_MYTHRIL = forgeTag("ingots/mythril");
+        public static final Tag<Item> GEMS_ONYX = forgeTag("gems/onyx");
+        public static final Tag<Item> INGOTS_ADAMANTIUM = forgeTag("ingots/adamantium");
         
         public static final Tag<Item> BLOCK_BRONZE = forgeTag("storage_blocks/bronze");
+        public static final Tag<Item> BLOCK_STEEL = forgeTag("storage_blocks/steel");
         
 //        private static Tag<Item> tag(String name) {
 //            return new ItemTags.Wrapper(new ResourceLocation(OnlySilver.MODID, name));
