@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "fusion:medium_steel_chunk"
+    }
+  ],
+  "result": {
+    "item": "fusion:steel_nugget",
+    "count": 4
+  }
+}

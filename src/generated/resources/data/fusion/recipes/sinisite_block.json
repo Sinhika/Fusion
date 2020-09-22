@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "fusion:sinisite_ingot"
+    }
+  },
+  "result": {
+    "item": "fusion:sinisite_block"
+  }
+}
