@@ -14,8 +14,12 @@ public class ModTags
         public static final ITag.INamedTag<Item> INGOTS_COPPER = forgeTag("ingots/copper");
         public static final ITag.INamedTag<Item> INGOTS_TIN = forgeTag("ingots/tin");
         public static final ITag.INamedTag<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
+        public static final ITag.INamedTag<Item> INGOTS_MYTHRIL = forgeTag("ingots/mythril");
+        public static final ITag.INamedTag<Item> GEMS_ONYX = forgeTag("gems/onyx");
+        public static final ITag.INamedTag<Item> INGOTS_ADAMANTIUM = forgeTag("ingots/adamantium");
         
         public static final ITag.INamedTag<Item> BLOCK_BRONZE = forgeTag("storage_blocks/bronze");
+        public static final ITag.INamedTag<Item> BLOCK_STEEL = forgeTag("storage_blocks/steel");
         
         private static ITag.INamedTag<Item> forgeTag(String name) {
             return ItemTags.makeWrapperTag("forge:" + name);
