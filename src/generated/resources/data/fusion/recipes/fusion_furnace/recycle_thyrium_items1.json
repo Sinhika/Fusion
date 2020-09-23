@@ -1,0 +1,58 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_fusion",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "fusion:thyrium_axe"
+            },
+            {
+              "item": "fusion:thyrium_boots"
+            },
+            {
+              "item": "fusion:thyrium_helmet"
+            },
+            {
+              "item": "fusion:thyrium_hoe"
+            },
+            {
+              "item": "fusion:thyrium_pickaxe"
+            },
+            {
+              "item": "fusion:thyrium_shovel"
+            },
+            {
+              "item": "fusion:thyrium_sword"
+            },
+            {
+              "item": "fusion:thyrium_bow"
+            },
+            {
+              "item": "fusion:thyrium_rod"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:lava_bucket"
+        },
+        "output": {
+          "item": "fusion:large_thyrium_chunk"
+        },
+        "cookingtime": 600,
+        "experience": 15.0
+      }
+    }
+  ]
+}
