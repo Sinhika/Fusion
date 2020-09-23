@@ -1,0 +1,55 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_fusion",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "fusion:steel_axe"
+            },
+            {
+              "item": "fusion:steel_boots"
+            },
+            {
+              "item": "fusion:steel_helmet"
+            },
+            {
+              "item": "fusion:steel_hoe"
+            },
+            {
+              "item": "fusion:steel_pickaxe"
+            },
+            {
+              "item": "fusion:steel_shovel"
+            },
+            {
+              "item": "fusion:steel_sword"
+            },
+            {
+              "item": "fusion:steel_shears"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "fusion:large_steel_chunk"
+        },
+        "cookingtime": 600,
+        "experience": 10.0
+      }
+    }
+  ]
+}
