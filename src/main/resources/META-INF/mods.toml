@@ -30,7 +30,7 @@ Additional Credits: fearheaven (French translation), AzazEL3095 (Spanish), Unkno
 [[dependencies.fusion]]
     modId="simpleores"
     mandatory=true
-    versionRange="[1.14.4-2.0.11.0,)"
+    versionRange="[1.14.4-2.0.12.2,)"
     ordering="NONE"
     side="BOTH"
 
