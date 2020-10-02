@@ -10,7 +10,7 @@ import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTabGroups;
-import mod.alexndr.simpleores.api.config.FlagCondition;
+import mod.alexndr.simplecorelib.config.FlagCondition;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;

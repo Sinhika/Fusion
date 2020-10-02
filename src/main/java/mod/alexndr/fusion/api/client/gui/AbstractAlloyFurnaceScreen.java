@@ -29,7 +29,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
     {
         this.renderBackground(matStack);
         super.render(matStack, mouseX, mouseY, partialTicks);
-        this.func_230459_a_(matStack, mouseX, mouseY);  // formerly renderHoveredTooltip
+        this.renderHoveredTooltip(matStack, mouseX, mouseY);  // formerly renderHoveredTooltip
     }
 
     /**

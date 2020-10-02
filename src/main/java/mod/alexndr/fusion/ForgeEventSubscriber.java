@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mod.alexndr.fusion.config.FusionConfig;
-import mod.alexndr.simpleores.api.loot.ChestLootHandler;
+import mod.alexndr.simplecorelib.loot.ChestLootHandler;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import mod.alexndr.fusion.api.recipe.AbstractFusionRecipeProvider;
-import mod.alexndr.simpleores.api.datagen.RecipeSetBuilder;
+import mod.alexndr.simplecorelib.datagen.RecipeSetBuilder;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;

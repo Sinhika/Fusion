@@ -3,7 +3,7 @@ package mod.alexndr.fusion.init;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionArmorMaterial;
 import mod.alexndr.fusion.content.FusionItemTier;
-import mod.alexndr.simpleores.api.content.SimpleShearsItem;
+import mod.alexndr.simplecorelib.content.SimpleShearsItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
