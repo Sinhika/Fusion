@@ -92,10 +92,20 @@ minecraft {
 }
 
 repositories {
-        maven {
-                name = "mcmodsrepo"
-                url = "file:///${project.projectDir}/../mcmodsrepo"
-        }
+    maven {
+            name = "mcmodsrepo"
+            url = "file:///${project.projectDir}/../mcmodsrepo"
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
 }
 
 sourceSets {
@@ -107,26 +117,8 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     //minecraft 'net.minecraftforge:forge:1.15.2-31.1.34'
-    minecraft "net.minecraftforge:forge:${version_forge}"
-        compile fg.deobf("mod.alexndr.simpleores:SimpleOres2:${simpleores_version}")
-}
-
-repositories {
-  maven {
-    // location of the maven that hosts JEI files
-    name = "Progwml6 maven"
-    url = "https://dvs1.progwml6.com/files/maven/"
-  }
-  maven {
-    // location of a maven mirror for JEI files, as a fallback
-    name = "ModMaven"
-    url = "https://modmaven.k-4u.nl"
-  }
-}
-
-dependencies {
-  /* minecraft dependency is here */
-
+  minecraft "net.minecraftforge:forge:${version_forge}"
+  compile fg.deobf("mod.alexndr.simpleores:SimpleOres2:${simpleores_version}")
   // compile against the JEI API but do not include it at runtime
   compileOnly fg.deobf("mezz.jei:jei-${version_minecraft}:${jei_version}:api")
   // at runtime, use the full JEI jar
