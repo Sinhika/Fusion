@@ -46,6 +46,7 @@ public class JEIFusionPlugin implements IModPlugin
     @Override
     public void registerRecipes(IRecipeRegistration registration)
     {
+        @SuppressWarnings("resource")
         Iterable<IRecipe<?>> recipes = Minecraft.getInstance().world.getRecipeManager().getRecipes();
         Collection<IRecipe<RecipeWrapper>> fusion_recipes = new ArrayList<IRecipe<RecipeWrapper>> ();
         for (IRecipe<?> recipe : recipes) {
