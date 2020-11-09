@@ -3,7 +3,7 @@
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[34,)" #mandatory
+loaderVersion="[35,)" #mandatory
 issueTrackerURL="https://github.com/Sinhika/Fusion/issues"
 license="LGPL 3"
 logoFile="fusion.png"
@@ -25,34 +25,34 @@ Additional Credits: fearheaven (French translation), AzazEL3095 (Spanish), Unkno
 [[dependencies.fusion]] #optional
     modId="jei"
     mandatory=false
-    versionRange="[1.16.3-7.3.2.36,)"
+    versionRange="[1.16.4-7.6.0.53,)"
     ordering="BEFORE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="simpleores"
     mandatory=false
-    versionRange="[1.16.3-2.3.0.0,)"
+    versionRange="[1.16.4-2.4.2.0,)"
     ordering="BEFORE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="simplecorelib"
     mandatory=true
-    versionRange="[1.16.3-2.0.0.5,)"
+    versionRange="[1.16.4-2.0.2.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="forge"
     mandatory=true
-    versionRange="[34.1.0,)"
+    versionRange="[35.0.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3,]"
+    versionRange="[1.16.4,)"
     ordering="NONE"
     side="BOTH"
