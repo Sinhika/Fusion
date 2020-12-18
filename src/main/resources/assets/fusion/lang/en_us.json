@@ -13,6 +13,7 @@
 	"gui.jei.category.fusion.experience": "%s XP",
 	
     "item.fusion.steel_ingot": "Steel Ingot",
+    "item.fusion.steel_dust" : "Steel Dust",
     "item.fusion.slimy_diamond": "Slimy Diamond",
     "item.fusion.steel_nugget": "Steel Nugget",
     "item.fusion.medium_steel_chunk": "Medium Steel Chunk",
@@ -24,6 +25,9 @@
     "item.fusion.bronze_ingot": "Bronze Ingot",
     "item.fusion.thyrium_ingot": "Thyrium Ingot",
     "item.fusion.sinisite_ingot": "Sinisite Ingot",
+    "item.fusion.bronze_dust": "Bronze Dust",
+    "item.fusion.thyrium_dust": "Thyrium Dust",
+    "item.fusion.sinisite_dust": "Sinisite Dust",
     "item.fusion.thyrium_rod": "Thyrium Rod",
     "item.fusion.sinisite_rod": "Sinisite Rod",
     "item.fusion.bronze_nugget": "Bronze Nugget",
