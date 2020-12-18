@@ -51,6 +51,15 @@ public final class ModItems
             () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<Item> thyrium_nugget = ITEMS.register("thyrium_nugget", 
             () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+
+    public static final RegistryObject<Item> bronze_dust = ITEMS.register("bronze_dust", 
+            () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> steel_dust = ITEMS.register("steel_dust", 
+            () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> sinisite_dust = ITEMS.register("sinisite_dust", 
+            () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<Item> thyrium_dust = ITEMS.register("thyrium_dust", 
+            () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
     
     public static final RegistryObject<Item> large_bronze_chunk = ITEMS.register("large_bronze_chunk", 
             () -> new Item(new Item.Properties().group(ModTabGroups.MOD_ITEM_GROUP)));
