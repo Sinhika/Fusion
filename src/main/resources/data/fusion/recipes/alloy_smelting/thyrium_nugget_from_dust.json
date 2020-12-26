@@ -1,0 +1,25 @@
+{
+    "conditions": [
+        {
+            "modid": "silents_mechanisms",
+            "type": "forge:mod_loaded"
+        }
+    ],
+    "type": "silents_mechanisms:alloy_smelting",
+    "process_time": 300,
+    "ingredients": [
+        {
+            "tag": "forge:dusts/mythril"
+        },
+        {
+            "tag": "forge:dusts/adamantium"
+        },
+        {
+            "item": "minecraft:redstone"
+        }
+    ],
+    "result": {
+        "item": "fusion:thyrium_nugget",
+        "count": 1
+    }
+}

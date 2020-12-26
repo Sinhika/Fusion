@@ -1,0 +1,25 @@
+{
+    "conditions": [
+        {
+            "modid": "silents_mechanisms",
+            "type": "forge:mod_loaded"
+        }
+    ],
+    "type": "silents_mechanisms:alloy_smelting",
+    "process_time": 300,
+    "ingredients": [
+        {
+            "tag": "forge:dusts/copper"
+        },
+        {
+            "tag": "forge:dusts/tin"
+        },
+        {
+            "item": "minecraft:gunpowder"
+        }
+    ],
+    "result": {
+        "item": "fusion:medium_bronze_chunk",
+        "count": 1
+    }
+}

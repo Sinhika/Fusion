@@ -1,0 +1,18 @@
+{
+    "conditions": [
+        {
+            "modid": "silents_mechanisms",
+            "type": "forge:mod_loaded"
+        }
+    ],
+    "type": "silents_mechanisms:crushing",
+    "process_time": 300,
+    "ingredient": {
+        "item": "fusion:thyrium_ingot"
+    },
+    "results": [
+        {
+            "item": "fusion:thyrium_dust"
+        }
+    ]
+}
