@@ -50,7 +50,7 @@ make_silents_recipes.py --type=alloy_smelter --ingredient "#forge:dusts/iron" \
    -- medium_steel_chunk_from_dust
 make_silents_recipes.py --type=alloy_smelter --ingredient "#forge:dusts/iron" \
    "#minecraft:coals" "minecraft:redstone" --result "${ID}:large_steel_chunk" \
-   -- large_bronze_chunk_from_dust
+   -- large_steel_chunk_from_dust
 
 make_silents_recipes.py --type=alloy_smelter --ingredient "#forge:dusts/mythril" \
     "#forge:dusts/adamantium" "minecraft:redstone" --result "${ID}:thyrium_nugget" \

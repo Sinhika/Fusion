@@ -9,17 +9,17 @@
     "process_time": 300,
     "ingredients": [
         {
-            "tag": "forge:dusts/copper"
+            "tag": "forge:dusts/iron"
         },
         {
-            "tag": "forge:dusts/tin"
+            "tag": "minecraft:coals"
         },
         {
             "item": "minecraft:redstone"
         }
     ],
     "result": {
-        "item": "fusion:large_bronze_chunk",
+        "item": "fusion:large_steel_chunk",
         "count": 1
     }
 }
