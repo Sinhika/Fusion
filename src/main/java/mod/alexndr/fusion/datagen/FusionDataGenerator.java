@@ -50,6 +50,7 @@ public class FusionDataGenerator
         {
             gen.addProvider(new Recipes(gen));
             gen.addProvider(new FusionRecipes(gen));
+            gen.addProvider(new SilentsRecipes(gen));
         }
     } // end gatherData()
 
