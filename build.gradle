@@ -121,9 +121,9 @@ dependencies {
     compile fg.deobf("mod.alexndr.simplecorelib:SimpleCoreLib:${simplecorelib_version}")
     runtimeOnly fg.deobf("mod.alexndr.simpleores:SimpleOres2:${simpleores_version}")
   // compile against the JEI API but do not include it at runtime
-  compileOnly fg.deobf("mezz.jei:jei-${version_minecraft}:${jei_version}:api")
+  compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}:api")
   // at runtime, use the full JEI jar
-  runtimeOnly fg.deobf("mezz.jei:jei-${version_minecraft}:${jei_version}")
+  runtimeOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}")
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

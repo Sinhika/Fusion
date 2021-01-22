@@ -3,7 +3,7 @@
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[35,)" #mandatory
+loaderVersion="[36,)" #mandatory
 issueTrackerURL="https://github.com/Sinhika/Fusion/issues"
 license="LGPL 3"
 logoFile="fusion.png"
@@ -20,39 +20,53 @@ description='''
 An add-on for SimpleOres that adds a unique alloying process.
 
 Additional Credits: fearheaven (French translation), AzazEL3095 (Spanish), Unknown (Simplified
-	Chinese, Traditional Chinese).
+        Chinese, Traditional Chinese).
 '''
 [[dependencies.fusion]] #optional
     modId="jei"
     mandatory=false
-    versionRange="[1.16.4-7.6.0.53,)"
+    versionRange="[1.16.4-7.6.1.65,)"
     ordering="BEFORE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="simpleores"
     mandatory=false
-    versionRange="[1.16.4-2.4.2.0,)"
+    versionRange="[1.16.5-2.4.4.0,1.16.5-2.4.5.0)"
     ordering="BEFORE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="simplecorelib"
     mandatory=true
-    versionRange="[1.16.4-2.0.2.0,)"
+    versionRange="[1.16.5-2.0.5.0,1.16.5-2.0.6.0)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="forge"
     mandatory=true
-    versionRange="[35.0.0,)"
+    versionRange="[36.0.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.fusion]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4,)"
+    versionRange="[1.16.5,)"
     ordering="NONE"
     side="BOTH"
+    
+[[dependencies.simpleores]]
+        modId="silents_mechanisms"
+        mandatory=false
+        versionRange="[1.16.3-0.8.9,)"
+        ordering="BEFORE"
+        side="BOTH"
+        
+[[dependencies.simpleores]]
+        modId="silentgear"
+        mandatory=false
+        versionRange="[1.16.3-2.5.2,)"
+        ordering="BEFORE"
+        side="BOTH"
