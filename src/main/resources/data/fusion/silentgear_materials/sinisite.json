@@ -1,0 +1,75 @@
+{
+	"conditions": [
+		{
+			"value": {
+				"tag": "forge:ingots/sinisite",
+				"type": "forge:tag_empty"
+			},
+			"type": "forge:not"
+		}
+	],
+	"availability": {
+		"tier": 5,
+		"categories": [ "metal" ],
+		"visible": true,
+		"gear_blacklist": [
+		],
+		"can_salvage": true
+	},
+	"crafting_items": {
+		"main": {
+			"tag": "forge:ingots/sinisite"
+		}
+	},
+	"name": {
+		"translate": "material.fusion.sinisite"
+	},
+	"stats": {
+		"main": {
+			"durability": 4100.0,
+			"armor_durability": 56.0,
+			"enchantability": 11.0,
+			"harvest_level": 5.0,
+			"harvest_speed": 18.0,
+			"melee_damage": 8.0,
+			"magic_damage": 8.0,
+			"attack_speed": 0.0,
+			"armor": 24.0,
+			"armor_toughness": 2.0,
+			"magic_armor": 10.0,
+			"ranged_damage": 0.4,
+			"ranged_speed": 0.2,
+			"rarity": 100.0,
+			"silentgems:chargeability": 2.0
+		},
+		"rod": {
+			"durability": {
+				"mul2": 0.1
+			},
+			"harvest_speed": {
+				"mul2": 0.2
+			},
+			"rarity": 100.0
+		}
+	},
+	"traits": {
+		"main": [
+			{
+				"name": "silentgear:malleable",
+				"level": 2
+			}
+		],
+		"rod": [
+			{
+				"name": "silentgear:malleable",
+				"level": 2
+			}
+		],
+		"adornment": [
+			{
+				"name" : "silentgear:bastion",
+				"level": 3
+			}
+		]
+	}
+}
