@@ -42,7 +42,7 @@ public class JEIFusionPlugin implements IModPlugin
     /**
      * Register modded recipes.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "resource" })
     @Override
     public void registerRecipes(IRecipeRegistration registration)
     {

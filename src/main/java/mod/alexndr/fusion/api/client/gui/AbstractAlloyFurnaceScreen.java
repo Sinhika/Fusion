@@ -84,9 +84,11 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
         String s = this.title.getFormattedText();
         String [] s2 = s.split("\\s+", 2);
         int left_offset = this.xSize / 2 - forbidden_area/2 - this.font.getStringWidth(s2[0]);
-        int right_offset = this.xSize / 2 + forbidden_area/2;
         this.font.drawString(s2[0], (float) left_offset, 6.0F, displayNameColor);
-        this.font.drawString(s2[1], (float) right_offset, 6.0F, displayNameColor);
+        if (s2.length > 1) {
+            int right_offset = this.xSize / 2 + forbidden_area/2;
+            this.font.drawString(s2[1], (float) right_offset, 6.0F, displayNameColor);
+        }
         //this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0x404040);
         
         this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 
