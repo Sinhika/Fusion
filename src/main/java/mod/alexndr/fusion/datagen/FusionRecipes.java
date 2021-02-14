@@ -43,6 +43,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         registerSinisiteRecipes(consumer);
         registerThyriumRecipes(consumer);
         registerVanillaFusionRecyclingRecipes(consumer);
+        registerSimpleOresFusionRecyclingRecipes(consumer);
     }
 
     /**
@@ -174,8 +175,30 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 Ingredient.fromItems(Items.GRAVEL), Ingredient.fromTag(ItemTags.COALS), 
                 Items.DIAMOND_ORE, 
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_vanilla")), "recycle_diamond_items");
-        
+ 
+ 
    } // end registerVanillaFusionRecyclingRecipes()
+ 
+    protected void registerSimpleOresFusionRecyclingRecipes(Consumer<IFinishedRecipe> consumer)
+    {
+        // Onyx recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.fromItems(mod.alexndr.simpleores.init.ModItems.onyx_axe.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_boots.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_bow.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_helmet.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_hoe.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_pickaxe.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_rod.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_shears.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_shovel.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_sword.get()), 
+                Ingredient.fromItems(mod.alexndr.simpleores.init.ModItems.onyx_chestplate.get(),
+                        mod.alexndr.simpleores.init.ModItems.onyx_leggings.get()), 
+                Ingredient.fromItems(Items.NETHERRACK), Ingredient.fromItems(Items.LAVA_BUCKET), 
+                mod.alexndr.simpleores.init.ModBlocks.onyx_ore.get().asItem(), 
+                20.0F, 600, and(flag("recycle_gems"), flag("recycle_simpleores")), "recycle_onyx_items");
+    } // end registerSimpleOresFusionRecyclingRecipes()
     
     /**
      * Builds an ICondition representing FlagCondition...
