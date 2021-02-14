@@ -173,7 +173,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                         Items.DIAMOND_HOE, Items.DIAMOND_PICKAXE, Items.DIAMOND_SHOVEL, Items.DIAMOND_SWORD), 
                 Ingredient.fromItems(Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_HORSE_ARMOR), 
                 Ingredient.fromItems(Items.GRAVEL), Ingredient.fromTag(ItemTags.COALS), 
-                Items.DIAMOND_ORE, 
+                Items.DIAMOND, 
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_vanilla")), "recycle_diamond_items");
  
  
@@ -196,7 +196,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 Ingredient.fromItems(mod.alexndr.simpleores.init.ModItems.onyx_chestplate.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_leggings.get()), 
                 Ingredient.fromItems(Items.NETHERRACK), Ingredient.fromItems(Items.LAVA_BUCKET), 
-                mod.alexndr.simpleores.init.ModBlocks.onyx_ore.get().asItem(), 
+                mod.alexndr.simpleores.init.ModItems.onyx_gem.get().asItem(), 
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_simpleores"), modLoaded("simpleores")), 
                 "recycle_onyx_items");
     } // end registerSimpleOresFusionRecyclingRecipes()

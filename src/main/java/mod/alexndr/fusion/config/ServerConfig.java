@@ -107,7 +107,7 @@ public final class ServerConfig
                 .define("enableFusionRecycling", true);
         serverEnableGemRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Diamonds/Onyx?")
                 .translation(Fusion.MODID + ".config.enableGemRecycling")
-                .define("enableGemRecycling", false);
+                .define("enableGemRecycling", true);
         builder.pop();
         
     } // end ctor

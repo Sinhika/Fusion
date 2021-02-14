@@ -39,7 +39,7 @@
           "tag": "minecraft:coals"
         },
         "output": {
-          "item": "minecraft:diamond_ore",
+          "item": "minecraft:diamond",
           "count": 2
         },
         "cookingtime": 600,
