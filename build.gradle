@@ -119,7 +119,7 @@ dependencies {
     //minecraft 'net.minecraftforge:forge:1.15.2-31.1.34'
     minecraft "net.minecraftforge:forge:${version_forge}"
     compile fg.deobf("mod.alexndr.simplecorelib:SimpleCoreLib:${simplecorelib_version}")
-    runtimeOnly fg.deobf("mod.alexndr.simpleores:SimpleOres2:${simpleores_version}")
+    compileOnly fg.deobf("mod.alexndr.simpleores:SimpleOres2:${simpleores_version}")
   // compile against the JEI API but do not include it at runtime
   compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}:api")
   // at runtime, use the full JEI jar
