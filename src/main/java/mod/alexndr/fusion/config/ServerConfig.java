@@ -19,6 +19,7 @@ public final class ServerConfig
     final ForgeConfigSpec.BooleanValue serverEnableSimpleOresRecycling;
     final ForgeConfigSpec.BooleanValue serverEnableNetherrocksRecycling;
     final ForgeConfigSpec.BooleanValue serverEnableFusionRecycling;
+    final ForgeConfigSpec.BooleanValue serverEnableGemRecycling;
     
     // tool recipes
     final ForgeConfigSpec.BooleanValue serverEnableSteelTools;
@@ -104,6 +105,9 @@ public final class ServerConfig
         serverEnableFusionRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Fusion?")
                 .translation(Fusion.MODID + ".config.enableFusionRecycling")
                 .define("enableFusionRecycling", true);
+        serverEnableGemRecycling = builder.comment("Enable Simple Fusion Recycling recipes for Diamonds/Onyx?")
+                .translation(Fusion.MODID + ".config.enableGemRecycling")
+                .define("enableGemRecycling", false);
         builder.pop();
         
     } // end ctor

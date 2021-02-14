@@ -11,11 +11,13 @@ import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModTags;
 import mod.alexndr.simplecorelib.datagen.ISimpleConditionBuilder;
+import net.minecraft.block.AbstractBlock.AbstractBlockState;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.datafix.fixes.BlockStateFlatternEntities;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -40,6 +42,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         registerSteelRecipes(consumer);
         registerSinisiteRecipes(consumer);
         registerThyriumRecipes(consumer);
+        registerVanillaFusionRecyclingRecipes(consumer);
     }
 
     /**
@@ -161,6 +164,18 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 15.0F, 600, flag("recycle_fusion"), "recycle_thyrium_items");
     }
 
+    protected void registerVanillaFusionRecyclingRecipes(Consumer<IFinishedRecipe> consumer)
+    {
+        // Diamond recycling recipes
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.fromItems(Items.DIAMOND_AXE, Items.DIAMOND_BOOTS, Items.DIAMOND_HELMET,
+                        Items.DIAMOND_HOE, Items.DIAMOND_PICKAXE, Items.DIAMOND_SHOVEL, Items.DIAMOND_SWORD), 
+                Ingredient.fromItems(Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_HORSE_ARMOR), 
+                Ingredient.fromItems(Items.GRAVEL), Ingredient.fromTag(ItemTags.COALS), 
+                Items.DIAMOND_ORE, 
+                20.0F, 600, and(flag("recycle_gems"), flag("recycle_vanilla")), "recycle_diamond_items");
+        
+   } // end registerVanillaFusionRecyclingRecipes()
     
     /**
      * Builds an ICondition representing FlagCondition...

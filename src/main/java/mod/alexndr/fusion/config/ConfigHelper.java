@@ -21,6 +21,7 @@ public final class ConfigHelper
         FusionConfig.INSTANCE.putFlag("recycle_simpleores", ConfigHolder.SERVER.serverEnableSimpleOresRecycling.get());
         FusionConfig.INSTANCE.putFlag("recycle_netherrocks", ConfigHolder.SERVER.serverEnableNetherrocksRecycling.get());
         FusionConfig.INSTANCE.putFlag("recycle_fusion", ConfigHolder.SERVER.serverEnableFusionRecycling.get());
+        FusionConfig.INSTANCE.putFlag("recycle_gems", ConfigHolder.SERVER.serverEnableGemRecycling.get());
         
         // tool recipe flags
         FusionConfig.INSTANCE.putFlag("steel_tools", ConfigHolder.SERVER.serverEnableSteelTools.get());

@@ -1,0 +1,50 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_gems",
+              "type": "fusion:flag"
+            },
+            {
+              "flag": "recycle_vanilla",
+              "type": "fusion:flag"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:diamond_chestplate"
+            },
+            {
+              "item": "minecraft:diamond_leggings"
+            },
+            {
+              "item": "minecraft:diamond_horse_armor"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:diamond_ore",
+          "count": 2
+        },
+        "cookingtime": 600,
+        "experience": 40.0
+      }
+    }
+  ]
+}
