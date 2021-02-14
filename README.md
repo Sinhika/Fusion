@@ -4,14 +4,15 @@ Repository for Fusion plugin for Simple Ores, by AlexndrGr8st, maintained by Sin
 
 Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https://github.com/Cadiboo/Example-Mod that he made free to all to borrow, in the hopes of encouraging good coding practices in Forge mods. I hope I did a good job with it.
 
-**WARNING: 1.15 is a Work-in-Progress; expect frequent changes!**
+**WARNING: 1.16 is a Work-in-Progress; expect frequent changes!**
 
 TO-DO
 -----
 * <s>add JEI support</s>  Basic JEI support done. Add remaining JEI support (transfer handler).
 * <s>make recipes disable-able in config.</s>
-* Roll the fusion recycling part of akkamaddi's Addenda into Fusion - in progress.
-* Roll the fusion recycling part of akkamaddi's Netherrocks Addenda into Fusion - in progress.
+* <s>Roll the fusion recycling part of akkamaddi's Addenda into Fusion</s>
+* <s>Roll the fusion recycling part of akkamaddi's Netherrocks Addenda into Fusion</s>
+* Fix onyx & diamond-duping with recycling issue, probably by adding a default disabled "gem_recycling" option in the config file.
 * add shears for rest of metals (bronze, sinisite, thyrium)
 * update or move the SimpleOres, etc. wiki
 * add chance of fusion furnace in villages, and if exists, chance of bronze or steel stuff in toolsmith & weaponsmith chest loot.

@@ -21,6 +21,14 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
         super(modid);
     }
 
+    public void buildBasicAlloyRecipes(Consumer<IFinishedRecipe> consumer, List<Ingredient> primaryInputs,
+            Ingredient[] catalysts, IItemProvider nugget, IItemProvider medium_chunk, IItemProvider large_chunk,
+            float experience, int cooktime, ICondition condition)
+    {
+        buildBasicAlloyRecipes(consumer, primaryInputs, catalysts, nugget, medium_chunk, large_chunk,
+                experience, cooktime, condition, null);
+    }
+    
     /**
      * Create the fusion_furnace alloy recipes for nuggets, medium chunks, and large chunks for a given pair of
      * ingredients and set of catalysts.
@@ -38,18 +46,23 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
      */
     public void buildBasicAlloyRecipes(Consumer<IFinishedRecipe> consumer, List<Ingredient> primaryInputs,
             Ingredient[] catalysts, IItemProvider nugget, IItemProvider medium_chunk, IItemProvider large_chunk,
-            float experience, int cooktime, ICondition condition)
+            float experience, int cooktime, ICondition condition, String suffix)
     {
+        if (suffix == null) {
+            suffix = "";
+        }
+        
         ResourceLocation nugget_name = (nugget != null) 
-                ? AbstractFusionRecipeProvider.id(modid, nugget.asItem().toString()) 
-                : null;
-        ResourceLocation medium_chunk_name = (medium_chunk != null) 
-                ? AbstractFusionRecipeProvider.id(modid, medium_chunk.asItem().toString()) 
-                : null;
-        ResourceLocation large_chunk_name = (large_chunk != null) 
-                ? AbstractFusionRecipeProvider.id(modid, large_chunk.asItem().toString()) 
+                ? AbstractFusionRecipeProvider.id(modid, nugget.asItem().toString() + suffix) 
                 : null;
         
+        ResourceLocation medium_chunk_name = (medium_chunk != null) 
+                ? AbstractFusionRecipeProvider.id(modid, medium_chunk.asItem().toString() + suffix) 
+                : null;
+        ResourceLocation large_chunk_name = (large_chunk != null) 
+                ? AbstractFusionRecipeProvider.id(modid, large_chunk.asItem().toString() + suffix) 
+                : null;
+                
         if (condition == null)
         {
             if (nugget != null)
