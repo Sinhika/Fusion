@@ -197,7 +197,8 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                         mod.alexndr.simpleores.init.ModItems.onyx_leggings.get()), 
                 Ingredient.fromItems(Items.NETHERRACK), Ingredient.fromItems(Items.LAVA_BUCKET), 
                 mod.alexndr.simpleores.init.ModBlocks.onyx_ore.get().asItem(), 
-                20.0F, 600, and(flag("recycle_gems"), flag("recycle_simpleores")), "recycle_onyx_items");
+                20.0F, 600, and(flag("recycle_gems"), flag("recycle_simpleores"), modLoaded("simpleores")), 
+                "recycle_onyx_items");
     } // end registerSimpleOresFusionRecyclingRecipes()
     
     /**

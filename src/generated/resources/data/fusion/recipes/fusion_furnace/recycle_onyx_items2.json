@@ -1,0 +1,51 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_gems",
+              "type": "fusion:flag"
+            },
+            {
+              "flag": "recycle_simpleores",
+              "type": "fusion:flag"
+            },
+            {
+              "modid": "simpleores",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "simpleores:onyx_chestplate"
+            },
+            {
+              "item": "simpleores:onyx_leggings"
+            }
+          ],
+          {
+            "item": "minecraft:netherrack"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:lava_bucket"
+        },
+        "output": {
+          "item": "simpleores:onyx_ore",
+          "count": 2
+        },
+        "cookingtime": 600,
+        "experience": 40.0
+      }
+    }
+  ]
+}
