@@ -12,7 +12,7 @@ TO-DO
 * <s>make recipes disable-able in config.</s>
 * <s>Roll the fusion recycling part of akkamaddi's Addenda into Fusion</s>
 * <s>Roll the fusion recycling part of akkamaddi's Netherrocks Addenda into Fusion</s>
-* Fix onyx & diamond-duping with recycling issue, probably by adding a default disabled "gem_recycling" option in the config file.
+* <s>Fix onyx & diamond-duping with recycling issue, probably by adding a default disabled "gem_recycling" option in the config file.</s>
 * add shears for rest of metals (bronze, sinisite, thyrium)
 * update or move the SimpleOres, etc. wiki
 * add chance of fusion furnace in villages, and if exists, chance of bronze or steel stuff in toolsmith & weaponsmith chest loot.
