@@ -16,7 +16,8 @@ TO-DO
 * add shears for rest of metals (bronze, sinisite, thyrium)
 * update or move the SimpleOres, etc. wiki
 * add chance of fusion furnace in villages, and if exists, chance of bronze or steel stuff in toolsmith & weaponsmith chest loot.
-* add chance of bronze or steel stuff in appropriate treasure chest loot tables.
+* <s>add chance of bronze or steel stuff in appropriate treasure chest loot tables.</s>
+* add random chance for injected loot, instead of 100% guaranteed.
 * should we add fusion items to monster worn/carried items? Probably not, that leads to tears.
 * add output to front of fusion furnace as well -- Why?
 
