@@ -14,8 +14,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
 {
     public FusionFurnaceBlock(Properties builder)

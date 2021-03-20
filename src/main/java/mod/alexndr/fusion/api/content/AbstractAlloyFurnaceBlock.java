@@ -29,8 +29,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
