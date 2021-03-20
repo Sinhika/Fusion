@@ -22,7 +22,7 @@ public class ModTags
         public static final ITag.INamedTag<Item> BLOCK_STEEL = forgeTag("storage_blocks/steel");
         
         private static ITag.INamedTag<Item> forgeTag(String name) {
-            return ItemTags.makeWrapperTag("forge:" + name);
+            return ItemTags.bind("forge:" + name);
         }
     } // end class Items
     
@@ -33,7 +33,7 @@ public class ModTags
         
 
         private static ITag.INamedTag<Block> forgeTag(String name) {
-            return BlockTags.makeWrapperTag("forge:" + name);
+            return BlockTags.bind("forge:" + name);
         }
     } // end class Blocks
 

@@ -14,14 +14,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public enum FusionArmorMaterial implements IArmorMaterial 
 {
-    BRONZE("fusion:bronze", 16, new int [] {1,3,5,3}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 
-            ()-> { return Ingredient.fromItems(ModItems.bronze_ingot.get());} ),
-    SINISITE("fusion:sinisite", 56, new int [] {5,6,8,5}, 11, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 
-            ()-> { return Ingredient.fromItems(ModItems.sinisite_ingot.get());} ),
-    THYRIUM("fusion:thyrium", 39, new int [] {3,6,7,4}, 28, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0F, 
-            ()-> { return Ingredient.fromItems(ModItems.thyrium_ingot.get());} ),
-    STEEL("fusion:steel", 20, new int [] {3,5,6,3}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F, 
-            ()-> { return Ingredient.fromItems(ModItems.steel_ingot.get());} );
+    BRONZE("fusion:bronze", 16, new int [] {1,3,5,3}, 7, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 
+            ()-> { return Ingredient.of(ModItems.bronze_ingot.get());} ),
+    SINISITE("fusion:sinisite", 56, new int [] {5,6,8,5}, 11, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0F, 
+            ()-> { return Ingredient.of(ModItems.sinisite_ingot.get());} ),
+    THYRIUM("fusion:thyrium", 39, new int [] {3,6,7,4}, 28, SoundEvents.ARMOR_EQUIP_GENERIC, 1.0F, 
+            ()-> { return Ingredient.of(ModItems.thyrium_ingot.get());} ),
+    STEEL("fusion:steel", 20, new int [] {3,5,6,3}, 7, SoundEvents.ARMOR_EQUIP_IRON, 0.5F, 
+            ()-> { return Ingredient.of(ModItems.steel_ingot.get());} );
     
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final String name;
@@ -46,19 +46,19 @@ public enum FusionArmorMaterial implements IArmorMaterial
     }
     
     @Override
-    public int getDamageReductionAmount(EquipmentSlotType slotIn)
+    public int getDefenseForSlot(EquipmentSlotType slotIn)
     {
         return this.damageReductionAmountArray[slotIn.getIndex()];
     }
     
     @Override
-    public int getDurability(EquipmentSlotType slotIn)
+    public int getDurabilityForSlot(EquipmentSlotType slotIn)
     {
         return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
     
     @Override
-    public int getEnchantability()
+    public int getEnchantmentValue()
     {
         return this.enchantability;
     }
@@ -71,13 +71,13 @@ public enum FusionArmorMaterial implements IArmorMaterial
     }
     
     @Override
-    public Ingredient getRepairMaterial()
+    public Ingredient getRepairIngredient()
     {
-        return this.repairMaterial.getValue();
+        return this.repairMaterial.get();
     }
     
     @Override
-    public SoundEvent getSoundEvent()
+    public SoundEvent getEquipSound()
     {
         return this.soundEvent;
     }

@@ -29,11 +29,11 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
     {
         this.renderBackground(matStack);
         super.render(matStack, mouseX, mouseY, partialTicks);
-        this.renderHoveredTooltip(matStack, mouseX, mouseY);  // formerly renderHoveredTooltip
+        this.renderTooltip(matStack, mouseX, mouseY);  // formerly renderHoveredTooltip
     }
 
     /**
-     * Corresponds to AbstractFurnaceScreen.func_230450_a_() in 1.16.1.
+     * Corresponds to AbstractFurnaceScreen.renderBg() in 1.16.1.
      * Formerly drawGuiContainerBackgroundLayer() in 1.15.2
      * @param matStack
      * @param partialTicks
@@ -42,21 +42,21 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
      */
     @SuppressWarnings("deprecation")
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack matStack, final float partialTicks, final int mouseX, final int mouseY)
+    protected void renderBg(MatrixStack matStack, final float partialTicks, final int mouseX, final int mouseY)
     {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        getMinecraft().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
-        int startX = this.guiLeft;
-        int startY = this.guiTop;
+        getMinecraft().getTextureManager().bind(BACKGROUND_TEXTURE);
+        int startX = this.leftPos;
+        int startY = this.topPos;
         
         // Screen#blit draws a part of the current texture (assumed to be 256x256) to the screen
         // The parameters are (x, y, u, v, width, height)
-        this.blit(matStack, startX, startY, 0, 0, this.xSize, this.ySize);
+        this.blit(matStack, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
         
-        final AbstractAlloyFurnaceTileEntity tileEntity = this.container.tileEntity;
+        final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
     
-        int k = (this.width - this.xSize) / 2;
-        int l = (this.height - this.ySize) / 2;
+        int k = (this.width - this.imageWidth) / 2;
+        int l = (this.height - this.imageHeight) / 2;
         int i1;
     
         if (tileEntity.isBurning())
@@ -85,32 +85,32 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
     } // end drawGuiContainerBackgroundLayer()
 
     /**
-     * Probably corresponds to ContainerScreen.func_230451_b_() in 1.16.1.
+     * Probably corresponds to ContainerScreen.renderLabels() in 1.16.1.
      * Formerly drawGuiContainerForegroundLayer() in 1.15.2.
      * @param matStack
      * @param mouseX
      * @param mouseY
      */
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack matStack, int mouseX, int mouseY)
+    protected void renderLabels(MatrixStack matStack, int mouseX, int mouseY)
     {
         int forbidden_area = 54;
         
         // Copied from AbstractFurnaceScreen#drawGuiContainerForegroundLayer
         String s = this.title.getString();
         String [] s2 = s.split("\\s+", 2);
-        int left_offset = this.xSize / 2 - forbidden_area/2 - this.font.getStringWidth(s2[0]);
-        this.font.drawString(matStack, s2[0], (float) left_offset, 6.0F, displayNameColor);
+        int left_offset = this.imageWidth / 2 - forbidden_area/2 - this.font.width(s2[0]);
+        this.font.draw(matStack, s2[0], (float) left_offset, 6.0F, displayNameColor);
         // In some languages, the title is one word, not two.
         if (s2.length > 1)
         {
-            int right_offset = this.xSize / 2 + forbidden_area/2;
-            this.font.drawString(matStack, s2[1], (float) right_offset, 6.0F, displayNameColor);
+            int right_offset = this.imageWidth / 2 + forbidden_area/2;
+            this.font.draw(matStack, s2[1], (float) right_offset, 6.0F, displayNameColor);
         }
         //this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0x404040);
         
-        this.font.drawString(matStack, this.playerInventory.getDisplayName().getString(), 
-                             8.0F, (float) (this.ySize - 96 + 2), displayNameColor);
+        this.font.draw(matStack, this.inventory.getDisplayName().getString(), 
+                             8.0F, (float) (this.imageHeight - 96 + 2), displayNameColor);
     } // end ()
 
     /**
@@ -120,7 +120,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
      */
     private int getCookProgressScaled(int pixels)
     {
-        final AbstractAlloyFurnaceTileEntity tileEntity = this.container.tileEntity;
+        final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
         final short smeltTimeLeft = tileEntity.smeltTimeLeft;
         final short maxSmeltTime = tileEntity.maxSmeltTime;
         if (smeltTimeLeft <= 0 || maxSmeltTime <= 0)
@@ -130,7 +130,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
 
     private int getBurnLeftScaled(int pixels)
     {
-        final AbstractAlloyFurnaceTileEntity tileEntity = this.container.tileEntity;
+        final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
         if (tileEntity.maxFuelBurnTime <= 0)
             return 0;
         return (tileEntity.fuelBurnTimeLeft * (pixels + 2)) / tileEntity.maxFuelBurnTime;

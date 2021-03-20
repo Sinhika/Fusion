@@ -47,7 +47,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper)
     {
         this.icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.fusion_furnace.get()));
-        localizedName = I18n.format("fusion.jei.fusion_category");
+        localizedName = I18n.get("fusion.jei.fusion_category");
         backgroundLocation = 
                         new ResourceLocation(Fusion.MODID, 
                                              "textures/gui/container/fusion_furnace_gui.png");
@@ -89,11 +89,11 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
         
         float experience = recipe.getExperience();
         if (experience > 0) {
-            String experienceString = I18n.format("gui.jei.category.fusion.experience", experience);
+            String experienceString = I18n.get("gui.jei.category.fusion.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
-            FontRenderer fontRenderer = minecraft.fontRenderer;
-            int stringWidth = fontRenderer.getStringWidth(experienceString);
-            fontRenderer.drawString(matrixStack, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
+            FontRenderer fontRenderer = minecraft.font;
+            int stringWidth = fontRenderer.width(experienceString);
+            fontRenderer.draw(matrixStack, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
         }
     }
 
@@ -130,7 +130,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
         List<Ingredient> inputs = new ArrayList<Ingredient>(recipe.getIngredients());
         inputs.add(recipe.getCatalyst());
         ingredients.setInputIngredients(inputs);
-        ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
+        ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
     }
 
     @Override

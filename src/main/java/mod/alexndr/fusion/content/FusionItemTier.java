@@ -9,10 +9,10 @@ import net.minecraft.util.LazyValue;
 
 public enum FusionItemTier implements IItemTier 
 {
-    BRONZE(2, 800, 9.0F, 2.0F, 7, ()->{ return Ingredient.fromItems( ModItems.bronze_ingot.get()); }),
-    SINISITE(5, 4100, 18.0F, 8.0F, 11, ()->{ return Ingredient.fromItems( ModItems.sinisite_ingot.get()); }),
-    THYRIUM(3, 2000, 22.0F, 6.0F, 28, ()->{ return Ingredient.fromItems( ModItems.thyrium_ingot.get()); }),
-    STEEL(2, 700, 7.5F, 3.0F, 24, ()->{ return Ingredient.fromItems( ModItems.steel_ingot.get()); });
+    BRONZE(2, 800, 9.0F, 2.0F, 7, ()->{ return Ingredient.of( ModItems.bronze_ingot.get()); }),
+    SINISITE(5, 4100, 18.0F, 8.0F, 11, ()->{ return Ingredient.of( ModItems.sinisite_ingot.get()); }),
+    THYRIUM(3, 2000, 22.0F, 6.0F, 28, ()->{ return Ingredient.of( ModItems.thyrium_ingot.get()); }),
+    STEEL(2, 700, 7.5F, 3.0F, 24, ()->{ return Ingredient.of( ModItems.steel_ingot.get()); });
     
     private final int harvestLevel;
     private final int maxUses;
@@ -33,32 +33,32 @@ public enum FusionItemTier implements IItemTier
     }
     
     @Override
-    public int getMaxUses() {
+    public int getUses() {
        return this.maxUses;
     }
 
     @Override
-    public float getEfficiency() {
+    public float getSpeed() {
        return this.efficiency;
     }
 
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
        return this.attackDamage;
     }
 
     @Override
-    public int getHarvestLevel() {
+    public int getLevel() {
        return this.harvestLevel;
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
        return this.enchantability;
     }
 
     @Override
-    public Ingredient getRepairMaterial() {
-       return this.repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+       return this.repairMaterial.get();
     }
 } // end class

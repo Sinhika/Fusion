@@ -43,7 +43,7 @@ public class ClientModEventSubscriber
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         DeferredWorkQueue.runLater(() -> {
-            ScreenManager.registerFactory(ModContainers.FUSION_FURNACE.get(), FusionFurnaceScreen::new);
+            ScreenManager.register(ModContainers.FUSION_FURNACE.get(), FusionFurnaceScreen::new);
             LOGGER.debug("Registered ContainerType Screens");
         });
    }

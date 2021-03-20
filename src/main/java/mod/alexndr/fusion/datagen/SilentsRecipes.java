@@ -25,7 +25,7 @@ public class SilentsRecipes extends RecipeProvider implements ISimpleConditionBu
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
     {
         registerFurnaceRecipes(consumer);
     } // end registerRecipes()
@@ -34,21 +34,21 @@ public class SilentsRecipes extends RecipeProvider implements ISimpleConditionBu
     private void registerFurnaceRecipes(Consumer<IFinishedRecipe> consumer)
     {
         setbuilder.buildOre2IngotRecipes(consumer, 
-                Ingredient.fromItems(ModItems.bronze_dust.get().asItem()),
+                Ingredient.of(ModItems.bronze_dust.get().asItem()),
                 ModItems.bronze_ingot.get(), 
-                hasItem(ModItems.bronze_dust.get().asItem()), 0.4F, 200, "_from_dust");
+                has(ModItems.bronze_dust.get().asItem()), 0.4F, 200, "_from_dust");
         setbuilder.buildOre2IngotRecipes(consumer, 
-                Ingredient.fromItems(ModItems.steel_dust.get().asItem()),
+                Ingredient.of(ModItems.steel_dust.get().asItem()),
                 ModItems.steel_ingot.get(), 
-                hasItem(ModItems.steel_dust.get().asItem()), 0.4F, 200, "_from_dust");
+                has(ModItems.steel_dust.get().asItem()), 0.4F, 200, "_from_dust");
         setbuilder.buildOre2IngotRecipes(consumer, 
-                Ingredient.fromItems(ModItems.thyrium_dust.get().asItem()),
+                Ingredient.of(ModItems.thyrium_dust.get().asItem()),
                 ModItems.thyrium_ingot.get(), 
-                hasItem(ModItems.thyrium_dust.get().asItem()), 0.4F, 200, "_from_dust");
+                has(ModItems.thyrium_dust.get().asItem()), 0.4F, 200, "_from_dust");
         setbuilder.buildOre2IngotRecipes(consumer, 
-                Ingredient.fromItems(ModItems.sinisite_dust.get().asItem()),
+                Ingredient.of(ModItems.sinisite_dust.get().asItem()),
                 ModItems.sinisite_ingot.get(), 
-                hasItem(ModItems.sinisite_dust.get().asItem()), 0.4F, 200, "_from_dust");
+                has(ModItems.sinisite_dust.get().asItem()), 0.4F, 200, "_from_dust");
     }
     
     @Override

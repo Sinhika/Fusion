@@ -33,40 +33,40 @@ public final class ModBlocks
     // Metal Blocks
     // bronze
     public static final RegistryObject<Block> bronze_block = BLOCKS.register("bronze_block",
-            () -> new Block(Block.Properties.create(Material.IRON,
-                    MaterialColor.YELLOW_TERRACOTTA)
-                    .hardnessAndResistance(5.0F, 10.0F).sound(SoundType.METAL)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
+            () -> new Block(Block.Properties.of(Material.METAL,
+                    MaterialColor.TERRACOTTA_YELLOW)
+                    .strength(5.0F, 10.0F).sound(SoundType.METAL)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).requiresCorrectToolForDrops()));
     // steel
     public static final RegistryObject<Block> steel_block = BLOCKS.register("steel_block",
-            () -> new Block(Block.Properties.create(Material.IRON,
-                    MaterialColor.IRON)
-                    .hardnessAndResistance(7.0F, 12.0F).sound(SoundType.METAL)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
+            () -> new Block(Block.Properties.of(Material.METAL,
+                    MaterialColor.METAL)
+                    .strength(7.0F, 12.0F).sound(SoundType.METAL)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).requiresCorrectToolForDrops()));
     
     // sinisite
     public static final RegistryObject<Block> sinisite_block = BLOCKS.register("sinisite_block",
-            () -> new Block(Block.Properties.create(Material.IRON,
-                    MaterialColor.BLUE)
-                    .hardnessAndResistance(10.0F, 24.0F).sound(SoundType.METAL)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
+            () -> new Block(Block.Properties.of(Material.METAL,
+                    MaterialColor.COLOR_BLUE)
+                    .strength(10.0F, 24.0F).sound(SoundType.METAL)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).requiresCorrectToolForDrops()));
     
     // thyrium
     public static final RegistryObject<Block> thyrium_block = BLOCKS.register("thyrium_block",
-            () -> new Block(Block.Properties.create(Material.IRON,
-                    MaterialColor.CYAN)
-                    .hardnessAndResistance(7.0F, 12.0F).sound(SoundType.METAL)
-                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).setRequiresTool()));
+            () -> new Block(Block.Properties.of(Material.METAL,
+                    MaterialColor.COLOR_CYAN)
+                    .strength(7.0F, 12.0F).sound(SoundType.METAL)
+                    .harvestTool(ToolType.PICKAXE).harvestLevel(0).requiresCorrectToolForDrops()));
      
     // Furnace
     public static final RegistryObject<FusionFurnaceBlock> fusion_furnace = BLOCKS.register("fusion_furnace",
-            () -> new FusionFurnaceBlock(Block.Properties.create(Material.ROCK)
-                    .hardnessAndResistance(3.5F, 12.0F)
-                    .setLightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE).setRequiresTool()));
+            () -> new FusionFurnaceBlock(Block.Properties.of(Material.STONE)
+                    .strength(3.5F, 12.0F)
+                    .lightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()));
     
     private static ToIntFunction<BlockState> lit_makes_light(int foo) {
         return (bar) -> {
-           return bar.get(BlockStateProperties.LIT) ? foo : 0;
+           return bar.getValue(BlockStateProperties.LIT) ? foo : 0;
         };
      }    
 } // end class

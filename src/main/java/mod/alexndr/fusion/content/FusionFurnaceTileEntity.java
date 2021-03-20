@@ -22,7 +22,7 @@ public class FusionFurnaceTileEntity extends AbstractAlloyFurnaceTileEntity
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        return new TranslationTextComponent(ModBlocks.fusion_furnace.get().getTranslationKey());
+        return new TranslationTextComponent(ModBlocks.fusion_furnace.get().getDescriptionId());
     }
 
     /**

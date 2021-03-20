@@ -110,7 +110,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             // Mark the tile entity as having changed whenever its inventory changes.
             // "markDirty" tells vanilla that the chunk containing the tile entity has
             // changed and means the game will save the chunk to disk later.
-            AbstractAlloyFurnaceTileEntity.this.markDirty();
+            AbstractAlloyFurnaceTileEntity.this.setChanged();
         } // end ItemStackHandler.onContentsChanged()
     };
     
@@ -155,7 +155,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     {
         final Optional<ItemStack> result = getResult(inventory.getStackInSlot(INPUT1_SLOT),
                 inventory.getStackInSlot(INPUT2_SLOT), inventory.getStackInSlot(CATALYST_SLOT));
-        return result.isPresent() && ItemStack.areItemsEqual(result.get(), stack);
+        return result.isPresent() && ItemStack.isSame(result.get(), stack);
     }
      
     /**
@@ -175,7 +175,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     private Optional<IFusionRecipe> getRecipe(final IInventory inv)
     {
         RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(inv));
-        return world.getRecipeManager().getRecipe(ModRecipeTypes.FUSION_TYPE, inv0, world);
+        return level.getRecipeManager().getRecipeFor(ModRecipeTypes.FUSION_TYPE, inv0, level);
     }
 
     /**
@@ -186,7 +186,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(new Inventory(input1, input2, catalyst)));
         Optional<IFusionRecipe> recipe = getRecipe(input1, input2, catalyst);
         ItemStack result = recipe.isPresent() 
-                            ? recipe.get().getCraftingResult(inv0)
+                            ? recipe.get().assemble(inv0)
                             : null;
         return Optional.ofNullable(result);
     }
@@ -209,7 +209,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             --fuelBurnTimeLeft;
         }
         
-        if (world == null || world.isRemote)
+        if (level == null || level.isClientSide)
             return;
     
         // Alloying code
@@ -283,11 +283,11 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     
             // "markDirty" tells vanilla that the chunk containing the tile entity has
             // changed and means the game will save the chunk to disk later.
-            this.markDirty();
+            this.setChanged();
     
             // Flag 2: Send the change to clients & update blockstate
-            this.world.setBlockState(this.pos, 
-                    this.world.getBlockState(this.pos).with(AbstractAlloyFurnaceBlock.LIT,
+            this.level.setBlock(this.worldPosition, 
+                    this.level.getBlockState(this.worldPosition).setValue(AbstractAlloyFurnaceBlock.LIT,
                                                         Boolean.valueOf(this.isBurning())),
                     2);
     
@@ -297,7 +297,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     } // end tick()
 
     /**
-     * Mimics the code in {@link AbstractFurnaceTileEntity#func_214005_h()}
+     * Mimics the code in {@link AbstractFurnaceTileEntity#getTotalCookTime()}
      *
      * @return The custom smelt time or 200 if there is no recipe for the input
      */
@@ -363,7 +363,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
                 return inventoryCapabilityExternal.cast();
             
             /* fix side for any rotation... */
-            Direction actual_facing = this.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
+            Direction actual_facing = this.getBlockState().getValue(HorizontalBlock.FACING);
             Direction default_facing = Direction.NORTH;
             
             Direction true_side;
@@ -374,11 +374,11 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             else if (actual_facing.getOpposite() == default_facing) {
                 true_side = side.getOpposite();
             }
-            else if (actual_facing.rotateY() == default_facing) {
-                true_side = side.rotateY();
+            else if (actual_facing.getClockWise() == default_facing) {
+                true_side = side.getClockWise();
             }
-            else if (actual_facing.rotateYCCW() == default_facing) {
-                true_side = side.rotateYCCW();
+            else if (actual_facing.getCounterClockWise() == default_facing) {
+                true_side = side.getCounterClockWise();
             }
             else {
                 true_side = side;
@@ -404,9 +404,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      * Read saved data from disk into the tile.
      */
     @Override
-    public void read(BlockState stateIn, CompoundNBT compound)
+    public void load(BlockState stateIn, CompoundNBT compound)
     {
-        super.read(stateIn, compound);
+        super.load(stateIn, compound);
         this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
         this.smeltTimeLeft = compound.getShort(SMELT_TIME_LEFT_TAG);
         this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
@@ -415,7 +415,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
  
         // We set this in read() instead of the constructor so that TileEntities
         // constructed from NBT (saved tile entities) have this set to the proper value
-        if (this.hasWorld() && !this.world.isRemote) {
+        if (this.hasLevel() && !this.level.isClientSide) {
             lastBurning = this.isBurning();
         }
         
@@ -429,8 +429,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         }
         
         // blockstate?
-        if (this.hasWorld()) {
-            this.world.setBlockState(getPos(), this.getBlockState().with(AbstractAlloyFurnaceBlock.LIT, Boolean.valueOf(this.isBurning())));
+        if (this.hasLevel()) {
+            this.level.setBlockAndUpdate(getBlockPos(), this.getBlockState().setValue(AbstractAlloyFurnaceBlock.LIT, Boolean.valueOf(this.isBurning())));
         }
 
     } // end read()
@@ -440,9 +440,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      */
     @Nonnull
     @Override
-    public CompoundNBT write(final CompoundNBT compound)
+    public CompoundNBT save(final CompoundNBT compound)
     {
-        super.write(compound);
+        super.save(compound);
         compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
         compound.putShort(SMELT_TIME_LEFT_TAG, this.smeltTimeLeft);
         compound.putShort(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
@@ -471,16 +471,16 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     @Nonnull
     public CompoundNBT getUpdateTag()
     {
-        return this.write(new CompoundNBT());
+        return this.save(new CompoundNBT());
     }
 
     /**
      * Invalidates our tile entity
      */
     @Override
-    public void remove()
+    public void setRemoved()
     {
-        super.remove();
+        super.setRemoved();
         // We need to invalidate our capability references so that any cached references (by other mods) don't
         // continue to reference our capabilities and try to use them and/or prevent them from being garbage collected
         inventoryCapabilityExternal.invalidate();
@@ -496,12 +496,12 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
 
         for (Entry<ResourceLocation, Integer> entry : this.recipe2xp_map.entrySet())
         {
-            player.world.getRecipeManager().getRecipe(entry.getKey()).ifPresent((p_213993_3_) -> {
+            player.level.getRecipeManager().byKey(entry.getKey()).ifPresent((p_213993_3_) -> {
                 list.add(p_213993_3_);
                 spawnExpOrbs(player, entry.getValue(), ((FusionRecipe) p_213993_3_).getExperience());
             });
         }
-        player.unlockRecipes(list);
+        player.awardRecipes(list);
         this.recipe2xp_map.clear();
     }
     
@@ -523,10 +523,10 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
 
         while (pCount > 0)
         {
-            int j = ExperienceOrbEntity.getXPSplit(pCount);
+            int j = ExperienceOrbEntity.getExperienceValue(pCount);
             pCount -= j;
-            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D,
-                    player.getPosZ() + 0.5D, j));
+            player.level.addFreshEntity(new ExperienceOrbEntity(player.level, player.getX(), player.getY() + 0.5D,
+                    player.getZ() + 0.5D, j));
         }
     } // end spawnExpOrbs()
 

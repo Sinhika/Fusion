@@ -14,6 +14,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
 {
     public FusionFurnaceBlock(Properties builder)
@@ -36,17 +38,17 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
      * Implementing/overriding is fine.
      */
    @Override
-    public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+    public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
-        if (!oldState.isIn(newState.getBlock())) 
+        if (!oldState.is(newState.getBlock())) 
         {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            TileEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof AbstractAlloyFurnaceTileEntity) 
             {
                 final ItemStackHandler inventory = ((AbstractAlloyFurnaceTileEntity) tileEntity).inventory;
                 for (int slot = 0; slot < inventory.getSlots(); ++slot)
-                    InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
-                worldIn.updateComparatorOutputLevel(pos, this);
+                    InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
+                worldIn.updateNeighbourForOutputSignal(pos, this);
             }
         }
     } // end onReplaced
@@ -55,7 +57,7 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
     @Override
     protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player)
     {
-        final TileEntity tileEntity = worldIn.getTileEntity(pos);
+        final TileEntity tileEntity = worldIn.getBlockEntity(pos);
         if (tileEntity instanceof FusionFurnaceTileEntity) {
             NetworkHooks.openGui((ServerPlayerEntity) player, (FusionFurnaceTileEntity) tileEntity, pos);
         }

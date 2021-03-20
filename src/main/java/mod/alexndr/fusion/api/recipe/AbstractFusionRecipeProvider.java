@@ -52,48 +52,48 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
         {
             this.id = id;
             this.output = output;
-            this.inputs = NonNullList.from(null, inputs);
+            this.inputs = NonNullList.of(null, inputs);
             this.catalyst = catalyst;
             this.cook_time = cook_time;
             this.experience = experience;
         }
 
         @Override
-        public void serialize(JsonObject json)
+        public void serializeRecipeData(JsonObject json)
         {
             JsonArray json_inputs = new JsonArray();
             for (Ingredient ing : inputs)
             {
-                json_inputs.add(ing.serialize());
+                json_inputs.add(ing.toJson());
             }
             json.add("inputs", json_inputs);
-            json.add("catalyst", catalyst.serialize());
+            json.add("catalyst", catalyst.toJson());
             json.add("output", serializeStack(output));
             json.addProperty("cookingtime", cook_time);
             json.addProperty("experience", experience);
         }
 
         @Override
-        public ResourceLocation getID()
+        public ResourceLocation getId()
         {
             return id;
         }
 
         @Override
-        public IRecipeSerializer<?> getSerializer()
+        public IRecipeSerializer<?> getType()
         {
             return ModRecipeTypes.FUSION_SERIALIZER;
         }
 
         @Override
-        public JsonObject getAdvancementJson()
+        public JsonObject serializeAdvancement()
         {
             // TODO Auto-generated method stub
             return null;
         }
 
         @Override
-        public ResourceLocation getAdvancementID()
+        public ResourceLocation getAdvancementId()
         {
             // TODO Auto-generated method stub
             return null;
@@ -108,7 +108,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
          */
         private static JsonObject serializeStack(ItemStack stack) 
         {
-            CompoundNBT nbt = stack.write(new CompoundNBT());
+            CompoundNBT nbt = stack.save(new CompoundNBT());
             byte c = nbt.getByte("Count");
             if (c != 1) {
                 nbt.putByte("count", c);

@@ -59,7 +59,7 @@ public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer<Fusion
     {
         Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
         Objects.requireNonNull(data, "data cannot be null!");
-        final TileEntity tileAtPos = playerInventory.player.world.getTileEntity(data.readBlockPos());
+        final TileEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
         if (tileAtPos instanceof AbstractAlloyFurnaceTileEntity) return (AbstractAlloyFurnaceTileEntity) tileAtPos;
         throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);
     } // end getTileEntity()

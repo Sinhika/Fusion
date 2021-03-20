@@ -15,7 +15,7 @@ public interface IFusionRecipe extends IRecipe<RecipeWrapper>
     ResourceLocation TYPE_ID = new ResourceLocation(Fusion.MODID, "alloying");
 
     @Override
-    default boolean canFit(int width, int height)
+    default boolean canCraftInDimensions(int width, int height)
     {
         return false;
     }
@@ -23,11 +23,11 @@ public interface IFusionRecipe extends IRecipe<RecipeWrapper>
     @Override
     default IRecipeType<?> getType()
     {
-        return Registry.RECIPE_TYPE.getOrDefault(TYPE_ID);
+        return Registry.RECIPE_TYPE.get(TYPE_ID);
     }
 
     @Override
-    default ItemStack getIcon()
+    default ItemStack getToastSymbol()
     {
         return new ItemStack(ModBlocks.fusion_furnace.get());
     }

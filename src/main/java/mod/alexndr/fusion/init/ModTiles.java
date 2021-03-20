@@ -16,6 +16,6 @@ public final class ModTiles
     // We don't have a datafixer for our TileEntities, so we pass null into build.
     public static RegistryObject<TileEntityType<FusionFurnaceTileEntity>> FUSION_FURNACE =
             TILE_ENTITY_TYPES.register("fusion_furnace", 
-                    () -> TileEntityType.Builder.create(FusionFurnaceTileEntity::new, 
+                    () -> TileEntityType.Builder.of(FusionFurnaceTileEntity::new, 
                             ModBlocks.fusion_furnace.get()).build(null));
 } // end class

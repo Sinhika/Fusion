@@ -27,14 +27,14 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
     {
         super(type, id);
         this.tileEntity = tileEntity;
-        this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
+        this.canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
         this.my_block = block;
         
         // Add tracking for data (Syncs to client/updates value when it changes)
-        this.trackInt(new FunctionalIntReferenceHolder(() -> tileEntity.smeltTimeLeft, v -> tileEntity.smeltTimeLeft = (short) v));
-        this.trackInt(new FunctionalIntReferenceHolder(() -> tileEntity.maxSmeltTime, v -> tileEntity.maxSmeltTime = (short) v));
-        this.trackInt(new FunctionalIntReferenceHolder(() -> tileEntity.fuelBurnTimeLeft, v -> tileEntity.fuelBurnTimeLeft = (int) v));
-        this.trackInt(new FunctionalIntReferenceHolder(() -> tileEntity.maxFuelBurnTime, v -> tileEntity.maxFuelBurnTime = (int) v));
+        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.smeltTimeLeft, v -> tileEntity.smeltTimeLeft = (short) v));
+        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.maxSmeltTime, v -> tileEntity.maxSmeltTime = (short) v));
+        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.fuelBurnTimeLeft, v -> tileEntity.fuelBurnTimeLeft = (int) v));
+        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.maxFuelBurnTime, v -> tileEntity.maxFuelBurnTime = (int) v));
 
         // Add all the slots for the tileEntity's inventory and the playerInventory to this container
 
@@ -75,33 +75,33 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
      */
     @Nonnull
     @Override
-    public ItemStack transferStackInSlot(final PlayerEntity player, final int index)
+    public ItemStack quickMoveStack(final PlayerEntity player, final int index)
     {
         ItemStack returnStack = ItemStack.EMPTY;
-        final Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-            final ItemStack slotStack = slot.getStack();
+        final Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            final ItemStack slotStack = slot.getItem();
             returnStack = slotStack.copy();
     
             final int containerSlots = 
-                    this.inventorySlots.size() - player.inventory.mainInventory.size();
+                    this.slots.size() - player.inventory.items.size();
             if (index < containerSlots) 
             {
-                if (!mergeItemStack(slotStack, containerSlots, this.inventorySlots.size(), true)) 
+                if (!moveItemStackTo(slotStack, containerSlots, this.slots.size(), true)) 
                 {
                     return ItemStack.EMPTY;
                 }
             } 
-            else if (!mergeItemStack(slotStack, 0, containerSlots, false)) 
+            else if (!moveItemStackTo(slotStack, 0, containerSlots, false)) 
             {
                 return ItemStack.EMPTY;
             }
             if (slotStack.getCount() == 0) 
             {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } 
             else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
             if (slotStack.getCount() == returnStack.getCount()) 
             {
@@ -113,9 +113,9 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
     } // end transferStackInSlot()
 
     @Override
-    public boolean canInteractWith(@Nonnull final PlayerEntity player)
+    public boolean stillValid(@Nonnull final PlayerEntity player)
     {
-        return isWithinUsableDistance(canInteractWithCallable, player, my_block.get());
+        return stillValid(canInteractWithCallable, player, my_block.get());
     }
 
 }

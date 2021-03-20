@@ -47,7 +47,7 @@ public class JEIFusionPlugin implements IModPlugin
     public void registerRecipes(IRecipeRegistration registration)
     {
         @SuppressWarnings("resource")
-        Iterable<IRecipe<?>> recipes = Minecraft.getInstance().world.getRecipeManager().getRecipes();
+        Iterable<IRecipe<?>> recipes = Minecraft.getInstance().level.getRecipeManager().getRecipes();
         Collection<IRecipe<RecipeWrapper>> fusion_recipes = new ArrayList<IRecipe<RecipeWrapper>> ();
         for (IRecipe<?> recipe : recipes) {
             if (recipe.getType() == ModRecipeTypes.FUSION_TYPE) {

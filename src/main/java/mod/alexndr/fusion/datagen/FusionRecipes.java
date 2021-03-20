@@ -11,13 +11,11 @@ import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModTags;
 import mod.alexndr.simplecorelib.datagen.ISimpleConditionBuilder;
-import net.minecraft.block.AbstractBlock.AbstractBlockState;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.datafix.fixes.BlockStateFlatternEntities;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -36,7 +34,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
     {
         registerBronzeRecipes(consumer);
         registerSteelRecipes(consumer);
@@ -55,11 +53,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
         Ingredient[] catalysts = new Ingredient[3];
 
-        primary_inputs.add(Ingredient.fromTag(ItemTags.COALS));
-        primary_inputs.add(Ingredient.fromItems(Items.IRON_INGOT));
-        catalysts[0] = Ingredient.fromTag(ItemTags.COALS);
-        catalysts[1] = Ingredient.fromItems(Items.GUNPOWDER);
-        catalysts[2] = Ingredient.fromItems(Items.REDSTONE);
+        primary_inputs.add(Ingredient.of(ItemTags.COALS));
+        primary_inputs.add(Ingredient.of(Items.IRON_INGOT));
+        catalysts[0] = Ingredient.of(ItemTags.COALS);
+        catalysts[1] = Ingredient.of(Items.GUNPOWDER);
+        catalysts[2] = Ingredient.of(Items.REDSTONE);
 
         fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.steel_nugget.get(),
                 ModItems.medium_steel_chunk.get(), ModItems.large_steel_chunk.get(), 2.0F, 600,
@@ -67,11 +65,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         
         // steel recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
-                Ingredient.fromItems(ModItems.steel_axe.get(),ModItems.steel_boots.get(), ModItems.steel_helmet.get(),
+                Ingredient.of(ModItems.steel_axe.get(),ModItems.steel_boots.get(), ModItems.steel_helmet.get(),
                         ModItems.steel_hoe.get(), ModItems.steel_pickaxe.get(), ModItems.steel_shovel.get(),
                         ModItems.steel_sword.get(), ModItems.steel_shears.get()), 
-                Ingredient.fromItems(ModItems.steel_chestplate.get(), ModItems.steel_leggings.get()), 
-                Ingredient.fromItems(Items.GRAVEL), Ingredient.fromTag(ItemTags.COALS), ModItems.large_steel_chunk.get(), 
+                Ingredient.of(ModItems.steel_chestplate.get(), ModItems.steel_leggings.get()), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), ModItems.large_steel_chunk.get(), 
                 10.0F, 600, flag("recycle_fusion"), "recycle_steel_items");
     }
 
@@ -85,11 +83,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
         Ingredient[] catalysts = new Ingredient[3];
 
-        primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_COPPER));
-        primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_TIN));
-        catalysts[0] = Ingredient.fromItems(Items.BONE_MEAL);
-        catalysts[1] = Ingredient.fromItems(Items.GUNPOWDER);
-        catalysts[2] = Ingredient.fromItems(Items.REDSTONE);
+        primary_inputs.add(Ingredient.of(ModTags.Items.INGOTS_COPPER));
+        primary_inputs.add(Ingredient.of(ModTags.Items.INGOTS_TIN));
+        catalysts[0] = Ingredient.of(Items.BONE_MEAL);
+        catalysts[1] = Ingredient.of(Items.GUNPOWDER);
+        catalysts[2] = Ingredient.of(Items.REDSTONE);
 
         fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.bronze_nugget.get(),
                 ModItems.medium_bronze_chunk.get(), ModItems.large_bronze_chunk.get(), 2.0F, 600,
@@ -97,11 +95,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         
         // bronze recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
-                Ingredient.fromItems(ModItems.bronze_axe.get(),ModItems.bronze_boots.get(), ModItems.bronze_helmet.get(),
+                Ingredient.of(ModItems.bronze_axe.get(),ModItems.bronze_boots.get(), ModItems.bronze_helmet.get(),
                         ModItems.bronze_hoe.get(), ModItems.bronze_pickaxe.get(), ModItems.bronze_shovel.get(),
                         ModItems.bronze_sword.get()), 
-                Ingredient.fromItems(ModItems.bronze_chestplate.get(), ModItems.bronze_leggings.get()), 
-                Ingredient.fromItems(Items.GRAVEL), Ingredient.fromTag(ItemTags.COALS), ModItems.large_bronze_chunk.get(), 
+                Ingredient.of(ModItems.bronze_chestplate.get(), ModItems.bronze_leggings.get()), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), ModItems.large_bronze_chunk.get(), 
                 10.0F, 600, flag("recycle_fusion"), "recycle_bronze_items");
     } // end registerBronzeRecipes
 
@@ -114,11 +112,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
         Ingredient[] catalysts = new Ingredient[3];
 
-        primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_MYTHRIL));
-        primary_inputs.add(Ingredient.fromTag(ModTags.Items.GEMS_ONYX));
-        catalysts[0] = Ingredient.fromItems(Items.GLOWSTONE_DUST);
-        catalysts[1] = Ingredient.fromItems(Items.BLAZE_POWDER);
-        catalysts[2] = Ingredient.fromItems(Items.GHAST_TEAR);
+        primary_inputs.add(Ingredient.of(ModTags.Items.INGOTS_MYTHRIL));
+        primary_inputs.add(Ingredient.of(ModTags.Items.GEMS_ONYX));
+        catalysts[0] = Ingredient.of(Items.GLOWSTONE_DUST);
+        catalysts[1] = Ingredient.of(Items.BLAZE_POWDER);
+        catalysts[2] = Ingredient.of(Items.GHAST_TEAR);
 
         fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.sinisite_nugget.get(),
                 ModItems.medium_sinisite_chunk.get(), ModItems.large_sinisite_chunk.get(), 12.0F, 600,
@@ -126,11 +124,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         
         // Sinisite recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
-                Ingredient.fromItems(ModItems.sinisite_axe.get(),ModItems.sinisite_boots.get(), ModItems.sinisite_helmet.get(),
+                Ingredient.of(ModItems.sinisite_axe.get(),ModItems.sinisite_boots.get(), ModItems.sinisite_helmet.get(),
                         ModItems.sinisite_hoe.get(), ModItems.sinisite_pickaxe.get(), ModItems.sinisite_shovel.get(),
                         ModItems.sinisite_sword.get(), ModItems.sinisite_bow.get(), ModItems.sinisite_rod.get()), 
-                Ingredient.fromItems(ModItems.sinisite_chestplate.get(), ModItems.sinisite_leggings.get()), 
-                Ingredient.fromItems(Items.NETHERRACK), Ingredient.fromItems(Items.LAVA_BUCKET), 
+                Ingredient.of(ModItems.sinisite_chestplate.get(), ModItems.sinisite_leggings.get()), 
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.LAVA_BUCKET), 
                 ModItems.large_sinisite_chunk.get(), 
                 20.0F, 600, flag("recycle_fusion"), "recycle_sinisite_items");
     } // end ()
@@ -144,11 +142,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
         Ingredient[] catalysts = new Ingredient[3];
 
-        primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_MYTHRIL));
-        primary_inputs.add(Ingredient.fromTag(ModTags.Items.INGOTS_ADAMANTIUM));
-        catalysts[0] = Ingredient.fromItems(Items.REDSTONE);
-        catalysts[1] = Ingredient.fromItems(Items.LAPIS_LAZULI);
-        catalysts[2] = Ingredient.fromItems(Items.GLOWSTONE_DUST);
+        primary_inputs.add(Ingredient.of(ModTags.Items.INGOTS_MYTHRIL));
+        primary_inputs.add(Ingredient.of(ModTags.Items.INGOTS_ADAMANTIUM));
+        catalysts[0] = Ingredient.of(Items.REDSTONE);
+        catalysts[1] = Ingredient.of(Items.LAPIS_LAZULI);
+        catalysts[2] = Ingredient.of(Items.GLOWSTONE_DUST);
 
         fusionbuilder.buildBasicAlloyRecipes(consumer, primary_inputs, catalysts, ModItems.thyrium_nugget.get(),
                 ModItems.medium_thyrium_chunk.get(), ModItems.large_thyrium_chunk.get(), 6.0F, 600,
@@ -156,11 +154,11 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         
         // Thyrium recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
-                Ingredient.fromItems(ModItems.thyrium_axe.get(),ModItems.thyrium_boots.get(), ModItems.thyrium_helmet.get(),
+                Ingredient.of(ModItems.thyrium_axe.get(),ModItems.thyrium_boots.get(), ModItems.thyrium_helmet.get(),
                         ModItems.thyrium_hoe.get(), ModItems.thyrium_pickaxe.get(), ModItems.thyrium_shovel.get(),
                         ModItems.thyrium_sword.get(), ModItems.thyrium_bow.get(), ModItems.thyrium_rod.get()), 
-                Ingredient.fromItems(ModItems.thyrium_chestplate.get(), ModItems.thyrium_leggings.get()), 
-                Ingredient.fromItems(Items.GRAVEL), Ingredient.fromItems(Items.LAVA_BUCKET), 
+                Ingredient.of(ModItems.thyrium_chestplate.get(), ModItems.thyrium_leggings.get()), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(Items.LAVA_BUCKET), 
                 ModItems.large_thyrium_chunk.get(), 
                 15.0F, 600, flag("recycle_fusion"), "recycle_thyrium_items");
     }
@@ -169,10 +167,10 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
     {
         // Diamond recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
-                Ingredient.fromItems(Items.DIAMOND_AXE, Items.DIAMOND_BOOTS, Items.DIAMOND_HELMET,
+                Ingredient.of(Items.DIAMOND_AXE, Items.DIAMOND_BOOTS, Items.DIAMOND_HELMET,
                         Items.DIAMOND_HOE, Items.DIAMOND_PICKAXE, Items.DIAMOND_SHOVEL, Items.DIAMOND_SWORD), 
-                Ingredient.fromItems(Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_HORSE_ARMOR), 
-                Ingredient.fromItems(Items.GRAVEL), Ingredient.fromTag(ItemTags.COALS), 
+                Ingredient.of(Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_HORSE_ARMOR), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
                 Items.DIAMOND, 
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_vanilla")), "recycle_diamond_items");
  
@@ -183,7 +181,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
     {
         // Onyx recycling
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
-                Ingredient.fromItems(mod.alexndr.simpleores.init.ModItems.onyx_axe.get(),
+                Ingredient.of(mod.alexndr.simpleores.init.ModItems.onyx_axe.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_boots.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_bow.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_helmet.get(),
@@ -193,9 +191,9 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                         mod.alexndr.simpleores.init.ModItems.onyx_shears.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_shovel.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_sword.get()), 
-                Ingredient.fromItems(mod.alexndr.simpleores.init.ModItems.onyx_chestplate.get(),
+                Ingredient.of(mod.alexndr.simpleores.init.ModItems.onyx_chestplate.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_leggings.get()), 
-                Ingredient.fromItems(Items.NETHERRACK), Ingredient.fromItems(Items.LAVA_BUCKET), 
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.LAVA_BUCKET), 
                 mod.alexndr.simpleores.init.ModItems.onyx_gem.get().asItem(), 
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_simpleores"), modLoaded("simpleores")), 
                 "recycle_onyx_items");
