@@ -10,7 +10,7 @@ logoFile="fusion.png"
 
 [[mods]]
 modId="fusion"
-version="${version}"
+version="${file.jarVersion}"
 displayName="Fusion"
 updateJSONURL="https://raw.githubusercontent.com/Sinhika/Fusion/1.16/update.json"
 displayURL="http://minecraft.curseforge.com/projects/fusion"
