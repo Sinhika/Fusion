@@ -3,11 +3,12 @@ package mod.alexndr.fusion.init;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionArmorMaterial;
 import mod.alexndr.fusion.content.FusionItemTier;
+import mod.alexndr.fusion.content.SinisiteBow;
+import mod.alexndr.fusion.content.ThyriumBow;
 import mod.alexndr.simplecorelib.content.SimpleShearsItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
@@ -217,11 +218,11 @@ public final class ModItems
                     .tab(ModTabGroups.MOD_ITEM_GROUP)));
 
     // bows
-    public static final RegistryObject<BowItem> sinisite_bow = ITEMS.register("sinisite_bow",
-            () -> new BowItem(new Item.Properties().durability(1200)
+    public static final RegistryObject<SinisiteBow> sinisite_bow = ITEMS.register("sinisite_bow",
+            () -> new SinisiteBow(new Item.Properties().durability(1200)
                     .tab(ModTabGroups.MOD_ITEM_GROUP)));
-    public static final RegistryObject<BowItem> thyrium_bow = ITEMS.register("thyrium_bow",
-            () -> new BowItem(new Item.Properties().durability(900)
+    public static final RegistryObject<ThyriumBow> thyrium_bow = ITEMS.register("thyrium_bow",
+            () -> new ThyriumBow(new Item.Properties().durability(900)
                     .tab(ModTabGroups.MOD_ITEM_GROUP)));
     
 } // end class

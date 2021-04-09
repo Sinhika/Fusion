@@ -114,5 +114,8 @@
     "advancements.sinisite_sword_ach": "Slice n' Dice",
     "advancements.sinisite_sword_ach.desc": "No one will be able to stand in your way",
     "advancements.sinisite_bow_ach": "Unstoppable",
-    "advancements.sinisite_bow_ach.desc": "Keep your enemies on the back foot with this powerful bow"
+    "advancements.sinisite_bow_ach.desc": "Keep your enemies on the back foot with this powerful bow",
+    "tips.damage_tooltip": "+Damage",
+    "tips.zoom_tooltip": "+Zoom",
+    "tips.knockback_tooltip": "+Knockback"
 }
