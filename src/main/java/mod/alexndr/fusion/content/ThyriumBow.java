@@ -22,7 +22,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ThyriumBow extends BowItem
 {
-
+    private final float ZOOM_AMT = 0.35f;
+    
     public ThyriumBow(Properties builder)
     {
         super(builder);
@@ -69,6 +70,10 @@ public class ThyriumBow extends BowItem
         return stack;
     } // end addThyriumEnchantments()
 
+    public float getZoomAmount() {
+        return ZOOM_AMT;
+    }
+    
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
