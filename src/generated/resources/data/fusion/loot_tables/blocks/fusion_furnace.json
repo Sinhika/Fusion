@@ -2,17 +2,22 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name" : "fusion:droppool",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "fusion:bronze_block"
+          "name": "fusion:fusion_furnace"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:copy_name",
+          "source": "block_entity"
         }
       ]
     }

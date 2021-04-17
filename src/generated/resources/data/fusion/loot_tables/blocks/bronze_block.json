@@ -2,12 +2,11 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name" : "fusion:droppool",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "fusion:sinisite_block"
+          "name": "fusion:bronze_block"
         }
       ],
       "conditions": [

@@ -2,18 +2,11 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name" : "netherrocks:droppool",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:copy_name",
-              "source": "block_entity"
-            }
-          ],
-          "name": "fusion:fusion_furnace"
+          "name": "fusion:sinisite_block"
         }
       ],
       "conditions": [
