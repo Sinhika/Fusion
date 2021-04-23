@@ -33,6 +33,7 @@ public class FusionDataGenerator
             gen.addProvider(new FusionRecipes(gen));
             gen.addProvider(new SilentsRecipes(gen));
             gen.addProvider(new FusionLootTableProvider(gen));
+            gen.addProvider(new FusionLootInjectorProvider(gen));
         }
     } // end gatherData()
 

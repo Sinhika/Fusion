@@ -14,9 +14,9 @@ TO-DO
 * <s>Roll the fusion recycling part of akkamaddi's Netherrocks Addenda into Fusion</s>
 * <s>Fix onyx & diamond-duping with recycling issue, probably by adding a default disabled "gem_recycling" option in the config file.</s>
 * add shears for rest of metals (bronze, sinisite, thyrium)
-* fix bow damage/features.
+* <s>fix bow damage/features.</s> mostly done; zoom needs tweaking.
 * update or move the SimpleOres, etc. wiki
-* add chance of fusion furnace in villages, and if exists, chance of bronze or steel stuff in toolsmith & weaponsmith chest loot.
+* add chance of fusion furnace in villages, and if exists, **increased** chance of bronze or steel stuff in toolsmith & weaponsmith chest loot. If the latter is feasible.
 * <s>add chance of bronze or steel stuff in appropriate treasure chest loot tables.</s>
 * add random chance for injected loot, instead of 100% guaranteed.
 * should we add fusion items to monster worn/carried items? Probably not, that leads to tears.
