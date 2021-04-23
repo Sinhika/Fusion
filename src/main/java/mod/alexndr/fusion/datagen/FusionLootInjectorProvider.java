@@ -171,6 +171,44 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
                     .apply(SetCount.setCount(RandomValueRange.between(1, 3))));
         addInjectionTable(Fusion.MODID, "simple_dungeon", foo);
         
+        // shipwreck -- no steel, it rusted away
+        foo = createChestPool(1, 1, 0.50F)
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_helmet.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_chestplate.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_leggings.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_boots.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_sword.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(4))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_helmet.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_chestplate.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_leggings.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_boots.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_helmet.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_chestplate.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_leggings.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_boots.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_sword.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_axe.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_pickaxe.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_shovel.get()).setWeight(1))
+            .add(ItemLootEntry.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(4)
+                    .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+            .add(ItemLootEntry.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
+                    .apply(SetCount.setCount(RandomValueRange.between(1, 1))))
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(6)
+                    .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
+                    .apply(SetCount.setCount(RandomValueRange.between(2, 3))))
+            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_ingot.get()).setWeight(1)
+                    .apply(SetCount.setCount(RandomValueRange.between(1, 3))));
+        addInjectionTable(Fusion.MODID, "shipwreck", foo);
+        
         // spawn_bonus_chest
         foo = createChestPool(1, 1, 0.50F)
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_boots.get()).setWeight(1))
