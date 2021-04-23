@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "fusion:bronze_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "fusion:steel_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_pickaxe"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.25
+        }
+      ]
+    }
+  ]
+}

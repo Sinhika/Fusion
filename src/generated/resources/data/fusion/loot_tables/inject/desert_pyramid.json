@@ -1,0 +1,156 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:bronze_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:thyrium_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fusion:sinisite_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 7.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "fusion:bronze_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "fusion:thyrium_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "fusion:sinisite_ingot"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    }
+  ]
+}
