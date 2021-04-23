@@ -36,7 +36,8 @@ public class ClientForgeEventSubscriber
                 && player.getMainHandItem().getItem() instanceof ThyriumBow)
         {
             ThyriumBow bow = (ThyriumBow) player.getMainHandItem().getItem();
-            int useRemaining = bow.getUseDuration(null) - player.getUseItemRemainingTicks();
+            // int useRemaining = bow.getUseDuration(null) - player.getUseItemRemainingTicks();
+            int useRemaining = player.getTicksUsingItem();
             float fov = baseFOV - (useRemaining * bow.getZoomAmount() / 20.0F);
             if (fov < baseFOV - bow.getZoomAmount()) {
                 fov = (baseFOV - bow.getZoomAmount());
