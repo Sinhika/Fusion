@@ -27,14 +27,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "fusion:thyrium_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_axe"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 2,
           "functions": [
             {
@@ -65,20 +57,6 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "fusion:large_thyrium_chunk"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 2,
           "functions": [
             {
@@ -106,20 +84,6 @@
             }
           ],
           "name": "fusion:steel_ingot"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "fusion:thyrium_ingot"
         }
       ],
       "conditions": [

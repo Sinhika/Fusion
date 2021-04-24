@@ -47,22 +47,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "fusion:thyrium_helmet"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_leggings"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_boots"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 2,
           "functions": [
             {
@@ -78,17 +62,7 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 1.0
-            }
-          ],
-          "name": "fusion:large_thyrium_chunk"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 3,
+          "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -103,17 +77,33 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
+                "min": 1.0,
                 "max": 3.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "fusion:thyrium_ingot"
+          "name": "fusion:large_steel_chunk"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "fusion:steel_ingot"
         }
       ],
       "conditions": [

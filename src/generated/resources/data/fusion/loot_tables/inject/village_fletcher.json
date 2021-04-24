@@ -7,11 +7,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "fusion:thyrium_bow"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",

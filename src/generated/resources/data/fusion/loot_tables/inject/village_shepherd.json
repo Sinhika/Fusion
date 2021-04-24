@@ -7,7 +7,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 2,
           "name": "fusion:steel_shears"
         }
       ],

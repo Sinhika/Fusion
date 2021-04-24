@@ -33,19 +33,11 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
         tables.clear();
         
         // abandoned mineshaft
-        LootPool.Builder foo = createChestPool(1, 1, 0.75F)
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(2))
+        LootPool.Builder foo = createChestPool(1, 1, 0.25F)
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_sword.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_axe.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_pickaxe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_shovel.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1));
+            .add(ItemLootEntry.lootTableItem(ModItems.steel_shovel.get()).setWeight(2));
         addInjectionTable(Fusion.MODID, "abandoned_mineshaft", foo);
        
         // desert_pyramid
@@ -58,23 +50,7 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(1))
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(1))
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(3)
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(10)
                     .apply(SetCount.setCount(RandomValueRange.between(3, 7))))
             .add(ItemLootEntry.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
                     .apply(SetCount.setCount(RandomValueRange.between(2, 3))))
@@ -99,25 +75,7 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(1))
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(1))
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_hoe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_hoe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_hoe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(1)
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(10)
                     .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
             .add(ItemLootEntry.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(2)
                     .apply(SetCount.setCount(RandomValueRange.between(3, 7))))
@@ -127,43 +85,15 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
               
         // simple_dungeon
         foo = createChestPool(1, 1, 0.50F)
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_helmet.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_chestplate.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_leggings.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_boots.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_sword.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_helmet.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_chestplate.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_leggings.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_boots.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_sword.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_axe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_pickaxe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_shovel.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(2)
+            .add(ItemLootEntry.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(5)
+                    .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+            .add(ItemLootEntry.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(5)
                     .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
             .add(ItemLootEntry.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
                     .apply(SetCount.setCount(RandomValueRange.between(1, 1))))
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(3)
+                    .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
+            .add(ItemLootEntry.lootTableItem(ModItems.steel_ingot.get()).setWeight(3)
                     .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
             .add(ItemLootEntry.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
                     .apply(SetCount.setCount(RandomValueRange.between(2, 3))))
@@ -173,30 +103,6 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
         
         // shipwreck -- no steel, it rusted away
         foo = createChestPool(1, 1, 0.50F)
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_helmet.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_chestplate.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_leggings.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_boots.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_sword.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(4))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_shovel.get()).setWeight(1))
             .add(ItemLootEntry.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(4)
                     .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
             .add(ItemLootEntry.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
@@ -210,25 +116,13 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
         addInjectionTable(Fusion.MODID, "shipwreck", foo);
         
         // spawn_bonus_chest
-        foo = createChestPool(1, 1, 0.50F)
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_sword.get()).setWeight(1))
+        foo = createChestPool(1, 1, 0.25F)
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_hoe.get()).setWeight(1));
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(1));
         addInjectionTable(Fusion.MODID, "spawn_bonus_chest", foo);
 
         // stronghold
         foo = createChestPool(1, 1, 0.50F)
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_helmet.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_chestplate.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_leggings.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_boots.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_sword.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_shovel.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_helmet.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_chestplate.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_leggings.get()).setWeight(2))
@@ -236,23 +130,7 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(ItemLootEntry.lootTableItem(ModItems.steel_sword.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_axe.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_pickaxe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_shovel.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_boots.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_sword.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.sinisite_shovel.get()).setWeight(1));
+            .add(ItemLootEntry.lootTableItem(ModItems.steel_shovel.get()).setWeight(2));
         addInjectionTable(Fusion.MODID, "stronghold", foo);
         
         // village_armorer
@@ -265,37 +143,31 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(ItemLootEntry.lootTableItem(ModItems.steel_chestplate.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_leggings.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_boots.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_helmet.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_chestplate.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_leggings.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_boots.get()).setWeight(1))
             .add(ItemLootEntry.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(2)
                     .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
-            .add(ItemLootEntry.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
-                    .apply(SetCount.setCount(RandomValueRange.between(1, 1))))
-            .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(3)
+            .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(5)
                     .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
-                    .apply(SetCount.setCount(RandomValueRange.between(2, 3))));
+        .add(ItemLootEntry.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(2)
+                .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+        .add(ItemLootEntry.lootTableItem(ModItems.steel_ingot.get()).setWeight(5)
+                .apply(SetCount.setCount(RandomValueRange.between(2, 4))));
         addInjectionTable(Fusion.MODID, "village_armorer", foo);
         
         // village_fletcher
         foo = createChestPool(1, 1, 0.25F)
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_bow.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_rod.get()).setWeight(2)
+            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_rod.get()).setWeight(1)
                     .apply(SetCount.setCount(RandomValueRange.between(1, 2))));
         addInjectionTable(Fusion.MODID, "village_fletcher", foo);
         
         // village_mason
         foo = createChestPool(1, 1, 0.25F)
-                .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(3))
-                .add(ItemLootEntry.lootTableItem(ModItems.steel_pickaxe.get()).setWeight(3))
-                .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1));
+                .add(ItemLootEntry.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(1))
+                .add(ItemLootEntry.lootTableItem(ModItems.steel_pickaxe.get()).setWeight(1));
         addInjectionTable(Fusion.MODID, "village_mason", foo);
         
         // village_shepherd
         foo = createChestPool(1, 1, 0.25F)
-            .add(ItemLootEntry.lootTableItem(ModItems.steel_shears.get()).setWeight(2));
+            .add(ItemLootEntry.lootTableItem(ModItems.steel_shears.get()).setWeight(1));
         addInjectionTable(Fusion.MODID, "village_shepherd", foo);
         
         // village_toolsmith
@@ -308,22 +180,14 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(ItemLootEntry.lootTableItem(ModItems.steel_pickaxe.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_shovel.get()).setWeight(2))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_hoe.get()).setWeight(2))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_pickaxe.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_shovel.get()).setWeight(1))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_hoe.get()).setWeight(1))
             .add(ItemLootEntry.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(2)
                     .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
             .add(ItemLootEntry.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(2)
                     .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
-            .add(ItemLootEntry.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
-                    .apply(SetCount.setCount(RandomValueRange.between(1, 1))))
             .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(2)
                     .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
             .add(ItemLootEntry.lootTableItem(ModItems.steel_ingot.get()).setWeight(2)
-                    .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
-            .add(ItemLootEntry.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
-                    .apply(SetCount.setCount(RandomValueRange.between(2, 3))));
+                    .apply(SetCount.setCount(RandomValueRange.between(2, 4))));
         addInjectionTable(Fusion.MODID, "village_toolsmith", foo);
         
         // village_weaponsmith
@@ -332,20 +196,14 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
                 .add(ItemLootEntry.lootTableItem(ModItems.bronze_axe.get()).setWeight(2))
                 .add(ItemLootEntry.lootTableItem(ModItems.steel_sword.get()).setWeight(2))
                 .add(ItemLootEntry.lootTableItem(ModItems.steel_axe.get()).setWeight(2))
-                .add(ItemLootEntry.lootTableItem(ModItems.thyrium_sword.get()).setWeight(1))
-                .add(ItemLootEntry.lootTableItem(ModItems.thyrium_axe.get()).setWeight(1))
                 .add(ItemLootEntry.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(2)
                         .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
                 .add(ItemLootEntry.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(2)
                         .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
-                .add(ItemLootEntry.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
-                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
                 .add(ItemLootEntry.lootTableItem(ModItems.bronze_ingot.get()).setWeight(2)
                         .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
                 .add(ItemLootEntry.lootTableItem(ModItems.steel_ingot.get()).setWeight(2)
-                        .apply(SetCount.setCount(RandomValueRange.between(2, 4))))
-                .add(ItemLootEntry.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
-                        .apply(SetCount.setCount(RandomValueRange.between(2, 3))));
+                        .apply(SetCount.setCount(RandomValueRange.between(2, 4))));
         addInjectionTable(Fusion.MODID, "village_weaponsmith", foo);
         
         return tables;

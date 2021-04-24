@@ -39,71 +39,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "fusion:thyrium_helmet"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_leggings"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_boots"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:thyrium_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_helmet"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_leggings"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_boots"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_sword"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_axe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_pickaxe"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "fusion:sinisite_shovel"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 3,
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
