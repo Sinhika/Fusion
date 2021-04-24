@@ -9,30 +9,27 @@ public class FusionInjectionLookup extends InjectionTableLookup
     public FusionInjectionLookup()
     {
         super();
+        this.AddOceanAliases();
         
         // use shipwreck for all underwater stuff.
         this.replace("underwater_ruin_small", "shipwreck");
         this.replace("underwater_ruin_big", "shipwreck");
         
-        // we don't have nether loot tables.
-        this.replace("bastion", null);
-        this.replace("nether", null);
-        
-        // we don't have a 'village_house' table.
-        this.replace("village_savanna_house", null);
-        this.replace("village_plains_house", null);
-        this.replace("village_desert_house", null);
-        this.replace("village_snowy_house", null);
-        this.replace("village_taiga_house", null);
+        this.AddDungeonAliases();
+        this.AddStrongholdAliases();
         
         // these tables all present as themselves.
-        this.remove("igloo_chest");
-        this.remove("village_armorer");
-        this.remove("village_fletcher");
-        this.remove("village_mason");
-        this.remove("village_shepherd");
-        this.remove("village_toolsmith");
-        this.remove("village_weaponsmith");
+        this.put("abandoned_mineshaft", "abandoned_mineshaft");
+        this.put("desert_pyramid", "desert_pyramid");
+        this.put("igloo_chest", "igloo_chest");
+        this.put("jungle_temple", "jungle_temple");
+        this.put("spawn_bonus_chest", "spawn_bonus_chest");
+        this.put("village_armorer", "village_armorer");
+        this.put("village_fletcher", "village_fletcher");
+        this.put("village_mason", "village_mason");
+        this.put("village_shepherd", "village_shepherd");
+        this.put("village_toolsmith", "village_toolsmith");
+        this.put("village_weaponsmith", "village_weaponsmith");
         
     } // end ctor
 
