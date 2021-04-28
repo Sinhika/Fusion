@@ -134,13 +134,15 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
             int cooktime, ICondition condition, String name)
     {
         ResourceLocation recipe1 = AbstractFusionRecipeProvider.id(modid, name + '1');
-        ConditionalRecipe.builder()
-            .addCondition(condition)
-            .addRecipe(new AbstractFusionRecipeProvider.FinishedRecipe(recipe1,
-                            new ItemStack(output_item.asItem()), cooktime, experience, 
-                            catalyst, ingredients, input2))
-            .build(consumer, recipe1); 
-        
+        if (ingredients != null)
+        {
+            ConditionalRecipe.builder()
+                .addCondition(condition)
+                .addRecipe(new AbstractFusionRecipeProvider.FinishedRecipe(recipe1,
+                                new ItemStack(output_item.asItem()), cooktime, experience, 
+                                catalyst, ingredients, input2))
+                .build(consumer, recipe1); 
+        }
         if (ingrs_doubleoutput != null)
         {
             ResourceLocation recipe2 = AbstractFusionRecipeProvider.id(modid, name + '2');
