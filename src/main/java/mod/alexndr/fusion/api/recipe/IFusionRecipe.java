@@ -35,6 +35,15 @@ public interface IFusionRecipe extends IRecipe<RecipeWrapper>
     Ingredient getCatalyst();
 
     float getExperience();
+
+    /**
+     * we are very special -- we don't use the recipe book.
+     */
+    @Override
+    default boolean isSpecial()
+    {
+        return true;
+    }
     
     
 } // end-class
