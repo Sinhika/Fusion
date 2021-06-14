@@ -39,5 +39,8 @@ public final class ConfigHelper
         FusionConfig.INSTANCE.putFlag("fusion_bows", ConfigHolder.SERVER.serverEnableFusionBows.get());
         
     } // end bakeServer()
-
+    
+    public static void bakeClient(final ModConfig config)
+    {
+    } // end bakeClient
 } // end class
