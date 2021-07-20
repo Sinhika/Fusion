@@ -27,6 +27,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.FurnaceTileEntity;
@@ -321,7 +322,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         final ItemStack fuelStack = inventory.getStackInSlot(FUEL_SLOT).copy();
         if (!fuelStack.isEmpty()) 
         {
-            final int burnTime = (int) (ForgeHooks.getBurnTime(fuelStack) * BURN_TIME_MODIFIER);
+            final int burnTime = (int) (ForgeHooks.getBurnTime(fuelStack, ModRecipeTypes.FUSION_TYPE) * BURN_TIME_MODIFIER);
             if (burnTime > 0) {
                 fuelBurnTimeLeft = maxFuelBurnTime = burnTime;
                 if (fuelStack.hasContainerItem())
@@ -469,6 +470,23 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     }
 
     /**
+     * Called when you receive a TileEntityData packet for the location this
+     * TileEntity is currently in. On the client, the NetworkManager will always
+     * be the remote server. On the server, it will be whomever is responsible for
+     * sending the packet.
+     *
+     * @param net The NetworkManager the packet originated from
+     * @param pkt The data packet
+     */
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
+    {
+        CompoundNBT nbtTag = pkt.getTag();
+        this.load(getBlockState(), nbtTag);
+    }
+
+
+    /**
      * Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the
      * chunk or when many blocks change at once.
      * This compound comes back to you client-side in {@link #handleUpdateTag}
@@ -482,17 +500,32 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     }
 
     /**
-     * Invalidates our tile entity
+     * Called when the chunk's TE update tag, gotten from {@link #getUpdateTag()}, is received on the client.
+     * Used to handle this tag in a special way. By default this simply calls {@link #readFromNBT(NBTTagCompound)}.
+     *
+     * @param tag The {@link NBTTagCompound} sent from {@link #getUpdateTag()}
      */
     @Override
-    public void setRemoved()
+    public void handleUpdateTag(BlockState state, CompoundNBT tag)
     {
-        super.setRemoved();
+        this.load(state, tag);
+    }
+    
+    @Override
+    protected void invalidateCaps()
+    {
+        super.invalidateCaps();
         // We need to invalidate our capability references so that any cached references (by other mods) don't
         // continue to reference our capabilities and try to use them and/or prevent them from being garbage collected
         inventoryCapabilityExternal.invalidate();
+        inventoryCapabilityExternalUp.invalidate();
+        inventoryCapabilityExternalDown.invalidate();
+        inventoryCapabilityExternalBack.invalidate();
+        inventoryCapabilityExternalLeft.invalidate();
+        inventoryCapabilityExternalRight.invalidate();
     }
-    
+
+
     public abstract Container createMenu(final int windowId, final PlayerInventory inventory, final PlayerEntity player);
 
     public abstract ITextComponent getDisplayName();

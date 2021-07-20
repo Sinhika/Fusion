@@ -49,6 +49,7 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
                 worldIn.updateNeighbourForOutputSignal(pos, this);
             }
         }
+        super.onRemove(oldState, worldIn, pos, newState, isMoving);
     } // end onReplaced
 
    
