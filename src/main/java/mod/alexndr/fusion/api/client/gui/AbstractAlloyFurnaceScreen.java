@@ -121,11 +121,11 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
     private int getCookProgressScaled(int pixels)
     {
         final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
-        final short smeltTimeLeft = tileEntity.smeltTimeLeft;
+        final short smeltTimeProgress = tileEntity.smeltTimeProgress;
         final short maxSmeltTime = tileEntity.maxSmeltTime;
-        if (smeltTimeLeft <= 0 || maxSmeltTime <= 0)
+        if (smeltTimeProgress <= 0 || maxSmeltTime <= 0)
             return 0;
-        return (maxSmeltTime - smeltTimeLeft) * pixels / maxSmeltTime;
+        return smeltTimeProgress * pixels / maxSmeltTime;
     }
 
     private int getBurnLeftScaled(int pixels)

@@ -2,8 +2,8 @@ package mod.alexndr.fusion.api.content;
 
 import javax.annotation.Nonnull;
 
-import mod.alexndr.fusion.api.helpers.FunctionalIntReferenceHolder;
 import mod.alexndr.fusion.api.helpers.FurnaceResultSlotItemHandler;
+import mod.alexndr.simplecorelib.helpers.FunctionalIntReferenceHolder;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -31,7 +31,7 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
         this.my_block = block;
         
         // Add tracking for data (Syncs to client/updates value when it changes)
-        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.smeltTimeLeft, v -> tileEntity.smeltTimeLeft = (short) v));
+        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.smeltTimeProgress, v -> tileEntity.smeltTimeProgress = (short) v));
         this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.maxSmeltTime, v -> tileEntity.maxSmeltTime = (short) v));
         this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.fuelBurnTimeLeft, v -> tileEntity.fuelBurnTimeLeft = (int) v));
         this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.maxFuelBurnTime, v -> tileEntity.maxFuelBurnTime = (int) v));

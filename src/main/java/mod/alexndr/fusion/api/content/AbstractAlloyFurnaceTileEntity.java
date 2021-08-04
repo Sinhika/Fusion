@@ -29,6 +29,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -56,29 +57,39 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     public static final int CATALYST_SLOT = 2;
     public static final int OUTPUT_SLOT = 3;
     public static final int FUEL_SLOT = 4;
+
+    // TODO - make configurable.
+    protected final double BURN_TIME_MODIFIER = 1.875F;
+    protected final int DEFAULT_ALLOY_TIME = 600;
     
-    private static final String INVENTORY_TAG = "inventory";
-    private static final String SMELT_TIME_LEFT_TAG = "smeltTimeLeft";
-    private static final String MAX_SMELT_TIME_TAG = "maxSmeltTime";
-    private static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
-    private static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
+    protected static final String INVENTORY_TAG = "inventory";
+    protected static final String SMELT_TIME_LEFT_TAG = "smeltTimeLeft";
+    protected static final String MAX_SMELT_TIME_TAG = "maxSmeltTime";
+    protected static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
+    protected static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
     
-    public short smeltTimeLeft = -1;
-    public short maxSmeltTime = -1;
+    // TODO - change to int in 1.17.1
+    public short smeltTimeProgress = 0;
+    public short maxSmeltTime = (short) (200 * BURN_TIME_MODIFIER);
+    
     public int fuelBurnTimeLeft = -1;
     public int maxFuelBurnTime = -1;
-    private boolean lastBurning = false;
+    protected boolean lastBurning = false;
     
     private final Map<ResourceLocation, Integer> recipe2xp_map = Maps.newHashMap();
 
     // used for improved fusion furnaces 
+    protected boolean hasFuelMultiplier = false;
     protected double fuelMultiplier = 1.0;
     protected int YieldChance = 0;
     protected int YieldAmount = 0;
     protected Random generator = new Random();
     
-    // configurable.
-    private final double BURN_TIME_MODIFIER = 1.875F;
+    // implement recipe-caching like all the cool kids.
+    protected IFusionRecipe cachedRecipe;
+    protected ItemStack failedMatch1 = ItemStack.EMPTY;
+    protected ItemStack failedMatch2 = ItemStack.EMPTY;
+    protected ItemStack failedMatchC = ItemStack.EMPTY;
     
     public final ItemStackHandler inventory = new ItemStackHandler(5)
     {
@@ -92,12 +103,14 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             switch (slot)
             {
             case FUEL_SLOT:
-                return FurnaceTileEntity.isFuel(stack);
+                return isFuel(stack);
             case INPUT1_SLOT:
             case INPUT2_SLOT:
-                return true;
+                return isInput(stack);
+//              return true;
             case CATALYST_SLOT:
-                return true;
+                 return isCatalyst(stack);
+//                return true;
             case OUTPUT_SLOT:
                 return isOutput(stack);
             default:
@@ -112,7 +125,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             // Mark the tile entity as having changed whenever its inventory changes.
             // "markDirty" tells vanilla that the chunk containing the tile entity has
             // changed and means the game will save the chunk to disk later.
-            AbstractAlloyFurnaceTileEntity.this.setChanged();
+            setChanged();
         } // end ItemStackHandler.onContentsChanged()
     };
     
@@ -126,6 +139,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     public AbstractAlloyFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn)
     {
         super(tileEntityTypeIn);
+        this.fuelMultiplier = 1.0;
+        this.hasFuelMultiplier = false;
     }
 
     /**
@@ -159,12 +174,27 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
                 inventory.getStackInSlot(INPUT2_SLOT), inventory.getStackInSlot(CATALYST_SLOT));
         return result.isPresent() && ItemStack.isSame(result.get(), stack);
     }
-     
+
+    public boolean isFuel(ItemStack stack)
+    {
+        return FurnaceTileEntity.isFuel(stack);
+    }
+    
+    public boolean isBurning()
+    {
+        return this.fuelBurnTimeLeft > 0;
+    }
+
     /**
      * @return The smelting recipe for the input stack
      */
     private Optional<IFusionRecipe> getRecipe(final ItemStack input1, final ItemStack input2, final ItemStack catalyst)
     {
+        if (input1.isEmpty() || input2.isEmpty() || catalyst.isEmpty() 
+                || (input1 == failedMatch1 && input2 == failedMatch2 && catalyst == failedMatchC))
+        {
+            return Optional.empty();
+        }
         // Due to vanilla's code we need to pass an IInventory into 
         // RecipeManager#getRecipe so we make one here.
         return getRecipe(new Inventory(input1, input2, catalyst));
@@ -175,10 +205,31 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      * @return The alloying recipe for the inventory
      */
     private Optional<IFusionRecipe> getRecipe(final IInventory inv)
-    {
+    {        
         RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(inv));
-        return level.getRecipeManager().getRecipeFor(ModRecipeTypes.FUSION_TYPE, inv0, level);
-    }
+        if (cachedRecipe != null && cachedRecipe.matches(inv0, level))
+        {
+            return Optional.of(cachedRecipe);
+        }
+        else
+        {
+            IFusionRecipe rec 
+                = level.getRecipeManager().getRecipeFor(ModRecipeTypes.FUSION_TYPE, inv0, level).orElse(null);
+            if (rec == null) 
+            {
+                failedMatch1 = inv.getItem(INPUT1_SLOT);
+                failedMatch2 = inv.getItem(INPUT2_SLOT);
+                failedMatchC = inv.getItem(CATALYST_SLOT);
+            }
+            else {
+                failedMatch1 = ItemStack.EMPTY;
+                failedMatch2 = ItemStack.EMPTY;
+                failedMatchC = ItemStack.EMPTY;
+            }
+            cachedRecipe = rec;
+            return Optional.ofNullable(rec);
+        } // end-else
+    } // end getRecipe(IInventory)
 
     /**
      * @return The result of smelting the input stack
@@ -186,157 +237,10 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     private Optional<ItemStack> getResult(final ItemStack input1, final ItemStack input2, final ItemStack catalyst)
     {
         RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(new Inventory(input1, input2, catalyst)));
-        Optional<IFusionRecipe> recipe = getRecipe(input1, input2, catalyst);
-        ItemStack result = recipe.isPresent() 
-                            ? recipe.get().assemble(inv0)
-                            : null;
-        return Optional.ofNullable(result);
+        Optional<ItemStack> maybe_result = getRecipe(input1, input2, catalyst).map(recipe -> recipe.assemble(inv0));
+
+        return Optional.of(maybe_result.orElse(ItemStack.EMPTY));
     }
-
-    public boolean isBurning()
-    {
-        return this.fuelBurnTimeLeft > 0;
-    }
-
-    /**
-     * Called every tick to update our tile entity
-     */
-    @Override
-    public void tick()
-    {
-        // Fuel burning code
-        boolean hasFuel = this.isBurning();
-
-        if (this.isBurning()) {
-            --fuelBurnTimeLeft;
-        }
-        
-        if (level == null || level.isClientSide)
-            return;
-    
-        // Alloying code
-        final ItemStack input1 = inventory.getStackInSlot(INPUT1_SLOT).copy();
-        final ItemStack input2 = inventory.getStackInSlot(INPUT2_SLOT).copy();
-        final ItemStack catalyst = inventory.getStackInSlot(CATALYST_SLOT).copy();
-        
-        final ItemStack result = getResult(input1, input2, catalyst).orElse(ItemStack.EMPTY);
-        
-        if (!result.isEmpty() && isInput(input1) && isInput(input2) && isCatalyst(catalyst)) 
-        {
-            final boolean canInsertResultIntoOutput = inventory.insertItem(OUTPUT_SLOT, result, true).isEmpty();
-            if (canInsertResultIntoOutput) 
-            {
-                if (!hasFuel) {
-                    if (burnFuel())
-                        hasFuel = true;
-                }
-                if (hasFuel) 
-                {
-                    if (smeltTimeLeft == -1) 
-                    { // Item has not been smelted before
-                        smeltTimeLeft = maxSmeltTime = getAlloyTime(input1, input2, catalyst);
-                    } 
-                    else { // Item was already being smelted
-                        --smeltTimeLeft;
-                        if (smeltTimeLeft == 0) 
-                        {
-                            this.setRecipeUsed(getRecipe(input1, input2, catalyst).get());
-                            inventory.insertItem(OUTPUT_SLOT, result, false);
-                            if (input1.hasContainerItem())
-                                inventory.setStackInSlot(INPUT1_SLOT, input1.getContainerItem());
-                            else {
-                                input1.shrink(1);
-                                inventory.setStackInSlot(INPUT1_SLOT, input1); // Update the data
-                            }
-                            if (input2.hasContainerItem())
-                                inventory.setStackInSlot(INPUT2_SLOT, input2.getContainerItem());
-                            else {
-                                input2.shrink(1);
-                                inventory.setStackInSlot(INPUT2_SLOT, input2); // Update the data
-                            }
-                            if (catalyst.hasContainerItem())
-                                inventory.setStackInSlot(CATALYST_SLOT, catalyst.getContainerItem());
-                            else {
-                                catalyst.shrink(1);
-                                inventory.setStackInSlot(CATALYST_SLOT, catalyst); // Update the data
-                            }
-                            smeltTimeLeft = -1; // Set to -1 so we smelt the next stack on the next tick
-                        } // end-if 
-                    } // end-else
-                } 
-                else // No fuel -> add to smelt time left to simulate cooling
-                {
-                    if (smeltTimeLeft < maxSmeltTime)
-                        ++smeltTimeLeft;
-                }
-            } // end-if canInsert
-        } // end-if valid inputs
-        else // We have an invalid input stack (somehow)
-        {
-            smeltTimeLeft = maxSmeltTime = -1;
-        }
-    
-        // Syncing code
-        // If the burning state has changed.
-        if (lastBurning != hasFuel) 
-        { 
-            // We use hasFuel because the current fuel may be all burnt out but we have 
-            // more that will be used next tick
-    
-            // "markDirty" tells vanilla that the chunk containing the tile entity has
-            // changed and means the game will save the chunk to disk later.
-            this.setChanged();
-    
-            // Flag 2: Send the change to clients & update blockstate
-            this.level.setBlock(this.worldPosition, 
-                    this.level.getBlockState(this.worldPosition).setValue(AbstractAlloyFurnaceBlock.LIT,
-                                                        Boolean.valueOf(this.isBurning())),
-                    2);
-    
-            // Update the last synced burning state to the current burning state
-           lastBurning = hasFuel;
-        } // end-if
-    } // end tick()
-
-    /**
-     * Mimics the code in {@link AbstractFurnaceTileEntity#getTotalCookTime()}
-     *
-     * @return The custom smelt time or 200 if there is no recipe for the input
-     */
-    private short getAlloyTime(final ItemStack input1, final ItemStack input2, final ItemStack catalyst)
-    {
-        Optional<IFusionRecipe> maybeRecipe = getRecipe(input1, input2, catalyst); 
-        if (maybeRecipe.isPresent()) {
-            return (short) ((FusionRecipe) maybeRecipe.get()).getCookTime(); 
-        }
-        else {
-            return 200;
-        }
-    } // end getAlloyTime
-
-    /**
-     * @return If the fuel was burnt
-     */
-    private boolean burnFuel()
-    {
-        final ItemStack fuelStack = inventory.getStackInSlot(FUEL_SLOT).copy();
-        if (!fuelStack.isEmpty()) 
-        {
-            final int burnTime = (int) (ForgeHooks.getBurnTime(fuelStack, ModRecipeTypes.FUSION_TYPE) * BURN_TIME_MODIFIER);
-            if (burnTime > 0) {
-                fuelBurnTimeLeft = maxFuelBurnTime = burnTime;
-                if (fuelStack.hasContainerItem())
-                    inventory.setStackInSlot(FUEL_SLOT, fuelStack.getContainerItem());
-                else {
-                    fuelStack.shrink(1);
-                    inventory.setStackInSlot(FUEL_SLOT, fuelStack); // Update the data
-                }
-                return true;
-            }
-        } // end-if
-        fuelBurnTimeLeft = maxFuelBurnTime = -1;
-        return false;
-    } // end burnFuel()
 
     public void setRecipeUsed(@Nullable IRecipe<?> recipe)
     {
@@ -348,6 +252,212 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         }
     } // end setRecipeUsed()
     
+    /**
+     * Given a stack of fuel, gets the burn duration of one item.
+     * @param fuelstack - fuel items to be checked.
+     * @return burn duration in ticks.
+     */
+    protected int getBurnDuration(ItemStack fuelstack) 
+    {
+        int returnval = 0;
+        
+        // ForgeHooks.getBurnTime() handles empty stack case, so we don't have to.
+        if (!hasFuelMultiplier)
+        {
+            returnval = (int) Math.ceil(((double)ForgeHooks.getBurnTime(fuelstack, null)) * BURN_TIME_MODIFIER);
+        }
+        else {
+            // improved fuel efficiency processing here.
+            returnval = (int) Math.ceil(((double) ForgeHooks.getBurnTime(fuelstack, null)) * fuelMultiplier  * BURN_TIME_MODIFIER);
+        }
+        // LOGGER.debug("[" + getDisplayName().getString() + "]VeryAbstractFurnaceTileEntity.getBurnDuration: returns " + returnval + " for " + fuelstack.toString());
+        return returnval;
+    } // end getBurnDuration
+    
+    /**
+     * Is it physically possible to put the smelting result in the output slot and do we have inputs at all?
+     * @param result - hypothetical smelting product.
+     * @return true if result can be added to output slot, false if it cannot.
+     */
+    protected boolean canSmelt(ItemStack result)
+    {
+        if (!this.inventory.getStackInSlot(INPUT1_SLOT).isEmpty() && !this.inventory.getStackInSlot(INPUT2_SLOT).isEmpty()
+                && !this.inventory.getStackInSlot(CATALYST_SLOT).isEmpty() && !result.isEmpty())
+        {
+            ItemStack outstack = inventory.getStackInSlot(OUTPUT_SLOT);
+            if (outstack.isEmpty())
+            {
+                return true;
+            }
+            else if (!outstack.sameItem(result))
+            {
+                return false;
+            }
+            else
+            { // Forge fix: make furnace respect stack sizes in furnace recipes
+                return (outstack.getCount() + result.getCount() <= outstack.getMaxStackSize());
+            }
+ 
+        } // end-if not output empty and not result empty.
+        else
+        {
+            return false;
+        }
+    } // end canSmelt()
+    
+    /**
+     * Mimics the code in {@link AbstractFurnaceTileEntity#getTotalCookTime()}
+     *
+     * @return The custom smelt time or DEFAULT_ALLOY_TIME if there is no recipe for the input
+     */
+    private short getAlloyTime(final ItemStack input1, final ItemStack input2, final ItemStack catalyst)
+    {
+        Optional<IFusionRecipe> maybeRecipe = getRecipe(input1, input2, catalyst); 
+        if (maybeRecipe.isPresent()) {
+            return (short) ((FusionRecipe) maybeRecipe.get()).getCookTime(); 
+        }
+        else {
+            return DEFAULT_ALLOY_TIME;
+        }
+    } // end getAlloyTime
+
+    protected void smelt(ItemStack result)  // result = itemstack1
+    {
+        if (!result.isEmpty() && this.canSmelt(result))
+        {
+            final ItemStack input1 = inventory.getStackInSlot(INPUT1_SLOT).copy();
+            final ItemStack input2 = inventory.getStackInSlot(INPUT2_SLOT).copy();
+            final ItemStack catalyst = inventory.getStackInSlot(CATALYST_SLOT).copy();
+            ItemStack outstack = inventory.getStackInSlot(OUTPUT_SLOT).copy();
+            
+            if (outstack.isEmpty())
+            {
+                inventory.setStackInSlot(OUTPUT_SLOT, result.copy());
+            }
+            else if (outstack.getItem() == result.getItem())
+            {
+                outstack.grow(result.getCount());
+                inventory.setStackInSlot(OUTPUT_SLOT, outstack);
+            }
+            if (!this.level.isClientSide) 
+            {
+                this.setRecipeUsed(getRecipe(input1, input2, catalyst).orElse(null));
+            }
+            if (input1.hasContainerItem())
+                inventory.setStackInSlot(INPUT1_SLOT, input1.getContainerItem());
+            else {
+                input1.shrink(1);
+                inventory.setStackInSlot(INPUT1_SLOT, input1); // Update the data
+            }
+            if (input2.hasContainerItem())
+                inventory.setStackInSlot(INPUT2_SLOT, input2.getContainerItem());
+            else {
+                input2.shrink(1);
+                inventory.setStackInSlot(INPUT2_SLOT, input2); // Update the data
+            }
+            if (catalyst.hasContainerItem())
+                inventory.setStackInSlot(CATALYST_SLOT, catalyst.getContainerItem());
+            else {
+                catalyst.shrink(1);
+                inventory.setStackInSlot(CATALYST_SLOT, catalyst); // Update the data
+            }
+        } // end-if canSmelt result
+    } // end burn()
+    
+    /**
+     * Called every tick to update our tile entity
+     */
+    @Override
+    public void tick()
+    {
+        // Fuel burning code
+        boolean hasFuel = this.isBurning();
+        boolean flag1 = false;
+        if (this.isBurning()) {
+            --fuelBurnTimeLeft;
+        }
+        
+        if (!this.level.isClientSide) 
+        {
+            // Alloying code
+            ItemStack input1 = inventory.getStackInSlot(INPUT1_SLOT).copy();
+            ItemStack input2 = inventory.getStackInSlot(INPUT2_SLOT).copy();
+            ItemStack catalyst = inventory.getStackInSlot(CATALYST_SLOT).copy();
+            ItemStack fuel = inventory.getStackInSlot(FUEL_SLOT).copy();
+            ItemStack result = getResult(input1, input2, catalyst).orElse(ItemStack.EMPTY);
+            
+            if ((this.isBurning() || !fuel.isEmpty()) && 
+                    (!input1.isEmpty() && !input2.isEmpty() && !catalyst.isEmpty()))
+            {
+                if (!this.isBurning() && this.canSmelt(result))
+                {
+                    this.fuelBurnTimeLeft = this.getBurnDuration(fuel);
+                    this.maxFuelBurnTime = this.fuelBurnTimeLeft;
+                    if (this.isBurning())
+                    {
+                        flag1 = true;
+                        if (fuel.hasContainerItem()) 
+                        {
+                            inventory.setStackInSlot(FUEL_SLOT, fuel.getContainerItem());
+                        }
+                        else if (!fuel.isEmpty()) 
+                        {
+                            fuel.shrink(1);
+                            inventory.setStackInSlot(FUEL_SLOT, fuel); // Update the data
+                        }
+                    } // end-if isBurning
+                } // end-if !isBurning but canSmelt
+                if (this.isBurning() && this.canSmelt(result))
+                {
+                    if (smeltTimeProgress <= 0) // Item has not been smelted before
+                    { 
+                        maxSmeltTime = getAlloyTime(input1, input2, catalyst);
+                    } 
+                    ++this.smeltTimeProgress;
+                    if (this.smeltTimeProgress >= this.maxSmeltTime) 
+                    {
+//                        LOGGER.debug("tick: smeltTimeProgress=" + this.smeltTimeProgress + ", maxSmeltTime=" + this.maxSmeltTime);
+//                        LOGGER.debug("tick: fuelBurnTimeLeft=" + this.fuelBurnTimeLeft + ", maxFuelBurnTime=" + this.maxFuelBurnTime);
+                        this.smelt(result);
+                        this.smeltTimeProgress = 0;
+                        if (!inventory.getStackInSlot(INPUT1_SLOT).isEmpty()
+                            && !inventory.getStackInSlot(INPUT2_SLOT).isEmpty()
+                            && !inventory.getStackInSlot(CATALYST_SLOT).isEmpty())
+                        {
+                            this.maxSmeltTime = 
+                                    this.getAlloyTime(inventory.getStackInSlot(INPUT1_SLOT), 
+                                            inventory.getStackInSlot(INPUT2_SLOT), 
+                                            inventory.getStackInSlot(CATALYST_SLOT));
+                        }
+                        else {
+                            this.maxSmeltTime = 0;
+                        }
+                        flag1 = true;
+                    } // end-if progess == maxTime
+                } // end-if burning and canBurn
+                else {
+                    this.smeltTimeProgress = 0;
+                }
+            } // end-if isBurning & fuel & inputs
+            else if (! this.isBurning() && this.smeltTimeProgress > 0)
+            {
+                this.smeltTimeProgress = (short) MathHelper.clamp(this.smeltTimeProgress - 2, 0, this.maxSmeltTime);
+            } // end-else if ! burning & smeltTimeProgress
+            if (hasFuel != this.isBurning())
+            {
+                flag1 = true;
+                final BlockState newState = this.getBlockState().setValue(BlockStateProperties.LIT, this.isBurning());
+        
+                // Flag 2: Send the change to clients
+                level.setBlock(worldPosition, newState, 3);
+            }
+        } // end-if ! clientSide
+
+        if (flag1) {
+            this.setChanged();
+         }
+    } // end tick()
+
     /**
      * Retrieves the Optional handler for the capability requested on the specific side.
      *
@@ -410,7 +520,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     {
         super.load(stateIn, compound);
         this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
-        this.smeltTimeLeft = compound.getShort(SMELT_TIME_LEFT_TAG);
+        this.smeltTimeProgress = compound.getShort(SMELT_TIME_LEFT_TAG);
         this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
         this.fuelBurnTimeLeft = compound.getInt(FUEL_BURN_TIME_LEFT_TAG);
         this.maxFuelBurnTime = compound.getInt(MAX_FUEL_BURN_TIME_TAG);
@@ -446,7 +556,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     {
         super.save(compound);
         compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
-        compound.putShort(SMELT_TIME_LEFT_TAG, this.smeltTimeLeft);
+        compound.putShort(SMELT_TIME_LEFT_TAG, this.smeltTimeProgress);
         compound.putShort(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
         compound.putInt(FUEL_BURN_TIME_LEFT_TAG, this.fuelBurnTimeLeft);
         compound.putInt(MAX_FUEL_BURN_TIME_TAG, this.maxFuelBurnTime);
