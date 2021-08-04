@@ -70,7 +70,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     
     // TODO - change to int in 1.17.1
     public short smeltTimeProgress = 0;
-    public short maxSmeltTime = (short) (200 * BURN_TIME_MODIFIER);
+    public short maxSmeltTime = -1;
     
     public int fuelBurnTimeLeft = -1;
     public int maxFuelBurnTime = -1;
@@ -409,9 +409,10 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
                 } // end-if !isBurning but canSmelt
                 if (this.isBurning() && this.canSmelt(result))
                 {
-                    if (smeltTimeProgress <= 0) // Item has not been smelted before
+                    if (this.smeltTimeProgress <= 0) // Item has not been smelted before
                     { 
-                        maxSmeltTime = getAlloyTime(input1, input2, catalyst);
+                        this.maxSmeltTime = getAlloyTime(input1, input2, catalyst);
+                        this.smeltTimeProgress = 0;
                     } 
                     ++this.smeltTimeProgress;
                     if (this.smeltTimeProgress >= this.maxSmeltTime) 
