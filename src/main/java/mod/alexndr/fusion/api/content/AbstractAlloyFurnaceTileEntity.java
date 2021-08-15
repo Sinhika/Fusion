@@ -623,7 +623,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity impleme
     }
     
     @Override
-    protected void invalidateCaps()
+    public void invalidateCaps()
     {
         super.invalidateCaps();
         // We need to invalidate our capability references so that any cached references (by other mods) don't

@@ -6,7 +6,7 @@ import mod.alexndr.fusion.Fusion;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 /**
  * bundles up the GatherDataEvent handler and all the necessary data providers
@@ -34,6 +34,7 @@ public class FusionDataGenerator
             gen.addProvider(new SilentsRecipes(gen));
             gen.addProvider(new FusionLootTableProvider(gen));
             gen.addProvider(new FusionLootInjectorProvider(gen));
+            gen.addProvider(new ModBlockTags(gen, event.getExistingFileHelper()));
         }
     } // end gatherData()
 

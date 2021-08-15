@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-  	"fusion:bronze_block",
-  	"fusion:steel_block",
-  	"fusion:sinisite_block",
-  	"fusion:thyrium_block"
-  ]
-}
