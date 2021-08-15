@@ -4,32 +4,34 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+public abstract class AbstractAlloyFurnaceBlock extends HorizontalDirectionalBlock
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
@@ -52,13 +54,13 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
 
     @Nullable
     @Override
-    public abstract TileEntity createTileEntity(final BlockState state, final IBlockReader world);
+    public abstract BlockEntity createTileEntity(final BlockState state, final BlockGetter world);
 
     /**
      * Interface for handling interaction with blocks that implement AbstractAlloyFurnaceBlock. Called in onBlockActivated
      * inside AbstractAlloyFurnaceBlock.
      */
-    protected abstract void interactWith(World worldIn, BlockPos pos, PlayerEntity player);
+    protected abstract void interactWith(Level worldIn, BlockPos pos, Player player);
     
     /**
      * Called when a player right clicks our block.
@@ -68,14 +70,14 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public ActionResultType use(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit)
+    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit)
     {
         if (worldIn.isClientSide) {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
          } 
         else {
             this.interactWith(worldIn, pos, player);
-            return ActionResultType.CONSUME;
+            return InteractionResult.CONSUME;
          }        
     } // end onBlockActivated()
 
@@ -83,7 +85,7 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
      * Makes the block face the player when placed
      */
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
@@ -95,9 +97,9 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos)
+    public int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos)
     {
-        final TileEntity tileEntity = worldIn.getBlockEntity(pos);
+        final BlockEntity tileEntity = worldIn.getBlockEntity(pos);
         if (tileEntity instanceof AbstractAlloyFurnaceTileEntity)
             return ItemHandlerHelper.calcRedstoneFromInventory(((AbstractAlloyFurnaceTileEntity) tileEntity).inventory);
         return super.getAnalogOutputSignal(blockState, worldIn, pos);
@@ -144,7 +146,7 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
      */
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand)
     {
         if (stateIn.getValue(LIT))
         {
@@ -153,7 +155,7 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalBlock
             double d2 = (double) pos.getZ() + 0.5D;
             if (rand.nextDouble() < 0.1D)
             {
-                worldIn.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F,
+                worldIn.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F,
                         false);
             }
 

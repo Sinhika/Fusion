@@ -7,13 +7,13 @@ import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModContainers;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.play.server.SWindowPropertyPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.IntReferenceHolder;
 import net.minecraftforge.fml.network.IContainerFactory;
 
@@ -38,8 +38,8 @@ public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer<Fusion
      * Logical-client-side constructor, called from {@link ContainerType#create(IContainerFactory)}
      * Calls the logical-server-side constructor with the TileEntity at the pos in the PacketBuffer
      */
-    public FusionFurnaceContainer(final int windowId, final PlayerInventory playerInventory, 
-                                  final PacketBuffer data)
+    public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, 
+                                  final FriendlyByteBuf data)
     {
         this(windowId, playerInventory, getTileEntity(playerInventory, data));
     }
@@ -48,18 +48,18 @@ public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer<Fusion
      * Constructor called logical-server-side from {@link FusionFurnaceTileEntity#createMenu}
      * and logical-client-side from {@link #FusionFurnaceContainer(int, PlayerInventory, PacketBuffer)}
      */
-    public FusionFurnaceContainer(final int windowId, final PlayerInventory playerInventory, 
+    public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, 
                                   final AbstractAlloyFurnaceTileEntity tileEntity)
     {
         super(ModContainers.FUSION_FURNACE.get(), windowId, playerInventory, tileEntity, ModBlocks.fusion_furnace);
  
     }  // end-ctor server-side
     
-    private static AbstractAlloyFurnaceTileEntity getTileEntity(final PlayerInventory playerInventory, final PacketBuffer data)
+    private static AbstractAlloyFurnaceTileEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data)
     {
         Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
         Objects.requireNonNull(data, "data cannot be null!");
-        final TileEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
+        final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
         if (tileAtPos instanceof AbstractAlloyFurnaceTileEntity) return (AbstractAlloyFurnaceTileEntity) tileAtPos;
         throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);
     } // end getTileEntity()

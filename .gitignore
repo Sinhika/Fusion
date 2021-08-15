@@ -1,5 +1,5 @@
-.project
 build/
+src/generated/resources/.cache/
 gradle/
 run/
 libs/
@@ -12,7 +12,8 @@ libs/
 .classpath
 gradlew
 gradlew.bat
+build.number
 bin/
 .gradle/
-build.number
-src/generated/resources/.cache/
+.idea/
+.project

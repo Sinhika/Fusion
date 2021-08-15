@@ -12,9 +12,9 @@ import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModTags;
 import mod.alexndr.simplecorelib.datagen.ISimpleConditionBuilder;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -34,7 +34,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer)
     {
         registerBronzeRecipes(consumer);
         registerSteelRecipes(consumer);
@@ -48,7 +48,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
      * Steel alloying recipes and steel recycling recipes.
      * @param consumer
      */
-    protected void registerSteelRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerSteelRecipes(Consumer<FinishedRecipe> consumer)
     {
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
         Ingredient[] catalysts = new Ingredient[3];
@@ -77,7 +77,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
      * Bronze alloy recipes and bronze recycling recipes.
      * @param consumer
      */
-    protected void registerBronzeRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerBronzeRecipes(Consumer<FinishedRecipe> consumer)
     {
         // bronze alloy recipes
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
@@ -107,7 +107,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
      * Sinisite alloy recipes and sinisite recycling recipes.
      * @param consumer
      */
-    protected void registerSinisiteRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerSinisiteRecipes(Consumer<FinishedRecipe> consumer)
     {
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
         Ingredient[] catalysts = new Ingredient[3];
@@ -137,7 +137,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
      * Thyrium fusion alloy recipes and thyrium fusion recycling recipes.
      * @param consumer
      */
-    protected void registerThyriumRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerThyriumRecipes(Consumer<FinishedRecipe> consumer)
     {
         List<Ingredient> primary_inputs = new ArrayList<Ingredient>(2);
         Ingredient[] catalysts = new Ingredient[3];
@@ -163,7 +163,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 15.0F, 600, flag("recycle_fusion"), "recycle_thyrium_items");
     }
 
-    protected void registerVanillaFusionRecyclingRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerVanillaFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer)
     {
         // Diamond recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
@@ -177,7 +177,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
  
    } // end registerVanillaFusionRecyclingRecipes()
  
-    protected void registerSimpleOresFusionRecyclingRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerSimpleOresFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer)
     {
         // Onyx recycling
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 

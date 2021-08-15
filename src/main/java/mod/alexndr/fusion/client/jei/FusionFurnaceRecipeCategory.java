@@ -3,7 +3,7 @@ package mod.alexndr.fusion.client.jei;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -18,11 +18,11 @@ import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModBlocks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
 
 public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecipe>
 {
@@ -78,7 +78,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     } // end ctor
     
     @Override
-    public void draw(IFusionRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY)
+    public void draw(IFusionRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY)
     {
         flame.draw(matrixStack, 23, 51);
         flame.draw(matrixStack, 73, 51);
@@ -91,7 +91,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
         if (experience > 0) {
             String experienceString = I18n.get("gui.jei.category.fusion.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
-            FontRenderer fontRenderer = minecraft.font;
+            Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(experienceString);
             fontRenderer.draw(matrixStack, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
         }

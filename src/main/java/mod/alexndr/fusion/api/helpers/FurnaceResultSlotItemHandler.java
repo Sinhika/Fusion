@@ -1,9 +1,9 @@
 package mod.alexndr.fusion.api.helpers;
 
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -13,11 +13,11 @@ import net.minecraftforge.items.SlotItemHandler;
  */
 public class FurnaceResultSlotItemHandler extends SlotItemHandler
 {
-    private final PlayerEntity player;
+    private final Player player;
     private int removeCount;
-    private final TileEntity tile;
+    private final BlockEntity tile;
     
-    public FurnaceResultSlotItemHandler(PlayerEntity player, TileEntity tileEntity, IItemHandler itemHandler, int index, int xPosition, int yPosition)
+    public FurnaceResultSlotItemHandler(Player player, BlockEntity tileEntity, IItemHandler itemHandler, int index, int xPosition, int yPosition)
     {
         super(itemHandler, index, xPosition, yPosition);
         this.tile = tileEntity;
@@ -63,7 +63,7 @@ public class FurnaceResultSlotItemHandler extends SlotItemHandler
     } // end onCrafting
 
     @Override
-    public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack)
+    public ItemStack onTake(Player thePlayer, ItemStack stack)
     {
         this.checkTakeAchievements(stack);
         super.onTake(thePlayer, stack);

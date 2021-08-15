@@ -5,15 +5,15 @@ import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 
 import mod.alexndr.fusion.Fusion;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 public final class ModTabGroups
 {
-    public static final ItemGroup MOD_ITEM_GROUP =
+    public static final CreativeModeTab MOD_ITEM_GROUP =
             new ModTabGroup(Fusion.MODID, () -> new ItemStack(ModItems.steel_ingot.get()));
     
-    public static final class ModTabGroup extends ItemGroup
+    public static final class ModTabGroup extends CreativeModeTab
     {
 
         @Nonnull

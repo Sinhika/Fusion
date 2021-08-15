@@ -6,14 +6,14 @@ import mod.alexndr.fusion.content.FusionItemTier;
 import mod.alexndr.fusion.content.SinisiteBow;
 import mod.alexndr.fusion.content.ThyriumBow;
 import mod.alexndr.simplecorelib.content.SimpleShearsItem;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -89,58 +89,58 @@ public final class ModItems
     // ARMORS
     // bronze
     public static final RegistryObject<ArmorItem> bronze_helmet = ITEMS.register("bronze_helmet",
-            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlotType.HEAD,
+            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> bronze_leggings = ITEMS.register("bronze_leggings",
-            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlotType.LEGS,
+            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlot.LEGS,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> bronze_chestplate = ITEMS.register("bronze_chestplate",
-            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlotType.CHEST,
+            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> bronze_boots = ITEMS.register("bronze_boots",
-            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlotType.FEET,
+            () -> new ArmorItem(FusionArmorMaterial.BRONZE, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     
     // steel
     public static final RegistryObject<ArmorItem> steel_helmet = ITEMS.register("steel_helmet",
-            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlotType.HEAD,
+            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> steel_leggings = ITEMS.register("steel_leggings",
-            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlotType.LEGS,
+            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlot.LEGS,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> steel_chestplate = ITEMS.register("steel_chestplate",
-            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlotType.CHEST,
+            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> steel_boots = ITEMS.register("steel_boots",
-            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlotType.FEET,
+            () -> new ArmorItem(FusionArmorMaterial.STEEL, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     
     // sinsite
     public static final RegistryObject<ArmorItem> sinisite_helmet = ITEMS.register("sinisite_helmet",
-            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlotType.HEAD,
+            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> sinisite_leggings = ITEMS.register("sinisite_leggings",
-            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlotType.LEGS,
+            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlot.LEGS,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> sinisite_chestplate = ITEMS.register("sinisite_chestplate",
-            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlotType.CHEST,
+            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> sinisite_boots = ITEMS.register("sinisite_boots",
-            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlotType.FEET,
+            () -> new ArmorItem(FusionArmorMaterial.SINISITE, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     
     // thyrium
     public static final RegistryObject<ArmorItem> thyrium_helmet = ITEMS.register("thyrium_helmet",
-            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlotType.HEAD,
+            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> thyrium_leggings = ITEMS.register("thyrium_leggings",
-            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlotType.LEGS,
+            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlot.LEGS,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> thyrium_chestplate = ITEMS.register("thyrium_chestplate",
-            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlotType.CHEST,
+            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     public static final RegistryObject<ArmorItem> thyrium_boots = ITEMS.register("thyrium_boots",
-            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlotType.FEET,
+            () -> new ArmorItem(FusionArmorMaterial.THYRIUM, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)));
     
     // TOOLS

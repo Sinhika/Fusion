@@ -1,23 +1,23 @@
 package mod.alexndr.fusion.api.client.gui;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceContainer;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
 
-public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceContainer<?>>  extends ContainerScreen<T>
+public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceContainer<?>>  extends AbstractContainerScreen<T>
 {
 
     protected static ResourceLocation BACKGROUND_TEXTURE;
     private int displayNameColor = 0x404040;
 
-    public AbstractAlloyFurnaceScreen(T screenContainer, PlayerInventory inv, ResourceLocation texture, 
-                                      ITextComponent titleIn, int nameColor)
+    public AbstractAlloyFurnaceScreen(T screenContainer, Inventory inv, ResourceLocation texture, 
+                                      Component titleIn, int nameColor)
     {
         super(screenContainer, inv, titleIn);
         BACKGROUND_TEXTURE = texture;
@@ -25,7 +25,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
    }
 
     @Override
-    public void render(MatrixStack matStack, final int mouseX, final int mouseY, final float partialTicks)
+    public void render(PoseStack matStack, final int mouseX, final int mouseY, final float partialTicks)
     {
         this.renderBackground(matStack);
         super.render(matStack, mouseX, mouseY, partialTicks);
@@ -42,7 +42,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
      */
     @SuppressWarnings("deprecation")
     @Override
-    protected void renderBg(MatrixStack matStack, final float partialTicks, final int mouseX, final int mouseY)
+    protected void renderBg(PoseStack matStack, final float partialTicks, final int mouseX, final int mouseY)
     {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         getMinecraft().getTextureManager().bind(BACKGROUND_TEXTURE);
@@ -92,7 +92,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
      * @param mouseY
      */
     @Override
-    protected void renderLabels(MatrixStack matStack, int mouseX, int mouseY)
+    protected void renderLabels(PoseStack matStack, int mouseX, int mouseY)
     {
         int forbidden_area = 54;
         

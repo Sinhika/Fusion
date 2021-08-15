@@ -11,16 +11,16 @@ import com.google.gson.JsonObject;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModRecipeTypes;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
@@ -56,9 +56,9 @@ public class FusionRecipe implements IFusionRecipe
     private static void initLegalisms()
     {
         Fusion.LOGGER.info(Fusion.MODID + ": in FusionRecipe.InitLegalisms()");
-        Iterable<IRecipe<?>> recipes = 
+        Iterable<Recipe<?>> recipes = 
                 ServerLifecycleHooks.getCurrentServer().getRecipeManager().getRecipes();
-        for (IRecipe<?> recipe: recipes)
+        for (Recipe<?> recipe: recipes)
         {
             // we only want Fusion recipes.
              if (recipe.getType() != ModRecipeTypes.FUSION_TYPE) {
@@ -99,7 +99,7 @@ public class FusionRecipe implements IFusionRecipe
      * Used to check if a recipe matches current crafting inventory
      */
     @Override
-    public boolean matches(RecipeWrapper inv, World worldIn)
+    public boolean matches(RecipeWrapper inv, Level worldIn)
     {
         List<Ingredient> ingredientsMissing = new ArrayList<>(inputs);
         
@@ -187,38 +187,38 @@ public class FusionRecipe implements IFusionRecipe
     }
     
     @Override
-    public IRecipeSerializer<?> getSerializer()
+    public RecipeSerializer<?> getSerializer()
     {
         return ModRecipeTypes.FUSION_SERIALIZER;
     }
 
     
-    public static class FusionRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
-    implements IRecipeSerializer<FusionRecipe>
+    public static class FusionRecipeSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
+    implements RecipeSerializer<FusionRecipe>
     {
 
         @Override
         public FusionRecipe fromJson(ResourceLocation recipeId, JsonObject json)
         {
-            ItemStack output = CraftingHelper.getItemStack(JSONUtils.getAsJsonObject(json, "output"), 
+            ItemStack output = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "output"), 
                                                            true);
-            JsonArray ingrs = JSONUtils.getAsJsonArray(json, "inputs");
+            JsonArray ingrs = GsonHelper.getAsJsonArray(json, "inputs");
             List<Ingredient> inputs = new ArrayList<>();
             for (JsonElement e : ingrs) {
                 inputs.add(Ingredient.fromJson(e));
             }
             Ingredient catalyst = Ingredient.fromJson(
-                                    JSONUtils.getAsJsonObject(json, "catalyst"));
+                                    GsonHelper.getAsJsonObject(json, "catalyst"));
             
-            int cook_time = JSONUtils.getAsInt(json, "cookingtime");
-            float experience = JSONUtils.getAsFloat(json, "experience");
+            int cook_time = GsonHelper.getAsInt(json, "cookingtime");
+            float experience = GsonHelper.getAsFloat(json, "experience");
             
             return new FusionRecipe(recipeId, output, cook_time, experience, catalyst,
                                      inputs.toArray(new Ingredient[0]));
         } // end read(json)
 
         @Override
-        public FusionRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buf)
+        public FusionRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buf)
         {
             Ingredient[] inputs = new Ingredient[buf.readVarInt()];
             for (int ii = 0; ii < inputs.length; ii++) {
@@ -233,7 +233,7 @@ public class FusionRecipe implements IFusionRecipe
         } // end read(packet)
 
         @Override
-        public void toNetwork(PacketBuffer buf, FusionRecipe recipe)
+        public void toNetwork(FriendlyByteBuf buf, FusionRecipe recipe)
         {
             buf.writeVarInt(recipe.getIngredients().size());
             for (Ingredient input : recipe.getIngredients()) {

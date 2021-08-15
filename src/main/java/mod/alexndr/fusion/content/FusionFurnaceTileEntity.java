@@ -5,11 +5,11 @@ import javax.annotation.Nonnull;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModTiles;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class FusionFurnaceTileEntity extends AbstractAlloyFurnaceTileEntity
@@ -21,8 +21,8 @@ public class FusionFurnaceTileEntity extends AbstractAlloyFurnaceTileEntity
     
     @Nonnull
     @Override
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent(ModBlocks.fusion_furnace.get().getDescriptionId());
+    public Component getDisplayName() {
+        return new TranslatableComponent(ModBlocks.fusion_furnace.get().getDescriptionId());
     }
 
     /**
@@ -33,7 +33,7 @@ public class FusionFurnaceTileEntity extends AbstractAlloyFurnaceTileEntity
      */
     @Nonnull
     @Override
-    public Container createMenu(final int windowId, final PlayerInventory inventory, final PlayerEntity player) 
+    public AbstractContainerMenu createMenu(final int windowId, final Inventory inventory, final Player player) 
     {
         return new FusionFurnaceContainer(windowId, inventory, this);
     }

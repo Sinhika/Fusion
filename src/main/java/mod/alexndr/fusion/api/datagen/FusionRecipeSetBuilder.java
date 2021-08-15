@@ -5,11 +5,11 @@ import java.util.function.Consumer;
 
 import mod.alexndr.fusion.api.recipe.AbstractFusionRecipeProvider;
 import mod.alexndr.simplecorelib.datagen.RecipeSetBuilder;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 
@@ -21,8 +21,8 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
         super(modid);
     }
 
-    public void buildBasicAlloyRecipes(Consumer<IFinishedRecipe> consumer, List<Ingredient> primaryInputs,
-            Ingredient[] catalysts, IItemProvider nugget, IItemProvider medium_chunk, IItemProvider large_chunk,
+    public void buildBasicAlloyRecipes(Consumer<FinishedRecipe> consumer, List<Ingredient> primaryInputs,
+            Ingredient[] catalysts, ItemLike nugget, ItemLike medium_chunk, ItemLike large_chunk,
             float experience, int cooktime, ICondition condition)
     {
         buildBasicAlloyRecipes(consumer, primaryInputs, catalysts, nugget, medium_chunk, large_chunk,
@@ -44,8 +44,8 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
      * @param cooktime standard fusion furnace cooking time, usually 600.
      * @param condition Usually a flag condition, could be more complex.
      */
-    public void buildBasicAlloyRecipes(Consumer<IFinishedRecipe> consumer, List<Ingredient> primaryInputs,
-            Ingredient[] catalysts, IItemProvider nugget, IItemProvider medium_chunk, IItemProvider large_chunk,
+    public void buildBasicAlloyRecipes(Consumer<FinishedRecipe> consumer, List<Ingredient> primaryInputs,
+            Ingredient[] catalysts, ItemLike nugget, ItemLike medium_chunk, ItemLike large_chunk,
             float experience, int cooktime, ICondition condition, String suffix)
     {
         if (suffix == null) {
@@ -129,8 +129,8 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
      * @param condition must be here; a flag or mod_loaded or some combination.
      * @param name simple name of recipe.
      */
-    public void buildFusionRecyclingRecipes(Consumer<IFinishedRecipe> consumer, Ingredient ingredients,
-            Ingredient ingrs_doubleoutput, Ingredient input2, Ingredient catalyst, IItemProvider output_item, float experience,
+    public void buildFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer, Ingredient ingredients,
+            Ingredient ingrs_doubleoutput, Ingredient input2, Ingredient catalyst, ItemLike output_item, float experience,
             int cooktime, ICondition condition, String name)
     {
         ResourceLocation recipe1 = AbstractFusionRecipeProvider.id(modid, name + '1');

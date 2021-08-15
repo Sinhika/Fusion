@@ -4,30 +4,30 @@ import javax.annotation.Nonnull;
 
 import mod.alexndr.fusion.api.helpers.FurnaceResultSlotItemHandler;
 import mod.alexndr.simplecorelib.helpers.FunctionalIntReferenceHolder;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.items.SlotItemHandler;
 
-public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurnaceBlock> extends Container
+public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurnaceBlock> extends AbstractContainerMenu
 {
     protected RegistryObject<T> my_block; 
 
     public final AbstractAlloyFurnaceTileEntity tileEntity;
-    protected final IWorldPosCallable canInteractWithCallable;
+    protected final ContainerLevelAccess canInteractWithCallable;
 
-    public AbstractAlloyFurnaceContainer(ContainerType<?> type, int id, final PlayerInventory playerInventory,
+    public AbstractAlloyFurnaceContainer(MenuType<?> type, int id, final Inventory playerInventory,
                                         final AbstractAlloyFurnaceTileEntity tileEntity, 
                                         final RegistryObject<T> block)
     {
         super(type, id);
         this.tileEntity = tileEntity;
-        this.canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
+        this.canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
         this.my_block = block;
         
         // Add tracking for data (Syncs to client/updates value when it changes)
@@ -75,7 +75,7 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
      */
     @Nonnull
     @Override
-    public ItemStack quickMoveStack(final PlayerEntity player, final int index)
+    public ItemStack quickMoveStack(final Player player, final int index)
     {
         ItemStack returnStack = ItemStack.EMPTY;
         final Slot slot = this.slots.get(index);
@@ -113,7 +113,7 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
     } // end transferStackInSlot()
 
     @Override
-    public boolean stillValid(@Nonnull final PlayerEntity player)
+    public boolean stillValid(@Nonnull final Player player)
     {
         return stillValid(canInteractWithCallable, player, my_block.get());
     }

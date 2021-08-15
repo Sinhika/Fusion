@@ -9,9 +9,9 @@ import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.simplecorelib.datagen.ISimpleConditionBuilder;
 import mod.alexndr.simplecorelib.datagen.RecipeSetBuilder;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -32,7 +32,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer)
     {
         registerStorageRecipes(consumer);
         registerMiscRecipes(consumer);
@@ -41,13 +41,13 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
         registerFurnaceRecipes(consumer);
     } // end registerRecipes()
 
-    protected void registerToolRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerToolRecipes(Consumer<FinishedRecipe> consumer)
     {} // end registerToolRecipes()
 
-    protected void registerArmorRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerArmorRecipes(Consumer<FinishedRecipe> consumer)
     {} // end registerArmorRecipes()
 
-    protected void registerStorageRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerStorageRecipes(Consumer<FinishedRecipe> consumer)
     {
         setbuilder.buildSimpleStorageRecipes(consumer, ModItems.bronze_ingot.get(), ModBlocks.bronze_block.get(),
                 ModItems.bronze_nugget.get(), has(ModItems.bronze_ingot.get()));
@@ -73,12 +73,12 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
                 has(ModItems.thyrium_nugget.get()));
     } // end registerStorageRecipes()
 
-    protected void registerMiscRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerMiscRecipes(Consumer<FinishedRecipe> consumer)
     {
 
     } // end registerMiscRecipes()
 
-    protected void registerFurnaceRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void registerFurnaceRecipes(Consumer<FinishedRecipe> consumer)
     {
         setbuilder.buildOre2IngotRecipes(consumer, Ingredient.of(ModItems.large_bronze_chunk.get()),
                 ModItems.bronze_ingot.get(), has(ModItems.large_bronze_chunk.get()), 0.4F, 200);

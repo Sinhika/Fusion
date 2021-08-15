@@ -3,16 +3,18 @@ package mod.alexndr.fusion.content;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceBlock;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.init.ModTiles;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
 {
@@ -22,7 +24,7 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
     } // end ctor
 
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
+    public BlockEntity createTileEntity(BlockState state, BlockGetter world)
     {
         // Always use TileEntityType#create to allow registry overrides to work.
         return ModTiles.FUSION_FURNACE.get().create();
@@ -36,16 +38,16 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
      * Implementing/overriding is fine.
      */
    @Override
-    public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+    public void onRemove(BlockState oldState, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
         if (!oldState.is(newState.getBlock())) 
         {
-            TileEntity tileEntity = worldIn.getBlockEntity(pos);
+            BlockEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof AbstractAlloyFurnaceTileEntity) 
             {
                 final ItemStackHandler inventory = ((AbstractAlloyFurnaceTileEntity) tileEntity).inventory;
                 for (int slot = 0; slot < inventory.getSlots(); ++slot)
-                    InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
+                    Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
                 worldIn.updateNeighbourForOutputSignal(pos, this);
             }
         }
@@ -54,11 +56,11 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
 
    
     @Override
-    protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player)
+    protected void interactWith(Level worldIn, BlockPos pos, Player player)
     {
-        final TileEntity tileEntity = worldIn.getBlockEntity(pos);
+        final BlockEntity tileEntity = worldIn.getBlockEntity(pos);
         if (tileEntity instanceof FusionFurnaceTileEntity) {
-            NetworkHooks.openGui((ServerPlayerEntity) player, (FusionFurnaceTileEntity) tileEntity, pos);
+            NetworkHooks.openGui((ServerPlayer) player, (FusionFurnaceTileEntity) tileEntity, pos);
         }
     }
     

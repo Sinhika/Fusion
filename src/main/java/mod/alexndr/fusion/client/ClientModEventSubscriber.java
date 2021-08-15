@@ -8,7 +8,7 @@ import mod.alexndr.fusion.client.gui.FusionFurnaceScreen;
 import mod.alexndr.fusion.init.ModContainers;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.simplecorelib.client.ClientUtils;
-import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -41,7 +41,7 @@ public class ClientModEventSubscriber
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         event.enqueueWork(() -> {
-            ScreenManager.register(ModContainers.FUSION_FURNACE.get(), FusionFurnaceScreen::new);
+            MenuScreens.register(ModContainers.FUSION_FURNACE.get(), FusionFurnaceScreen::new);
             LOGGER.debug("Registered ContainerType Screens");
         });
    }

@@ -15,30 +15,30 @@ import com.google.common.collect.Maps;
 import mod.alexndr.fusion.api.recipe.FusionRecipe;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModRecipeTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.tileentity.FurnaceTileEntity;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -49,7 +49,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
-public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider
+public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity implements TickableBlockEntity, MenuProvider
 {
 
     public static final int INPUT1_SLOT = 0;
@@ -136,7 +136,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = LazyOptional.of(() -> new RangedWrapper(this.inventory, OUTPUT_SLOT, OUTPUT_SLOT + 1));
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalBack = LazyOptional.of(() -> new RangedWrapper(this.inventory, FUEL_SLOT, FUEL_SLOT + 1));
 
-    public AbstractAlloyFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn)
+    public AbstractAlloyFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn)
     {
         super(tileEntityTypeIn);
         this.fuelMultiplier = 1.0;
@@ -177,7 +177,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
 
     public boolean isFuel(ItemStack stack)
     {
-        return FurnaceTileEntity.isFuel(stack);
+        return FurnaceBlockEntity.isFuel(stack);
     }
     
     public boolean isBurning()
@@ -197,14 +197,14 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         }
         // Due to vanilla's code we need to pass an IInventory into 
         // RecipeManager#getRecipe so we make one here.
-        return getRecipe(new Inventory(input1, input2, catalyst));
+        return getRecipe(new SimpleContainer(input1, input2, catalyst));
     }
 
     /**
      * TODO implement recipe caching
      * @return The alloying recipe for the inventory
      */
-    private Optional<IFusionRecipe> getRecipe(final IInventory inv)
+    private Optional<IFusionRecipe> getRecipe(final Container inv)
     {        
         RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(inv));
         if (cachedRecipe != null && cachedRecipe.matches(inv0, level))
@@ -236,13 +236,13 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      */
     private Optional<ItemStack> getResult(final ItemStack input1, final ItemStack input2, final ItemStack catalyst)
     {
-        RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(new Inventory(input1, input2, catalyst)));
+        RecipeWrapper inv0 = new RecipeWrapper(new InvWrapper(new SimpleContainer(input1, input2, catalyst)));
         Optional<ItemStack> maybe_result = getRecipe(input1, input2, catalyst).map(recipe -> recipe.assemble(inv0));
 
         return Optional.of(maybe_result.orElse(ItemStack.EMPTY));
     }
 
-    public void setRecipeUsed(@Nullable IRecipe<?> recipe)
+    public void setRecipeUsed(@Nullable Recipe<?> recipe)
     {
         if (recipe != null)
         {
@@ -442,7 +442,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
             } // end-if isBurning & fuel & inputs
             else if (! this.isBurning() && this.smeltTimeProgress > 0)
             {
-                this.smeltTimeProgress = (short) MathHelper.clamp(this.smeltTimeProgress - 2, 0, this.maxSmeltTime);
+                this.smeltTimeProgress = (short) Mth.clamp(this.smeltTimeProgress - 2, 0, this.maxSmeltTime);
             } // end-else if ! burning & smeltTimeProgress
             if (hasFuel != this.isBurning())
             {
@@ -476,7 +476,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
                 return inventoryCapabilityExternal.cast();
             
             /* fix side for any rotation... */
-            Direction actual_facing = this.getBlockState().getValue(HorizontalBlock.FACING);
+            Direction actual_facing = this.getBlockState().getValue(HorizontalDirectionalBlock.FACING);
             Direction default_facing = Direction.NORTH;
             
             Direction true_side;
@@ -517,7 +517,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      * Read saved data from disk into the tile.
      */
     @Override
-    public void load(BlockState stateIn, CompoundNBT compound)
+    public void load(BlockState stateIn, CompoundTag compound)
     {
         super.load(stateIn, compound);
         this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
@@ -553,7 +553,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      */
     @Nonnull
     @Override
-    public CompoundNBT save(final CompoundNBT compound)
+    public CompoundTag save(final CompoundTag compound)
     {
         super.save(compound);
         compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
@@ -575,9 +575,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     }
 
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket()
+    public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new SUpdateTileEntityPacket(getBlockPos(), -1, save(new CompoundNBT()));
+        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, save(new CompoundTag()));
     }
 
     /**
@@ -590,9 +590,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      * @param pkt The data packet
      */
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
     {
-        CompoundNBT nbtTag = pkt.getTag();
+        CompoundTag nbtTag = pkt.getTag();
         this.load(getBlockState(), nbtTag);
     }
 
@@ -605,9 +605,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      * which doesn't save any of our extra data so we override it to call {@link #write} instead
      */
     @Nonnull
-    public CompoundNBT getUpdateTag()
+    public CompoundTag getUpdateTag()
     {
-        return this.save(new CompoundNBT());
+        return this.save(new CompoundTag());
     }
 
     /**
@@ -617,7 +617,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
      * @param tag The {@link NBTTagCompound} sent from {@link #getUpdateTag()}
      */
     @Override
-    public void handleUpdateTag(BlockState state, CompoundNBT tag)
+    public void handleUpdateTag(BlockState state, CompoundTag tag)
     {
         this.load(state, tag);
     }
@@ -637,13 +637,13 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     }
 
 
-    public abstract Container createMenu(final int windowId, final PlayerInventory inventory, final PlayerEntity player);
+    public abstract AbstractContainerMenu createMenu(final int windowId, final Inventory inventory, final Player player);
 
-    public abstract ITextComponent getDisplayName();
+    public abstract Component getDisplayName();
 
-    public void grantExperience(PlayerEntity player)
+    public void grantExperience(Player player)
     {
-        List<IRecipe<?>> list = Lists.newArrayList();
+        List<Recipe<?>> list = Lists.newArrayList();
 
         for (Entry<ResourceLocation, Integer> entry : this.recipe2xp_map.entrySet())
         {
@@ -656,15 +656,15 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
         this.recipe2xp_map.clear();
     }
     
-    private static void spawnExpOrbs(PlayerEntity player, int pCount, float experience)
+    private static void spawnExpOrbs(Player player, int pCount, float experience)
     {
         if (experience == 0.0F) {
             pCount = 0;
         }
         else if (experience < 1.0F)
         {
-            int i = MathHelper.floor((float) pCount * experience);
-            if (i < MathHelper.ceil((float) pCount * experience)
+            int i = Mth.floor((float) pCount * experience);
+            if (i < Mth.ceil((float) pCount * experience)
                     && Math.random() < (double) ((float) pCount * experience - (float) i))
             {
                 ++i;
@@ -674,9 +674,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
 
         while (pCount > 0)
         {
-            int j = ExperienceOrbEntity.getExperienceValue(pCount);
+            int j = ExperienceOrb.getExperienceValue(pCount);
             pCount -= j;
-            player.level.addFreshEntity(new ExperienceOrbEntity(player.level, player.getX(), player.getY() + 0.5D,
+            player.level.addFreshEntity(new ExperienceOrb(player.level, player.getX(), player.getY() + 0.5D,
                     player.getZ() + 0.5D, j));
         }
     } // end spawnExpOrbs()

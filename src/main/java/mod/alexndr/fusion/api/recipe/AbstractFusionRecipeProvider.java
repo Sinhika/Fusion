@@ -7,16 +7,16 @@ import com.mojang.serialization.JsonOps;
 
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.NBTDynamicOps;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 
 public class AbstractFusionRecipeProvider extends RecipeProvider
 {
@@ -38,7 +38,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
     }
     
     
-    public static class FinishedRecipe implements IFinishedRecipe
+    public static class FinishedRecipe implements FinishedRecipe
     {
         private final ResourceLocation id;
         private final ItemStack output;
@@ -80,7 +80,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
         }
 
         @Override
-        public IRecipeSerializer<?> getType()
+        public RecipeSerializer<?> getType()
         {
             return ModRecipeTypes.FUSION_SERIALIZER;
         }
@@ -108,7 +108,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
          */
         private static JsonObject serializeStack(ItemStack stack) 
         {
-            CompoundNBT nbt = stack.save(new CompoundNBT());
+            CompoundTag nbt = stack.save(new CompoundTag());
             byte c = nbt.getByte("Count");
             if (c != 1) {
                 nbt.putByte("count", c);
@@ -116,7 +116,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
             nbt.remove("Count");
             renameTag(nbt, "id", "item");
             renameTag(nbt, "tag", "nbt");
-            Dynamic<INBT> dyn = new Dynamic<>(NBTDynamicOps.INSTANCE, nbt);
+            Dynamic<Tag> dyn = new Dynamic<>(NbtOps.INSTANCE, nbt);
             return dyn.convert(JsonOps.INSTANCE).getValue().getAsJsonObject();            
         }
         
@@ -126,8 +126,8 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
          * @param oldName
          * @param newName
          */
-        public static void renameTag(CompoundNBT nbt, String oldName, String newName) {
-            INBT tag = nbt.get(oldName);
+        public static void renameTag(CompoundTag nbt, String oldName, String newName) {
+            Tag tag = nbt.get(oldName);
             if (tag != null) {
                 nbt.remove(oldName);
                 nbt.put(newName, tag);

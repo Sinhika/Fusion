@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.ThyriumBow;
 import mod.alexndr.fusion.init.ModItems;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,7 +30,7 @@ public class ClientForgeEventSubscriber
     @SubscribeEvent
     public static void onFovEvent(final FOVUpdateEvent event)
     {
-        PlayerEntity player = event.getEntity();
+        Player player = event.getEntity();
         float baseFOV = event.getFov();
         if (player.isHolding(ModItems.thyrium_bow.get()) 
                 && player.getMainHandItem().getItem() instanceof ThyriumBow)

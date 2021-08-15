@@ -1,9 +1,9 @@
 package mod.alexndr.fusion.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
 
 public class ModTags
@@ -11,17 +11,17 @@ public class ModTags
 
     public static class Items
     {
-        public static final ITag.INamedTag<Item> INGOTS_COPPER = forgeTag("ingots/copper");
-        public static final ITag.INamedTag<Item> INGOTS_TIN = forgeTag("ingots/tin");
-        public static final ITag.INamedTag<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
-        public static final ITag.INamedTag<Item> INGOTS_MYTHRIL = forgeTag("ingots/mythril");
-        public static final ITag.INamedTag<Item> GEMS_ONYX = forgeTag("gems/onyx");
-        public static final ITag.INamedTag<Item> INGOTS_ADAMANTIUM = forgeTag("ingots/adamantium");
+        public static final Tag.Named<Item> INGOTS_COPPER = forgeTag("ingots/copper");
+        public static final Tag.Named<Item> INGOTS_TIN = forgeTag("ingots/tin");
+        public static final Tag.Named<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
+        public static final Tag.Named<Item> INGOTS_MYTHRIL = forgeTag("ingots/mythril");
+        public static final Tag.Named<Item> GEMS_ONYX = forgeTag("gems/onyx");
+        public static final Tag.Named<Item> INGOTS_ADAMANTIUM = forgeTag("ingots/adamantium");
         
-        public static final ITag.INamedTag<Item> BLOCK_BRONZE = forgeTag("storage_blocks/bronze");
-        public static final ITag.INamedTag<Item> BLOCK_STEEL = forgeTag("storage_blocks/steel");
+        public static final Tag.Named<Item> BLOCK_BRONZE = forgeTag("storage_blocks/bronze");
+        public static final Tag.Named<Item> BLOCK_STEEL = forgeTag("storage_blocks/steel");
         
-        private static ITag.INamedTag<Item> forgeTag(String name) {
+        private static Tag.Named<Item> forgeTag(String name) {
             return ItemTags.bind("forge:" + name);
         }
     } // end class Items
@@ -29,10 +29,10 @@ public class ModTags
     
     public static class Blocks
     {
-        public static final ITag.INamedTag<Block> BLOCK_BRONZE = forgeTag("storage_blocks/bronze");
+        public static final Tag.Named<Block> BLOCK_BRONZE = forgeTag("storage_blocks/bronze");
         
 
-        private static ITag.INamedTag<Block> forgeTag(String name) {
+        private static Tag.Named<Block> forgeTag(String name) {
             return BlockTags.bind("forge:" + name);
         }
     } // end class Blocks

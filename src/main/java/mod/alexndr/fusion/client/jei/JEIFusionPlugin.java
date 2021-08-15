@@ -13,9 +13,9 @@ import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 @JeiPlugin
@@ -47,11 +47,11 @@ public class JEIFusionPlugin implements IModPlugin
     public void registerRecipes(IRecipeRegistration registration)
     {
         @SuppressWarnings("resource")
-        Iterable<IRecipe<?>> recipes = Minecraft.getInstance().level.getRecipeManager().getRecipes();
-        Collection<IRecipe<RecipeWrapper>> fusion_recipes = new ArrayList<IRecipe<RecipeWrapper>> ();
-        for (IRecipe<?> recipe : recipes) {
+        Iterable<Recipe<?>> recipes = Minecraft.getInstance().level.getRecipeManager().getRecipes();
+        Collection<Recipe<RecipeWrapper>> fusion_recipes = new ArrayList<Recipe<RecipeWrapper>> ();
+        for (Recipe<?> recipe : recipes) {
             if (recipe.getType() == ModRecipeTypes.FUSION_TYPE) {
-                fusion_recipes.add((IRecipe<RecipeWrapper>) recipe);
+                fusion_recipes.add((Recipe<RecipeWrapper>) recipe);
             }
         } // end-for
         
