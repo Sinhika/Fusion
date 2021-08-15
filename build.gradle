@@ -11,7 +11,6 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
 def getVersionAppendage() {
     if (System.env.BUILD_NUMBER)
@@ -26,7 +25,7 @@ version = "${version_minecraft}-${version_mod}." + getVersionAppendage()
 group = 'mod.alexndr.fusion'
 archivesBaseName = 'fusion'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
@@ -155,9 +154,9 @@ dependencies {
     implementation fg.deobf("simplecore-api:SimpleCoreLib:${simplecorelib_version}")
     compileOnly fg.deobf("simpleores:SimpleOres2:${simpleores_version}")
     // compile against the JEI API but do not include it at runtime
-    compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}:api")
+    //compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}:api")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}")
+    //runtimeOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}")
 
 }
 
