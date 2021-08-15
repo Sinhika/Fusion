@@ -9,36 +9,39 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import mod.alexndr.fusion.api.recipe.FusionRecipe;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModRecipeTypes;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.entity.ExperienceOrb;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceTileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
-import net.minecraft.world.level.block.entity.TickableBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -49,14 +52,21 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
-public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity implements TickableBlockEntity, MenuProvider
+public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockEntity
 {
+    protected static final Logger LOGGER = LogManager.getLogger();
 
     public static final int INPUT1_SLOT = 0;
     public static final int INPUT2_SLOT = 1;
     public static final int CATALYST_SLOT = 2;
     public static final int OUTPUT_SLOT = 3;
     public static final int FUEL_SLOT = 4;
+
+    public static final int DATA_FUEL_TIME_LEFT = 0;
+    public static final int DATA_FUEL_TIME_MAX = 1;
+    public static final int DATA_COOKING_PROGRESS = 2;
+    public static final int DATA_COOKING_TOTAL_TIME = 3;
+    public static final int NUM_DATA_VALUES = 4;
 
     // TODO - make configurable.
     protected final double BURN_TIME_MODIFIER = 1.875F;
@@ -69,8 +79,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity impleme
     protected static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
     
     // TODO - change to int in 1.17.1
-    public short smeltTimeProgress = 0;
-    public short maxSmeltTime = -1;
+    public int smeltTimeProgress = 0;
+    public int maxSmeltTime = -1;
     
     public int fuelBurnTimeLeft = -1;
     public int maxFuelBurnTime = -1;
@@ -128,6 +138,46 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity impleme
             setChanged();
         } // end ItemStackHandler.onContentsChanged()
     };
+ 
+	protected final ContainerData dataAccess = new ContainerData() 
+	{
+		public int get(int index) {
+			switch (index)
+			{
+			case DATA_FUEL_TIME_LEFT:
+				return AbstractAlloyFurnaceTileEntity.this.fuelBurnTimeLeft;
+			case DATA_FUEL_TIME_MAX:
+				return AbstractAlloyFurnaceTileEntity.this.maxFuelBurnTime;
+			case DATA_COOKING_PROGRESS:
+				return AbstractAlloyFurnaceTileEntity.this.smeltTimeProgress;
+			case DATA_COOKING_TOTAL_TIME:
+				return AbstractAlloyFurnaceTileEntity.this.maxSmeltTime;
+			default:
+				return 0;
+			}
+		} // end get()
+
+		public void set(int index, int value) {
+			switch (index)
+			{
+			case DATA_FUEL_TIME_LEFT:
+				AbstractAlloyFurnaceTileEntity.this.fuelBurnTimeLeft = value;
+				break;
+			case DATA_FUEL_TIME_MAX:
+				AbstractAlloyFurnaceTileEntity.this.maxFuelBurnTime = value;
+				break;
+			case DATA_COOKING_PROGRESS:
+				AbstractAlloyFurnaceTileEntity.this.smeltTimeProgress = value;
+				break;
+			case DATA_COOKING_TOTAL_TIME:
+				AbstractAlloyFurnaceTileEntity.this.maxSmeltTime = value;
+			}
+		} // end set()
+
+		public int getCount() {
+			return NUM_DATA_VALUES;
+		}
+	}; // end AbstractAlloyFurnaceTileEntity$ContainerData
     
     private final LazyOptional<ItemStackHandler> inventoryCapabilityExternal = LazyOptional.of(() -> this.inventory);
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalUp = LazyOptional.of(() -> new RangedWrapper(this.inventory, CATALYST_SLOT, CATALYST_SLOT + 1));
@@ -136,12 +186,28 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity impleme
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = LazyOptional.of(() -> new RangedWrapper(this.inventory, OUTPUT_SLOT, OUTPUT_SLOT + 1));
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalBack = LazyOptional.of(() -> new RangedWrapper(this.inventory, FUEL_SLOT, FUEL_SLOT + 1));
 
-    public AbstractAlloyFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn)
+    public AbstractAlloyFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos blockpos, BlockState blockstate)
     {
-        super(tileEntityTypeIn);
+        super(tileEntityTypeIn, blockpos, blockstate);
         this.fuelMultiplier = 1.0;
         this.hasFuelMultiplier = false;
     }
+
+	@Override
+	public int getContainerSize() {
+		return this.inventory.getSlots();
+	}
+
+	@Override
+	public boolean isEmpty() 
+	{
+		for (int ii=0; ii < this.inventory.getSlots(); ii++) {
+			if (!this.inventory.getStackInSlot(ii).isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	} //  end isEmpty()
 
     /**
      * @return If the stack is not empty and has an alloying recipe associated with it

@@ -4,57 +4,59 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.ItemHandlerHelper;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-public abstract class AbstractAlloyFurnaceBlock extends HorizontalDirectionalBlock
+public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
+	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public AbstractAlloyFurnaceBlock(Properties builder)
     {
         super(builder);
         
         // Set the default values for our blockstate properties
-        this.registerDefaultState(this.defaultBlockState()
+        this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(LIT, false)
         );
     }
 
-    @Override
-    public boolean hasTileEntity(final BlockState state)
-    {
-        return true;
-    }
+    @Nullable
+    public abstract <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState bstate, BlockEntityType<T> entityType);
 
     @Nullable
     @Override
-    public abstract BlockEntity createTileEntity(final BlockState state, final BlockGetter world);
+    public abstract BlockEntity newBlockEntity(BlockPos bpos, BlockState bstate);
+    
+    protected abstract void openContainer(Level level, BlockPos bpos, Player player);
+
 
     /**
      * Interface for handling interaction with blocks that implement AbstractAlloyFurnaceBlock. Called in onBlockActivated
@@ -90,19 +92,14 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalDirectionalBlo
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    /**
-     * We return the redstone calculated from our inventory
-     *
-     * @deprecated call via {@link BlockState#getComparatorInputOverride(World, BlockPos)} whenever possible.
-     * Implementing/overriding is fine.
-     */
+    public boolean hasAnalogOutputSignal(BlockState bstate) {
+        return true;
+     }
+
     @Override
-    public int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos)
+    public int getAnalogOutputSignal(BlockState bstate, Level level, BlockPos bpos) 
     {
-        final BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-        if (tileEntity instanceof AbstractAlloyFurnaceTileEntity)
-            return ItemHandlerHelper.calcRedstoneFromInventory(((AbstractAlloyFurnaceTileEntity) tileEntity).inventory);
-        return super.getAnalogOutputSignal(blockState, worldIn, pos);
+        return AbstractAlloyFurnaceContainer.getRedstoneSignalFromBlockEntity(level.getBlockEntity(bpos));
     }
 
     /**
@@ -139,6 +136,14 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalDirectionalBlo
         builder.add(FACING, LIT);
     }
 
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createFurnaceTicker(Level level, BlockEntityType<T> entityType, 
+    															BlockEntityType<? extends AbstractAlloyFurnaceTileEntity> entityTypeE) 
+    {
+       return level.isClientSide ? null : createTickerHelper(entityType, entityTypeE, AbstractAlloyFurnaceTileEntity::serverTick);
+    }
+    
+
     /**
      * Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that
      * this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless
@@ -170,5 +175,11 @@ public abstract class AbstractAlloyFurnaceBlock extends HorizontalDirectionalBlo
             worldIn.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
         }
     } // end animateTick()
+
+    @Override
+    public RenderShape getRenderShape(BlockState bstate) 
+    {
+        return RenderShape.MODEL;
+    }
 
 } // end class
