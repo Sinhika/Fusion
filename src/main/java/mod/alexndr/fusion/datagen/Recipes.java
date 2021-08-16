@@ -32,7 +32,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer)
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
     {
         registerStorageRecipes(consumer);
         registerMiscRecipes(consumer);

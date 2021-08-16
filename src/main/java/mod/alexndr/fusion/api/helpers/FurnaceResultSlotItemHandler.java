@@ -59,15 +59,14 @@ public class FurnaceResultSlotItemHandler extends SlotItemHandler
            ((AbstractAlloyFurnaceTileEntity)this.tile).grantExperience(this.player);
         }
         this.removeCount = 0;
-        net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerSmeltedEvent(this.player, stack);
+        net.minecraftforge.fmllegacy.hooks.BasicEventHooks.firePlayerSmeltedEvent(this.player, stack);
     } // end onCrafting
 
     @Override
-    public ItemStack onTake(Player thePlayer, ItemStack stack)
+    public void onTake(Player thePlayer, ItemStack stack)
     {
         this.checkTakeAchievements(stack);
         super.onTake(thePlayer, stack);
-        return stack;
     }
 
     

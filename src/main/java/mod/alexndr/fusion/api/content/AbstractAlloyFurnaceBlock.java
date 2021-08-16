@@ -58,13 +58,7 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
     protected abstract void openContainer(Level level, BlockPos bpos, Player player);
 
 
-    /**
-     * Interface for handling interaction with blocks that implement AbstractAlloyFurnaceBlock. Called in onBlockActivated
-     * inside AbstractAlloyFurnaceBlock.
-     */
-    protected abstract void interactWith(Level worldIn, BlockPos pos, Player player);
-    
-    /**
+     /**
      * Called when a player right clicks our block.
      * We use this method to open our gui.
      *
@@ -74,13 +68,15 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
     @Override
     public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit)
     {
-        if (worldIn.isClientSide) {
-            return InteractionResult.SUCCESS;
-         } 
-        else {
-            this.interactWith(worldIn, pos, player);
-            return InteractionResult.CONSUME;
-         }        
+		if (worldIn.isClientSide)
+		{
+			return InteractionResult.SUCCESS;
+		} 
+		else
+		{
+			this.openContainer(worldIn, pos, player);
+			return InteractionResult.CONSUME;
+		}
     } // end onBlockActivated()
 
     /**

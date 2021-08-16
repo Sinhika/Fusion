@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceContainer;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
@@ -13,7 +14,7 @@ import net.minecraft.network.chat.Component;
 public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceContainer<?>>  extends AbstractContainerScreen<T>
 {
 
-    protected static ResourceLocation BACKGROUND_TEXTURE;
+    protected final ResourceLocation BACKGROUND_TEXTURE;
     private int displayNameColor = 0x404040;
 
     public AbstractAlloyFurnaceScreen(T screenContainer, Inventory inv, ResourceLocation texture, 
@@ -40,12 +41,12 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
      * @param mouseX
      * @param mouseY
      */
-    @SuppressWarnings("deprecation")
     @Override
     protected void renderBg(PoseStack matStack, final float partialTicks, final int mouseX, final int mouseY)
     {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        getMinecraft().getTextureManager().bind(BACKGROUND_TEXTURE);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, this.BACKGROUND_TEXTURE);
         int startX = this.leftPos;
         int startY = this.topPos;
         
@@ -109,7 +110,7 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
         }
         //this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0x404040);
         
-        this.font.draw(matStack, this.inventory.getDisplayName().getString(), 
+        this.font.draw(matStack, this.playerInventoryTitle.getString(), 
                              8.0F, (float) (this.imageHeight - 96 + 2), displayNameColor);
     } // end ()
 
@@ -121,8 +122,8 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
     private int getCookProgressScaled(int pixels)
     {
         final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
-        final short smeltTimeProgress = tileEntity.smeltTimeProgress;
-        final short maxSmeltTime = tileEntity.maxSmeltTime;
+        final int smeltTimeProgress = tileEntity.smeltTimeProgress;
+        final int maxSmeltTime = tileEntity.maxSmeltTime;
         if (smeltTimeProgress <= 0 || maxSmeltTime <= 0)
             return 0;
         return smeltTimeProgress * pixels / maxSmeltTime;

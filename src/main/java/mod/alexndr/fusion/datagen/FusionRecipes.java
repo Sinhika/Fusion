@@ -34,7 +34,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer)
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
     {
         registerBronzeRecipes(consumer);
         registerSteelRecipes(consumer);

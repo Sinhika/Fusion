@@ -11,13 +11,13 @@ import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.simplecorelib.datagen.LootTableInjectorProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.RandomValueBounds;
-import net.minecraft.world.level.storage.loot.LootTable.Builder;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable.Builder;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class FusionLootInjectorProvider extends LootTableInjectorProvider
 {
@@ -51,11 +51,11 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(LootItem.lootTableItem(ModItems.bronze_pickaxe.get()).setWeight(1))
             .add(LootItem.lootTableItem(ModItems.bronze_shovel.get()).setWeight(1))
             .add(LootItem.lootTableItem(ModItems.bronze_ingot.get()).setWeight(10)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(3, 7))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 7))))
             .add(LootItem.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 3))))
             .add(LootItem.lootTableItem(ModItems.sinisite_ingot.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 2))));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))));
         addInjectionTable(Fusion.MODID, "desert_pyramid", foo);
         
         // igloo_chest
@@ -76,43 +76,43 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(LootItem.lootTableItem(ModItems.bronze_shovel.get()).setWeight(1))
             .add(LootItem.lootTableItem(ModItems.bronze_hoe.get()).setWeight(1))
             .add(LootItem.lootTableItem(ModItems.bronze_ingot.get()).setWeight(10)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
             .add(LootItem.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(2)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(3, 7))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 7))))
             .add(LootItem.lootTableItem(ModItems.sinisite_ingot.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 1))));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 1))));
         addInjectionTable(Fusion.MODID, "jungle_temple", foo);
               
         // simple_dungeon
         foo = createChestPool(1, 1, 0.50F)
             .add(LootItem.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(5)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
             .add(LootItem.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(5)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
             .add(LootItem.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 1))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 1))))
             .add(LootItem.lootTableItem(ModItems.bronze_ingot.get()).setWeight(3)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
             .add(LootItem.lootTableItem(ModItems.steel_ingot.get()).setWeight(3)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
             .add(LootItem.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 3))))
             .add(LootItem.lootTableItem(ModItems.sinisite_ingot.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))));
         addInjectionTable(Fusion.MODID, "simple_dungeon", foo);
         
         // shipwreck -- no steel, it rusted away
         foo = createChestPool(1, 1, 0.50F)
             .add(LootItem.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(4)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
             .add(LootItem.lootTableItem(ModItems.large_thyrium_chunk.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 1))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 1))))
             .add(LootItem.lootTableItem(ModItems.bronze_ingot.get()).setWeight(6)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
             .add(LootItem.lootTableItem(ModItems.thyrium_ingot.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 3))))
             .add(LootItem.lootTableItem(ModItems.sinisite_ingot.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))));
         addInjectionTable(Fusion.MODID, "shipwreck", foo);
         
         // spawn_bonus_chest
@@ -144,19 +144,19 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(LootItem.lootTableItem(ModItems.steel_leggings.get()).setWeight(2))
             .add(LootItem.lootTableItem(ModItems.steel_boots.get()).setWeight(2))
             .add(LootItem.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(2)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
             .add(LootItem.lootTableItem(ModItems.bronze_ingot.get()).setWeight(5)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
         .add(LootItem.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(2)
-                .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
         .add(LootItem.lootTableItem(ModItems.steel_ingot.get()).setWeight(5)
-                .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))));
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))));
         addInjectionTable(Fusion.MODID, "village_armorer", foo);
         
         // village_fletcher
         foo = createChestPool(1, 1, 0.25F)
             .add(LootItem.lootTableItem(ModItems.thyrium_rod.get()).setWeight(1)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 2))));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))));
         addInjectionTable(Fusion.MODID, "village_fletcher", foo);
         
         // village_mason
@@ -181,13 +181,13 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
             .add(LootItem.lootTableItem(ModItems.steel_shovel.get()).setWeight(2))
             .add(LootItem.lootTableItem(ModItems.steel_hoe.get()).setWeight(2))
             .add(LootItem.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(2)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
             .add(LootItem.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(2)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
             .add(LootItem.lootTableItem(ModItems.bronze_ingot.get()).setWeight(2)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
             .add(LootItem.lootTableItem(ModItems.steel_ingot.get()).setWeight(2)
-                    .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))));
         addInjectionTable(Fusion.MODID, "village_toolsmith", foo);
         
         // village_weaponsmith
@@ -197,13 +197,13 @@ public class FusionLootInjectorProvider extends LootTableInjectorProvider
                 .add(LootItem.lootTableItem(ModItems.steel_sword.get()).setWeight(2))
                 .add(LootItem.lootTableItem(ModItems.steel_axe.get()).setWeight(2))
                 .add(LootItem.lootTableItem(ModItems.large_bronze_chunk.get()).setWeight(2)
-                        .apply(SetItemCountFunction.setCount(RandomValueBounds.between(1, 3))))
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))))
                 .add(LootItem.lootTableItem(ModItems.large_steel_chunk.get()).setWeight(2)
-                        .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
                 .add(LootItem.lootTableItem(ModItems.bronze_ingot.get()).setWeight(2)
-                        .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))))
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
                 .add(LootItem.lootTableItem(ModItems.steel_ingot.get()).setWeight(2)
-                        .apply(SetItemCountFunction.setCount(RandomValueBounds.between(2, 4))));
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))));
         addInjectionTable(Fusion.MODID, "village_weaponsmith", foo);
         
         return tables;

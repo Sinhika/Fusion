@@ -8,34 +8,29 @@ import mod.alexndr.fusion.init.ModTiles;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 public class FusionFurnaceTileEntity extends AbstractAlloyFurnaceTileEntity
 {
-    public FusionFurnaceTileEntity()
+    public FusionFurnaceTileEntity(BlockPos blockpos, BlockState blockstate)
     {
-        super(ModTiles.FUSION_FURNACE.get());
+        super(ModTiles.FUSION_FURNACE.get(), blockpos, blockstate);
     }
     
     @Nonnull
     @Override
-    public Component getDisplayName() {
+    public Component getDefaultName() {
         return new TranslatableComponent(ModBlocks.fusion_furnace.get().getDescriptionId());
     }
 
-    /**
-     * Called from {@link NetworkHooks#openGui}
-     * (which is called from {@link FusionFurnaceBlock#onBlockActivated} on the logical server)
-     *
-     * @return The logical-server-side Container for this TileEntity
-     */
-    @Nonnull
-    @Override
-    public AbstractContainerMenu createMenu(final int windowId, final Inventory inventory, final Player player) 
-    {
-        return new FusionFurnaceContainer(windowId, inventory, this);
-    }
+	@Override
+	public AbstractContainerMenu createMenu(int windowId, Inventory inv)
+	{
+        return new FusionFurnaceContainer(windowId, inv, this);
+	}
+
 
 } // end class

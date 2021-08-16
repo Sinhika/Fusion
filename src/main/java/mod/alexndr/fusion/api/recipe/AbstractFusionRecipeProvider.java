@@ -29,7 +29,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
     @Override
     public String getName()
     {
-        return "SimpleOres fusion alloy recipes";
+        return "SimpleOres:Fusion Alloy Recipes";
     }
 
     public static ResourceLocation id(String modid, String path) 
@@ -38,7 +38,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
     }
     
     
-    public static class FinishedRecipe implements FinishedRecipe
+    public static class FinishedFusionRecipe implements FinishedRecipe
     {
         private final ResourceLocation id;
         private final ItemStack output;
@@ -47,7 +47,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
         private final int cook_time;
         private final float experience;
 
-        public FinishedRecipe(ResourceLocation id, ItemStack output,  int cook_time, float experience,
+        public FinishedFusionRecipe(ResourceLocation id, ItemStack output,  int cook_time, float experience,
                 Ingredient catalyst, Ingredient... inputs)
         {
             this.id = id;
@@ -133,6 +133,6 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
                 nbt.put(newName, tag);
             }
         }
-    } // end-class FinishedRecipe
+    } // end-class FinishedFusionRecipe
     
 } // end class

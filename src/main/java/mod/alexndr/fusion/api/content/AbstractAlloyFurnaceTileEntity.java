@@ -18,7 +18,7 @@ import com.google.common.collect.Maps;
 import mod.alexndr.fusion.api.recipe.FusionRecipe;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModRecipeTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceTileEntity;
+import mod.alexndr.simplecorelib.helpers.ItemStackHandlerUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -36,6 +36,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -45,6 +46,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -245,11 +247,74 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     {
         return FurnaceBlockEntity.isFuel(stack);
     }
-    
+  
+	@Override
+	public ItemStack getItem(int slot) 
+	{
+		return this.inventory.getStackInSlot(slot);
+	}
+
+	@Override
+	public ItemStack removeItem(int slot, int count) 
+	{
+		return ItemStackHandlerUtils.removeItem(this.inventory, slot, count);
+	} // end removeItem
+
+	@Override
+	public ItemStack removeItemNoUpdate(int slot) 
+	{
+		return ItemStackHandlerUtils.takeItem(this.inventory, slot);
+	} // end-removeItemNoUpdate
+
+	@Override
+	public void setItem(int slot, ItemStack stack) 
+	{
+	      ItemStack itemstack = this.inventory.getStackInSlot(slot);
+	      boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+	      
+	      if (stack.getCount() > this.inventory.getSlotLimit(slot))
+	      {
+	    	  stack.setCount(this.inventory.getSlotLimit(slot));
+	      }
+	      this.inventory.setStackInSlot(slot, stack);
+
+	      if ((slot == INPUT1_SLOT || slot == INPUT2_SLOT) && !flag) 
+	      {
+	         this.maxSmeltTime = getAlloyTime(stack, inventory.getStackInSlot(INPUT2_SLOT), inventory.getStackInSlot(CATALYST_SLOT));
+	         this.smeltTimeProgress = 0;
+	         this.setChanged();
+	      }
+	} // end setItem()
+
+	
+	@Override
+	public void clearContent() 
+	{
+		for (int ii = 0; ii < this.inventory.getSlots(); ii++)
+		{
+			this.inventory.setStackInSlot(ii, ItemStack.EMPTY);
+		}
+	} // end clearContent()
+
+	
     public boolean isBurning()
     {
         return this.fuelBurnTimeLeft > 0;
     }
+
+	@Override
+	public boolean stillValid(Player player) 
+	{
+		if (this.level.getBlockEntity(this.worldPosition) != this) 
+		{
+			return false;
+		} 
+		else {
+			return player.distanceToSqr((double) this.worldPosition.getX() + 0.5D,
+					(double) this.worldPosition.getY() + 0.5D, (double) this.worldPosition.getZ() + 0.5D) <= 64.0D;
+		}
+	} // end-stillValid
+
 
     /**
      * @return The smelting recipe for the input stack
@@ -267,7 +332,6 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     }
 
     /**
-     * TODO implement recipe caching
      * @return The alloying recipe for the inventory
      */
     private Optional<IFusionRecipe> getRecipe(final Container inv)
@@ -433,95 +497,94 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     /**
      * Called every tick to update our tile entity
      */
-    @Override
-    public void tick()
+    public static void serverTick(Level level, BlockPos blockpos, BlockState blockstate, AbstractAlloyFurnaceTileEntity tile)
     {
         // Fuel burning code
-        boolean hasFuel = this.isBurning();
+        boolean hasFuel = tile.isBurning();
         boolean flag1 = false;
-        if (this.isBurning()) {
-            --fuelBurnTimeLeft;
+        if (tile.isBurning()) {
+            --tile.fuelBurnTimeLeft;
         }
         
-        if (!this.level.isClientSide) 
+        if (!level.isClientSide) 
         {
             // Alloying code
-            ItemStack input1 = inventory.getStackInSlot(INPUT1_SLOT).copy();
-            ItemStack input2 = inventory.getStackInSlot(INPUT2_SLOT).copy();
-            ItemStack catalyst = inventory.getStackInSlot(CATALYST_SLOT).copy();
-            ItemStack fuel = inventory.getStackInSlot(FUEL_SLOT).copy();
-            ItemStack result = getResult(input1, input2, catalyst).orElse(ItemStack.EMPTY);
+            ItemStack input1 = tile.inventory.getStackInSlot(INPUT1_SLOT).copy();
+            ItemStack input2 = tile.inventory.getStackInSlot(INPUT2_SLOT).copy();
+            ItemStack catalyst = tile.inventory.getStackInSlot(CATALYST_SLOT).copy();
+            ItemStack fuel = tile.inventory.getStackInSlot(FUEL_SLOT).copy();
+            ItemStack result = tile.getResult(input1, input2, catalyst).orElse(ItemStack.EMPTY);
             
-            if ((this.isBurning() || !fuel.isEmpty()) && 
+            if ((tile.isBurning() || !fuel.isEmpty()) && 
                     (!input1.isEmpty() && !input2.isEmpty() && !catalyst.isEmpty()))
             {
-                if (!this.isBurning() && this.canSmelt(result))
+                if (!tile.isBurning() && tile.canSmelt(result))
                 {
-                    this.fuelBurnTimeLeft = this.getBurnDuration(fuel);
-                    this.maxFuelBurnTime = this.fuelBurnTimeLeft;
-                    if (this.isBurning())
+                	tile.fuelBurnTimeLeft = tile.getBurnDuration(fuel);
+                	tile.maxFuelBurnTime = tile.fuelBurnTimeLeft;
+                    if (tile.isBurning())
                     {
                         flag1 = true;
                         if (fuel.hasContainerItem()) 
                         {
-                            inventory.setStackInSlot(FUEL_SLOT, fuel.getContainerItem());
+                            tile.inventory.setStackInSlot(FUEL_SLOT, fuel.getContainerItem());
                         }
                         else if (!fuel.isEmpty()) 
                         {
                             fuel.shrink(1);
-                            inventory.setStackInSlot(FUEL_SLOT, fuel); // Update the data
+                            tile.inventory.setStackInSlot(FUEL_SLOT, fuel); // Update the data
                         }
                     } // end-if isBurning
                 } // end-if !isBurning but canSmelt
-                if (this.isBurning() && this.canSmelt(result))
+                if (tile.isBurning() && tile.canSmelt(result))
                 {
-                    if (this.smeltTimeProgress <= 0) // Item has not been smelted before
+                    if (tile.smeltTimeProgress <= 0) // Item has not been smelted before
                     { 
-                        this.maxSmeltTime = getAlloyTime(input1, input2, catalyst);
-                        this.smeltTimeProgress = 0;
+                        tile.maxSmeltTime = tile.getAlloyTime(input1, input2, catalyst);
+                        tile.smeltTimeProgress = 0;
                     } 
-                    ++this.smeltTimeProgress;
-                    if (this.smeltTimeProgress >= this.maxSmeltTime) 
+                    ++tile.smeltTimeProgress;
+                    if (tile.smeltTimeProgress >= tile.maxSmeltTime) 
                     {
-//                        LOGGER.debug("tick: smeltTimeProgress=" + this.smeltTimeProgress + ", maxSmeltTime=" + this.maxSmeltTime);
-//                        LOGGER.debug("tick: fuelBurnTimeLeft=" + this.fuelBurnTimeLeft + ", maxFuelBurnTime=" + this.maxFuelBurnTime);
-                        this.smelt(result);
-                        this.smeltTimeProgress = 0;
-                        if (!inventory.getStackInSlot(INPUT1_SLOT).isEmpty()
-                            && !inventory.getStackInSlot(INPUT2_SLOT).isEmpty()
-                            && !inventory.getStackInSlot(CATALYST_SLOT).isEmpty())
+//                        LOGGER.debug("tick: smeltTimeProgress=" + tile.smeltTimeProgress + ", maxSmeltTime=" + tile.maxSmeltTime);
+//                        LOGGER.debug("tick: fuelBurnTimeLeft=" + tile.fuelBurnTimeLeft + ", maxFuelBurnTime=" + tile.maxFuelBurnTime);
+                        tile.smelt(result);
+                        tile.smeltTimeProgress = 0;
+                        if (!tile.inventory.getStackInSlot(INPUT1_SLOT).isEmpty()
+                            && !tile.inventory.getStackInSlot(INPUT2_SLOT).isEmpty()
+                            && !tile.inventory.getStackInSlot(CATALYST_SLOT).isEmpty())
                         {
-                            this.maxSmeltTime = 
-                                    this.getAlloyTime(inventory.getStackInSlot(INPUT1_SLOT), 
-                                            inventory.getStackInSlot(INPUT2_SLOT), 
-                                            inventory.getStackInSlot(CATALYST_SLOT));
+                            tile.maxSmeltTime = 
+                                    tile.getAlloyTime(tile.inventory.getStackInSlot(INPUT1_SLOT), 
+                                            tile.inventory.getStackInSlot(INPUT2_SLOT), 
+                                            tile.inventory.getStackInSlot(CATALYST_SLOT));
                         }
                         else {
-                            this.maxSmeltTime = 0;
+                            tile.maxSmeltTime = 0;
                         }
                         flag1 = true;
                     } // end-if progess == maxTime
                 } // end-if burning and canBurn
                 else {
-                    this.smeltTimeProgress = 0;
+                    tile.smeltTimeProgress = 0;
                 }
             } // end-if isBurning & fuel & inputs
-            else if (! this.isBurning() && this.smeltTimeProgress > 0)
+            else if (! tile.isBurning() && tile.smeltTimeProgress > 0)
             {
-                this.smeltTimeProgress = (short) Mth.clamp(this.smeltTimeProgress - 2, 0, this.maxSmeltTime);
+                tile.smeltTimeProgress = (short) Mth.clamp(tile.smeltTimeProgress - 2, 0, tile.maxSmeltTime);
             } // end-else if ! burning & smeltTimeProgress
-            if (hasFuel != this.isBurning())
+            if (hasFuel != tile.isBurning())
             {
                 flag1 = true;
-                final BlockState newState = this.getBlockState().setValue(BlockStateProperties.LIT, this.isBurning());
+                final BlockState newState = tile.getBlockState().setValue(BlockStateProperties.LIT, tile.isBurning());
         
                 // Flag 2: Send the change to clients
-                level.setBlock(worldPosition, newState, 3);
+                level.setBlock(blockpos, newState, 3);
             }
         } // end-if ! clientSide
 
         if (flag1) {
-            this.setChanged();
+            tile.setChanged();
          }
     } // end tick()
 
@@ -583,12 +646,12 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
      * Read saved data from disk into the tile.
      */
     @Override
-    public void load(BlockState stateIn, CompoundTag compound)
+    public void load(CompoundTag compound)
     {
-        super.load(stateIn, compound);
+        super.load(compound);
         this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
-        this.smeltTimeProgress = compound.getShort(SMELT_TIME_LEFT_TAG);
-        this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
+        this.smeltTimeProgress = compound.getInt(SMELT_TIME_LEFT_TAG);
+        this.maxSmeltTime = compound.getInt(MAX_SMELT_TIME_TAG);
         this.fuelBurnTimeLeft = compound.getInt(FUEL_BURN_TIME_LEFT_TAG);
         this.maxFuelBurnTime = compound.getInt(MAX_FUEL_BURN_TIME_TAG);
  
@@ -623,8 +686,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     {
         super.save(compound);
         compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
-        compound.putShort(SMELT_TIME_LEFT_TAG, this.smeltTimeProgress);
-        compound.putShort(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
+        compound.putInt(SMELT_TIME_LEFT_TAG, this.smeltTimeProgress);
+        compound.putInt(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
         compound.putInt(FUEL_BURN_TIME_LEFT_TAG, this.fuelBurnTimeLeft);
         compound.putInt(MAX_FUEL_BURN_TIME_TAG, this.maxFuelBurnTime);
         
@@ -659,7 +722,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
     {
         CompoundTag nbtTag = pkt.getTag();
-        this.load(getBlockState(), nbtTag);
+        this.load(nbtTag);
     }
 
 
@@ -683,9 +746,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
      * @param tag The {@link NBTTagCompound} sent from {@link #getUpdateTag()}
      */
     @Override
-    public void handleUpdateTag(BlockState state, CompoundTag tag)
+    public void handleUpdateTag(CompoundTag tag)
     {
-        this.load(state, tag);
+        this.load(tag);
     }
     
     @Override
@@ -703,10 +766,21 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     }
 
 
-    public abstract AbstractContainerMenu createMenu(final int windowId, final Inventory inventory, final Player player);
+    /**
+     * Called from {@link NetworkHooks#openGui}
+     * (which is called from {@link ElectricFurnaceBlock#onBlockActivated} on the logical server)
+     *
+     * @return The logical-server-side Container for this TileEntity
+     */
+    @Nonnull
+    @Override
+    public abstract AbstractContainerMenu createMenu(final int windowId, final Inventory inv);
 
-    public abstract Component getDisplayName();
-
+	@Override
+	public AbstractContainerMenu createMenu(int windowId, Inventory inv, Player player) {
+		return createMenu(windowId, inv);
+	}
+    
     public void grantExperience(Player player)
     {
         List<Recipe<?>> list = Lists.newArrayList();

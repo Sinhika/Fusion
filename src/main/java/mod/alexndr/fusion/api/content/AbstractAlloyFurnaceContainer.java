@@ -4,14 +4,15 @@ import javax.annotation.Nonnull;
 
 import mod.alexndr.fusion.api.helpers.FurnaceResultSlotItemHandler;
 import mod.alexndr.simplecorelib.helpers.FunctionalIntReferenceHolder;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.items.SlotItemHandler;
 
 public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurnaceBlock> extends AbstractContainerMenu
@@ -84,7 +85,7 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
             returnStack = slotStack.copy();
     
             final int containerSlots = 
-                    this.slots.size() - player.inventory.items.size();
+                    this.slots.size() - player.getInventory().items.size();
             if (index < containerSlots) 
             {
                 if (!moveItemStackTo(slotStack, containerSlots, this.slots.size(), true)) 

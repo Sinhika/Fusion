@@ -17,5 +17,5 @@ public final class ModTiles
     public static RegistryObject<BlockEntityType<FusionFurnaceTileEntity>> FUSION_FURNACE =
             TILE_ENTITY_TYPES.register("fusion_furnace", 
                     () -> BlockEntityType.Builder.of(FusionFurnaceTileEntity::new, 
-                            ModBlocks.fusion_furnace.get()).build(null));
+                    							     ModBlocks.fusion_furnace.get()).build(null));
 } // end class

@@ -67,19 +67,19 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
         {
             if (nugget != null)
             {
-                consumer.accept(new AbstractFusionRecipeProvider.FinishedRecipe(nugget_name,
+                consumer.accept(new AbstractFusionRecipeProvider.FinishedFusionRecipe(nugget_name,
                         new ItemStack(nugget.asItem()), cooktime, experience, catalysts[0], primaryInputs.get(0),
                         primaryInputs.get(1)));
             }
             if (medium_chunk != null)
             {
-                consumer.accept(new AbstractFusionRecipeProvider.FinishedRecipe(medium_chunk_name,
+                consumer.accept(new AbstractFusionRecipeProvider.FinishedFusionRecipe(medium_chunk_name,
                         new ItemStack(medium_chunk.asItem()), cooktime, experience * 2.0F, catalysts[1], primaryInputs.get(0),
                         primaryInputs.get(1)));
             }
             if (large_chunk != null)
             {
-                consumer.accept(new AbstractFusionRecipeProvider.FinishedRecipe(large_chunk_name,
+                consumer.accept(new AbstractFusionRecipeProvider.FinishedFusionRecipe(large_chunk_name,
                         new ItemStack(large_chunk.asItem()), cooktime, experience * 4.0F, catalysts[2], primaryInputs.get(0),
                         primaryInputs.get(1)));
             }
@@ -89,7 +89,7 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
             {
                 ConditionalRecipe.builder()
                 .addCondition(condition)
-                .addRecipe(new AbstractFusionRecipeProvider.FinishedRecipe(nugget_name,
+                .addRecipe(new AbstractFusionRecipeProvider.FinishedFusionRecipe(nugget_name,
                         new ItemStack(nugget.asItem()), cooktime, experience, catalysts[0], primaryInputs.get(0),
                         primaryInputs.get(1)))
                 .build(consumer, nugget_name);            
@@ -98,7 +98,7 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
             {
                 ConditionalRecipe.builder()
                 .addCondition(condition)
-                .addRecipe(new AbstractFusionRecipeProvider.FinishedRecipe(medium_chunk_name,
+                .addRecipe(new AbstractFusionRecipeProvider.FinishedFusionRecipe(medium_chunk_name,
                         new ItemStack(medium_chunk.asItem()), cooktime, experience * 2.0F, catalysts[1], primaryInputs.get(0),
                         primaryInputs.get(1)))
                 .build(consumer, medium_chunk_name);            
@@ -107,7 +107,7 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
             {
                 ConditionalRecipe.builder()
                 .addCondition(condition)
-                .addRecipe(new AbstractFusionRecipeProvider.FinishedRecipe(large_chunk_name,
+                .addRecipe(new AbstractFusionRecipeProvider.FinishedFusionRecipe(large_chunk_name,
                         new ItemStack(large_chunk.asItem()), cooktime, experience * 4.0F, catalysts[2], primaryInputs.get(0),
                         primaryInputs.get(1)))
                 .build(consumer, large_chunk_name);            
@@ -138,7 +138,7 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
         {
             ConditionalRecipe.builder()
                 .addCondition(condition)
-                .addRecipe(new AbstractFusionRecipeProvider.FinishedRecipe(recipe1,
+                .addRecipe(new AbstractFusionRecipeProvider.FinishedFusionRecipe(recipe1,
                                 new ItemStack(output_item.asItem()), cooktime, experience, 
                                 catalyst, ingredients, input2))
                 .build(consumer, recipe1); 
@@ -148,7 +148,7 @@ public class FusionRecipeSetBuilder extends RecipeSetBuilder
             ResourceLocation recipe2 = AbstractFusionRecipeProvider.id(modid, name + '2');
             ConditionalRecipe.builder()
                 .addCondition(condition)
-                .addRecipe(new AbstractFusionRecipeProvider.FinishedRecipe(recipe1,
+                .addRecipe(new AbstractFusionRecipeProvider.FinishedFusionRecipe(recipe1,
                                 new ItemStack(output_item.asItem(), 2), cooktime, experience * 2.0F, 
                                 catalyst, ingrs_doubleoutput, input2))
                 .build(consumer, recipe2);
