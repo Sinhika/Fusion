@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "fusion:large_thyrium_chunk"
+            "items": [
+              "fusion:large_thyrium_chunk"
+            ]
           }
         ]
       }

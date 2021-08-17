@@ -69,7 +69,8 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                         ModItems.steel_hoe.get(), ModItems.steel_pickaxe.get(), ModItems.steel_shovel.get(),
                         ModItems.steel_sword.get(), ModItems.steel_shears.get()), 
                 Ingredient.of(ModItems.steel_chestplate.get(), ModItems.steel_leggings.get()), 
-                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), ModItems.large_steel_chunk.get(), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
+                ModItems.large_steel_chunk.get(), 
                 10.0F, 600, flag("recycle_fusion"), "recycle_steel_items");
     }
 
@@ -193,7 +194,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
     		Ingredient.of(mod.alexndr.simpleores.init.ModItems.copper_chestplate.get(),
                 mod.alexndr.simpleores.init.ModItems.copper_leggings.get()), 
 	        Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS),
-	        Items.COPPER_ORE, 10.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")),
+	        Items.RAW_COPPER, 10.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")),
 	        "recycle_copper_items");
  
     	// Tin recycling
@@ -209,7 +210,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         		Ingredient.of(mod.alexndr.simpleores.init.ModItems.tin_chestplate.get(),
                     mod.alexndr.simpleores.init.ModItems.tin_leggings.get()), 
     	        Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS),
-                mod.alexndr.simpleores.init.ModBlocks.tin_ore.get().asItem(), 
+                mod.alexndr.simpleores.init.ModItems.raw_tin.get(), 
     	        10.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")),
     	        "recycle_tin_items");
     	
@@ -228,7 +229,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 Ingredient.of(mod.alexndr.simpleores.init.ModItems.mythril_chestplate.get(),
                         mod.alexndr.simpleores.init.ModItems.mythril_leggings.get()), 
                 Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
-                mod.alexndr.simpleores.init.ModBlocks.mythril_ore.get().asItem(), 
+                mod.alexndr.simpleores.init.ModItems.raw_mythril.get(), 
                 15.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")), 
                 "recycle_mythril_items");
     	
@@ -245,7 +246,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         		Ingredient.of(mod.alexndr.simpleores.init.ModItems.adamantium_chestplate.get(),
                     mod.alexndr.simpleores.init.ModItems.adamantium_leggings.get()), 
     	        Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS),
-    	        mod.alexndr.simpleores.init.ModBlocks.adamantium_ore.get().asItem(), 
+    	        mod.alexndr.simpleores.init.ModItems.raw_adamantium.get(), 
     	        15.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")),
     	        "recycle_adamantium_items");
     	
@@ -264,7 +265,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 Ingredient.of(mod.alexndr.simpleores.init.ModItems.onyx_chestplate.get(),
                         mod.alexndr.simpleores.init.ModItems.onyx_leggings.get()), 
                 Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.LAVA_BUCKET), 
-                mod.alexndr.simpleores.init.ModItems.onyx_gem.get().asItem(), 
+                mod.alexndr.simpleores.init.ModItems.onyx_gem.get(), 
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_simpleores"), modLoaded("simpleores")), 
                 "recycle_onyx_items");
     } // end registerSimpleOresFusionRecyclingRecipes()

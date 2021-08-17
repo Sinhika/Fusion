@@ -45,6 +45,6 @@ public final class FusionItemTiers
 	
 	public static final Tier SINISITE = TierSortingRegistry.registerTier(
 			new ForgeTier(5, 4100, 18.0F, 8.0F, 11, SINISITE_TAG, ()->Ingredient.of( ModItems.sinisite_ingot.get())),
-			new ResourceLocation(Fusion.MODID, "thyrium"), List.of(Tiers.NETHERITE, SimpleOresTiers.ONYX), List.of());
+			new ResourceLocation(Fusion.MODID, "sinisite"), List.of(Tiers.NETHERITE, SimpleOresTiers.ONYX), List.of());
 	
 } // end class

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "fusion:thyrium_dust"
+            "items": [
+              "fusion:thyrium_dust"
+            ]
           }
         ]
       }

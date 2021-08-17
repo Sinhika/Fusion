@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "fusion:large_steel_chunk"
+            "items": [
+              "fusion:large_steel_chunk"
+            ]
           }
         ]
       }
