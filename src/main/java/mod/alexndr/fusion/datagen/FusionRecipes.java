@@ -179,6 +179,76 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
  
     protected void registerSimpleOresFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer)
     {
+    	// Copper recycling
+    	fusionbuilder.buildFusionRecyclingRecipes(consumer,
+    		Ingredient.of(mod.alexndr.simpleores.init.ModItems.copper_axe.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_boots.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_bucket.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_helmet.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_hoe.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_pickaxe.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_shears.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_shovel.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_sword.get()), 
+    		Ingredient.of(mod.alexndr.simpleores.init.ModItems.copper_chestplate.get(),
+                mod.alexndr.simpleores.init.ModItems.copper_leggings.get()), 
+	        Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS),
+	        Items.COPPER_ORE, 10.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")),
+	        "recycle_copper_items");
+ 
+    	// Tin recycling
+    	fusionbuilder.buildFusionRecyclingRecipes(consumer,
+        		Ingredient.of(mod.alexndr.simpleores.init.ModItems.tin_axe.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_boots.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_helmet.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_hoe.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_pickaxe.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_shears.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_shovel.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_sword.get()), 
+        		Ingredient.of(mod.alexndr.simpleores.init.ModItems.tin_chestplate.get(),
+                    mod.alexndr.simpleores.init.ModItems.tin_leggings.get()), 
+    	        Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS),
+                mod.alexndr.simpleores.init.ModBlocks.tin_ore.get().asItem(), 
+    	        10.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")),
+    	        "recycle_tin_items");
+    	
+    	// Mythril recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(mod.alexndr.simpleores.init.ModItems.mythril_axe.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_boots.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_bow.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_helmet.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_hoe.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_pickaxe.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_rod.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_shears.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_shovel.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_sword.get()), 
+                Ingredient.of(mod.alexndr.simpleores.init.ModItems.mythril_chestplate.get(),
+                        mod.alexndr.simpleores.init.ModItems.mythril_leggings.get()), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
+                mod.alexndr.simpleores.init.ModBlocks.mythril_ore.get().asItem(), 
+                15.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")), 
+                "recycle_mythril_items");
+    	
+    	// Adamantium recycling
+    	fusionbuilder.buildFusionRecyclingRecipes(consumer,
+        		Ingredient.of(mod.alexndr.simpleores.init.ModItems.adamantium_axe.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_boots.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_helmet.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_hoe.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_pickaxe.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_shears.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_shovel.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_sword.get()), 
+        		Ingredient.of(mod.alexndr.simpleores.init.ModItems.adamantium_chestplate.get(),
+                    mod.alexndr.simpleores.init.ModItems.adamantium_leggings.get()), 
+    	        Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS),
+    	        mod.alexndr.simpleores.init.ModBlocks.adamantium_ore.get().asItem(), 
+    	        15.0F, 600, and(flag("recycle_simpleores"), modLoaded("simpleores")),
+    	        "recycle_adamantium_items");
+    	
         // Onyx recycling
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
                 Ingredient.of(mod.alexndr.simpleores.init.ModItems.onyx_axe.get(),
