@@ -11,7 +11,7 @@
         }
     ],
     "output": {
-        "item": "netherrocks:ashstone_ore"
+        "item": "netherrocks:ashstone_gem"
     },
     "inputs": [
         {

@@ -164,8 +164,30 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 15.0F, 600, flag("recycle_fusion"), "recycle_thyrium_items");
     }
 
+    
     protected void registerVanillaFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer)
     {
+    	// iron recycling recipes
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(Items.IRON_AXE, Items.IRON_BOOTS, Items.IRON_HELMET, Items.CHAINMAIL_HELMET,
+                        Items.IRON_HOE, Items.IRON_PICKAXE, Items.IRON_SHOVEL, Items.IRON_SWORD, Items.BUCKET,
+                        Items.CHAINMAIL_BOOTS, Items.COMPASS, Items.HOPPER, Items.IRON_DOOR, Items.MINECART,
+                        Items.SHEARS), 
+                Ingredient.of(Items.IRON_CHESTPLATE, Items.IRON_LEGGINGS, Items.IRON_HORSE_ARMOR, Items.CAULDRON,
+                		Items.CHAINMAIL_CHESTPLATE, Items.CHAINMAIL_LEGGINGS, Items.HOPPER_MINECART), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
+                Items.RAW_IRON, 
+                10.0F, 600, flag("recycle_vanilla"), "recycle_iron_items");
+    	
+        // gold recycling recipes
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(Items.GOLDEN_AXE, Items.GOLDEN_BOOTS, Items.GOLDEN_HELMET, Items.CLOCK,
+                        Items.GOLDEN_HOE, Items.GOLDEN_PICKAXE, Items.GOLDEN_SHOVEL, Items.GOLDEN_SWORD), 
+                Ingredient.of(Items.GOLDEN_CHESTPLATE, Items.GOLDEN_LEGGINGS, Items.GOLDEN_HORSE_ARMOR), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
+                Items.RAW_GOLD, 
+                15.0F, 600, flag("recycle_vanilla"), "recycle_gold_items");
+        
         // Diamond recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
                 Ingredient.of(Items.DIAMOND_AXE, Items.DIAMOND_BOOTS, Items.DIAMOND_HELMET,

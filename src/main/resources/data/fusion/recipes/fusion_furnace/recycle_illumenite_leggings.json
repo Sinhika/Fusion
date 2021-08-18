@@ -11,7 +11,7 @@
         }
     ],
     "output": {
-        "item": "netherrocks:illumenite_ore",
+        "item": "netherrocks:raw_illumenite",
         "count" : 2
     },
     "inputs": [

@@ -11,7 +11,7 @@
         }
     ],
     "output": {
-        "item": "netherrocks:malachite_ore",
+        "item": "netherrocks:raw_malachite",
         "count": 2
     },
     "inputs": [

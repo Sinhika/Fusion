@@ -11,7 +11,7 @@
         }
     ],
     "output": {
-        "item": "netherrocks:dragonstone_ore"
+        "item": "netherrocks:dragonstone_gem"
     },
     "inputs": [
         {

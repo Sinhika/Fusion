@@ -11,7 +11,7 @@
         }
     ],
     "output": {
-        "item": "netherrocks:argonite_ore"
+        "item": "netherrocks:raw_argonite"
     },
     "inputs": [
         {
