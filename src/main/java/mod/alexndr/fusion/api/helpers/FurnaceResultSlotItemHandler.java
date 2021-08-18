@@ -1,9 +1,11 @@
 package mod.alexndr.fusion.api.helpers;
 
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.fmllegacy.hooks.BasicEventHooks;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -15,13 +17,14 @@ public class FurnaceResultSlotItemHandler extends SlotItemHandler
 {
     private final Player player;
     private int removeCount;
-    private final BlockEntity tile;
+    private final Container tileish;
     
-    public FurnaceResultSlotItemHandler(Player player, BlockEntity tileEntity, IItemHandler itemHandler, int index, int xPosition, int yPosition)
+    public FurnaceResultSlotItemHandler(Player player, IItemHandler itemHandler, Container tilecontainer,
+    									int index, int xPosition, int yPosition)
     {
         super(itemHandler, index, xPosition, yPosition);
-        this.tile = tileEntity;
         this.player = player;
+        this.tileish = tilecontainer;
     }
 
     /**
@@ -54,12 +57,12 @@ public class FurnaceResultSlotItemHandler extends SlotItemHandler
     protected void checkTakeAchievements(ItemStack stack)
     {
         stack.onCraftedBy(this.player.level, this.player, this.removeCount);
-        if (!this.player.level.isClientSide && this.tile instanceof AbstractAlloyFurnaceTileEntity) 
+        if (this.player instanceof ServerPlayer && this.tileish instanceof AbstractAlloyFurnaceTileEntity) 
         {
-           ((AbstractAlloyFurnaceTileEntity)this.tile).grantExperience(this.player);
+        	((AbstractAlloyFurnaceTileEntity)this.tileish).grantExperience(this.player);
         }
         this.removeCount = 0;
-        net.minecraftforge.fmllegacy.hooks.BasicEventHooks.firePlayerSmeltedEvent(this.player, stack);
+        BasicEventHooks.firePlayerSmeltedEvent(this.player, stack);
     } // end onCrafting
 
     @Override
@@ -68,7 +71,5 @@ public class FurnaceResultSlotItemHandler extends SlotItemHandler
         this.checkTakeAchievements(stack);
         super.onTake(thePlayer, stack);
     }
-
-    
      
 } // end class

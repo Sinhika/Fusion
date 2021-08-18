@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceContainer;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
-import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModContainers;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -17,7 +16,7 @@ import net.minecraftforge.fmllegacy.network.IContainerFactory;
  * is called ({@link ServerPlayerEntity#tick()}) Server: The (tracked) value of
  * the tile's energy is updated ({@link #updateProgressBar(int, int)}) Server:
  * If the value is different from the value last sent to the client
- * ({@link IntReferenceHolder#isDirty()}), it is synced to the client
+ * ({@link IntRefere,nceHolder#isDirty()}), it is synced to the client
  * ({@link ServerPlayerEntity#sendWindowProperty(Container, int, int)}) Client:
  * The sync packet is received
  * ({@link ClientPlayNetHandler#handleWindowProperty(SWindowPropertyPacket)})
@@ -43,10 +42,10 @@ public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer<Fusion
      * Constructor called logical-server-side from {@link FusionFurnaceTileEntity#createMenu}
      * and logical-client-side from {@link #FusionFurnaceContainer(int, PlayerInventory, PacketBuffer)}
      */
-    public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, 
-                                  final FusionFurnaceTileEntity tileEntity)
+    public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, final FusionFurnaceTileEntity tileEntity)
     {
-        super(ModContainers.FUSION_FURNACE.get(), windowId, playerInventory, tileEntity, ModBlocks.fusion_furnace);
+        super(ModContainers.FUSION_FURNACE.get(), windowId, playerInventory, tileEntity.inventory, tileEntity.dataAccess,
+        		tileEntity);
  
     }  // end-ctor server-side
     

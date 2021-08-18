@@ -3,49 +3,78 @@ package mod.alexndr.fusion.api.content;
 import javax.annotation.Nonnull;
 
 import mod.alexndr.fusion.api.helpers.FurnaceResultSlotItemHandler;
-import mod.alexndr.simplecorelib.helpers.FunctionalIntReferenceHolder;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurnaceBlock> extends AbstractContainerMenu
 {
-    protected RegistryObject<T> my_block; 
+    public static final int INPUT1_SLOT = 0;
+    public static final int INPUT2_SLOT = 1;
+    public static final int CATALYST_SLOT = 2;
+    public static final int OUTPUT_SLOT = 3;
+    public static final int FUEL_SLOT = 4;
 
-    public final AbstractAlloyFurnaceTileEntity tileEntity;
-    protected final ContainerLevelAccess canInteractWithCallable;
+	public static final int DATA_FUEL_TIME_LEFT = 0;
+	public static final int DATA_FUEL_TIME_MAX = 1;
+	public static final int DATA_COOKING_PROGRESS = 2;
+	public static final int DATA_COOKING_TOTAL_TIME = 3;
+	public static final int NUM_DATA_VALUES = 4;
 
-    public AbstractAlloyFurnaceContainer(MenuType<?> type, int id, final Inventory playerInventory,
-                                        final AbstractAlloyFurnaceTileEntity tileEntity, 
-                                        final RegistryObject<T> block)
+	protected final ItemStackHandler container;
+	protected final Container tileContainer;
+	protected final ContainerData data;
+	protected final Level level;
+   
+	/**
+	 * Client-side constructor. 
+	 * @param menutype
+	 * @param recipetype
+	 * @param recipeBookType
+	 * @param id
+	 * @param inv
+	 */
+	protected AbstractAlloyFurnaceContainer(MenuType<?> type, int id, Inventory inv) 
+	{
+		this(type, id, inv, new ItemStackHandler(5), new SimpleContainerData(4), new SimpleContainer(5));
+	} // end client ctor
+
+	
+    /**
+     * Constructor called logical-server-side from {@link MythrilFurnaceTileEntity#createMenu}
+     * and logical-client-side from {@link #ModFurnaceContainer(int, PlayerInventory, PacketBuffer)}
+     */
+   public AbstractAlloyFurnaceContainer(MenuType<?> type, int id, final Inventory playerInventory,
+    		 ItemStackHandler container, ContainerData containerdata, Container tilecontainer)
     {
         super(type, id);
-        this.tileEntity = tileEntity;
-        this.canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
-        this.my_block = block;
-        
+		this.container = container;
+		this.data = containerdata;
+		this.level = playerInventory.player.level;
+		this.tileContainer = tilecontainer;
+		
         // Add tracking for data (Syncs to client/updates value when it changes)
-        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.smeltTimeProgress, v -> tileEntity.smeltTimeProgress = (short) v));
-        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.maxSmeltTime, v -> tileEntity.maxSmeltTime = (short) v));
-        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.fuelBurnTimeLeft, v -> tileEntity.fuelBurnTimeLeft = (int) v));
-        this.addDataSlot(new FunctionalIntReferenceHolder(() -> tileEntity.maxFuelBurnTime, v -> tileEntity.maxFuelBurnTime = (int) v));
+		this.addDataSlots(containerdata);
 
         // Add all the slots for the tileEntity's inventory and the playerInventory to this container
 
         // Tile inventory slot(s)
-        this.addSlot(new SlotItemHandler(tileEntity.inventory, AbstractAlloyFurnaceTileEntity.FUEL_SLOT, 79, 62));
-        this.addSlot(new SlotItemHandler(tileEntity.inventory, AbstractAlloyFurnaceTileEntity.INPUT1_SLOT, 33, 35));
-        this.addSlot(new SlotItemHandler(tileEntity.inventory, AbstractAlloyFurnaceTileEntity.INPUT2_SLOT, 126, 34));
-        this.addSlot(new SlotItemHandler(tileEntity.inventory, AbstractAlloyFurnaceTileEntity.CATALYST_SLOT, 79, 7));
-        this.addSlot(new FurnaceResultSlotItemHandler(playerInventory.player, tileEntity, 
-                                            tileEntity.inventory, AbstractAlloyFurnaceTileEntity.OUTPUT_SLOT, 79, 34));
+        this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.FUEL_SLOT, 79, 62));
+        this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.INPUT1_SLOT, 33, 35));
+        this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.INPUT2_SLOT, 126, 34));
+        this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.CATALYST_SLOT, 79, 7));
+        this.addSlot(new FurnaceResultSlotItemHandler(playerInventory.player, container, 
+                                            tilecontainer, AbstractAlloyFurnaceContainer.OUTPUT_SLOT, 79, 34));
 
         final int playerInventoryStartX = 8;
         final int playerInventoryStartY = 84;
@@ -116,7 +145,26 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
     @Override
     public boolean stillValid(@Nonnull final Player player)
     {
-        return stillValid(canInteractWithCallable, player, my_block.get());
+    	return this.tileContainer.stillValid(player);
     }
 
-}
+	public int getBurnProgress(int pixels) 
+	{
+		int i = this.data.get(DATA_COOKING_PROGRESS);
+		int j = this.data.get(DATA_COOKING_TOTAL_TIME);
+		return j != 0 && i != 0 ? i * pixels / j : 0;
+	}
+
+	public int getLitProgress(int pixels) 
+	{
+		int i = this.data.get(DATA_FUEL_TIME_MAX);
+		int j = this.data.get(DATA_FUEL_TIME_LEFT);
+		if (i == 0)
+		{
+			i = 600;
+		}
+		return  j * pixels / i;
+	}
+
+
+} // end class

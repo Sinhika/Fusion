@@ -140,7 +140,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
         } // end ItemStackHandler.onContentsChanged()
     };
  
-	protected final ContainerData dataAccess = new ContainerData() 
+	public final ContainerData dataAccess = new ContainerData() 
 	{
 		public int get(int index) {
 			switch (index)

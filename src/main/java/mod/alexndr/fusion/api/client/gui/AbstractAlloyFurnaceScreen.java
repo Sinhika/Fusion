@@ -1,15 +1,14 @@
 package mod.alexndr.fusion.api.client.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceContainer;
-import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 
 public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceContainer<?>>  extends AbstractContainerScreen<T>
 {
@@ -54,34 +53,32 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
         // The parameters are (x, y, u, v, width, height)
         this.blit(matStack, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
         
-        final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
-    
-        int k = (this.width - this.imageWidth) / 2;
+         int k = (this.width - this.imageWidth) / 2;
         int l = (this.height - this.imageHeight) / 2;
         int i1;
     
-        if (tileEntity.isBurning())
+        if (this.menu.getLitProgress(12) > 0)
         {
-            i1 = this.getBurnLeftScaled(12); //Flames
+            i1 = this.getFuelBurnTimeScaled(12); //Flames
             this.blit(matStack, k + 105, l + 55 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
             
-            i1 = this.getBurnLeftScaled(12); //Flames
+            i1 = this.getFuelBurnTimeScaled(12); //Flames
             this.blit(matStack, k + 55, l + 55 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
         }
     
-        i1 = this.getCookProgressScaled(24); //Left Arrow
+        i1 = this.getSmeltTimeScaled(24); //Left Arrow
         this.blit(matStack, k + 51, l + 34, 176, 14, i1 + 1, 16);
         
-        i1 = this.getCookProgressScaled(24); //Right Arrow
+        i1 = this.getSmeltTimeScaled(24); //Right Arrow
         this.blit(matStack, k + 100, l + 34, 176, 31, 23, 16);
         
-        i1 = this.getCookProgressScaled(24); //Right Arrow Grey Overlay
+        i1 = this.getSmeltTimeScaled(24); //Right Arrow Grey Overlay
         this.blit(matStack, k + 100, l + 34, 176, 47, 23 - i1, 16);
         
-        i1 = this.getCookProgressScaled(30); //Bubbles
+        i1 = this.getSmeltTimeScaled(30); //Bubbles
         this.blit(matStack, k + 64, l + 4 + 29 - i1, 176, 92 - i1, 12, 29);
         
-        i1 = this.getCookProgressScaled(30); //Bubbles
+        i1 = this.getSmeltTimeScaled(30); //Bubbles
         this.blit(matStack, k + 98, l + 4 + 29 - i1, 188, 92 - i1, 12, 29);
     } // end drawGuiContainerBackgroundLayer()
 
@@ -114,27 +111,14 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
                              8.0F, (float) (this.imageHeight - 96 + 2), displayNameColor);
     } // end ()
 
-    /**
-     * 
-     * @param pixels width of graphic progress bar
-     * @return scaled progress in pixels
-     */
-    private int getCookProgressScaled(int pixels)
+    private int getSmeltTimeScaled(int pixels)
     {
-        final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
-        final int smeltTimeProgress = tileEntity.smeltTimeProgress;
-        final int maxSmeltTime = tileEntity.maxSmeltTime;
-        if (smeltTimeProgress <= 0 || maxSmeltTime <= 0)
-            return 0;
-        return smeltTimeProgress * pixels / maxSmeltTime;
+    	return this.menu.getBurnProgress(pixels);
     }
 
-    private int getBurnLeftScaled(int pixels)
+    private int getFuelBurnTimeScaled(int pixels)
     {
-        final AbstractAlloyFurnaceTileEntity tileEntity = this.menu.tileEntity;
-        if (tileEntity.maxFuelBurnTime <= 0)
-            return 0;
-        return (tileEntity.fuelBurnTimeLeft * (pixels + 2)) / tileEntity.maxFuelBurnTime;
+    	return this.menu.getLitProgress(pixels);    
     }
 
 } // end-class
