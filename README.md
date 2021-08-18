@@ -8,7 +8,7 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
 
 TO-DO
 -----
-* [1.17.1] fix fusion recycling recipes to return raw metal, NOT ore. Because dupe issues.
+* <s>[1.17.1] fix fusion recycling recipes to return raw metal, NOT ore. Because dupe issues.</s>
 * <s>[1.17.1] fix copper fusion recycling recipes to yield vanilla copper.</s>
 * <s>[1.17.1] fix tool item Tiers (@see SimpleOres for example).</s>
 * add shears for rest of metals (bronze, sinisite, thyrium)

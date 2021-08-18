@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_vanilla",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:golden_chestplate"
+            },
+            {
+              "item": "minecraft:golden_leggings"
+            },
+            {
+              "item": "minecraft:golden_horse_armor"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:raw_gold",
+          "count": 2
+        },
+        "cookingtime": 600,
+        "experience": 30.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_vanilla",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:golden_axe"
+            },
+            {
+              "item": "minecraft:golden_boots"
+            },
+            {
+              "item": "minecraft:golden_helmet"
+            },
+            {
+              "item": "minecraft:clock"
+            },
+            {
+              "item": "minecraft:golden_hoe"
+            },
+            {
+              "item": "minecraft:golden_pickaxe"
+            },
+            {
+              "item": "minecraft:golden_shovel"
+            },
+            {
+              "item": "minecraft:golden_sword"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:raw_gold"
+        },
+        "cookingtime": 600,
+        "experience": 15.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_vanilla",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:iron_axe"
+            },
+            {
+              "item": "minecraft:iron_boots"
+            },
+            {
+              "item": "minecraft:iron_helmet"
+            },
+            {
+              "item": "minecraft:chainmail_helmet"
+            },
+            {
+              "item": "minecraft:iron_hoe"
+            },
+            {
+              "item": "minecraft:iron_pickaxe"
+            },
+            {
+              "item": "minecraft:iron_shovel"
+            },
+            {
+              "item": "minecraft:iron_sword"
+            },
+            {
+              "item": "minecraft:bucket"
+            },
+            {
+              "item": "minecraft:chainmail_boots"
+            },
+            {
+              "item": "minecraft:compass"
+            },
+            {
+              "item": "minecraft:hopper"
+            },
+            {
+              "item": "minecraft:iron_door"
+            },
+            {
+              "item": "minecraft:minecart"
+            },
+            {
+              "item": "minecraft:shears"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:raw_iron"
+        },
+        "cookingtime": 600,
+        "experience": 10.0
+      }
+    }
+  ]
+}
