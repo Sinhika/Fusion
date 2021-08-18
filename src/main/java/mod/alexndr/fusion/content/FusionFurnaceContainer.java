@@ -1,14 +1,10 @@
 package mod.alexndr.fusion.content;
 
-import java.util.Objects;
-
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceContainer;
-import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.init.ModContainers;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fmllegacy.network.IContainerFactory;
 
 /**
@@ -35,7 +31,8 @@ public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer<Fusion
     public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, 
                                   final FriendlyByteBuf data)
     {
-        this(windowId, playerInventory, getTileEntity(playerInventory, data));
+    	// MenuType<?> menutype, RecipeType<? extends AbstractCookingRecipe> recipetype, int id, Inventory inv
+        super(ModContainers.FUSION_FURNACE.get(), windowId, playerInventory);
     }
 
     /**
@@ -49,13 +46,5 @@ public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer<Fusion
  
     }  // end-ctor server-side
     
-    private static FusionFurnaceTileEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data)
-    {
-        Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
-        Objects.requireNonNull(data, "data cannot be null!");
-        final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
-        if (tileAtPos instanceof AbstractAlloyFurnaceTileEntity) return (FusionFurnaceTileEntity) tileAtPos;
-        throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);
-    } // end getTileEntity()
     
 } // end class

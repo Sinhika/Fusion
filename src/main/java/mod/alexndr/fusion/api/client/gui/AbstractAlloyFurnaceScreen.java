@@ -14,8 +14,12 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
 {
 
     protected final ResourceLocation BACKGROUND_TEXTURE;
+    protected final int FLAME_PIX = 12;
+    protected final int BUBBLE_PIX = 30;
+    protected final int ARROW_PIX = 24;
+    
     private int displayNameColor = 0x404040;
-
+    
     public AbstractAlloyFurnaceScreen(T screenContainer, Inventory inv, ResourceLocation texture, 
                                       Component titleIn, int nameColor)
     {
@@ -53,33 +57,35 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
         // The parameters are (x, y, u, v, width, height)
         this.blit(matStack, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
         
-         int k = (this.width - this.imageWidth) / 2;
-        int l = (this.height - this.imageHeight) / 2;
-        int i1;
+        int midX = (this.width - this.imageWidth) / 2;
+        int midY = (this.height - this.imageHeight) / 2;
     
-        if (this.menu.getLitProgress(12) > 0)
+        if (this.menu.isLit())
         {
-            i1 = this.getFuelBurnTimeScaled(12); //Flames
-            this.blit(matStack, k + 105, l + 55 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+            int flameHeight = this.getFuelBurnTimeScaled(FLAME_PIX); //Flames
+            this.blit(matStack, midX + 105, midY + 55 + 12 - flameHeight, 176, FLAME_PIX - flameHeight, 14, flameHeight + 2);
             
-            i1 = this.getFuelBurnTimeScaled(12); //Flames
-            this.blit(matStack, k + 55, l + 55 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+            flameHeight = this.getFuelBurnTimeScaled(FLAME_PIX); //Flames
+            this.blit(matStack, midX + 55, midY + 55 + 12 - flameHeight, 176, FLAME_PIX - flameHeight, 14, flameHeight + 2);
         }
-    
-        i1 = this.getSmeltTimeScaled(24); //Left Arrow
-        this.blit(matStack, k + 51, l + 34, 176, 14, i1 + 1, 16);
-        
-        i1 = this.getSmeltTimeScaled(24); //Right Arrow
-        this.blit(matStack, k + 100, l + 34, 176, 31, 23, 16);
-        
-        i1 = this.getSmeltTimeScaled(24); //Right Arrow Grey Overlay
-        this.blit(matStack, k + 100, l + 34, 176, 47, 23 - i1, 16);
-        
-        i1 = this.getSmeltTimeScaled(30); //Bubbles
-        this.blit(matStack, k + 64, l + 4 + 29 - i1, 176, 92 - i1, 12, 29);
-        
-        i1 = this.getSmeltTimeScaled(30); //Bubbles
-        this.blit(matStack, k + 98, l + 4 + 29 - i1, 188, 92 - i1, 12, 29);
+       	if (this.menu.getBurnProgress(FLAME_PIX) > 0) 
+       	{
+    		// Draw progress arrow
+	        int arrowWidth = this.getSmeltTimeScaled(ARROW_PIX); //Left Arrow
+	        this.blit(matStack, midX + 51, midY + 34, 176, 14, arrowWidth + 1, 16);
+	        
+	        arrowWidth = this.getSmeltTimeScaled(ARROW_PIX); //Right Arrow
+	        this.blit(matStack, midX + 100, midY + 34, 176, 31, 23, 16);
+	        
+	        arrowWidth = this.getSmeltTimeScaled(ARROW_PIX); //Right Arrow Grey Overlay
+	        this.blit(matStack, midX + 100, midY + 34, 176, 47, 23 - arrowWidth, 16);
+	        
+	        int bubbleHeight = this.getSmeltTimeScaled(BUBBLE_PIX); //Bubbles
+	        this.blit(matStack, midX + 64, midY + 4 + 29 - bubbleHeight, 176, 92 - bubbleHeight, 12, 29);
+	        
+	        bubbleHeight = this.getSmeltTimeScaled(BUBBLE_PIX); //Bubbles
+	        this.blit(matStack, midX + 98, midY + 4 + 29 - bubbleHeight, 188, 92 - bubbleHeight, 12, 29);
+       	}
     } // end drawGuiContainerBackgroundLayer()
 
     /**

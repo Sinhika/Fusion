@@ -161,9 +161,13 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
 		int j = this.data.get(DATA_FUEL_TIME_LEFT);
 		if (i == 0)
 		{
-			i = 600;
+			i = AbstractAlloyFurnaceTileEntity.DEFAULT_ALLOY_TIME;
 		}
 		return  j * pixels / i;
+	}
+
+	public boolean isLit() {
+		return this.data.get(DATA_FUEL_TIME_LEFT) > 0;
 	}
 
 

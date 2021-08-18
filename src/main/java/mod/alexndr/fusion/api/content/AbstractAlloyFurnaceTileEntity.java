@@ -70,8 +70,8 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     public static final int NUM_DATA_VALUES = 4;
 
     // TODO - make configurable.
-    protected final double BURN_TIME_MODIFIER = 1.875F;
-    protected final int DEFAULT_ALLOY_TIME = 600;
+    protected static double BURN_TIME_MODIFIER = 1.875F;
+    public static int DEFAULT_ALLOY_TIME = 600;
     
     protected static final String INVENTORY_TAG = "inventory";
     protected static final String SMELT_TIME_LEFT_TAG = "smeltTimeLeft";
@@ -439,11 +439,11 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
      *
      * @return The custom smelt time or DEFAULT_ALLOY_TIME if there is no recipe for the input
      */
-    private short getAlloyTime(final ItemStack input1, final ItemStack input2, final ItemStack catalyst)
+    private int getAlloyTime(final ItemStack input1, final ItemStack input2, final ItemStack catalyst)
     {
         Optional<IFusionRecipe> maybeRecipe = getRecipe(input1, input2, catalyst); 
         if (maybeRecipe.isPresent()) {
-            return (short) ((FusionRecipe) maybeRecipe.get()).getCookTime(); 
+            return ((FusionRecipe) maybeRecipe.get()).getCookTime(); 
         }
         else {
             return DEFAULT_ALLOY_TIME;
