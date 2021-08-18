@@ -8,12 +8,13 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
 
 TO-DO
 -----
-* [1.17.1] fix fusion furnaces to work like known-working test_furnace.
+* update or move the SimpleOres, etc. wiki. Note that Fusion Recycling ISN'T
+DOCUMENTED anywhere on tne old wiki!!
+* <s>[1.17.1] fix fusion furnaces to work like known-working test_furnace.</s>
 * <s>[1.17.1] fix fusion recycling recipes to return raw metal, NOT ore. Because dupe issues.</s>
 * <s>[1.17.1] fix copper fusion recycling recipes to yield vanilla copper.</s>
 * <s>[1.17.1] fix tool item Tiers (@see SimpleOres for example).</s>
 * add shears for rest of metals (bronze, sinisite, thyrium)
-* update or move the SimpleOres, etc. wiki
 * add ingots/tools/armor to appropriate villager trade tables.
 * <s>add JEI support</s>  Basic JEI support done. Add remaining JEI support (transfer handler).
 * should we add fusion items to monster worn/carried items? Probably not, that leads to tears.
