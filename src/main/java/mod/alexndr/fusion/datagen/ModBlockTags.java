@@ -40,8 +40,9 @@ public class ModBlockTags extends MiningBlockTags
     	this.registerMineableTags(
     			List.of(ModBlocks.bronze_block.get(), ModBlocks.sinisite_block.get(), ModBlocks.steel_block.get(), 
     					ModBlocks.thyrium_block.get(), ModBlocks.fusion_furnace.get()),  // mineable
-    			List.of(ModBlocks.bronze_block.get(), ModBlocks.steel_block.get()),
-    			List.of(ModBlocks.sinisite_block.get(), ModBlocks.thyrium_block.get()), List.of(), List.of());
+    			List.of(ModBlocks.bronze_block.get(), ModBlocks.steel_block.get()), // 1
+    			List.of(ModBlocks.sinisite_block.get(), ModBlocks.thyrium_block.get()), // 2 
+    			List.of(), List.of());  // 3 & 4
     }
     
     private void registerStorageBlockTags()
