@@ -7,7 +7,6 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -89,8 +88,6 @@ public class JEIFusionPlugin implements IModPlugin
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration)
 	{
-		IJeiHelpers jeiHelpers = registration.getJeiHelpers();
-		
 		registration.addRecipeTransferHandler(FusionFurnaceContainer.class, FusionFurnaceRecipeCategory.UID, 0, 3, 5, 36);
 		registration.addRecipeTransferHandler(FusionFurnaceContainer.class, VanillaRecipeCategoryUid.FUEL, 4, 1, 5, 36);
 	}
