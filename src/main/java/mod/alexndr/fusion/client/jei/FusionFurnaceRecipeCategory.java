@@ -20,9 +20,11 @@ import mod.alexndr.fusion.init.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.resources.ResourceLocation;
 
 public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecipe>
 {
@@ -34,7 +36,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     private final static int OUTPUT_SLOT = 3;
     
     private final IDrawable background;
-    private final String localizedName;
+    private final Component localizedName;
     
     private final ResourceLocation backgroundLocation;
     private final IDrawableAnimated flame;
@@ -47,7 +49,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper)
     {
         this.icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.fusion_furnace.get()));
-        localizedName = I18n.get("fusion.jei.fusion_category");
+        localizedName = new TranslatableComponent("fusion.jei.fusion_category");
         backgroundLocation = 
                         new ResourceLocation(Fusion.MODID, 
                                              "textures/gui/container/fusion_furnace_gui.png");
@@ -109,7 +111,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     }
 
     @Override
-    public String getTitle() {
+    public Component getTitle() {
         return localizedName;
     }
 

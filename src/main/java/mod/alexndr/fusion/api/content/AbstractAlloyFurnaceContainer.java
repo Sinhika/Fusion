@@ -69,12 +69,12 @@ public abstract class AbstractAlloyFurnaceContainer<T extends AbstractAlloyFurna
         // Add all the slots for the tileEntity's inventory and the playerInventory to this container
 
         // Tile inventory slot(s)
-        this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.FUEL_SLOT, 79, 62));
         this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.INPUT1_SLOT, 33, 35));
         this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.INPUT2_SLOT, 126, 34));
         this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.CATALYST_SLOT, 79, 7));
         this.addSlot(new FurnaceResultSlotItemHandler(playerInventory.player, container, 
                                             tilecontainer, AbstractAlloyFurnaceContainer.OUTPUT_SLOT, 79, 34));
+        this.addSlot(new SlotItemHandler(container, AbstractAlloyFurnaceContainer.FUEL_SLOT, 79, 62));
 
         final int playerInventoryStartX = 8;
         final int playerInventoryStartY = 84;
