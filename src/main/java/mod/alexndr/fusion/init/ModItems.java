@@ -5,13 +5,13 @@ import mod.alexndr.fusion.content.FusionArmorMaterial;
 import mod.alexndr.fusion.content.FusionItemTiers;
 import mod.alexndr.fusion.content.SinisiteBow;
 import mod.alexndr.fusion.content.ThyriumBow;
-import mod.alexndr.simplecorelib.content.SimpleShearsItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.fmllegacy.RegistryObject;
@@ -213,8 +213,8 @@ public final class ModItems
                     new Item.Properties().tab(ModTabGroups.MOD_ITEM_GROUP)) {});
     
     // shears
-    public static final RegistryObject<SimpleShearsItem> steel_shears = ITEMS.register("steel_shears",
-            () -> new SimpleShearsItem(new Item.Properties().durability(FusionItemTiers.STEEL.getUses())
+    public static final RegistryObject<ShearsItem> steel_shears = ITEMS.register("steel_shears",
+            () -> new ShearsItem(new Item.Properties().durability(FusionItemTiers.STEEL.getUses())
                     .tab(ModTabGroups.MOD_ITEM_GROUP)));
 
     // bows
