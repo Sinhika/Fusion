@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "fusion:thyrium_ingot"
+    }
+  },
+  "result": {
+    "item": "fusion:thyrium_rod"
+  }
+}

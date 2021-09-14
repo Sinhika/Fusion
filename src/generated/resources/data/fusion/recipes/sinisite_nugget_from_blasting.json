@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": [
+    {
+      "item": "fusion:sinisite_axe"
+    },
+    {
+      "item": "fusion:sinisite_boots"
+    },
+    {
+      "item": "fusion:sinisite_chestplate"
+    },
+    {
+      "item": "fusion:sinisite_helmet"
+    },
+    {
+      "item": "fusion:sinisite_hoe"
+    },
+    {
+      "item": "fusion:sinisite_leggings"
+    },
+    {
+      "item": "fusion:sinisite_pickaxe"
+    },
+    {
+      "item": "fusion:sinisite_shovel"
+    },
+    {
+      "item": "fusion:sinisite_sword"
+    }
+  ],
+  "result": "fusion:sinisite_nugget",
+  "experience": 0.2,
+  "cookingtime": 100
+}
