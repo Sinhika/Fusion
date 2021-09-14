@@ -70,7 +70,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     public static final int NUM_DATA_VALUES = 4;
 
     // TODO - make configurable.
-    protected static double BURN_TIME_MODIFIER = 1.875F;
+    public static double BURN_TIME_MODIFIER = 1.875F;
     public static int DEFAULT_ALLOY_TIME = 600;
     
     protected static final String INVENTORY_TAG = "inventory";
