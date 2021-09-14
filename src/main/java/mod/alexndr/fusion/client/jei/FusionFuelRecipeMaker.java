@@ -15,6 +15,7 @@ import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.plugins.vanilla.cooking.fuel.FuelRecipe;
 import mezz.jei.util.ErrorUtil;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
+import mod.alexndr.simplecorelib.client.jei.AlternateFuelRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -25,17 +26,17 @@ public final class FusionFuelRecipeMaker
 	private FusionFuelRecipeMaker() {
 	}
 
-	public static List<FuelRecipe> getFuelRecipes(IIngredientManager ingredientManager, IJeiHelpers helpers)
+	public static List<AlternateFuelRecipe> getFuelRecipes(IIngredientManager ingredientManager, IJeiHelpers helpers)
 	{
 		IGuiHelper guiHelper = helpers.getGuiHelper();
 		Collection<ItemStack> allItemStacks = ingredientManager.getAllIngredients(VanillaTypes.ITEM);
-		List<FuelRecipe> fuelRecipes = new ArrayList<>();
+		List<AlternateFuelRecipe> fuelRecipes = new ArrayList<>();
 		for (ItemStack stack : allItemStacks)
 		{
 			int burnTime = getBurnTime(stack);
 			if (burnTime > 0)
 			{
-				fuelRecipes.add(new FuelRecipe(guiHelper, Collections.singleton(stack), burnTime));
+				fuelRecipes.add(new AlternateFuelRecipe(guiHelper, Collections.singleton(stack), burnTime));
 			}
 		}
 		return fuelRecipes;
