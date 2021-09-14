@@ -15,6 +15,7 @@
 
 	"fusion.jei.fusion_category": "Fusion Furnace Alloying", 
 	"gui.jei.category.fusion.experience": "%s XP",
+	"gui.jei.category.fusion_furnace_fuel" : "Fusion Furnace Fuel",
 	
     "item.fusion.steel_ingot": "Steel Ingot",
     "item.fusion.steel_dust" : "Steel Dust",

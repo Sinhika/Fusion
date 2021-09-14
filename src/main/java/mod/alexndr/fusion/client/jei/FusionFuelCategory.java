@@ -34,7 +34,7 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Alter
 		// width of the recipe depends on the text, which is different in each language
 		Minecraft minecraft = Minecraft.getInstance();
 		Font fontRenderer = minecraft.font;
-		AlternateFuelRecipe.init(AbstractAlloyFurnaceTileEntity.DEFAULT_ALLOY_TIME);	
+		AlternateFuelRecipe.init(600);	
 		
 		Component smeltCountText = AlternateFuelRecipe.createSmeltCountText(100000);
 		int stringWidth = fontRenderer.width(smeltCountText.getString());
@@ -44,7 +44,7 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Alter
 			.build();
 
 		flameTransparentBackground = ClientModEventSubscriber.textures.getFlameIcon();
-		localizedName = new TranslatableComponent("gui.jei.category.fuel");
+		localizedName = new TranslatableComponent("gui.jei.category.fusion_furnace_fuel");
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Alter
 	{
 		IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
-		guiItemStacks.init(AbstractAlloyFurnaceTileEntity.FUEL_SLOT, true, 0, 16);
+		guiItemStacks.init(fuelSlot, true, 0, 16);
 		guiItemStacks.set(ingredients);
 	}
 
