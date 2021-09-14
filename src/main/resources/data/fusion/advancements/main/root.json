@@ -14,9 +14,9 @@
         "announce_to_chat": false
     },
     "criteria" : {
-    	"impossible" : {
-      		"trigger": "minecraft:impossible"
-    	}
+        "impossible" : {
+                "trigger": "minecraft:impossible"
+        }
     }
 }
  

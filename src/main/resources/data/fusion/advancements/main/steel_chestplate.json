@@ -14,13 +14,13 @@
     },
     "parent" : "fusion:main/steel",
      "criteria" : {
-    	"got_fusion_furnace" : {
-      		"trigger": "minecraft:inventory_changed",
-      		"conditions" : {
-      			"items" : [
-      			{"item" : "fusion:steel_chestplate"}
-      			]
-      		}
-    	}
+        "got_fusion_furnace" : {
+                "trigger": "minecraft:inventory_changed",
+                "conditions" : {
+                        "items" : [
+                        { "items" : ["fusion:steel_chestplate"] }
+                        ]
+                }
+        }
     }
 }

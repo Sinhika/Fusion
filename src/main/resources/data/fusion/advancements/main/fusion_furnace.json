@@ -14,13 +14,13 @@
     },
     "parent" : "fusion:main/root",
      "criteria" : {
-    	"got_fusion_furnace" : {
-      		"trigger": "minecraft:inventory_changed",
-      		"conditions" : {
-      			"items" : [
-      			{"item" : "fusion:fusion_furnace"}
-      			]
-      		}
-    	}
+        "got_fusion_furnace" : {
+                "trigger": "minecraft:inventory_changed",
+                "conditions" : {
+                        "items" : [
+                        {"items" : [ "fusion:fusion_furnace" ] }
+                        ]
+                }
+        }
     }
 }

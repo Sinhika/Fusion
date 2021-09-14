@@ -14,13 +14,13 @@
     },
     "parent" : "fusion:main/bronze",
      "criteria" : {
-    	"got_fusion_furnace" : {
-      		"trigger": "minecraft:inventory_changed",
-      		"conditions" : {
-      			"items" : [
-      			{"item" : "fusion:bronze_helmet"}
-      			]
-      		}
-    	}
+        "got_fusion_furnace" : {
+                "trigger": "minecraft:inventory_changed",
+                "conditions" : {
+                        "items" : [
+                        { "items" : ["fusion:bronze_helmet" ] }
+                        ]
+                }
+        }
     }
 }
