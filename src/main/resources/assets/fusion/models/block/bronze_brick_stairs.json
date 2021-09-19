@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "fusion:block/bronze_bricks",
+        "top": "fusion:block/bronze_bricks",
+        "side": "fusion:block/bronze_bricks"
+    }
+}
