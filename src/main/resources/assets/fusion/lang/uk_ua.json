@@ -1,0 +1,18 @@
+{
+    "block.fusion.steel_bricks": "Сталева цегла",
+    "block.fusion.bronze_bricks": "Бронзова цегла",
+    "block.fusion.thyrium_bricks": "Туріумова цегла",
+    "block.fusion.sinisite_bricks": "Синіситова цегла",
+
+    "block.fusion.steel_brick_stairs": "Сходи з сталевої цегли",
+    "block.fusion.bronze_brick_stairs": "Сходи з бронзової цегли",
+    "block.fusion.thyrium_brick_stairs": "Сходи з туріомової цегли",
+    "block.fusion.sinisite_brick_stairs": "Сходи з синіситової цегли",
+
+    "block.fusion.steel_bars": "Сталеві грати",
+    "block.fusion.bronze_bars": "Бронзові грати",
+    "block.fusion.thyrium_bars": "Туріомові грати",
+    "block.fusion.sinisite_bars": "Синіситові грати",
+
+    "block.fusion.bronze_door": "Бронзові двері"
+}

@@ -1,22 +1,33 @@
 {
-	"itemGroup.fusion" : "Fusion",
-	"material.fusion.sinisite" : "Sinisite",
-	"material.fusion.thyrium" : "Thyrium",
-	
+    "itemGroup.fusion" : "Fusion",
+    "material.fusion.sinisite" : "Sinisite",
+    "material.fusion.thyrium" : "Thyrium",
+        
     "block.fusion.steel_block": "Steel Block",
     "block.fusion.slimy_diamond_block": "Slimy Diamond Block",
-
-
     "block.fusion.bronze_block": "Bronze Block",
     "block.fusion.thyrium_block": "Thyrium Block",
     "block.fusion.sinisite_block": "Sinisite Block",
     "block.fusion.fusion_furnace": "Fusion Furnace",
     "block.fusion.fusion_furnace_lit": "Fusion Furnace",
+    "block.fusion.steel_bricks": "Steel Bricks",
+    "block.fusion.bronze_bricks": "Bronze Bricks",
+    "block.fusion.thyrium_bricks": "Thyrium Bricks",
+    "block.fusion.sinisite_bricks": "Sinisite Bricks",
+    "block.fusion.steel_brick_stairs": "Steel Brick Stairs",
+    "block.fusion.bronze_brick_stairs": "Bronze Brick Stairs",
+    "block.fusion.thyrium_brick_stairs": "Thyrium Brick Stairs",
+    "block.fusion.sinisite_brick_stairs": "Sinisite Brick Stairs",
+    "block.fusion.steel_bars": "Steel Bars",
+    "block.fusion.bronze_bars": "Bronze Bars",
+    "block.fusion.thyrium_bars": "Thyrium Bars",
+    "block.fusion.sinisite_bars": "Sinisite Bars",
+    "block.fusion.bronze_door": "Bronze Door",
 
-	"fusion.jei.fusion_category": "Fusion Furnace Alloying", 
-	"gui.jei.category.fusion.experience": "%s XP",
-	"gui.jei.category.fusion_furnace_fuel" : "Fusion Furnace Fuel",
-	
+    "fusion.jei.fusion_category": "Fusion Furnace Alloying", 
+    "gui.jei.category.fusion.experience": "%s XP",
+    "gui.jei.category.fusion_furnace_fuel" : "Fusion Furnace Fuel",
+        
     "item.fusion.steel_ingot": "Steel Ingot",
     "item.fusion.steel_dust" : "Steel Dust",
     "item.fusion.slimy_diamond": "Slimy Diamond",
@@ -26,7 +37,6 @@
     "item.fusion.slimy_diamond_nugget": "Slimy Diamond Nugget",
     "item.fusion.medium_slimy_diamond_chunk": "Medium Slimy Diamond Chunk",
     "item.fusion.large_slimy_diamond_chunk": "Large Slimy Diamond Chunk",
-
     "item.fusion.bronze_ingot": "Bronze Ingot",
     "item.fusion.thyrium_ingot": "Thyrium Ingot",
     "item.fusion.sinisite_ingot": "Sinisite Ingot",
