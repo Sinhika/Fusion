@@ -12,7 +12,6 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.runtime.IIngredientManager;
-import mezz.jei.plugins.vanilla.cooking.fuel.FuelRecipe;
 import mezz.jei.util.ErrorUtil;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.simplecorelib.client.jei.AlternateFuelRecipe;

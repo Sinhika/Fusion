@@ -8,7 +8,6 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mod.alexndr.fusion.Fusion;
-import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.client.ClientModEventSubscriber;
 import mod.alexndr.simplecorelib.client.jei.AlternateFuelRecipe;
 import mod.alexndr.simplecorelib.client.jei.VeryAbstractFurnaceVariantCategory;
