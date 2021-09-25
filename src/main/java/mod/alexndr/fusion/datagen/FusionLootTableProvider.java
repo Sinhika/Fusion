@@ -27,9 +27,26 @@ public class FusionLootTableProvider extends BlockLootTableProvider
     {
         tables.clear();
         standardDropTable(ModBlocks.bronze_block.get());
+        standardDropTable(ModBlocks.bronze_bricks.get());
+        standardDropTable(ModBlocks.bronze_brick_stairs.get());
+        slabDropTable(ModBlocks.bronze_brick_slab.get());
+        standardDropTable(ModBlocks.bronze_bars.get());
+        standardDropTable(ModBlocks.bronze_door.get());
         standardDropTable(ModBlocks.steel_block.get());
-        standardDropTable(ModBlocks.thyrium_block.get());
+        standardDropTable(ModBlocks.steel_bricks.get());
+        standardDropTable(ModBlocks.steel_brick_stairs.get());
+        slabDropTable(ModBlocks.steel_brick_slab.get());
+        standardDropTable(ModBlocks.steel_bars.get());
         standardDropTable(ModBlocks.sinisite_block.get());
+        standardDropTable(ModBlocks.sinisite_bricks.get());
+        standardDropTable(ModBlocks.sinisite_brick_stairs.get());
+        slabDropTable(ModBlocks.sinisite_brick_slab.get());
+        standardDropTable(ModBlocks.sinisite_bars.get());
+        standardDropTable(ModBlocks.thyrium_block.get());
+        standardDropTable(ModBlocks.thyrium_bricks.get());
+        standardDropTable(ModBlocks.thyrium_brick_stairs.get());
+        slabDropTable(ModBlocks.thyrium_brick_slab.get());
+        standardDropTable(ModBlocks.thyrium_bars.get());
         copyNameDropTable(ModBlocks.fusion_furnace.get(), ModBlocks.fusion_furnace.get().asItem());
         return tables;
     }

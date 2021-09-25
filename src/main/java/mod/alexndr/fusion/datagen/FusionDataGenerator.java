@@ -35,6 +35,7 @@ public class FusionDataGenerator
             gen.addProvider(new FusionLootTableProvider(gen));
             gen.addProvider(new FusionLootInjectorProvider(gen));
             gen.addProvider(new ModBlockTags(gen, event.getExistingFileHelper()));
+            gen.addProvider(new ModItemTags(gen, event.getExistingFileHelper()));
         }
     } // end gatherData()
 
