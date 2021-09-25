@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "fusion:block/bronze_brick_slab"
+        },
+        "type=double": {
+            "model": "fusion:block/bronze_bricks"
+        },
+        "type=top": {
+            "model": "fusion:block/bronze_brick_slab_top"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "fusion:block/sinisite_brick_slab"
+        },
+        "type=double": {
+            "model": "fusion:block/sinisite_bricks"
+        },
+        "type=top": {
+            "model": "fusion:block/sinisite_brick_slab_top"
+        }
+    }
+}
