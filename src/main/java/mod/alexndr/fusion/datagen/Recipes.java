@@ -45,6 +45,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
         registerToolRecipes(consumer);
         registerArmorRecipes(consumer);
         registerFurnaceRecipes(consumer);
+        registerAestheticRecipes(consumer);
     } // end registerRecipes()
 
     protected void registerToolRecipes(Consumer<FinishedRecipe> consumer)
@@ -97,6 +98,20 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
                 has(ModItems.thyrium_nugget.get()));
     } // end registerStorageRecipes()
 
+    
+    protected void registerAestheticRecipes(Consumer<FinishedRecipe> consumer)
+    {
+    	setbuilder.buildSimpleAestheticBlocks(consumer, Ingredient.of(ModItems.bronze_ingot.get()), "bronze", 
+ 			has(ModItems.bronze_ingot.get()), flag("aesthetics_enabled"));
+    	setbuilder.buildSimpleAestheticBlocks(consumer, Ingredient.of(ModItems.steel_ingot.get()), "steel", 
+ 			has(ModItems.steel_ingot.get()), flag("aesthetics_enabled"));
+    	setbuilder.buildSimpleAestheticBlocks(consumer, Ingredient.of(ModItems.sinisite_ingot.get()), "sinisite", 
+ 			has(ModItems.sinisite_ingot.get()), flag("aesthetics_enabled"));
+    	setbuilder.buildSimpleAestheticBlocks(consumer, Ingredient.of(ModItems.thyrium_ingot.get()), "thyrium", 
+ 			has(ModItems.thyrium_ingot.get()), flag("aesthetics_enabled"));
+    } // end registerAestheticRecipes()
+    
+    
     
     protected void registerMiscRecipes(Consumer<FinishedRecipe> consumer)
     {

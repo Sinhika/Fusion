@@ -7,6 +7,7 @@ public final class ServerConfig
 {
     // general
     final ForgeConfigSpec.BooleanValue serverAddChestLoot;
+    final ForgeConfigSpec.BooleanValue serverEnableAesthetics;
     
     // fusion recipes
     final ForgeConfigSpec.BooleanValue serverEnableSteelMaking;
@@ -42,6 +43,9 @@ public final class ServerConfig
         serverAddChestLoot = builder.comment("Allow Fusion loot to be added to chests?")
                 .translation(Fusion.MODID + ".config.addChestLoot")
                 .define("AddChestLoot", true);
+        serverEnableAesthetics = builder.comment("Enable Fusion aesthetic blocks?")
+                .translation(Fusion.MODID + "config.EnableAesthetics")
+                .define("EnableAestheticsBlocks", true);
         builder.pop();
         
         builder.push("Alloy Recipes");

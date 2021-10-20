@@ -196,8 +196,6 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
                 Items.DIAMOND, 
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_vanilla")), "recycle_diamond_items");
- 
- 
    } // end registerVanillaFusionRecyclingRecipes()
  
     protected void registerSimpleOresFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer)
@@ -212,7 +210,8 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 mod.alexndr.simpleores.init.ModItems.copper_pickaxe.get(),
                 mod.alexndr.simpleores.init.ModItems.copper_shears.get(),
                 mod.alexndr.simpleores.init.ModItems.copper_shovel.get(),
-                mod.alexndr.simpleores.init.ModItems.copper_sword.get()), 
+                mod.alexndr.simpleores.init.ModItems.copper_sword.get(),
+                mod.alexndr.simpleores.init.ModBlocks.copper_door.get()), 
     		Ingredient.of(mod.alexndr.simpleores.init.ModItems.copper_chestplate.get(),
                 mod.alexndr.simpleores.init.ModItems.copper_leggings.get()), 
 	        Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS),

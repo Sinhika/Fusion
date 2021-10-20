@@ -38,6 +38,8 @@ public final class ConfigHelper
         // bow recipe flag
         FusionConfig.INSTANCE.putFlag("fusion_bows", ConfigHolder.SERVER.serverEnableFusionBows.get());
         
+        // aesthetics recipe flag
+        FusionConfig.INSTANCE.putFlag("aesthetics_enabled", ConfigHolder.SERVER.serverEnableAesthetics.get());
     } // end bakeServer()
     
     public static void bakeClient(final ModConfig config)
