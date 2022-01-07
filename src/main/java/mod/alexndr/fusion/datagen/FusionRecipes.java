@@ -13,9 +13,13 @@ import mod.alexndr.fusion.init.ModTags;
 import mod.alexndr.simplecorelib.datagen.ISimpleConditionBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.ItemTags;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -42,6 +46,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
         registerThyriumRecipes(consumer);
         registerVanillaFusionRecyclingRecipes(consumer);
         registerSimpleOresFusionRecyclingRecipes(consumer);
+        registerNetherrocksFusionRecyclingRecipes(consumer);
     }
 
     /**
@@ -167,6 +172,14 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
     
     protected void registerVanillaFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer)
     {
+    	// stone recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(Items.STONE_AXE, Items.STONE_HOE, Items.STONE_PICKAXE, Items.STONE_SHOVEL,
+                			  Items.STONE_SWORD), 
+                Ingredient.of(Items.FURNACE), 
+                Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
+                Blocks.STONE.asItem(),5.0F, 600, flag("recycle_vanilla"), "recycle_stone_items");
+    	
     	// iron recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
                 Ingredient.of(Items.IRON_AXE, Items.IRON_BOOTS, Items.IRON_HELMET, Items.CHAINMAIL_HELMET,
@@ -178,7 +191,17 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 Ingredient.of(Items.GRAVEL), Ingredient.of(ItemTags.COALS), 
                 Items.RAW_IRON, 
                 10.0F, 600, flag("recycle_vanilla"), "recycle_iron_items");
-    	
+        
+        // iron anvils yield even more.
+    	ResourceLocation recipe_anvil = AbstractFusionRecipeProvider.id(Fusion.MODID, "recycle_iron_items4");
+        ConditionalRecipe.builder().addCondition(flag("recycle_vanilla"))
+        	.addRecipe(new AbstractFusionRecipeProvider.FinishedFusionRecipe(recipe_anvil,
+                        new ItemStack(Items.RAW_IRON.asItem(), 4), 600, 40.0F, 
+                        Ingredient.of(ItemTags.COALS), 
+                        Ingredient.of(Items.ANVIL, Items.CHIPPED_ANVIL, Items.DAMAGED_ANVIL), 
+                        Ingredient.of(Items.GRAVEL)))
+        	.build(consumer, recipe_anvil);
+
         // gold recycling recipes
         fusionbuilder.buildFusionRecyclingRecipes(consumer, 
                 Ingredient.of(Items.GOLDEN_AXE, Items.GOLDEN_BOOTS, Items.GOLDEN_HELMET, Items.CLOCK,
@@ -290,6 +313,42 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 20.0F, 600, and(flag("recycle_gems"), flag("recycle_simpleores"), modLoaded("simpleores")), 
                 "recycle_onyx_items");
     } // end registerSimpleOresFusionRecyclingRecipes()
+    
+    protected void registerNetherrocksFusionRecyclingRecipes(Consumer<FinishedRecipe> consumer)
+    {
+    	// Argonite recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.argonite_axe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.argonite_hoe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.argonite_pickaxe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.argonite_shovel.get(),
+                        mod.alexndr.netherrocks.init.ModItems.argonite_sword.get()), 
+                null, 
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.QUARTZ), 
+                mod.alexndr.netherrocks.init.ModItems.raw_argonite.get(), 
+                15.0F, 600, and(flag("recycle_netherrocks"), modLoaded("netherrocks")), 
+                "recycle_argonite_items");
+        
+    	// Ashstone recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.ashstone_axe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.ashstone_hoe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.ashstone_pickaxe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.ashstone_shovel.get(),
+                        mod.alexndr.netherrocks.init.ModItems.ashstone_sword.get()), 
+                null, 
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.QUARTZ), 
+                mod.alexndr.netherrocks.init.ModItems.ashstone_gem.get(), 
+                15.0F, 600, and(flag("recycle_gems"), flag("recycle_netherrocks"), modLoaded("netherrocks")), 
+                "recycle_ashstone_items");
+        
+    	// Dragonstone recycling
+    	// Fyrite recycling
+    	// Illumenite recycling
+    	// Malachite recycling
+    	
+    } // end registerNetherrocksFusionRecyclingRecipes()
+    
     
     /**
      * Builds an ICondition representing FlagCondition...
