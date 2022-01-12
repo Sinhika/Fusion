@@ -343,9 +343,64 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
                 "recycle_ashstone_items");
         
     	// Dragonstone recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.dragonstone_axe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.dragonstone_hoe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.dragonstone_pickaxe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.dragonstone_shovel.get(),
+                        mod.alexndr.netherrocks.init.ModItems.dragonstone_sword.get(),
+                        mod.alexndr.netherrocks.init.ModItems.dragonstone_boots.get(),
+                        mod.alexndr.netherrocks.init.ModItems.dragonstone_helmet.get()), 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.dragonstone_chestplate.get(),
+                		mod.alexndr.netherrocks.init.ModItems.dragonstone_leggings.get()
+                		), 
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.LAVA_BUCKET), 
+                mod.alexndr.netherrocks.init.ModItems.dragonstone_gem.get(), 
+                20.0F, 600, and(flag("recycle_gems"), flag("recycle_netherrocks"), modLoaded("netherrocks")), 
+                "recycle_dragonstone_items");
+        
     	// Fyrite recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.fyrite_axe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.fyrite_pickaxe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.fyrite_shovel.get(),
+                        mod.alexndr.netherrocks.init.ModItems.fyrite_sword.get(),
+                        mod.alexndr.netherrocks.init.ModItems.fyrite_helmet.get(),
+                        mod.alexndr.netherrocks.init.ModItems.fyrite_boots.get()), 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.fyrite_chestplate.get(),
+                        mod.alexndr.netherrocks.init.ModItems.fyrite_leggings.get()),
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.QUARTZ), 
+                mod.alexndr.netherrocks.init.ModItems.raw_fyrite.get(), 
+                10.0F, 600, and(flag("recycle_netherrocks"), modLoaded("netherrocks")), 
+                "recycle_fyrite_items");
+        
     	// Illumenite recycling
-    	// Malachite recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.illumenite_sword.get(),
+                        mod.alexndr.netherrocks.init.ModItems.illumenite_helmet.get(),
+                        mod.alexndr.netherrocks.init.ModItems.illumenite_boots.get()), 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.illumenite_chestplate.get(),
+                        mod.alexndr.netherrocks.init.ModItems.illumenite_leggings.get()),
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.GLOWSTONE_DUST), 
+                mod.alexndr.netherrocks.init.ModItems.raw_illumenite.get(), 
+                10.0F, 600, and(flag("recycle_netherrocks"), modLoaded("netherrocks")), 
+                "recycle_illumenite_items");
+
+        // Malachite recycling
+        fusionbuilder.buildFusionRecyclingRecipes(consumer, 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.malachite_axe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.malachite_pickaxe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.malachite_shovel.get(),
+                        mod.alexndr.netherrocks.init.ModItems.malachite_sword.get(),
+                        mod.alexndr.netherrocks.init.ModItems.malachite_hoe.get(),
+                        mod.alexndr.netherrocks.init.ModItems.malachite_helmet.get(),
+                        mod.alexndr.netherrocks.init.ModItems.malachite_boots.get()), 
+                Ingredient.of(mod.alexndr.netherrocks.init.ModItems.malachite_chestplate.get(),
+                        mod.alexndr.netherrocks.init.ModItems.malachite_leggings.get()),
+                Ingredient.of(Items.NETHERRACK), Ingredient.of(Items.QUARTZ), 
+                mod.alexndr.netherrocks.init.ModItems.raw_malachite.get(), 
+                10.0F, 600, and(flag("recycle_netherrocks"), modLoaded("netherrocks")), 
+                "recycle_malachite_items");
     	
     } // end registerNetherrocksFusionRecyclingRecipes()
     
