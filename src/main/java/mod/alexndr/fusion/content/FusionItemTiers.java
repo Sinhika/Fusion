@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ForgeTier;
 import net.minecraftforge.common.TierSortingRegistry;
+import net.minecraftforge.fml.ModList;
 
 /**
  * Holds declarations for tool material tiers.
@@ -45,6 +46,9 @@ public final class FusionItemTiers
 	
 	public static final Tier SINISITE = TierSortingRegistry.registerTier(
 			new ForgeTier(5, 4100, 18.0F, 8.0F, 11, SINISITE_TAG, ()->Ingredient.of( ModItems.sinisite_ingot.get())),
-			new ResourceLocation(Fusion.MODID, "sinisite"), List.of(Tiers.NETHERITE, SimpleOresTiers.ONYX), List.of());
+			new ResourceLocation(Fusion.MODID, "sinisite"), 
+			ModList.get().isLoaded("simpleores") 
+				? List.of(Tiers.NETHERITE, SimpleOresTiers.ONYX) : List.of(Tiers.NETHERITE), 
+			List.of());
 	
 } // end class
