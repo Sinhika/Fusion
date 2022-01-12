@@ -1,0 +1,46 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_vanilla",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:stone_axe"
+            },
+            {
+              "item": "minecraft:stone_hoe"
+            },
+            {
+              "item": "minecraft:stone_pickaxe"
+            },
+            {
+              "item": "minecraft:stone_shovel"
+            },
+            {
+              "item": "minecraft:stone_sword"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:stone"
+        },
+        "cookingtime": 600,
+        "experience": 5.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "aesthetics_enabled",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:stonecutting",
+        "ingredient": {
+          "item": "fusion:thyrium_bricks"
+        },
+        "result": "fusion:thyrium_brick_slab",
+        "count": 2
+      }
+    }
+  ]
+}
