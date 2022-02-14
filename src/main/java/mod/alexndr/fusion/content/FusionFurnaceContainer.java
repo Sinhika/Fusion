@@ -5,7 +5,7 @@ import mod.alexndr.fusion.init.ModContainers;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.fmllegacy.network.IContainerFactory;
+import net.minecraftforge.network.IContainerFactory;
 
 /**
  * Smelt time is synced with Server: Each tick {@link #detectAndSendChanges()}

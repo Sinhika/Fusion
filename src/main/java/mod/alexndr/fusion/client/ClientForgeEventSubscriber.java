@@ -8,7 +8,7 @@ import mod.alexndr.fusion.content.ThyriumBow;
 import mod.alexndr.fusion.init.ModItems;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.FOVModifierEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -28,7 +28,7 @@ public class ClientForgeEventSubscriber
      * @param event
      */
     @SubscribeEvent
-    public static void onFovEvent(final FOVUpdateEvent event)
+    public static void onFovEvent(final FOVModifierEvent event)
     {
         Player player = event.getEntity();
         float baseFOV = event.getFov();

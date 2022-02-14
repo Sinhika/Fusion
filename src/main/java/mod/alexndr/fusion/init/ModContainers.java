@@ -3,10 +3,10 @@ package mod.alexndr.fusion.init;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionFurnaceContainer;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.common.extensions.IForgeContainerType;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 /**
  * Holds a list of all our {@link ContainerType}s.
@@ -26,5 +26,5 @@ public final class ModContainers
 
     public static RegistryObject<MenuType<FusionFurnaceContainer>> FUSION_FURNACE =
             CONTAINER_TYPES.register("fusion_furnace", 
-                    () -> IForgeContainerType.create(FusionFurnaceContainer::new));
+                    () -> IForgeMenuType.create(FusionFurnaceContainer::new));
 } // end class
