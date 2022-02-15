@@ -1,0 +1,49 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_netherrocks",
+              "type": "fusion:flag"
+            },
+            {
+              "modid": "netherrocks",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "netherrocks:illumenite_sword"
+            },
+            {
+              "item": "netherrocks:illumenite_helmet"
+            },
+            {
+              "item": "netherrocks:illumenite_boots"
+            }
+          ],
+          {
+            "item": "minecraft:netherrack"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:glowstone_dust"
+        },
+        "output": {
+          "item": "netherrocks:raw_illumenite"
+        },
+        "cookingtime": 600,
+        "experience": 10.0
+      }
+    }
+  ]
+}

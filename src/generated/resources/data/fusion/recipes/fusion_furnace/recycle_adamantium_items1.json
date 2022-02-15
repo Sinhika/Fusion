@@ -1,0 +1,64 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_simpleores",
+              "type": "fusion:flag"
+            },
+            {
+              "modid": "simpleores",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloying",
+        "inputs": [
+          [
+            {
+              "item": "simpleores:adamantium_axe"
+            },
+            {
+              "item": "simpleores:adamantium_boots"
+            },
+            {
+              "item": "simpleores:adamantium_helmet"
+            },
+            {
+              "item": "simpleores:adamantium_hoe"
+            },
+            {
+              "item": "simpleores:adamantium_pickaxe"
+            },
+            {
+              "item": "simpleores:adamantium_shears"
+            },
+            {
+              "item": "simpleores:adamantium_shovel"
+            },
+            {
+              "item": "simpleores:adamantium_sword"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "simpleores:raw_adamantium"
+        },
+        "cookingtime": 600,
+        "experience": 15.0
+      }
+    }
+  ]
+}
