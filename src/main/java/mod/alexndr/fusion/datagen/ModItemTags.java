@@ -3,12 +3,12 @@ package mod.alexndr.fusion.datagen;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModItems;
+import mod.alexndr.simplecorelib.datagen.MiningItemTags;
 import mod.alexndr.simplecorelib.helpers.TagUtils;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class ModItemTags extends ItemTagsProvider
+public class ModItemTags extends MiningItemTags
 {
     public ModItemTags(DataGenerator dataGenerator, ExistingFileHelper existingFileHelper)
     {
@@ -19,6 +19,7 @@ public class ModItemTags extends ItemTagsProvider
     @Override
     protected void addTags()
     {
+        super.addTags();
         registerDoorsSlabsAndStairs();
         registerDustTags();
         registerStorageBlockTags();

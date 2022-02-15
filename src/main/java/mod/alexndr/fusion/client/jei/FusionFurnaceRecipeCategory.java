@@ -48,7 +48,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper)
     {
-        this.icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.fusion_furnace.get()));
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.fusion_furnace.get()));
         localizedName = new TranslatableComponent("fusion.jei.fusion_category");
         backgroundLocation = 
                         new ResourceLocation(Fusion.MODID, 

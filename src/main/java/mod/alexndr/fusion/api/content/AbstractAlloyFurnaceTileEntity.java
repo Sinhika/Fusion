@@ -79,7 +79,6 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     protected static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
     protected static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
     
-    // TODO - change to int in 1.17.1
     public int smeltTimeProgress = 0;
     public int maxSmeltTime = -1;
     
@@ -674,16 +673,16 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
             this.level.setBlockAndUpdate(getBlockPos(), this.getBlockState().setValue(AbstractAlloyFurnaceBlock.LIT, Boolean.valueOf(this.isBurning())));
         }
 
-    } // end read()
+    } // end load()
 
     /**
      * Write data from the tile into a compound tag for saving to disk.
      */
     @Nonnull
     @Override
-    public CompoundTag save(final CompoundTag compound)
+    public void saveAdditional(final CompoundTag compound)
     {
-        super.save(compound);
+        super.saveAdditional(compound);
         compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
         compound.putInt(SMELT_TIME_LEFT_TAG, this.smeltTimeProgress);
         compound.putInt(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
@@ -699,13 +698,12 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
            compound.putInt("RecipeAmount" + ii, entry.getValue());
            ++ii;
         }
-        return compound;
-    }
+    } // end saveAdditional()
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, save(new CompoundTag()));
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     /**
@@ -735,7 +733,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     @Nonnull
     public CompoundTag getUpdateTag()
     {
-        return this.save(new CompoundTag());
+        return this.saveWithFullMetadata();
     }
 
     /**
