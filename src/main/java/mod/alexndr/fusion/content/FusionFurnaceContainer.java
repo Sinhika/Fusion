@@ -2,10 +2,10 @@ package mod.alexndr.fusion.content;
 
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceContainer;
 import mod.alexndr.fusion.init.ModContainers;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.network.IContainerFactory;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * Smelt time is synced with Server: Each tick {@link #detectAndSendChanges()}
@@ -22,27 +22,15 @@ import net.minecraftforge.network.IContainerFactory;
  *
  * @author Cadiboo
  */
-public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer<FusionFurnaceBlock>
+public class FusionFurnaceContainer extends AbstractAlloyFurnaceContainer
 {
-    /**
-     * Logical-client-side constructor, called from {@link ContainerType#create(IContainerFactory)}
-     * Calls the logical-server-side constructor with the TileEntity at the pos in the PacketBuffer
-     */
-    public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, 
-                                  final FriendlyByteBuf data)
-    {
-    	// MenuType<?> menutype, RecipeType<? extends AbstractCookingRecipe> recipetype, int id, Inventory inv
-        super(ModContainers.FUSION_FURNACE.get(), windowId, playerInventory);
-    }
-
-    /**
+     /**
      * Constructor called logical-server-side from {@link FusionFurnaceTileEntity#createMenu}
      * and logical-client-side from {@link #FusionFurnaceContainer(int, PlayerInventory, PacketBuffer)}
      */
-    public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, final FusionFurnaceTileEntity tileEntity)
+    public FusionFurnaceContainer(final int windowId, final Inventory playerInventory, final BlockPos pos, Player playerEntity)
     {
-        super(ModContainers.FUSION_FURNACE.get(), windowId, playerInventory, tileEntity.inventory, tileEntity.dataAccess,
-        		tileEntity);
+        super(ModContainers.FUSION_FURNACE.get(), windowId, pos, playerInventory, playerEntity);
  
     }  // end-ctor server-side
     

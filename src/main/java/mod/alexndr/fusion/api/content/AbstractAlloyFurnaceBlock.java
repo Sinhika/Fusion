@@ -68,15 +68,11 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
     @Override
     public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit)
     {
-		if (worldIn.isClientSide)
-		{
-			return InteractionResult.SUCCESS;
-		} 
-		else
+		if (!worldIn.isClientSide)
 		{
 			this.openContainer(worldIn, pos, player);
-			return InteractionResult.CONSUME;
 		}
+        return InteractionResult.SUCCESS;
     } // end onBlockActivated()
 
     /**

@@ -26,5 +26,6 @@ public final class ModContainers
 
     public static RegistryObject<MenuType<FusionFurnaceContainer>> FUSION_FURNACE =
             CONTAINER_TYPES.register("fusion_furnace", 
-                    () -> IForgeMenuType.create(FusionFurnaceContainer::new));
+                    () -> IForgeMenuType.create((windowId, inv, data) 
+                            -> new FusionFurnaceContainer(windowId, inv, data.readBlockPos(), inv.player)));
 } // end class

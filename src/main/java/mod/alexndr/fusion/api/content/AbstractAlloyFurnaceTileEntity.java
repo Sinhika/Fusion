@@ -18,7 +18,7 @@ import com.google.common.collect.Maps;
 import mod.alexndr.fusion.api.recipe.FusionRecipe;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModRecipeTypes;
-import mod.alexndr.simplecorelib.helpers.ItemStackHandlerUtils;
+import mod.alexndr.simplecorelib.helpers.SidedWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -29,15 +29,14 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.ExperienceOrb;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,11 +48,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import net.minecraftforge.items.wrapper.RangedWrapper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import net.minecraftforge.network.NetworkHooks;
 
-public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockEntity
+public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
 {
     protected static final Logger LOGGER = LogManager.getLogger();
 
@@ -101,6 +98,47 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     protected ItemStack failedMatch2 = ItemStack.EMPTY;
     protected ItemStack failedMatchC = ItemStack.EMPTY;
     
+    public final ContainerData dataAccess = new ContainerData() 
+    {
+        public int get(int index) {
+            switch (index)
+            {
+            case DATA_FUEL_TIME_LEFT:
+                return AbstractAlloyFurnaceTileEntity.this.fuelBurnTimeLeft;
+            case DATA_FUEL_TIME_MAX:
+                return AbstractAlloyFurnaceTileEntity.this.maxFuelBurnTime;
+            case DATA_COOKING_PROGRESS:
+                return AbstractAlloyFurnaceTileEntity.this.smeltTimeProgress;
+            case DATA_COOKING_TOTAL_TIME:
+                return AbstractAlloyFurnaceTileEntity.this.maxSmeltTime;
+            default:
+                return 0;
+            }
+        } // end get()
+
+        public void set(int index, int value) {
+            switch (index)
+            {
+            case DATA_FUEL_TIME_LEFT:
+                AbstractAlloyFurnaceTileEntity.this.fuelBurnTimeLeft = value;
+                break;
+            case DATA_FUEL_TIME_MAX:
+                AbstractAlloyFurnaceTileEntity.this.maxFuelBurnTime = value;
+                break;
+            case DATA_COOKING_PROGRESS:
+                AbstractAlloyFurnaceTileEntity.this.smeltTimeProgress = value;
+                break;
+            case DATA_COOKING_TOTAL_TIME:
+                AbstractAlloyFurnaceTileEntity.this.maxSmeltTime = value;
+            }
+        } // end set()
+
+        public int getCount() {
+            return NUM_DATA_VALUES;
+        }
+    }; // end AbstractAlloyFurnaceTileEntity$ContainerData
+
+    
     public final ItemStackHandler inventory = new ItemStackHandler(5)
     {
         /**
@@ -139,52 +177,159 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
         } // end ItemStackHandler.onContentsChanged()
     };
  
-	public final ContainerData dataAccess = new ContainerData() 
-	{
-		public int get(int index) {
-			switch (index)
-			{
-			case DATA_FUEL_TIME_LEFT:
-				return AbstractAlloyFurnaceTileEntity.this.fuelBurnTimeLeft;
-			case DATA_FUEL_TIME_MAX:
-				return AbstractAlloyFurnaceTileEntity.this.maxFuelBurnTime;
-			case DATA_COOKING_PROGRESS:
-				return AbstractAlloyFurnaceTileEntity.this.smeltTimeProgress;
-			case DATA_COOKING_TOTAL_TIME:
-				return AbstractAlloyFurnaceTileEntity.this.maxSmeltTime;
-			default:
-				return 0;
-			}
-		} // end get()
+    public class AlloyFurnaceHandler extends SidedWrapper 
+    {
 
-		public void set(int index, int value) {
-			switch (index)
-			{
-			case DATA_FUEL_TIME_LEFT:
-				AbstractAlloyFurnaceTileEntity.this.fuelBurnTimeLeft = value;
-				break;
-			case DATA_FUEL_TIME_MAX:
-				AbstractAlloyFurnaceTileEntity.this.maxFuelBurnTime = value;
-				break;
-			case DATA_COOKING_PROGRESS:
-				AbstractAlloyFurnaceTileEntity.this.smeltTimeProgress = value;
-				break;
-			case DATA_COOKING_TOTAL_TIME:
-				AbstractAlloyFurnaceTileEntity.this.maxSmeltTime = value;
-			}
-		} // end set()
+        public AlloyFurnaceHandler(IItemHandlerModifiable inventory, Direction side)
+        {
+            super(inventory, side);
+        }
 
-		public int getCount() {
-			return NUM_DATA_VALUES;
-		}
-	}; // end AbstractAlloyFurnaceTileEntity$ContainerData
+        @Nonnull
+        @Override
+        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) 
+        {
+            // no, you can't put stuff in the output slot.
+            if (slot == OUTPUT_SLOT) 
+            {
+                return stack;
+            }
+            // catalysts go in top
+            if (slot == CATALYST_SLOT && this.side == Direction.UP) {
+                return super.insertItem(slot, stack, simulate);
+            }
+            // fuel goes in front or back
+            if (slot == FUEL_SLOT && (this.side == Direction.NORTH || this.side == Direction.SOUTH)) {
+                return super.insertItem(slot, stack, simulate);
+            }
+            // inputs go in left or right.
+            if ((slot == INPUT1_SLOT && this.side == Direction.EAST) 
+                    || (slot == INPUT2_SLOT && this.side == Direction.WEST)) 
+            {
+                return super.insertItem(slot, stack, simulate);
+            }
+            return stack;
+        } // end insertItem()
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate)
+        {
+            // you can extract buckets from the fuel or catalyst slot.
+            if ((slot == FUEL_SLOT || slot == CATALYST_SLOT) && this.side == Direction.DOWN)
+            {
+                ItemStack pstack = this.getStackInSlot(slot);
+                if (pstack.is(Items.BUCKET))
+                {
+                    return super.extractItem(slot, amount, simulate);
+                }
+                else {
+                    return ItemStack.EMPTY;
+                }
+            }
+            // you can extract anything from the output slot.
+            if (slot == OUTPUT_SLOT && this.side == Direction.DOWN) {
+                return super.extractItem(slot, amount, simulate);
+            }
+            
+            return ItemStack.EMPTY;
+        } // end extractItem()
+
+    }; // end class AlloyFurnaceHandler
     
-    private final LazyOptional<ItemStackHandler> inventoryCapabilityExternal = LazyOptional.of(() -> this.inventory);
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalUp = LazyOptional.of(() -> new RangedWrapper(this.inventory, CATALYST_SLOT, CATALYST_SLOT + 1));
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalLeft = LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT1_SLOT, INPUT1_SLOT + 1));
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalRight = LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT2_SLOT, INPUT2_SLOT + 1));
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = LazyOptional.of(() -> new RangedWrapper(this.inventory, OUTPUT_SLOT, OUTPUT_SLOT + 1));
-    private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalBack = LazyOptional.of(() -> new RangedWrapper(this.inventory, FUEL_SLOT, FUEL_SLOT + 1));
+    protected LazyOptional<ItemStackHandler> inventoryCapabilityInternal = LazyOptional.of(() -> this.inventory);
+    protected LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalUp = 
+            LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.UP));
+    protected LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalLeft = 
+            LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.EAST));
+    protected LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalRight = 
+            LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.WEST));
+    protected LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = 
+            LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.DOWN));
+    protected LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalBack = 
+            LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.SOUTH));
+
+    /**
+     * Retrieves the Optional handler for the capability requested on the specific side.
+     *
+     * @param cap  The capability to check
+     * @param side The Direction to check from. CAN BE NULL! Null is defined to represent 'internal' or 'self'
+     * @return The requested an optional holding the requested capability.
+     */
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull final Capability<T> cap, @Nullable final Direction side)
+    {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) 
+        {
+            if (side == null)
+                return inventoryCapabilityInternal.cast();
+            
+            /* fix side for any rotation... */
+            Direction actual_facing = this.getBlockState().getValue(HorizontalDirectionalBlock.FACING);
+            Direction default_facing = Direction.NORTH;
+            
+            Direction true_side;
+            if (side == Direction.UP || side == Direction.DOWN)
+            {
+                true_side = side;
+            }
+            else if (actual_facing.getOpposite() == default_facing) {
+                true_side = side.getOpposite();
+            }
+            else if (actual_facing.getClockWise() == default_facing) {
+                true_side = side.getClockWise();
+            }
+            else if (actual_facing.getCounterClockWise() == default_facing) {
+                true_side = side.getCounterClockWise();
+            }
+            else {
+                true_side = side;
+            }
+            switch (true_side) {
+                case DOWN:
+                    return inventoryCapabilityExternalDown.cast();
+                case UP:
+                    return inventoryCapabilityExternalUp.cast();
+                case NORTH:
+                case SOUTH:
+                    return inventoryCapabilityExternalBack.cast();
+                case WEST:
+                    return inventoryCapabilityExternalRight.cast();
+                case EAST:
+                    return inventoryCapabilityExternalLeft.cast();
+            }
+        }
+        return super.getCapability(cap, side);
+    } // end getCapability()
+
+
+    @Override
+    public void invalidateCaps()
+    {
+        super.invalidateCaps();
+        // We need to invalidate our capability references so that any cached references (by other mods) don't
+        // continue to reference our capabilities and try to use them and/or prevent them from being garbage collected
+        inventoryCapabilityInternal.invalidate();
+        inventoryCapabilityExternalUp.invalidate();
+        inventoryCapabilityExternalDown.invalidate();
+        inventoryCapabilityExternalBack.invalidate();
+        inventoryCapabilityExternalLeft.invalidate();
+        inventoryCapabilityExternalRight.invalidate();
+    }
+
+    
+    @Override
+    public void reviveCaps()
+    {
+        super.reviveCaps();
+        inventoryCapabilityInternal = LazyOptional.of(() -> this.inventory);
+        inventoryCapabilityExternalUp = LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.UP));
+        inventoryCapabilityExternalLeft = LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.EAST));
+        inventoryCapabilityExternalRight = LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.WEST));
+        inventoryCapabilityExternalDown = LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.DOWN));
+        inventoryCapabilityExternalBack = LazyOptional.of(() -> new AlloyFurnaceHandler(this.inventory, Direction.SOUTH));
+    }
+
 
     public AbstractAlloyFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos blockpos, BlockState blockstate)
     {
@@ -192,22 +337,6 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
         this.fuelMultiplier = 1.0;
         this.hasFuelMultiplier = false;
     }
-
-	@Override
-	public int getContainerSize() {
-		return this.inventory.getSlots();
-	}
-
-	@Override
-	public boolean isEmpty() 
-	{
-		for (int ii=0; ii < this.inventory.getSlots(); ii++) {
-			if (!this.inventory.getStackInSlot(ii).isEmpty()) {
-				return false;
-			}
-		}
-		return true;
-	} //  end isEmpty()
 
     /**
      * @return If the stack is not empty and has an alloying recipe associated with it
@@ -245,74 +374,11 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     {
         return FurnaceBlockEntity.isFuel(stack);
     }
-  
-	@Override
-	public ItemStack getItem(int slot) 
-	{
-		return this.inventory.getStackInSlot(slot);
-	}
-
-	@Override
-	public ItemStack removeItem(int slot, int count) 
-	{
-		return ItemStackHandlerUtils.removeItem(this.inventory, slot, count);
-	} // end removeItem
-
-	@Override
-	public ItemStack removeItemNoUpdate(int slot) 
-	{
-		return ItemStackHandlerUtils.takeItem(this.inventory, slot);
-	} // end-removeItemNoUpdate
-
-	@Override
-	public void setItem(int slot, ItemStack stack) 
-	{
-	      ItemStack itemstack = this.inventory.getStackInSlot(slot);
-	      boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
-	      
-	      if (stack.getCount() > this.inventory.getSlotLimit(slot))
-	      {
-	    	  stack.setCount(this.inventory.getSlotLimit(slot));
-	      }
-	      this.inventory.setStackInSlot(slot, stack);
-
-	      if ((slot == INPUT1_SLOT || slot == INPUT2_SLOT) && !flag) 
-	      {
-	         this.maxSmeltTime = getAlloyTime(stack, inventory.getStackInSlot(INPUT2_SLOT), inventory.getStackInSlot(CATALYST_SLOT));
-	         this.smeltTimeProgress = 0;
-	         this.setChanged();
-	      }
-	} // end setItem()
-
-	
-	@Override
-	public void clearContent() 
-	{
-		for (int ii = 0; ii < this.inventory.getSlots(); ii++)
-		{
-			this.inventory.setStackInSlot(ii, ItemStack.EMPTY);
-		}
-	} // end clearContent()
-
 	
     public boolean isBurning()
     {
         return this.fuelBurnTimeLeft > 0;
     }
-
-	@Override
-	public boolean stillValid(Player player) 
-	{
-		if (this.level.getBlockEntity(this.worldPosition) != this) 
-		{
-			return false;
-		} 
-		else {
-			return player.distanceToSqr((double) this.worldPosition.getX() + 0.5D,
-					(double) this.worldPosition.getY() + 0.5D, (double) this.worldPosition.getZ() + 0.5D) <= 64.0D;
-		}
-	} // end-stillValid
-
 
     /**
      * @return The smelting recipe for the input stack
@@ -587,60 +653,6 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
     } // end tick()
 
     /**
-     * Retrieves the Optional handler for the capability requested on the specific side.
-     *
-     * @param cap  The capability to check
-     * @param side The Direction to check from. CAN BE NULL! Null is defined to represent 'internal' or 'self'
-     * @return The requested an optional holding the requested capability.
-     */
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull final Capability<T> cap, @Nullable final Direction side)
-    {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) 
-        {
-            if (side == null)
-                return inventoryCapabilityExternal.cast();
-            
-            /* fix side for any rotation... */
-            Direction actual_facing = this.getBlockState().getValue(HorizontalDirectionalBlock.FACING);
-            Direction default_facing = Direction.NORTH;
-            
-            Direction true_side;
-            if (side == Direction.UP || side == Direction.DOWN)
-            {
-                true_side = side;
-            }
-            else if (actual_facing.getOpposite() == default_facing) {
-                true_side = side.getOpposite();
-            }
-            else if (actual_facing.getClockWise() == default_facing) {
-                true_side = side.getClockWise();
-            }
-            else if (actual_facing.getCounterClockWise() == default_facing) {
-                true_side = side.getCounterClockWise();
-            }
-            else {
-                true_side = side;
-            }
-            switch (true_side) {
-                case DOWN:
-                    return inventoryCapabilityExternalDown.cast();
-                case UP:
-                    return inventoryCapabilityExternalUp.cast();
-                case NORTH:
-                case SOUTH:
-                    return inventoryCapabilityExternalBack.cast();
-                case WEST:
-                    return inventoryCapabilityExternalRight.cast();
-                case EAST:
-                    return inventoryCapabilityExternalLeft.cast();
-            }
-        }
-        return super.getCapability(cap, side);
-    } // end getCapability()
-
-    /**
      * Read saved data from disk into the tile.
      */
     @Override
@@ -748,36 +760,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BaseContainerBlockE
         this.load(tag);
     }
     
-    @Override
-    public void invalidateCaps()
-    {
-        super.invalidateCaps();
-        // We need to invalidate our capability references so that any cached references (by other mods) don't
-        // continue to reference our capabilities and try to use them and/or prevent them from being garbage collected
-        inventoryCapabilityExternal.invalidate();
-        inventoryCapabilityExternalUp.invalidate();
-        inventoryCapabilityExternalDown.invalidate();
-        inventoryCapabilityExternalBack.invalidate();
-        inventoryCapabilityExternalLeft.invalidate();
-        inventoryCapabilityExternalRight.invalidate();
-    }
 
-
-    /**
-     * Called from {@link NetworkHooks#openGui}
-     * (which is called from {@link ElectricFurnaceBlock#onBlockActivated} on the logical server)
-     *
-     * @return The logical-server-side Container for this TileEntity
-     */
-    @Nonnull
-    @Override
-    public abstract AbstractContainerMenu createMenu(final int windowId, final Inventory inv);
-
-	@Override
-	public AbstractContainerMenu createMenu(int windowId, Inventory inv, Player player) {
-		return createMenu(windowId, inv);
-	}
-    
     public void grantExperience(Player player)
     {
         List<Recipe<?>> list = Lists.newArrayList();

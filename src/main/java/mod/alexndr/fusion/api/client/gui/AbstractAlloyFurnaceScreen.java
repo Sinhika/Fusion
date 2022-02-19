@@ -10,7 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceContainer<?>>  extends AbstractContainerScreen<T>
+public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceContainer>  extends AbstractContainerScreen<T>
 {
 
     protected final ResourceLocation BACKGROUND_TEXTURE;
