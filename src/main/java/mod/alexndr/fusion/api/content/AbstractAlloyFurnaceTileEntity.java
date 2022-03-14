@@ -150,7 +150,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     {
             if (stack.isEmpty())
                 return false;
-            boolean is_input = FusionRecipe.isInput(stack);
+            boolean is_input = FusionRecipe.isInput(stack, this.level);
     //        Fusion.LOGGER.debug(Fusion.MODID + ": isInput() returns " + is_input);
             return is_input;
         }
@@ -159,7 +159,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends TileEntity implemen
     {
             if (stack.isEmpty())
                 return false;
-            boolean is_cata = FusionRecipe.isCatalyst(stack); 
+            boolean is_cata = FusionRecipe.isCatalyst(stack, this.level); 
    //        Fusion.LOGGER.debug(Fusion.MODID + ": isCatalyst() returns " + is_cata);
             return is_cata;
         }

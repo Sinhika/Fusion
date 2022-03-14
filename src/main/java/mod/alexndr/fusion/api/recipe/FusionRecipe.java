@@ -22,7 +22,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -53,11 +52,12 @@ public class FusionRecipe implements IFusionRecipe
         this.experience = experience;
     }
 
-    private static void initLegalisms()
+    private static void initLegalisms(World level)
     {
         Fusion.LOGGER.info(Fusion.MODID + ": in FusionRecipe.InitLegalisms()");
-        Iterable<IRecipe<?>> recipes = 
-                ServerLifecycleHooks.getCurrentServer().getRecipeManager().getRecipes();
+        
+        Iterable<IRecipe<?>> recipes;
+        recipes = level.getRecipeManager().getRecipes();
         for (IRecipe<?> recipe: recipes)
         {
             // we only want Fusion recipes.
@@ -79,18 +79,18 @@ public class FusionRecipe implements IFusionRecipe
         } // end-for
     } // end initLegalisms
 
-    public static boolean isInput(ItemStack stack)
+    public static boolean isInput(ItemStack stack, World level)
     {
         if (legal_inputs.isEmpty()) {
-            initLegalisms();
+            initLegalisms(level);
         }
         return legal_inputs.contains(stack.getItem());
     }
    
-    public static boolean isCatalyst(ItemStack stack)
+    public static boolean isCatalyst(ItemStack stack, World level)
     {
         if (legal_catalysts.isEmpty()) {
-            initLegalisms();
+            initLegalisms(level);
         }
         return legal_catalysts.contains(stack.getItem());
     }
