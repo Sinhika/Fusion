@@ -13,12 +13,12 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModRecipeTypes
 {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = 
-            DeferredRegister.create(Registry.RECIPE_TYPE_REGISTRY.registry(), Fusion.MODID);
+            DeferredRegister.create(Registry.RECIPE_TYPE_REGISTRY.location(), Fusion.MODID);
     
 //    public static final RecipeType<IFusionRecipe> FUSION_TYPE = RecipeType.register(IFusionRecipe.TYPE_ID.toString());
 //    Registry.register(Registry.RECIPE_TYPE, IFusionRecipe.TYPE_ID, ModRecipeTypes.FUSION_TYPE);
 
-    public static final RegistryObject<RecipeType<IFusionRecipe>> FUSION_TYPE = RECIPE_TYPES.register(IFusionRecipe.UID, 
+    public static final RegistryObject<RecipeType<IFusionRecipe>> FUSION_TYPE = RECIPE_TYPES.register(IFusionRecipe.TYPE_ID.getPath(), 
            ()->RecipeType.register(IFusionRecipe.TYPE_ID.toString())) ;
             
     
@@ -28,7 +28,7 @@ public class ModRecipeTypes
     //evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(IFusionRecipe.TYPE_ID));
     
     public static final RegistryObject<RecipeSerializer<FusionRecipe>> FUSION_SERIALIZER = 
-            RECIPE_SERIALIZERS.register(IFusionRecipe.UID, () -> new FusionRecipe.FusionRecipeSerializer());
+            RECIPE_SERIALIZERS.register(IFusionRecipe.TYPE_ID.getPath(), () -> new FusionRecipe.FusionRecipeSerializer());
     
 
 } // end class ModRecipeTypes
