@@ -12,8 +12,9 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public interface IFusionRecipe extends Recipe<RecipeWrapper>
 {
-    ResourceLocation TYPE_ID = new ResourceLocation(Fusion.MODID, "alloying");
-
+    String UID = "alloyiung";
+    ResourceLocation TYPE_ID = new ResourceLocation(Fusion.MODID, IFusionRecipe.UID);
+    
     @Override
     default boolean canCraftInDimensions(int width, int height)
     {

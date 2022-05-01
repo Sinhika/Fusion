@@ -1,6 +1,6 @@
 package mod.alexndr.fusion.loot;
 
-import mod.alexndr.simplecorelib.helpers.InjectionTableLookup;
+import mod.alexndr.simplecorelib.api.helpers.InjectionTableLookup;
 
 @SuppressWarnings("serial")
 public class FusionInjectionLookup extends InjectionTableLookup

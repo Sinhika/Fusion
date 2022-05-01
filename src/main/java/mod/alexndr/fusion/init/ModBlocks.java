@@ -2,7 +2,7 @@ package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionFurnaceBlock;
-import mod.alexndr.simplecorelib.helpers.LightUtils;
+import mod.alexndr.simplecorelib.api.helpers.LightUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.IronBarsBlock;

@@ -1,16 +1,12 @@
 package mod.alexndr.fusion.client.jei;
 
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.client.ClientModEventSubscriber;
-import mod.alexndr.simplecorelib.client.jei.AlternateFuelRecipe;
-import mod.alexndr.simplecorelib.client.jei.VeryAbstractFurnaceVariantCategory;
+import mod.alexndr.simplecorelib.api.client.jei.AlternateFuelRecipe;
+import mod.alexndr.simplecorelib.api.client.jei.VeryAbstractFurnaceVariantCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
@@ -33,9 +29,8 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Alter
 		// width of the recipe depends on the text, which is different in each language
 		Minecraft minecraft = Minecraft.getInstance();
 		Font fontRenderer = minecraft.font;
-		AlternateFuelRecipe.init(600);	
 		
-		Component smeltCountText = AlternateFuelRecipe.createSmeltCountText(100000);
+		Component smeltCountText = createSmeltCountText(100000);
 		int stringWidth = fontRenderer.width(smeltCountText.getString());
 
 		background = guiHelper.drawableBuilder(VeryAbstractFurnaceVariantCategory.RECIPE_GUI_VANILLA, 0, 134, 18, 34)
@@ -74,21 +69,6 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Alter
 	public IDrawable getIcon()
 	{
 		return flameTransparentBackground;
-	}
-
-	@Override
-	public void setIngredients(AlternateFuelRecipe recipe, IIngredients ingredients)
-	{
-		ingredients.setInputs(VanillaTypes.ITEM, recipe.getInputs());
-	}
-
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, AlternateFuelRecipe recipe, IIngredients ingredients)
-	{
-		IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
-
-		guiItemStacks.init(fuelSlot, true, 0, 16);
-		guiItemStacks.set(ingredients);
 	}
 
 } // end class

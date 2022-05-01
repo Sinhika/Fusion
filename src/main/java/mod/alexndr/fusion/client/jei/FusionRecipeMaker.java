@@ -19,7 +19,7 @@ public final class FusionRecipeMaker
 		Collection<Recipe<?>> recipes = recipeManager.getRecipes();
         List<Recipe<?>> fusion_recipes = new ArrayList<Recipe<?>> ();
         fusion_recipes = recipes.stream()
-        		.filter(t -> t.getType() == ModRecipeTypes.FUSION_TYPE)
+        		.filter(t -> t.getType() == ModRecipeTypes.FUSION_TYPE.get())
         		.toList();
         return fusion_recipes;
 	}

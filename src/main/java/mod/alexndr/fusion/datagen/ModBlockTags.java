@@ -4,8 +4,8 @@ import java.util.List;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModBlocks;
-import mod.alexndr.simplecorelib.datagen.MiningBlockTags;
-import mod.alexndr.simplecorelib.helpers.TagUtils;
+import mod.alexndr.simplecorelib.api.datagen.MiningBlockTags;
+import mod.alexndr.simplecorelib.api.helpers.TagUtils;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

@@ -1,6 +1,6 @@
 package mod.alexndr.fusion.config;
 
-import mod.alexndr.simplecorelib.config.SimpleConfig;
+import mod.alexndr.simplecorelib.api.config.SimpleConfig;
 
 public class FusionConfig extends SimpleConfig
 {

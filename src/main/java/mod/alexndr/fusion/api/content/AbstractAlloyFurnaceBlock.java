@@ -48,6 +48,7 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
         );
     }
 
+    @Override
     @Nullable
     public abstract <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState bstate, BlockEntityType<T> entityType);
 
@@ -65,6 +66,7 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
      * @deprecated Call via {@link BlockState#onBlockActivated(World, PlayerEntity, Hand, BlockRayTraceResult)} whenever possible.
      * Implementing/overriding is fine.
      */
+    @SuppressWarnings("dep-ann")
     @Override
     public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit)
     {
@@ -84,6 +86,7 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
+    @Override
     public boolean hasAnalogOutputSignal(BlockState bstate) {
         return true;
      }
@@ -100,6 +103,7 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
      *
      * @deprecated call via {@link BlockState#rotate(Rotation)} whenever possible. Implementing/overriding is fine.
      */
+    @SuppressWarnings("dep-ann")
     @Override
     public BlockState rotate(BlockState state, Rotation rot)
     {
@@ -112,6 +116,7 @@ public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
      *
      * @deprecated call via {@link BlockState#mirror(Mirror)} whenever possible. Implementing/overriding is fine.
      */
+    @SuppressWarnings("dep-ann")
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn)
     {

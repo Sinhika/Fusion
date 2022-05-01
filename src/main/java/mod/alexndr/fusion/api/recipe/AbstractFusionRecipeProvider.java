@@ -82,7 +82,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
         @Override
         public RecipeSerializer<?> getType()
         {
-            return ModRecipeTypes.FUSION_SERIALIZER;
+            return ModRecipeTypes.FUSION_SERIALIZER.get();
         }
 
         @Override

@@ -18,7 +18,7 @@ import com.google.common.collect.Maps;
 import mod.alexndr.fusion.api.recipe.FusionRecipe;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModRecipeTypes;
-import mod.alexndr.simplecorelib.helpers.SidedWrapper;
+import mod.alexndr.simplecorelib.api.helpers.SidedWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -100,6 +100,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
     
     public final ContainerData dataAccess = new ContainerData() 
     {
+        @Override
         public int get(int index) {
             switch (index)
             {
@@ -116,6 +117,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
             }
         } // end get()
 
+        @Override
         public void set(int index, int value) {
             switch (index)
             {
@@ -133,6 +135,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
             }
         } // end set()
 
+        @Override
         public int getCount() {
             return NUM_DATA_VALUES;
         }
@@ -408,7 +411,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
         else
         {
             IFusionRecipe rec 
-                = level.getRecipeManager().getRecipeFor(ModRecipeTypes.FUSION_TYPE, inv0, level).orElse(null);
+                = level.getRecipeManager().getRecipeFor(ModRecipeTypes.FUSION_TYPE.get(), inv0, level).orElse(null);
             if (rec == null) 
             {
                 failedMatch1 = inv.getItem(INPUT1_SLOT);
@@ -742,6 +745,7 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
      * The default implementation ({@link TileEntity#handleUpdateTag}) calls {@link #writeInternal)}
      * which doesn't save any of our extra data so we override it to call {@link #write} instead
      */
+    @Override
     @Nonnull
     public CompoundTag getUpdateTag()
     {

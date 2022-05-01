@@ -3,15 +3,12 @@ package mod.alexndr.fusion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.config.ConfigHelper;
 import mod.alexndr.fusion.config.ConfigHolder;
 import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModBlocks;
-import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTabGroups;
-import mod.alexndr.simplecorelib.config.FlagCondition;
-import net.minecraft.core.Registry;
+import mod.alexndr.simplecorelib.api.config.FlagCondition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -99,8 +96,9 @@ public final class ModEventSubscriber
     {
         CraftingHelper.register(new FlagCondition.Serializer(FusionConfig.INSTANCE, 
                 new ResourceLocation(Fusion.MODID, "flag")));    
-        Registry.register(Registry.RECIPE_TYPE, IFusionRecipe.TYPE_ID, ModRecipeTypes.FUSION_TYPE);
-        evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(IFusionRecipe.TYPE_ID));
+        
+//        Registry.register(Registry.RECIPE_TYPE, IFusionRecipe.TYPE_ID, ModRecipeTypes.FUSION_TYPE);
+        //evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(IFusionRecipe.TYPE_ID));
     } // end onRegisterRecipeSerializers
     
 } // end class

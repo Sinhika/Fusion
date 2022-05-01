@@ -61,7 +61,7 @@ public class FusionRecipe implements IFusionRecipe
         for (Recipe<?> recipe: recipes)
         {
             // we only want Fusion recipes.
-             if (recipe.getType() != ModRecipeTypes.FUSION_TYPE) {
+             if (recipe.getType() != ModRecipeTypes.FUSION_TYPE.get()) {
                  continue;
              }
              
@@ -189,7 +189,7 @@ public class FusionRecipe implements IFusionRecipe
     @Override
     public RecipeSerializer<?> getSerializer()
     {
-        return ModRecipeTypes.FUSION_SERIALIZER;
+        return ModRecipeTypes.FUSION_SERIALIZER.get();
     }
 
     
