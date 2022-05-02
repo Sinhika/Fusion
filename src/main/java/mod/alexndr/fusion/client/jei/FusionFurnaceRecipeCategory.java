@@ -1,18 +1,17 @@
 package mod.alexndr.fusion.client.jei;
 
-import java.util.ArrayList;
-import java.util.List;
+import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
+import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
@@ -24,16 +23,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 
 public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecipe>
 {
     public static final ResourceLocation UID = new ResourceLocation(Fusion.MODID, "alloying");
     
-    private final static int INPUT1_SLOT = 0;
-    private final static int INPUT2_SLOT = 1;
-    private final static int CATALYST_SLOT = 2;
-    private final static int OUTPUT_SLOT = 3;
+//    private final static int INPUT1_SLOT = 0;
+//    private final static int INPUT2_SLOT = 1;
+//    private final static int CATALYST_SLOT = 2;
+//    private final static int OUTPUT_SLOT = 3;
     
     private final IDrawable background;
     private final Component localizedName;
@@ -126,25 +124,35 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
         return icon;
     }
 
-    @Override
-    public void setIngredients(IFusionRecipe recipe, IIngredients ingredients)
-    {
-        List<Ingredient> inputs = new ArrayList<Ingredient>(recipe.getIngredients());
-        inputs.add(recipe.getCatalyst());
-        ingredients.setInputIngredients(inputs);
-        ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
-    }
+//    @Override
+//    public void setIngredients(IFusionRecipe recipe, IIngredients ingredients)
+//    {
+//        List<Ingredient> inputs = new ArrayList<Ingredient>(recipe.getIngredients());
+//        inputs.add(recipe.getCatalyst());
+//        ingredients.setInputIngredients(inputs);
+//        ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
+//    }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IFusionRecipe recipe, IIngredients ingredients)
+    public void setRecipe(IRecipeLayoutBuilder builder, IFusionRecipe recipe, IFocusGroup focuses)
     {
-        IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
-        guiItemStacks.init(INPUT1_SLOT, true, 0, 30);
-        guiItemStacks.init(INPUT2_SLOT, true, 93, 30);
-        guiItemStacks.init(CATALYST_SLOT, true, 46, 2);
-        guiItemStacks.init(OUTPUT_SLOT, false, 46, 28);
-        
-        guiItemStacks.set(ingredients);
+        builder.addSlot(INPUT, 0, 30).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(INPUT, 93, 30).addIngredients(recipe.getIngredients().get(1));
+        builder.addSlot(INPUT, 46, 2).addIngredients(recipe.getCatalyst());
+        builder.addSlot(OUTPUT,46, 28).addItemStack(recipe.getResultItem());
     }
 
+//    @Override
+//    public void setRecipe(IRecipeLayout recipeLayout, IFusionRecipe recipe, IIngredients ingredients)
+//    {
+//        IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
+//        guiItemStacks.init(INPUT1_SLOT, true, 0, 30);
+//        guiItemStacks.init(INPUT2_SLOT, true, 93, 30);
+//        guiItemStacks.init(CATALYST_SLOT, true, 46, 2);
+//        guiItemStacks.init(OUTPUT_SLOT, false, 46, 28);
+//        
+//        guiItemStacks.set(ingredients);
+//    }
+
+    
 } // end class

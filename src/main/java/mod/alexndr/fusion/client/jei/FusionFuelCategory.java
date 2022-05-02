@@ -30,7 +30,7 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Alter
 		Minecraft minecraft = Minecraft.getInstance();
 		Font fontRenderer = minecraft.font;
 		
-		Component smeltCountText = createSmeltCountText(100000);
+		smeltCountText = createSmeltCountText(100000);
 		int stringWidth = fontRenderer.width(smeltCountText.getString());
 
 		background = guiHelper.drawableBuilder(VeryAbstractFurnaceVariantCategory.RECIPE_GUI_VANILLA, 0, 134, 18, 34)

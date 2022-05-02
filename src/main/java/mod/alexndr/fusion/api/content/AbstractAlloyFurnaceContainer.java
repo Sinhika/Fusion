@@ -155,6 +155,7 @@ public abstract class AbstractAlloyFurnaceContainer extends AbstractContainerMen
         return returnStack;
     } // end transferStackInSlot()
 
+    @Override
     public boolean stillValid(@Nonnull final Player player)
     {
         return stillValid(ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos()),

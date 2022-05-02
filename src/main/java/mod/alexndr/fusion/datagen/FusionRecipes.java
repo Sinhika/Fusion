@@ -409,6 +409,7 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
      * Builds an ICondition representing FlagCondition...
      *
      */
+    @Override
     public ICondition flag(String name)
     {
         return impl_flag(Fusion.MODID, FusionConfig.INSTANCE, name);

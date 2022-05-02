@@ -9,12 +9,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.runtime.IIngredientManager;
 import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.api.helpers.ErrorUtil;
-import mod.alexndr.simplecorelib.api.client.jei.AlternateFuelRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeHooks;
 
