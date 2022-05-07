@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "fusion:bronze_block",
+    "fusion:steel_block",
+    "fusion:bronze_bars",
+    "fusion:bronze_brick_slab",
+    "fusion:bronze_brick_stairs",
+    "fusion:bronze_bricks",
+    "fusion:bronze_door",
+    "fusion:steel_bars",
+    "fusion:steel_brick_slab",
+    "fusion:steel_brick_stairs",
+    "fusion:steel_bricks"
+  ]
+}

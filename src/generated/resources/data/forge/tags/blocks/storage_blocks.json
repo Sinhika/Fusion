@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:storage_blocks/bronze",
+    "#forge:storage_blocks/steel",
+    "#forge:storage_blocks/sinisite",
+    "#forge:storage_blocks/thyrium"
+  ]
+}

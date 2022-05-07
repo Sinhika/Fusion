@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "fusion:thyrium_axe"
+    },
+    {
+      "item": "fusion:thyrium_boots"
+    },
+    {
+      "item": "fusion:thyrium_chestplate"
+    },
+    {
+      "item": "fusion:thyrium_helmet"
+    },
+    {
+      "item": "fusion:thyrium_hoe"
+    },
+    {
+      "item": "fusion:thyrium_leggings"
+    },
+    {
+      "item": "fusion:thyrium_pickaxe"
+    },
+    {
+      "item": "fusion:thyrium_shovel"
+    },
+    {
+      "item": "fusion:thyrium_sword"
+    }
+  ],
+  "result": "fusion:thyrium_nugget",
+  "experience": 0.2,
+  "cookingtime": 200
+}

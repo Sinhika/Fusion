@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "fusion:large_sinisite_chunk"
+  },
+  "result": "fusion:sinisite_ingot",
+  "experience": 0.4,
+  "cookingtime": 100
+}

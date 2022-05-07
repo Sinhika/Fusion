@@ -1,0 +1,47 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_netherrocks",
+              "type": "fusion:flag"
+            },
+            {
+              "modid": "netherrocks",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          [
+            {
+              "item": "netherrocks:fyrite_chestplate"
+            },
+            {
+              "item": "netherrocks:fyrite_leggings"
+            }
+          ],
+          {
+            "item": "minecraft:netherrack"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:quartz"
+        },
+        "output": {
+          "item": "netherrocks:raw_fyrite",
+          "count": 2
+        },
+        "cookingtime": 600,
+        "experience": 20.0
+      }
+    }
+  ]
+}

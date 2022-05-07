@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_vanilla",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:anvil"
+            },
+            {
+              "item": "minecraft:chipped_anvil"
+            },
+            {
+              "item": "minecraft:damaged_anvil"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:raw_iron",
+          "count": 4
+        },
+        "cookingtime": 600,
+        "experience": 40.0
+      }
+    }
+  ]
+}

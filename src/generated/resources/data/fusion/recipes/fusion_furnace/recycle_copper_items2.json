@@ -1,0 +1,47 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_simpleores",
+              "type": "fusion:flag"
+            },
+            {
+              "modid": "simpleores",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          [
+            {
+              "item": "simpleores:copper_chestplate"
+            },
+            {
+              "item": "simpleores:copper_leggings"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:raw_copper",
+          "count": 2
+        },
+        "cookingtime": 600,
+        "experience": 20.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "bronze_making",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          {
+            "tag": "forge:ingots/copper"
+          },
+          {
+            "tag": "forge:ingots/tin"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:redstone"
+        },
+        "output": {
+          "item": "fusion:large_bronze_chunk"
+        },
+        "cookingtime": 600,
+        "experience": 8.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_netherrocks",
+              "type": "fusion:flag"
+            },
+            {
+              "modid": "netherrocks",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          [
+            {
+              "item": "netherrocks:argonite_axe"
+            },
+            {
+              "item": "netherrocks:argonite_hoe"
+            },
+            {
+              "item": "netherrocks:argonite_pickaxe"
+            },
+            {
+              "item": "netherrocks:argonite_shovel"
+            },
+            {
+              "item": "netherrocks:argonite_sword"
+            }
+          ],
+          {
+            "item": "minecraft:netherrack"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:quartz"
+        },
+        "output": {
+          "item": "netherrocks:raw_argonite"
+        },
+        "cookingtime": 600,
+        "experience": 15.0
+      }
+    }
+  ]
+}

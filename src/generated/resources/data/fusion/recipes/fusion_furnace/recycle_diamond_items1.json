@@ -1,0 +1,61 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_gems",
+              "type": "fusion:flag"
+            },
+            {
+              "flag": "recycle_vanilla",
+              "type": "fusion:flag"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:diamond_axe"
+            },
+            {
+              "item": "minecraft:diamond_boots"
+            },
+            {
+              "item": "minecraft:diamond_helmet"
+            },
+            {
+              "item": "minecraft:diamond_hoe"
+            },
+            {
+              "item": "minecraft:diamond_pickaxe"
+            },
+            {
+              "item": "minecraft:diamond_shovel"
+            },
+            {
+              "item": "minecraft:diamond_sword"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:diamond"
+        },
+        "cookingtime": 600,
+        "experience": 20.0
+      }
+    }
+  ]
+}

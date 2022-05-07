@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "steel_making",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          {
+            "tag": "minecraft:coals"
+          },
+          {
+            "item": "minecraft:iron_ingot"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:redstone"
+        },
+        "output": {
+          "item": "fusion:large_steel_chunk"
+        },
+        "cookingtime": 600,
+        "experience": 8.0
+      }
+    }
+  ]
+}

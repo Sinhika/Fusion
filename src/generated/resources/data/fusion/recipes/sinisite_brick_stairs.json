@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "aesthetics_enabled",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "S  ",
+          "SS ",
+          "SSS"
+        ],
+        "key": {
+          "S": {
+            "item": "fusion:sinisite_bricks"
+          }
+        },
+        "result": {
+          "item": "fusion:sinisite_brick_stairs",
+          "count": 4
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "thyrium_making",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          {
+            "tag": "forge:ingots/mythril"
+          },
+          {
+            "tag": "forge:ingots/adamantium"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:lapis_lazuli"
+        },
+        "output": {
+          "item": "fusion:medium_thyrium_chunk"
+        },
+        "cookingtime": 600,
+        "experience": 12.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "flag": "recycle_netherrocks",
+              "type": "fusion:flag"
+            },
+            {
+              "modid": "netherrocks",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          [
+            {
+              "item": "netherrocks:malachite_axe"
+            },
+            {
+              "item": "netherrocks:malachite_pickaxe"
+            },
+            {
+              "item": "netherrocks:malachite_shovel"
+            },
+            {
+              "item": "netherrocks:malachite_sword"
+            },
+            {
+              "item": "netherrocks:malachite_hoe"
+            },
+            {
+              "item": "netherrocks:malachite_helmet"
+            },
+            {
+              "item": "netherrocks:malachite_boots"
+            }
+          ],
+          {
+            "item": "minecraft:netherrack"
+          }
+        ],
+        "catalyst": {
+          "item": "minecraft:quartz"
+        },
+        "output": {
+          "item": "netherrocks:raw_malachite"
+        },
+        "cookingtime": 600,
+        "experience": 10.0
+      }
+    }
+  ]
+}

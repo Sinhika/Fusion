@@ -1,0 +1,21 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "aesthetics_enabled",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:stonecutting",
+        "ingredient": {
+          "item": "fusion:sinisite_bricks"
+        },
+        "result": "fusion:sinisite_brick_stairs",
+        "count": 1
+      }
+    }
+  ]
+}

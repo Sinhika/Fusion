@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "aesthetics_enabled",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "SSS",
+          "SSS"
+        ],
+        "key": {
+          "S": {
+            "item": "fusion:thyrium_ingot"
+          }
+        },
+        "result": {
+          "item": "fusion:thyrium_bars",
+          "count": 16
+        }
+      }
+    }
+  ]
+}

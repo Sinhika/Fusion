@@ -1,0 +1,53 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "recycle_vanilla",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "fusion:alloyiung",
+        "inputs": [
+          [
+            {
+              "item": "minecraft:iron_chestplate"
+            },
+            {
+              "item": "minecraft:iron_leggings"
+            },
+            {
+              "item": "minecraft:iron_horse_armor"
+            },
+            {
+              "item": "minecraft:cauldron"
+            },
+            {
+              "item": "minecraft:chainmail_chestplate"
+            },
+            {
+              "item": "minecraft:chainmail_leggings"
+            },
+            {
+              "item": "minecraft:hopper_minecart"
+            }
+          ],
+          {
+            "item": "minecraft:gravel"
+          }
+        ],
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "output": {
+          "item": "minecraft:raw_iron",
+          "count": 2
+        },
+        "cookingtime": 600,
+        "experience": 20.0
+      }
+    }
+  ]
+}

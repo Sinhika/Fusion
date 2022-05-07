@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "aesthetics_enabled",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "SS",
+          "SS"
+        ],
+        "key": {
+          "S": {
+            "item": "fusion:sinisite_ingot"
+          }
+        },
+        "result": {
+          "item": "fusion:sinisite_bricks"
+        }
+      }
+    }
+  ]
+}
