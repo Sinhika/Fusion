@@ -31,7 +31,7 @@ public class FusionLootTableProvider extends BlockLootTableProvider
         standardDropTable(ModBlocks.bronze_brick_stairs.get());
         slabDropTable(ModBlocks.bronze_brick_slab.get());
         standardDropTable(ModBlocks.bronze_bars.get());
-        standardDropTable(ModBlocks.bronze_door.get());
+        doorDropTable(ModBlocks.bronze_door.get());
         standardDropTable(ModBlocks.steel_block.get());
         standardDropTable(ModBlocks.steel_bricks.get());
         standardDropTable(ModBlocks.steel_brick_stairs.get());

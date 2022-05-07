@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "fusion:sinisite_dust"
-  },
-  "result": "fusion:sinisite_ingot",
-  "experience": 0.4,
-  "cookingtime": 200
-}

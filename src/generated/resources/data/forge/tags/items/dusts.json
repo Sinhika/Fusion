@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:dusts/bronze",
-    "#forge:dusts/steel",
-    "#forge:dusts/sinisite",
-    "#forge:dusts/thyrium"
-  ]
-}

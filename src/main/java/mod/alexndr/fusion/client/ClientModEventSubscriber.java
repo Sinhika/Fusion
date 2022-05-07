@@ -9,19 +9,13 @@ import mod.alexndr.fusion.content.FusionFurnaceContainer;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModContainers;
 import mod.alexndr.fusion.init.ModItems;
-import mod.alexndr.simplecorelib.SimpleCoreLib;
 import mod.alexndr.simplecorelib.api.client.ClientUtils;
-import mod.alexndr.simplecorelib.api.client.gui.SimpleSpriteUploader;
-import mod.alexndr.simplecorelib.api.client.gui.Textures;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -34,7 +28,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientModEventSubscriber
 {
     private static final Logger LOGGER = LogManager.getLogger(Fusion.MODID + " Client Mod Event Subscriber");
-    public static Textures textures;
 
     /**
      * We need to register our renderers on the client because rendering code does not exist on the server
@@ -73,17 +66,5 @@ public class ClientModEventSubscriber
         
    } // end onFMLClientSetupEvent
 
-    @SubscribeEvent
-    public static void onRegisterClientReloadListenersEvent(final RegisterClientReloadListenersEvent event)
-    {
-    	if (ModList.get().isLoaded("jei"))
-    	{
-	    	// add things to texture atlas.
-	    	Minecraft minecraft = Minecraft.getInstance();
-	    	SimpleSpriteUploader spriteUploader = new SimpleSpriteUploader(minecraft.textureManager, SimpleCoreLib.SIMPLE_TEXTURE_ATLAS);
-	    	textures = new Textures(spriteUploader);
-	    	event.registerReloadListener(spriteUploader);
-    	}
-    } // end onRegisterClientReloadListenersEvent
 
 } // end class

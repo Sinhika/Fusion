@@ -23,27 +23,9 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Fusio
 {
 	public static final ResourceLocation UID = new ResourceLocation(Fusion.MODID, "fusion_furnace_fuel");
 	
-	private final IDrawableStatic background;
-	private final IDrawableStatic flameTransparentBackground;
-	private final Component localizedName;
-
-
 	public FusionFuelCategory(IGuiHelper guiHelper)
 	{
 		super(guiHelper);
-		
-		// width of the recipe depends on the text, which is different in each language
-		Minecraft minecraft = Minecraft.getInstance();
-		Font fontRenderer = minecraft.font;
-		
-		smeltCountText = createSmeltCountText(100000);
-		int stringWidth = fontRenderer.width(smeltCountText.getString());
-
-		background = guiHelper.drawableBuilder(VeryAbstractFurnaceVariantCategory.RECIPE_GUI_VANILLA, 0, 134, 18, 34)
-			.addPadding(0, 0, 0, stringWidth + 20)
-			.build();
-
-		flameTransparentBackground = ClientModEventSubscriber.textures.getFlameIcon();
 		localizedName = new TranslatableComponent("gui.jei.category.fusion_furnace_fuel");
 	}
 
@@ -67,28 +49,11 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Fusio
 		return FusionFurnaceFuelRecipe.class;
 	}
 
-	@Override
-	public Component getTitle()
-	{
-		return localizedName;
-	}
-
-	@Override
-	public IDrawable getBackground()
-	{
-		return background;
-	}
-
-	@Override
-	public IDrawable getIcon()
-	{
-		return flameTransparentBackground;
-	}
-
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, FusionFurnaceFuelRecipe recipe, IFocusGroup focuses)
     {
+        super.setRecipe(builder, recipe, focuses);
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 17).addItemStacks(recipe.getInputs());
     }
 
