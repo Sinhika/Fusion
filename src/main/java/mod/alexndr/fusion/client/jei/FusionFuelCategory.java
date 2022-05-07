@@ -12,8 +12,6 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.client.ClientModEventSubscriber;
-import mod.alexndr.netherrocks.client.jei.NetherFurnaceFuelRecipe;
-import mod.alexndr.simplecorelib.api.client.jei.AlternateFuelRecipe;
 import mod.alexndr.simplecorelib.api.client.jei.VeryAbstractFurnaceVariantCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
