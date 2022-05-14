@@ -1,6 +1,6 @@
 {
    "pack":{
-      "pack_format": 7,
-      "description":"Fusion mod resources"
+      "pack_format": 9,
+      "description":"Fusion mod resources, including new textures for 1.18.2 by Thombias"
    }
 }
