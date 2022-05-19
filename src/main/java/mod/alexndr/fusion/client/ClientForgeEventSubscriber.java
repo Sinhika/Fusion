@@ -4,9 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.content.SinisiteBow;
 import mod.alexndr.fusion.content.ThyriumBow;
 import mod.alexndr.fusion.init.ModItems;
-import net.minecraft.world.entity.player.Player;
+import mod.alexndr.simplecorelib.api.client.ClientUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.FOVModifierEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,23 +31,9 @@ public class ClientForgeEventSubscriber
     @SubscribeEvent
     public static void onFovEvent(final FOVModifierEvent event)
     {
-        Player player = event.getEntity();
-        float baseFOV = event.getFov();
-        if (player.isHolding(ModItems.thyrium_bow.get()) 
-                && player.getMainHandItem().getItem() instanceof ThyriumBow)
-        {
-            ThyriumBow bow = (ThyriumBow) player.getMainHandItem().getItem();
-            // int useRemaining = bow.getUseDuration(null) - player.getUseItemRemainingTicks();
-            int useRemaining = player.getTicksUsingItem();
-            float fov = baseFOV - (useRemaining * bow.getZoomAmount() / 20.0F);
-            if (fov < baseFOV - bow.getZoomAmount()) {
-                fov = (baseFOV - bow.getZoomAmount());
-            }
-            event.setNewfov(fov);
-        }
-        else {
-            event.setNewfov(event.getFov());
-        }
+        ClientUtils.handleFovEvent(event, p -> p instanceof ThyriumBow, ModItems.thyrium_bow.get().getZoomAmount());
+        ClientUtils.handleFovEvent(event, p -> p instanceof SinisiteBow, 0.165F);
+        
     } // end onFovEvent()
     
 } // end class

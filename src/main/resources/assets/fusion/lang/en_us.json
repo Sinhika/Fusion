@@ -132,5 +132,6 @@
     "advancements.sinisite_bow_ach.desc": "Keep your enemies on the back foot with this powerful bow",
     "tips.damage_tooltip": "+Damage",
     "tips.zoom_tooltip": "+Zoom",
-    "tips.knockback_tooltip": "+Knockback"
+    "tips.knockback_tooltip": "+Knockback",
+    "fusion.fusion_furnace.info" : "Fusion furnaces take the same fuel that vanilla furnaces do, but cook slower (600 ticks per operation, rather than 200), so they consume more fuel."
 }

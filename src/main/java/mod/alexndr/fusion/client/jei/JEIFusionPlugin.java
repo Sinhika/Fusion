@@ -2,6 +2,7 @@ package mod.alexndr.fusion.client.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.recipe.RecipeType;
@@ -19,6 +20,7 @@ import mod.alexndr.fusion.content.FusionFurnaceContainer;
 import mod.alexndr.fusion.init.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -78,6 +80,8 @@ public class JEIFusionPlugin implements IModPlugin
                                 FusionRecipeMaker.getFusionRecipes(recipeManager));
 		registration.addRecipes(JEIFusionPlugin.FUSION_FUEL_RECIPE_TYPE, 
 		                        FusionFuelRecipeMaker.getFuelRecipes(ingredientManager, jeiHelpers));
+		registration.addIngredientInfo(new ItemStack(ModBlocks.fusion_furnace.get().asItem()), VanillaTypes.ITEM, 
+		        new TranslatableComponent("fusion.fusion_furnace.info"));
     }
     
 	@Override
