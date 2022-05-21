@@ -68,7 +68,11 @@ public class ModItemTags extends MiningItemTags
     private void registerMiscTags()
     {
     	this.tag(TagUtils.forgeTag("shears"))
-			.add(ModItems.steel_shears.get());
+			.add(ModItems.steel_shears.get())
+			.add(ModItems.bronze_shears.get())
+			.add(ModItems.sinisite_shears.get())
+			.add(ModItems.thyrium_shears.get());
+    	
     } // end registerMiscTags()
     
     
@@ -94,7 +98,10 @@ public class ModItemTags extends MiningItemTags
     private void registerDoorsSlabsAndStairs()
     {
     	this.tag(TagUtils.modTag("minecraft", "doors"))
-    		.add(ModBlocks.bronze_door.get().asItem());
+    		.add(ModBlocks.bronze_door.get().asItem())
+            .add(ModBlocks.steel_door.get().asItem())
+            .add(ModBlocks.sinisite_door.get().asItem())
+            .add(ModBlocks.thyrium_door.get().asItem());
     	this.tag(TagUtils.modTag("minecraft","stairs"))
 			.add(ModBlocks.bronze_brick_stairs.get().asItem())
 			.add(ModBlocks.steel_brick_stairs.get().asItem())

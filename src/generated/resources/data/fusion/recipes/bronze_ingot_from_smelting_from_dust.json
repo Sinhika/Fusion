@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "fusion:bronze_dust"
-  },
-  "result": "fusion:bronze_ingot",
-  "experience": 0.4,
-  "cookingtime": 200
-}

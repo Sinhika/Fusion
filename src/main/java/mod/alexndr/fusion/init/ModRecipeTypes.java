@@ -18,12 +18,12 @@ public class ModRecipeTypes
 //    public static final RecipeType<IFusionRecipe> FUSION_TYPE = RecipeType.register(IFusionRecipe.TYPE_ID.toString());
 //    Registry.register(Registry.RECIPE_TYPE, IFusionRecipe.TYPE_ID, ModRecipeTypes.FUSION_TYPE);
 
-    public static final RegistryObject<RecipeType<IFusionRecipe>> FUSION_TYPE = RECIPE_TYPES.register(IFusionRecipe.TYPE_ID.getPath(), 
-           ()->RecipeType.register(IFusionRecipe.TYPE_ID.toString())) ;
+    public static final RegistryObject<RecipeType<IFusionRecipe>> FUSION_TYPE = 
+            RECIPE_TYPES.register(IFusionRecipe.TYPE_ID.getPath(), ()-> new RecipeType<IFusionRecipe>() {}) ;
             
     
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = 
-            DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Fusion.MODID);
+            DeferredRegister.create(ForgeRegistries.Keys.RECIPE_SERIALIZERS, Fusion.MODID);
     
     //evt.getRegistry().register(ModRecipeTypes.FUSION_SERIALIZER.setRegistryName(IFusionRecipe.TYPE_ID));
     

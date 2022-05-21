@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_rh",
+  "textures": {
+    "bottom": "fusion:block/steel_door_lower",
+    "top": "fusion:block/steel_door_upper"
+  }
+}

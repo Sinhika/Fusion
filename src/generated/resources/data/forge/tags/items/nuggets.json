@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:nuggets/bronze",
-    "#forge:nuggets/steel",
-    "#forge:nuggets/sinisite",
-    "#forge:nuggets/thyrium"
-  ]
-}

@@ -7,7 +7,9 @@ import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.simplecorelib.api.datagen.MiningBlockTags;
 import mod.alexndr.simplecorelib.api.helpers.TagUtils;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockTags extends MiningBlockTags
 {
@@ -28,35 +30,33 @@ public class ModBlockTags extends MiningBlockTags
 
 	@Override
     protected void registerMiningTags()
-    {           
+    {      
+	       // all the registered blocks are mineable.
+        List<Block> mineables = ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).toList();
+        
         // (mineable, stone, iron, diamond, netherite)
         this.registerMineableTags(
-                List.of(ModBlocks.bronze_block.get(), ModBlocks.sinisite_block.get(), ModBlocks.steel_block.get(), 
-                        ModBlocks.thyrium_block.get(), ModBlocks.fusion_furnace.get(),
-                        ModBlocks.bronze_bars.get(), ModBlocks.bronze_brick_slab.get(), ModBlocks.bronze_brick_stairs.get(),
-                        ModBlocks.bronze_bricks.get(), ModBlocks.bronze_door.get(),
-                        ModBlocks.steel_bars.get(), ModBlocks.steel_brick_slab.get(), ModBlocks.steel_brick_stairs.get(),
-                        ModBlocks.steel_bricks.get(),
-                        ModBlocks.sinisite_bars.get(), ModBlocks.sinisite_brick_slab.get(), ModBlocks.sinisite_brick_stairs.get(),
-                        ModBlocks.sinisite_bricks.get(), 
-                        ModBlocks.thyrium_bars.get(), ModBlocks.thyrium_brick_slab.get(), ModBlocks.thyrium_brick_stairs.get(),
-                        ModBlocks.thyrium_bricks.get()),  // mineable
+                mineables,  // mineable
                 List.of(ModBlocks.bronze_block.get(), ModBlocks.steel_block.get(), ModBlocks.bronze_bars.get(), 
                         ModBlocks.bronze_brick_slab.get(), ModBlocks.bronze_brick_stairs.get(),
                         ModBlocks.bronze_bricks.get(), ModBlocks.bronze_door.get(),ModBlocks.steel_bars.get(), 
                         ModBlocks.steel_brick_slab.get(), ModBlocks.steel_brick_stairs.get(),
-                        ModBlocks.steel_bricks.get()), // 1
+                        ModBlocks.steel_bricks.get(), ModBlocks.steel_door.get()), // 1
                 List.of(ModBlocks.sinisite_block.get(), ModBlocks.sinisite_bars.get(), ModBlocks.sinisite_brick_slab.get(), 
                         ModBlocks.sinisite_brick_stairs.get(), ModBlocks.sinisite_bricks.get(), 
                         ModBlocks.thyrium_block.get(), ModBlocks.thyrium_bars.get(), ModBlocks.thyrium_brick_slab.get(), 
-                        ModBlocks.thyrium_brick_stairs.get(), ModBlocks.thyrium_bricks.get()), // 2 
+                        ModBlocks.thyrium_brick_stairs.get(), ModBlocks.thyrium_bricks.get(),ModBlocks.sinisite_door.get(),
+                        ModBlocks.thyrium_door.get()), // 2 
                 List.of(), List.of());  // 3 & 4
     }
 
     private void registerDoorsSlabsAndStairs()
     {
     	this.tag(TagUtils.modBlockTag("minecraft", "doors"))
-    		.add(ModBlocks.bronze_door.get());
+    		.add(ModBlocks.bronze_door.get())
+    		.add(ModBlocks.steel_door.get())
+    		.add(ModBlocks.sinisite_door.get())
+    		.add(ModBlocks.thyrium_door.get());
     	this.tag(TagUtils.modBlockTag("minecraft","stairs"))
 			.add(ModBlocks.bronze_brick_stairs.get())
 			.add(ModBlocks.steel_brick_stairs.get())

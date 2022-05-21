@@ -12,7 +12,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public interface IFusionRecipe extends Recipe<RecipeWrapper>
 {
-    String UID = "alloyiung";
+    String UID = "alloying";
     ResourceLocation TYPE_ID = new ResourceLocation(Fusion.MODID, IFusionRecipe.UID);
     
     @Override
