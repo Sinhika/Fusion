@@ -112,5 +112,11 @@ public final class ModBlocks
 
     // Blocks - doors - fusion
     public static RegistryObject<DoorBlock> bronze_door = BLOCKS.register("bronze_door",
-            () -> new DoorBlock(Block.Properties.copy(bronze_bricks.get()).noOcclusion()));
+            () -> new DoorBlock(Block.Properties.copy(bronze_block.get()).noOcclusion()));
+    public static RegistryObject<DoorBlock> steel_door = BLOCKS.register("steel_door",
+            () -> new DoorBlock(Block.Properties.copy(steel_block.get()).noOcclusion()));
+    public static RegistryObject<DoorBlock> thyrium_door = BLOCKS.register("thyrium_door",
+            () -> new DoorBlock(Block.Properties.copy(thyrium_block.get()).noOcclusion()));
+    public static RegistryObject<DoorBlock> sinisite_door = BLOCKS.register("sinisite_door",
+            () -> new DoorBlock(Block.Properties.copy(sinisite_block.get()).noOcclusion()));
 } // end class
