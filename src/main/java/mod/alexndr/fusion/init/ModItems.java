@@ -216,6 +216,15 @@ public final class ModItems
     public static final RegistryObject<ShearsItem> steel_shears = ITEMS.register("steel_shears",
             () -> new ShearsItem(new Item.Properties().durability(FusionItemTiers.STEEL.getUses())
                     .tab(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<ShearsItem> bronze_shears = ITEMS.register("bronze_shears",
+            () -> new ShearsItem(new Item.Properties().durability(FusionItemTiers.BRONZE.getUses())
+                    .tab(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<ShearsItem> sinisite_shears = ITEMS.register("sinisite_shears",
+            () -> new ShearsItem(new Item.Properties().durability(FusionItemTiers.SINISITE.getUses())
+                    .tab(ModTabGroups.MOD_ITEM_GROUP)));
+    public static final RegistryObject<ShearsItem> thyrium_shears = ITEMS.register("thyrium_shears",
+            () -> new ShearsItem(new Item.Properties().durability(FusionItemTiers.THYRIUM.getUses())
+                    .tab(ModTabGroups.MOD_ITEM_GROUP)));
 
     // bows
     public static final RegistryObject<SinisiteBow> sinisite_bow = ITEMS.register("sinisite_bow",

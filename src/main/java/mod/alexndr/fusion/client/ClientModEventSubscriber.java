@@ -53,6 +53,12 @@ public class ClientModEventSubscriber
         // doors with see-through windows.
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.bronze_door.get(), (layer) -> layer 
                 == RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.steel_door.get(), (layer) -> layer 
+                == RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.sinisite_door.get(), (layer) -> layer 
+                == RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.thyrium_door.get(), (layer) -> layer 
+                == RenderType.cutout());
 
         // bars, which are see-through between the bars, obviously.
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.bronze_bars.get(), (layer) -> layer 

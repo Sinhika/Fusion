@@ -51,13 +51,13 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
     protected void registerToolRecipes(Consumer<FinishedRecipe> consumer)
     {
     	setbuilder.buildSimpleToolSet(consumer, Ingredient.of(ModItems.bronze_ingot.get()), "bronze", 
-    			has(ModItems.bronze_ingot.get()), flag("bronze_tools"), false);
+    			has(ModItems.bronze_ingot.get()), flag("bronze_tools"), true);
     	setbuilder.buildSimpleToolSet(consumer, Ingredient.of(ModItems.steel_ingot.get()), "steel", 
     			has(ModItems.steel_ingot.get()), flag("steel_tools"), true);
     	setbuilder.buildSimpleToolSet(consumer, Ingredient.of(ModItems.sinisite_ingot.get()), "sinisite", 
-    			has(ModItems.sinisite_ingot.get()), flag("sinisite_tools"), false);
+    			has(ModItems.sinisite_ingot.get()), flag("sinisite_tools"), true);
     	setbuilder.buildSimpleToolSet(consumer, Ingredient.of(ModItems.thyrium_ingot.get()), "thyrium", 
-    			has(ModItems.thyrium_ingot.get()), flag("thyrium_tools"), false);
+    			has(ModItems.thyrium_ingot.get()), flag("thyrium_tools"), true);
     } // end registerToolRecipes()
 
     protected void registerArmorRecipes(Consumer<FinishedRecipe> consumer)
