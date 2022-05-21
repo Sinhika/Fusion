@@ -40,12 +40,12 @@ public class ClientModEventSubscriber
     @SubscribeEvent
     public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) 
     {
-        ClientUtils.setupBowModelProperties(ModItems.sinisite_bow.get());
-        ClientUtils.setupBowModelProperties(ModItems.thyrium_bow.get());
 
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         event.enqueueWork(() -> {
+            ClientUtils.setupBowModelProperties(ModItems.sinisite_bow.get());
+            ClientUtils.setupBowModelProperties(ModItems.thyrium_bow.get());
             MenuScreens.register((MenuType<FusionFurnaceContainer>) ModContainers.FUSION_FURNACE.get(), FusionFurnaceScreen::new);
             LOGGER.debug("Registered ContainerType Screens");
         });
