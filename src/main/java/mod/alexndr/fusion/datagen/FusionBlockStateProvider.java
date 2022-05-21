@@ -24,10 +24,11 @@ public class FusionBlockStateProvider extends SimpleBlockStateProvider
         // BLOCKSTATES
         this.doorBlock(ModBlocks.steel_door.get(), new ResourceLocation(Fusion.MODID, "block/steel_door_lower"),
                 new ResourceLocation(Fusion.MODID, "block/steel_door_upper"));
-        this.doorBlock(ModBlocks.sinisite_door.get(), new ResourceLocation(Fusion.MODID, "block/sinisite_door_lower"),
-                new ResourceLocation(Fusion.MODID, "block/sinisite_door_upper"));
-        this.doorBlock(ModBlocks.thyrium_door.get(), new ResourceLocation(Fusion.MODID, "block/thyrium_door_lower"),
-                new ResourceLocation(Fusion.MODID, "block/thyrium_door_upper"));
+        this.doorBlock(ModBlocks.sinisite_door.get(), new ResourceLocation(Fusion.MODID, "block/sinisite_door_bottom"),
+                new ResourceLocation(Fusion.MODID, "block/sinisite_door_top"));
+        this.doorBlock(ModBlocks.thyrium_door.get(), new ResourceLocation(Fusion.MODID, "block/thyrium_door_bottom"),
+                new ResourceLocation(Fusion.MODID, "block/thyrium_door_top"));
+        
     } // end registerStatesAndModels()
 
 } // end class

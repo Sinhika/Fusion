@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "sinisite_tools",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " S",
+          "S "
+        ],
+        "key": {
+          "S": {
+            "item": "fusion:sinisite_ingot"
+          }
+        },
+        "result": {
+          "item": "fusion:sinisite_shears"
+        }
+      }
+    }
+  ]
+}

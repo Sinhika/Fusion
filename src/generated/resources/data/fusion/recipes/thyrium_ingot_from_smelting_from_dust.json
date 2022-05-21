@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "fusion:thyrium_dust"
+  },
+  "result": "fusion:thyrium_ingot",
+  "experience": 0.4,
+  "cookingtime": 200
+}

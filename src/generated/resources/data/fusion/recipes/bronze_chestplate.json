@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "bronze_armor",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "S S",
+          "SSS",
+          "SSS"
+        ],
+        "key": {
+          "S": {
+            "item": "fusion:bronze_ingot"
+          }
+        },
+        "result": {
+          "item": "fusion:bronze_chestplate"
+        }
+      }
+    }
+  ]
+}

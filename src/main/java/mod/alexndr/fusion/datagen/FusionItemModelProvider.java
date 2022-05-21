@@ -17,12 +17,21 @@ public class FusionItemModelProvider extends ItemModelProvider
     @Override
     protected void registerModels()
     {
+        // shears
         this.withExistingParent("bronze_shears", "handheld").texture("layer0",
                 new ResourceLocation(Fusion.MODID, "item/bronze_shears"));
         this.withExistingParent("sinisite_shears", "handheld").texture("layer0",
                 new ResourceLocation(Fusion.MODID, "item/sinisite_shears"));
         this.withExistingParent("thyrium_shears", "handheld").texture("layer0",
                 new ResourceLocation(Fusion.MODID, "item/thyrium_shears"));
-    }
+        
+        // doors
+        this.withExistingParent("steel_door", "generated").texture("layer0",
+                new ResourceLocation(Fusion.MODID, "item/steel_door"));
+        this.withExistingParent("sinisite_door", "generated").texture("layer0",
+                new ResourceLocation(Fusion.MODID, "item/sinisite_door"));
+        this.withExistingParent("thyrium_door", "generated").texture("layer0",
+                new ResourceLocation(Fusion.MODID, "item/thyrium_door"));
+     } // end registerModels()
 
 } // end class

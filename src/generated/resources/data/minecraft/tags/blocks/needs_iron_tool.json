@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "fusion:sinisite_block",
+    "fusion:sinisite_bars",
+    "fusion:sinisite_brick_slab",
+    "fusion:sinisite_brick_stairs",
+    "fusion:sinisite_bricks",
+    "fusion:thyrium_block",
+    "fusion:thyrium_bars",
+    "fusion:thyrium_brick_slab",
+    "fusion:thyrium_brick_stairs",
+    "fusion:thyrium_bricks",
+    "fusion:sinisite_door",
+    "fusion:thyrium_door"
+  ]
+}

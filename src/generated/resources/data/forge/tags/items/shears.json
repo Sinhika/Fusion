@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "fusion:steel_shears",
+    "fusion:bronze_shears",
+    "fusion:sinisite_shears",
+    "fusion:thyrium_shears"
+  ]
+}

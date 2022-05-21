@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom",
+  "textures": {
+    "bottom": "fusion:block/thyrium_door_bottom",
+    "top": "fusion:block/thyrium_door_top"
+  }
+}

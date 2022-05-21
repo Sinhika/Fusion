@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "fusion:bronze_nugget"
+    }
+  },
+  "result": {
+    "item": "fusion:medium_bronze_chunk"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "fusion:bronze_door",
+    "fusion:steel_door",
+    "fusion:sinisite_door",
+    "fusion:thyrium_door"
+  ]
+}

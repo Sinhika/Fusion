@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "flag": "aesthetics_enabled",
+          "type": "fusion:flag"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "SSS",
+          "SSS"
+        ],
+        "key": {
+          "S": {
+            "item": "fusion:sinisite_ingot"
+          }
+        },
+        "result": {
+          "item": "fusion:sinisite_bars",
+          "count": 16
+        }
+      }
+    }
+  ]
+}

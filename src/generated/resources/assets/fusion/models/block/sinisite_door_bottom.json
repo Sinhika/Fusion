@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom",
+  "textures": {
+    "bottom": "fusion:block/sinisite_door_bottom",
+    "top": "fusion:block/sinisite_door_top"
+  }
+}
