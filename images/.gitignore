@@ -1,5 +1,11 @@
 *.xcf
 !darkhandle_shears.xcf
 !iron_door.xcf
+iron_door.png
 !shears.xcf
+shears.png
 !thombias_fusion_furnace.xcf
+!iron_door_top.xcf
+iron_dor_top.png
+!iron_door_bottom.xcf
+iron_door_bottom.png
