@@ -9,7 +9,7 @@ import mod.alexndr.fusion.content.ThyriumBow;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.simplecorelib.api.client.ClientUtils;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.FOVModifierEvent;
+import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -29,7 +29,7 @@ public class ClientForgeEventSubscriber
      * @param event
      */
     @SubscribeEvent
-    public static void onFovEvent(final FOVModifierEvent event)
+    public static void onFovEvent(final ComputeFovModifierEvent event)
     {
         ClientUtils.handleFovEvent(event, p -> p instanceof ThyriumBow, ModItems.thyrium_bow.get().getZoomAmount());
         ClientUtils.handleFovEvent(event, p -> p instanceof SinisiteBow, 0.165F);

@@ -32,6 +32,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public abstract class AbstractAlloyFurnaceBlock extends BaseEntityBlock
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;

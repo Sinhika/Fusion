@@ -20,6 +20,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class ThyriumBow extends BowItem
 {
     private final float ZOOM_AMT = 0.35f;

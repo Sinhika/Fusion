@@ -540,20 +540,20 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
             {
                 this.setRecipeUsed(getRecipe(input1, input2, catalyst).orElse(null));
             }
-            if (input1.hasContainerItem())
-                inventory.setStackInSlot(INPUT1_SLOT, input1.getContainerItem());
+            if (input1.hasCraftingRemainingItem())
+                inventory.setStackInSlot(INPUT1_SLOT, input1.getCraftingRemainingItem());
             else {
                 input1.shrink(1);
                 inventory.setStackInSlot(INPUT1_SLOT, input1); // Update the data
             }
-            if (input2.hasContainerItem())
-                inventory.setStackInSlot(INPUT2_SLOT, input2.getContainerItem());
+            if (input2.hasCraftingRemainingItem())
+                inventory.setStackInSlot(INPUT2_SLOT, input2.getCraftingRemainingItem());
             else {
                 input2.shrink(1);
                 inventory.setStackInSlot(INPUT2_SLOT, input2); // Update the data
             }
-            if (catalyst.hasContainerItem())
-                inventory.setStackInSlot(CATALYST_SLOT, catalyst.getContainerItem());
+            if (catalyst.hasCraftingRemainingItem())
+                inventory.setStackInSlot(CATALYST_SLOT, catalyst.getCraftingRemainingItem());
             else {
                 catalyst.shrink(1);
                 inventory.setStackInSlot(CATALYST_SLOT, catalyst); // Update the data
@@ -592,9 +592,9 @@ public abstract class AbstractAlloyFurnaceTileEntity extends BlockEntity
                     if (tile.isBurning())
                     {
                         flag1 = true;
-                        if (fuel.hasContainerItem()) 
+                        if (fuel.hasCraftingRemainingItem()) 
                         {
-                            tile.inventory.setStackInSlot(FUEL_SLOT, fuel.getContainerItem());
+                            tile.inventory.setStackInSlot(FUEL_SLOT, fuel.getCraftingRemainingItem());
                         }
                         else if (!fuel.isEmpty()) 
                         {
