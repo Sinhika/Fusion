@@ -4,17 +4,12 @@
     {
       "conditions": [
         {
-          "flag": "fusion_bows",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "fusion_bows"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          " XY",
-          "Z Y",
-          " XY"
-        ],
         "key": {
           "X": {
             "item": "fusion:sinisite_rod"
@@ -26,6 +21,11 @@
             "tag": "forge:gems/onyx"
           }
         },
+        "pattern": [
+          " XY",
+          "Z Y",
+          " XY"
+        ],
         "result": {
           "item": "fusion:sinisite_bow"
         }

@@ -1,5 +1,7 @@
 {
   "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.2,
   "ingredient": [
     {
       "item": "fusion:steel_axe"
@@ -29,7 +31,5 @@
       "item": "fusion:steel_sword"
     }
   ],
-  "result": "fusion:steel_nugget",
-  "experience": 0.2,
-  "cookingtime": 200
+  "result": "fusion:steel_nugget"
 }

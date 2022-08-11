@@ -4,24 +4,24 @@
     {
       "conditions": [
         {
-          "flag": "aesthetics_enabled",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "aesthetics_enabled"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SSS",
-          "SSS"
-        ],
         "key": {
           "S": {
             "item": "fusion:bronze_ingot"
           }
         },
+        "pattern": [
+          "SSS",
+          "SSS"
+        ],
         "result": {
-          "item": "fusion:bronze_bars",
-          "count": 16
+          "count": 16,
+          "item": "fusion:bronze_bars"
         }
       }
     }

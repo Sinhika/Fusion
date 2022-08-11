@@ -4,22 +4,22 @@
     {
       "conditions": [
         {
-          "flag": "bronze_armor",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "bronze_armor"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SSS",
-          "S S",
-          "S S"
-        ],
         "key": {
           "S": {
             "item": "fusion:bronze_ingot"
           }
         },
+        "pattern": [
+          "SSS",
+          "S S",
+          "S S"
+        ],
         "result": {
           "item": "fusion:bronze_leggings"
         }

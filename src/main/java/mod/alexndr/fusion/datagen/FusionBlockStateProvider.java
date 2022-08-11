@@ -31,7 +31,7 @@ public class FusionBlockStateProvider extends SimpleBlockStateProvider
         this.basicBlockItem(ModBlocks.sinisite_bars.get());
         
        // BLOCKSTATES - doors
-        this.doorBlockWithRenderType(ModBlocks.bronze_door.get(), modLoc("block/bronze_door_bottom"), modLoc("block/bronze_door_top"), "cutout");
+        this.doorBlockWithRenderType(ModBlocks.bronze_door.get(), modLoc("block/bronze_door_lower"), modLoc("block/bronze_door_upper"), "cutout");
         this.doorBlockWithRenderType(ModBlocks.steel_door.get(), modLoc("block/steel_door_lower"), modLoc("block/steel_door_upper"), "cutout");
         this.doorBlockWithRenderType(ModBlocks.sinisite_door.get(), modLoc("block/sinisite_door_bottom"), modLoc("block/sinisite_door_top"), "cutout");
         this.doorBlockWithRenderType(ModBlocks.thyrium_door.get(), modLoc("block/thyrium_door_bottom"),modLoc("block/thyrium_door_top"), "cutout");

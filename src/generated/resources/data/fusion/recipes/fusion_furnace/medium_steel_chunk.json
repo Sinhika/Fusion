@@ -4,12 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "steel_making",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "steel_making"
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "item": "minecraft:gunpowder"
+        },
+        "cookingtime": 600,
+        "experience": 4.0,
         "inputs": [
           {
             "tag": "minecraft:coals"
@@ -18,14 +23,9 @@
             "item": "minecraft:iron_ingot"
           }
         ],
-        "catalyst": {
-          "item": "minecraft:gunpowder"
-        },
         "output": {
           "item": "fusion:medium_steel_chunk"
-        },
-        "cookingtime": 600,
-        "experience": 4.0
+        }
       }
     }
   ]

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "fusion:block/bronze_door_lower",
+    "top": "fusion:block/bronze_door_upper"
+  }
+}

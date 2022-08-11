@@ -4,17 +4,12 @@
     {
       "conditions": [
         {
-          "flag": "steel_tools",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "steel_tools"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SSS",
-          " T ",
-          " T "
-        ],
         "key": {
           "S": {
             "item": "fusion:steel_ingot"
@@ -23,6 +18,11 @@
             "tag": "forge:rods/wooden"
           }
         },
+        "pattern": [
+          "SSS",
+          " T ",
+          " T "
+        ],
         "result": {
           "item": "fusion:steel_pickaxe"
         }

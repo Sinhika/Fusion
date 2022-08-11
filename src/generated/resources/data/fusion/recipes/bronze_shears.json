@@ -4,21 +4,21 @@
     {
       "conditions": [
         {
-          "flag": "bronze_tools",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "bronze_tools"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          " S",
-          "S "
-        ],
         "key": {
           "S": {
             "item": "fusion:bronze_ingot"
           }
         },
+        "pattern": [
+          " S",
+          "S "
+        ],
         "result": {
           "item": "fusion:bronze_shears"
         }

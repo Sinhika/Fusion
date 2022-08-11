@@ -1,5 +1,6 @@
 {
-  "parent": "minecraft:block/door_top",
+  "parent": "minecraft:block/door_bottom_right_open",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "fusion:block/steel_door_lower",
     "top": "fusion:block/steel_door_upper"

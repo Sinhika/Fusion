@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "fusion:bronze_nugget",
-    "count": 4
+    "count": 4,
+    "item": "fusion:bronze_nugget"
   }
 }

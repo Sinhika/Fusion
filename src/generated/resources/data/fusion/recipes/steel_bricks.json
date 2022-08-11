@@ -4,21 +4,21 @@
     {
       "conditions": [
         {
-          "flag": "aesthetics_enabled",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "aesthetics_enabled"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SS",
-          "SS"
-        ],
         "key": {
           "S": {
             "item": "fusion:steel_ingot"
           }
         },
+        "pattern": [
+          "SS",
+          "SS"
+        ],
         "result": {
           "item": "fusion:steel_bricks"
         }

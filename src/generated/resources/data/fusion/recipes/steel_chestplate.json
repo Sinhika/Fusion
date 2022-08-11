@@ -4,22 +4,22 @@
     {
       "conditions": [
         {
-          "flag": "steel_armor",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "steel_armor"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "S S",
-          "SSS",
-          "SSS"
-        ],
         "key": {
           "S": {
             "item": "fusion:steel_ingot"
           }
         },
+        "pattern": [
+          "S S",
+          "SSS",
+          "SSS"
+        ],
         "result": {
           "item": "fusion:steel_chestplate"
         }

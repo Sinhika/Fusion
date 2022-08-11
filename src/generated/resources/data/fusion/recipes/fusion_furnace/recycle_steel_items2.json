@@ -4,12 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "recycle_fusion",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "recycle_fusion"
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "cookingtime": 600,
+        "experience": 20.0,
         "inputs": [
           [
             {
@@ -23,15 +28,10 @@
             "item": "minecraft:gravel"
           }
         ],
-        "catalyst": {
-          "tag": "minecraft:coals"
-        },
         "output": {
-          "item": "fusion:large_steel_chunk",
-          "count": 2
-        },
-        "cookingtime": 600,
-        "experience": 20.0
+          "count": 2,
+          "item": "fusion:large_steel_chunk"
+        }
       }
     }
   ]

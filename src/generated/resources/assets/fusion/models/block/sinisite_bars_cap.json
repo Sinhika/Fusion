@@ -1,0 +1,8 @@
+{
+  "parent": "simplecorelib:block/template_bars_cap",
+  "textures": {
+    "bars": "fusion:block/sinisite_bars",
+    "edge": "fusion:block/sinisite_bars",
+    "particle": "fusion:block/sinisite_bars"
+  }
+}

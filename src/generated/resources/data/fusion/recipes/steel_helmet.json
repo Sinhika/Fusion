@@ -4,22 +4,22 @@
     {
       "conditions": [
         {
-          "flag": "steel_armor",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "steel_armor"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SSS",
-          "S S",
-          "   "
-        ],
         "key": {
           "S": {
             "item": "fusion:steel_ingot"
           }
         },
+        "pattern": [
+          "SSS",
+          "S S",
+          "   "
+        ],
         "result": {
           "item": "fusion:steel_helmet"
         }

@@ -4,21 +4,21 @@
     {
       "conditions": [
         {
-          "flag": "thyrium_tools",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "thyrium_tools"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          " S",
-          "S "
-        ],
         "key": {
           "S": {
             "item": "fusion:thyrium_ingot"
           }
         },
+        "pattern": [
+          " S",
+          "S "
+        ],
         "result": {
           "item": "fusion:thyrium_shears"
         }

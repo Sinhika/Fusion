@@ -4,21 +4,26 @@
     {
       "conditions": [
         {
+          "type": "forge:and",
           "values": [
             {
-              "flag": "recycle_netherrocks",
-              "type": "fusion:flag"
+              "type": "fusion:flag",
+              "flag": "recycle_netherrocks"
             },
             {
-              "modid": "netherrocks",
-              "type": "forge:mod_loaded"
+              "type": "forge:mod_loaded",
+              "modid": "netherrocks"
             }
-          ],
-          "type": "forge:and"
+          ]
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "item": "minecraft:glowstone_dust"
+        },
+        "cookingtime": 600,
+        "experience": 10.0,
         "inputs": [
           [
             {
@@ -35,14 +40,9 @@
             "item": "minecraft:netherrack"
           }
         ],
-        "catalyst": {
-          "item": "minecraft:glowstone_dust"
-        },
         "output": {
           "item": "netherrocks:raw_illumenite"
-        },
-        "cookingtime": 600,
-        "experience": 10.0
+        }
       }
     }
   ]

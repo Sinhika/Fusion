@@ -4,17 +4,12 @@
     {
       "conditions": [
         {
-          "flag": "bronze_tools",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "bronze_tools"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SSS",
-          " T ",
-          " T "
-        ],
         "key": {
           "S": {
             "item": "fusion:bronze_ingot"
@@ -23,6 +18,11 @@
             "tag": "forge:rods/wooden"
           }
         },
+        "pattern": [
+          "SSS",
+          " T ",
+          " T "
+        ],
         "result": {
           "item": "fusion:bronze_pickaxe"
         }

@@ -4,22 +4,22 @@
     {
       "conditions": [
         {
-          "flag": "thyrium_armor",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "thyrium_armor"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SSS",
-          "S S",
-          "S S"
-        ],
         "key": {
           "S": {
             "item": "fusion:thyrium_ingot"
           }
         },
+        "pattern": [
+          "SSS",
+          "S S",
+          "S S"
+        ],
         "result": {
           "item": "fusion:thyrium_leggings"
         }

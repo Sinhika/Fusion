@@ -4,12 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "sinisite_making",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "sinisite_making"
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "item": "minecraft:ghast_tear"
+        },
+        "cookingtime": 600,
+        "experience": 48.0,
         "inputs": [
           {
             "tag": "forge:ingots/mythril"
@@ -18,14 +23,9 @@
             "tag": "forge:gems/onyx"
           }
         ],
-        "catalyst": {
-          "item": "minecraft:ghast_tear"
-        },
         "output": {
           "item": "fusion:large_sinisite_chunk"
-        },
-        "cookingtime": 600,
-        "experience": 48.0
+        }
       }
     }
   ]

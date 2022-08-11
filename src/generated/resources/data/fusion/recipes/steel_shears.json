@@ -4,21 +4,21 @@
     {
       "conditions": [
         {
-          "flag": "steel_tools",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "steel_tools"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          " S",
-          "S "
-        ],
         "key": {
           "S": {
             "item": "fusion:steel_ingot"
           }
         },
+        "pattern": [
+          " S",
+          "S "
+        ],
         "result": {
           "item": "fusion:steel_shears"
         }

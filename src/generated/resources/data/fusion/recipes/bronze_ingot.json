@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "fusion:bronze_ingot",
-    "count": 9
+    "count": 9,
+    "item": "fusion:bronze_ingot"
   }
 }

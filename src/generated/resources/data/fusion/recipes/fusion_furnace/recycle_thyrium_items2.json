@@ -4,12 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "recycle_fusion",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "recycle_fusion"
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "item": "minecraft:lava_bucket"
+        },
+        "cookingtime": 600,
+        "experience": 30.0,
         "inputs": [
           [
             {
@@ -23,15 +28,10 @@
             "item": "minecraft:gravel"
           }
         ],
-        "catalyst": {
-          "item": "minecraft:lava_bucket"
-        },
         "output": {
-          "item": "fusion:large_thyrium_chunk",
-          "count": 2
-        },
-        "cookingtime": 600,
-        "experience": 30.0
+          "count": 2,
+          "item": "fusion:large_thyrium_chunk"
+        }
       }
     }
   ]

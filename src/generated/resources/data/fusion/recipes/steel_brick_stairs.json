@@ -4,25 +4,25 @@
     {
       "conditions": [
         {
-          "flag": "aesthetics_enabled",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "aesthetics_enabled"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "S  ",
-          "SS ",
-          "SSS"
-        ],
         "key": {
           "S": {
             "item": "fusion:steel_bricks"
           }
         },
+        "pattern": [
+          "S  ",
+          "SS ",
+          "SSS"
+        ],
         "result": {
-          "item": "fusion:steel_brick_stairs",
-          "count": 4
+          "count": 4,
+          "item": "fusion:steel_brick_stairs"
         }
       }
     }

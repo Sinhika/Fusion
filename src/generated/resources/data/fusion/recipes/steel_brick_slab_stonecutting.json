@@ -4,17 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "aesthetics_enabled",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "aesthetics_enabled"
         }
       ],
       "recipe": {
         "type": "minecraft:stonecutting",
+        "count": 2,
         "ingredient": {
           "item": "fusion:steel_bricks"
         },
-        "result": "fusion:steel_brick_slab",
-        "count": 2
+        "result": "fusion:steel_brick_slab"
       }
     }
   ]

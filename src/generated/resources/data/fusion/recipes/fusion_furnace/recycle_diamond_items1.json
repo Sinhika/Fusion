@@ -4,21 +4,26 @@
     {
       "conditions": [
         {
+          "type": "forge:and",
           "values": [
             {
-              "flag": "recycle_gems",
-              "type": "fusion:flag"
+              "type": "fusion:flag",
+              "flag": "recycle_gems"
             },
             {
-              "flag": "recycle_vanilla",
-              "type": "fusion:flag"
+              "type": "fusion:flag",
+              "flag": "recycle_vanilla"
             }
-          ],
-          "type": "forge:and"
+          ]
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "cookingtime": 600,
+        "experience": 20.0,
         "inputs": [
           [
             {
@@ -47,14 +52,9 @@
             "item": "minecraft:gravel"
           }
         ],
-        "catalyst": {
-          "tag": "minecraft:coals"
-        },
         "output": {
           "item": "minecraft:diamond"
-        },
-        "cookingtime": 600,
-        "experience": 20.0
+        }
       }
     }
   ]

@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "fusion:steel_nugget",
-    "count": 9
+    "count": 9,
+    "item": "fusion:steel_nugget"
   }
 }

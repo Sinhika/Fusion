@@ -4,12 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "sinisite_making",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "sinisite_making"
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "item": "minecraft:glowstone_dust"
+        },
+        "cookingtime": 600,
+        "experience": 12.0,
         "inputs": [
           {
             "tag": "forge:ingots/mythril"
@@ -18,14 +23,9 @@
             "tag": "forge:gems/onyx"
           }
         ],
-        "catalyst": {
-          "item": "minecraft:glowstone_dust"
-        },
         "output": {
           "item": "fusion:sinisite_nugget"
-        },
-        "cookingtime": 600,
-        "experience": 12.0
+        }
       }
     }
   ]

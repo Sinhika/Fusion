@@ -1,5 +1,7 @@
 {
   "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.2,
   "ingredient": [
     {
       "item": "fusion:thyrium_axe"
@@ -29,7 +31,5 @@
       "item": "fusion:thyrium_sword"
     }
   ],
-  "result": "fusion:thyrium_nugget",
-  "experience": 0.2,
-  "cookingtime": 200
+  "result": "fusion:thyrium_nugget"
 }

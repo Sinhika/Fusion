@@ -4,25 +4,30 @@
     {
       "conditions": [
         {
+          "type": "forge:and",
           "values": [
             {
-              "flag": "recycle_gems",
-              "type": "fusion:flag"
+              "type": "fusion:flag",
+              "flag": "recycle_gems"
             },
             {
-              "flag": "recycle_simpleores",
-              "type": "fusion:flag"
+              "type": "fusion:flag",
+              "flag": "recycle_simpleores"
             },
             {
-              "modid": "simpleores",
-              "type": "forge:mod_loaded"
+              "type": "forge:mod_loaded",
+              "modid": "simpleores"
             }
-          ],
-          "type": "forge:and"
+          ]
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "item": "minecraft:lava_bucket"
+        },
+        "cookingtime": 600,
+        "experience": 20.0,
         "inputs": [
           [
             {
@@ -60,14 +65,9 @@
             "item": "minecraft:netherrack"
           }
         ],
-        "catalyst": {
-          "item": "minecraft:lava_bucket"
-        },
         "output": {
           "item": "simpleores:onyx_gem"
-        },
-        "cookingtime": 600,
-        "experience": 20.0
+        }
       }
     }
   ]

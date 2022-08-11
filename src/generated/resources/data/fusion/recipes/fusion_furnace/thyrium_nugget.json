@@ -4,12 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "thyrium_making",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "thyrium_making"
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "item": "minecraft:redstone"
+        },
+        "cookingtime": 600,
+        "experience": 6.0,
         "inputs": [
           {
             "tag": "forge:ingots/mythril"
@@ -18,14 +23,9 @@
             "tag": "forge:ingots/adamantium"
           }
         ],
-        "catalyst": {
-          "item": "minecraft:redstone"
-        },
         "output": {
           "item": "fusion:thyrium_nugget"
-        },
-        "cookingtime": 600,
-        "experience": 6.0
+        }
       }
     }
   ]

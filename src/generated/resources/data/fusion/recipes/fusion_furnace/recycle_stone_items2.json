@@ -4,12 +4,17 @@
     {
       "conditions": [
         {
-          "flag": "recycle_vanilla",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "recycle_vanilla"
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "cookingtime": 600,
+        "experience": 10.0,
         "inputs": [
           {
             "item": "minecraft:furnace"
@@ -18,15 +23,10 @@
             "item": "minecraft:gravel"
           }
         ],
-        "catalyst": {
-          "tag": "minecraft:coals"
-        },
         "output": {
-          "item": "minecraft:stone",
-          "count": 2
-        },
-        "cookingtime": 600,
-        "experience": 10.0
+          "count": 2,
+          "item": "minecraft:stone"
+        }
       }
     }
   ]

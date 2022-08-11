@@ -1,5 +1,7 @@
 {
   "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.2,
   "ingredient": [
     {
       "item": "fusion:sinisite_axe"
@@ -29,7 +31,5 @@
       "item": "fusion:sinisite_sword"
     }
   ],
-  "result": "fusion:sinisite_nugget",
-  "experience": 0.2,
-  "cookingtime": 200
+  "result": "fusion:sinisite_nugget"
 }

@@ -4,21 +4,26 @@
     {
       "conditions": [
         {
+          "type": "forge:and",
           "values": [
             {
-              "flag": "recycle_simpleores",
-              "type": "fusion:flag"
+              "type": "fusion:flag",
+              "flag": "recycle_simpleores"
             },
             {
-              "modid": "simpleores",
-              "type": "forge:mod_loaded"
+              "type": "forge:mod_loaded",
+              "modid": "simpleores"
             }
-          ],
-          "type": "forge:and"
+          ]
         }
       ],
       "recipe": {
         "type": "fusion:alloying",
+        "catalyst": {
+          "tag": "minecraft:coals"
+        },
+        "cookingtime": 600,
+        "experience": 20.0,
         "inputs": [
           [
             {
@@ -32,15 +37,10 @@
             "item": "minecraft:gravel"
           }
         ],
-        "catalyst": {
-          "tag": "minecraft:coals"
-        },
         "output": {
-          "item": "simpleores:raw_tin",
-          "count": 2
-        },
-        "cookingtime": 600,
-        "experience": 20.0
+          "count": 2,
+          "item": "simpleores:raw_tin"
+        }
       }
     }
   ]

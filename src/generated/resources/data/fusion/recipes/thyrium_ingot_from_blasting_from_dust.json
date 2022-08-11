@@ -1,9 +1,9 @@
 {
   "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.4,
   "ingredient": {
     "item": "fusion:thyrium_dust"
   },
-  "result": "fusion:thyrium_ingot",
-  "experience": 0.4,
-  "cookingtime": 100
+  "result": "fusion:thyrium_ingot"
 }

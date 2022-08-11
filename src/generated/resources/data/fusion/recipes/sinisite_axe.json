@@ -4,17 +4,12 @@
     {
       "conditions": [
         {
-          "flag": "sinisite_tools",
-          "type": "fusion:flag"
+          "type": "fusion:flag",
+          "flag": "sinisite_tools"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "SS ",
-          "ST ",
-          " T "
-        ],
         "key": {
           "S": {
             "item": "fusion:sinisite_ingot"
@@ -23,6 +18,11 @@
             "tag": "forge:rods/wooden"
           }
         },
+        "pattern": [
+          "SS ",
+          "ST ",
+          " T "
+        ],
         "result": {
           "item": "fusion:sinisite_axe"
         }
