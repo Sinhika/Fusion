@@ -5,7 +5,6 @@ import mod.alexndr.fusion.api.content.AbstractAlloyFurnaceTileEntity;
 import mod.alexndr.fusion.init.ModTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.Containers;
@@ -20,8 +19,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
 {
@@ -79,7 +76,7 @@ public class FusionFurnaceBlock extends AbstractAlloyFurnaceBlock
             MenuProvider containerProvider = new MenuProvider() {
                 @Override
                 public Component getDisplayName() {
-                    return new TranslatableComponent(DISPLAY_NAME);
+                    return Component.translatable(DISPLAY_NAME);
                 }
                 
                 @Override

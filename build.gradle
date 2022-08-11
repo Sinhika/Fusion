@@ -31,6 +31,9 @@ minecraft {
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
+    // uncomment if including JEI support
+    sourceSets.main.java { srcDir 'src/api/java' }
+
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
     runs {

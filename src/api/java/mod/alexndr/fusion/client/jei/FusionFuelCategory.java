@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
@@ -11,7 +12,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.simplecorelib.api.client.jei.VeryAbstractFurnaceVariantCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<FusionFurnaceFuelRecipe>
@@ -21,7 +22,7 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Fusio
 	public FusionFuelCategory(IGuiHelper guiHelper)
 	{
 		super(guiHelper);
-		localizedName = new TranslatableComponent("gui.jei.category.fusion_furnace_fuel");
+		localizedName = Component.translatable("gui.jei.category.fusion_furnace_fuel");
 	}
 
 	
@@ -33,19 +34,6 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Fusio
 
 
     @Override
-	public ResourceLocation getUid()
-	{
-		return UID;
-	}
-
-	@Override
-	public Class<? extends FusionFurnaceFuelRecipe> getRecipeClass()
-	{
-		return FusionFurnaceFuelRecipe.class;
-	}
-
-
-    @Override
     public void setRecipe(IRecipeLayoutBuilder builder, FusionFurnaceFuelRecipe recipe, IFocusGroup focuses)
     {
         super.setRecipe(builder, recipe, focuses);
@@ -53,7 +41,7 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Fusio
     }
 
     @Override
-    public void draw(FusionFurnaceFuelRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) 
+    public void draw(FusionFurnaceFuelRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) 
     {
         IDrawableAnimated flame = this.getFlame();
         flame.draw(poseStack, 1, 0);

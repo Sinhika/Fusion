@@ -2,13 +2,13 @@ package mod.alexndr.fusion.api.recipe;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModBlocks;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public interface IFusionRecipe extends Recipe<RecipeWrapper>
 {
@@ -24,7 +24,7 @@ public interface IFusionRecipe extends Recipe<RecipeWrapper>
     @Override
     default RecipeType<?> getType()
     {
-        return Registry.RECIPE_TYPE.get(TYPE_ID);
+        return ForgeRegistries.RECIPE_TYPES.getValue(TYPE_ID);
     }
 
     @Override

@@ -11,6 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * @author Sinhika
@@ -29,7 +30,8 @@ public final class ErrorUtil
 		}
 		Item item = itemStack.getItem();
 		final String itemName;
-		ResourceLocation registryName = item.getRegistryName();
+		ResourceLocation registryName =  ForgeRegistries.ITEMS.getKey(item);
+		
 		if (registryName != null) {
 			itemName = registryName.toString();
 		} else if (item instanceof BlockItem) {
@@ -38,7 +40,7 @@ public final class ErrorUtil
 			if (block == null) {
 				blockName = "null";
 			} else {
-				ResourceLocation blockRegistryName = block.getRegistryName();
+				ResourceLocation blockRegistryName = ForgeRegistries.BLOCKS.getKey(block);
 				if (blockRegistryName != null) {
 					blockName = blockRegistryName.toString();
 				} else {

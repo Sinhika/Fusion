@@ -24,7 +24,7 @@ public final class FusionFuelRecipeMaker
 
 	public static List<FusionFurnaceFuelRecipe> getFuelRecipes(IIngredientManager ingredientManager, IJeiHelpers helpers)
 	{
-		Collection<ItemStack> allItemStacks = ingredientManager.getAllIngredients(VanillaTypes.ITEM);
+		Collection<ItemStack> allItemStacks = ingredientManager.getAllIngredients(VanillaTypes.ITEM_STACK);
 		List<FusionFurnaceFuelRecipe> fuelRecipes = new ArrayList<>();
 		for (ItemStack stack : allItemStacks)
 		{

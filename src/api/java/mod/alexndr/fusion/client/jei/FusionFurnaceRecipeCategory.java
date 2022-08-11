@@ -10,8 +10,10 @@ import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
@@ -20,7 +22,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -46,8 +47,8 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper)
     {
-        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.fusion_furnace.get()));
-        localizedName = new TranslatableComponent("fusion.jei.fusion_category");
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.fusion_furnace.get()));
+        localizedName = Component.translatable("fusion.jei.fusion_category");
         backgroundLocation = 
                         new ResourceLocation(Fusion.MODID, 
                                              "textures/gui/container/fusion_furnace_gui.png");
@@ -78,7 +79,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     } // end ctor
     
     @Override
-    public void draw(IFusionRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY)
+    public void draw(IFusionRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack matrixStack, double mouseX, double mouseY)
     {
         flame.draw(matrixStack, 23, 51);
         flame.draw(matrixStack, 73, 51);
@@ -95,17 +96,6 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
             int stringWidth = fontRenderer.width(experienceString);
             fontRenderer.draw(matrixStack, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
         }
-    }
-
-    @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends IFusionRecipe> getRecipeClass()
-    {
-        return IFusionRecipe.class;
     }
 
     @Override
@@ -142,17 +132,11 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
         builder.addSlot(OUTPUT,46, 28).addItemStack(recipe.getResultItem());
     }
 
-//    @Override
-//    public void setRecipe(IRecipeLayout recipeLayout, IFusionRecipe recipe, IIngredients ingredients)
-//    {
-//        IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
-//        guiItemStacks.init(INPUT1_SLOT, true, 0, 30);
-//        guiItemStacks.init(INPUT2_SLOT, true, 93, 30);
-//        guiItemStacks.init(CATALYST_SLOT, true, 46, 2);
-//        guiItemStacks.init(OUTPUT_SLOT, false, 46, 28);
-//        
-//        guiItemStacks.set(ingredients);
-//    }
+    @Override
+    public RecipeType<IFusionRecipe> getRecipeType()
+    {
+        return JEIFusionPlugin.FUSION_RECIPE_TYPE;
+    }
 
     
 } // end class

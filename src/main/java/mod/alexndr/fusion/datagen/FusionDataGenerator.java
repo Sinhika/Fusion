@@ -4,9 +4,9 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 
 import mod.alexndr.fusion.Fusion;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.data.event.GatherDataEvent;
 
 /**
  * bundles up the GatherDataEvent handler and all the necessary data providers
@@ -27,18 +27,16 @@ public class FusionDataGenerator
     public static void gatherData(GatherDataEvent event)
     {
         DataGenerator gen = event.getGenerator();
-        if (event.includeServer())
-        {
-            gen.addProvider(new Recipes(gen));
-            gen.addProvider(new FusionRecipes(gen));
-            gen.addProvider(new SilentsRecipes(gen));
-            gen.addProvider(new FusionLootTableProvider(gen));
-            gen.addProvider(new FusionLootInjectorProvider(gen));
-            gen.addProvider(new ModBlockTags(gen, event.getExistingFileHelper()));
-            gen.addProvider(new ModItemTags(gen, event.getExistingFileHelper()));
-            gen.addProvider(new FusionBlockStateProvider(gen, event.getExistingFileHelper()));
-            gen.addProvider(new FusionItemModelProvider(gen, event.getExistingFileHelper()));
-        }
+        gen.addProvider(event.includeServer(), new Recipes(gen));
+        gen.addProvider(event.includeServer(), new FusionRecipes(gen));
+        gen.addProvider(event.includeServer(), new SilentsRecipes(gen));
+        gen.addProvider(event.includeServer(), new FusionLootTableProvider(gen));
+        gen.addProvider(event.includeServer(), new FusionLootInjectorProvider(gen));
+        gen.addProvider(event.includeServer(), new ModBlockTags(gen, event.getExistingFileHelper()));
+        gen.addProvider(event.includeServer(), new ModItemTags(gen, event.getExistingFileHelper()));
+        
+        gen.addProvider(event.includeClient(), new FusionBlockStateProvider(gen, event.getExistingFileHelper()));
+        gen.addProvider(event.includeClient(), new FusionItemModelProvider(gen, event.getExistingFileHelper()));
     } // end gatherData()
 
 } // end-class FusionDataGenerator

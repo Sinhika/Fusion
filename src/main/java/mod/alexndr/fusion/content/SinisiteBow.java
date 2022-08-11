@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
@@ -19,8 +18,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class SinisiteBow extends BowItem
 {
@@ -81,8 +78,8 @@ public class SinisiteBow extends BowItem
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn)
     {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add((new TranslatableComponent("tips.damage_tooltip")).withStyle(ChatFormatting.GREEN));
-        tooltip.add((new TranslatableComponent("tips.knockback_tooltip")).withStyle(ChatFormatting.GREEN));
+        tooltip.add((Component.translatable("tips.damage_tooltip")).withStyle(ChatFormatting.GREEN));
+        tooltip.add((Component.translatable("tips.knockback_tooltip")).withStyle(ChatFormatting.GREEN));
     }
     
 } // end class

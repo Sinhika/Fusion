@@ -23,7 +23,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class FusionRecipe implements IFusionRecipe
@@ -193,8 +192,7 @@ public class FusionRecipe implements IFusionRecipe
     }
 
     
-    public static class FusionRecipeSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
-    implements RecipeSerializer<FusionRecipe>
+    public static class FusionRecipeSerializer implements RecipeSerializer<FusionRecipe>
     {
 
         @Override
