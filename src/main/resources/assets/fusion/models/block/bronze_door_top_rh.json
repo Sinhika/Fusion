@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top_rh",
-    "textures": {
-        "bottom": "fusion:block/bronze_door_lower",
-        "top": "fusion:block/bronze_door_upper"
-    }
-}

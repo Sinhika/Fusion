@@ -6,13 +6,10 @@ import org.apache.logging.log4j.Logger;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.client.gui.FusionFurnaceScreen;
 import mod.alexndr.fusion.content.FusionFurnaceContainer;
-import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModContainers;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.simplecorelib.api.client.ClientUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,27 +47,7 @@ public class ClientModEventSubscriber
             LOGGER.debug("Registered ContainerType Screens");
         });
 
-        // doors with see-through windows.
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.bronze_door.get(), (layer) -> layer 
-                == RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.steel_door.get(), (layer) -> layer 
-                == RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.sinisite_door.get(), (layer) -> layer 
-                == RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.thyrium_door.get(), (layer) -> layer 
-                == RenderType.cutout());
-
-        // bars, which are see-through between the bars, obviously.
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.bronze_bars.get(), (layer) -> layer 
-                == RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.steel_bars.get(), (layer) -> layer 
-                == RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.sinisite_bars.get(), (layer) -> layer 
-                == RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.thyrium_bars.get(), (layer) -> layer 
-                == RenderType.cutout());
-        
-   } // end onFMLClientSetupEvent
+    } // end onFMLClientSetupEvent
 
 
 } // end class
