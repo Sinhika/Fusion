@@ -10,7 +10,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.api.client.ClientOnlyWrapper;
 import mod.alexndr.fusion.init.ModRecipeTypes;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +23,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
@@ -50,20 +54,26 @@ public class FusionRecipe implements IFusionRecipe
         this.catalyst = catalyst;
         this.cook_time = cook_time;
         this.experience = experience;
-    }
+        
+    } // ctor
 
     private static void initLegalisms()
     {
         Fusion.LOGGER.info(Fusion.MODID + ": in FusionRecipe.InitLegalisms()");
-        Iterable<Recipe<?>> recipes = 
-                ServerLifecycleHooks.getCurrentServer().getRecipeManager().getRecipes();
-        for (Recipe<?> recipe: recipes)
+        
+        List<IFusionRecipe> recipes;
+        
+        // check for client-side vs server-side
+        if (FMLEnvironment.dist == Dist.CLIENT)
         {
-            // we only want Fusion recipes.
-             if (recipe.getType() != ModRecipeTypes.FUSION_TYPE.get()) {
-                 continue;
-             }
-             
+            recipes = ClientOnlyWrapper.getRecipeManager().getAllRecipesFor(ModRecipeTypes.FUSION_TYPE.get());
+        }
+        else {
+            recipes = ServerLifecycleHooks.getCurrentServer().getRecipeManager().getAllRecipesFor(ModRecipeTypes.FUSION_TYPE.get());
+        }
+        
+        for (IFusionRecipe recipe: recipes)
+        {
              NonNullList<Ingredient> ingrs = recipe.getIngredients();
              for (Ingredient ingr: ingrs)
              {
@@ -82,7 +92,7 @@ public class FusionRecipe implements IFusionRecipe
     {
         if (legal_inputs.isEmpty()) {
             initLegalisms();
-        }
+         }
         return legal_inputs.contains(stack.getItem());
     }
    
