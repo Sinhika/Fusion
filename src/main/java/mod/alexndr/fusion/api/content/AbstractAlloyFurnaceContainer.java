@@ -14,7 +14,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -61,7 +61,7 @@ public abstract class AbstractAlloyFurnaceContainer extends AbstractContainerMen
 
             // Add all the slots for the tileEntity's inventory and the playerInventory to
             // this container
-            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+            blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(h -> {
                 addSlot(new SlotItemHandler(h, INPUT1_SLOT, 33, 35));
                 addSlot(new SlotItemHandler(h, INPUT2_SLOT, 126, 34));
                 addSlot(new SlotItemHandler(h, CATALYST_SLOT, 79, 7));

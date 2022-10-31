@@ -29,7 +29,7 @@ minecraft {
     mappings channel: 'parchment', version: "${version_parchment}"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     // uncomment if including JEI support
     sourceSets.main.java { srcDir 'src/api/java' }

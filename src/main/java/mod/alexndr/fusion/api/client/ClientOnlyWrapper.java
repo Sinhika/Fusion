@@ -5,6 +5,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 
 public class ClientOnlyWrapper
 {
+    @SuppressWarnings("resource")
     public static RecipeManager getRecipeManager()
     {
         return Minecraft.getInstance().level.getRecipeManager();
