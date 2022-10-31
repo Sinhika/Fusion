@@ -30,7 +30,11 @@
     "block.fusion.steel_door" : "Steel Door",
     "block.fusion.sinisite_door" : "Sinisite Door",
     "block.fusion.thyrium_door" : "Thyrium Door",
-
+    "block.fusion.bronze_pressure_plate" : "Bronze Pressure Plate",
+    "block.fusion.steel_pressure_plate" : "Steel Pressure Plate",
+    "block.fusion.sinisite_pressure_plate" : "Sinisite Pressure Plate",
+    "block.fusion.thyrium_pressure_plate" : "Thyrium Pressure Plate",
+    
     "fusion.jei.fusion_category": "Fusion Furnace Alloying", 
     "gui.jei.category.fusion.experience": "%s XP",
     "gui.jei.category.fusion_furnace_fuel" : "Fusion Furnace Fuel",

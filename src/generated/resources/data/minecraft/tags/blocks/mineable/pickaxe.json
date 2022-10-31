@@ -24,6 +24,10 @@
     "fusion:bronze_door",
     "fusion:steel_door",
     "fusion:thyrium_door",
-    "fusion:sinisite_door"
+    "fusion:sinisite_door",
+    "fusion:bronze_pressure_plate",
+    "fusion:steel_pressure_plate",
+    "fusion:sinisite_pressure_plate",
+    "fusion:thyrium_pressure_plate"
   ]
 }

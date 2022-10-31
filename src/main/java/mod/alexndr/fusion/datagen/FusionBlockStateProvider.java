@@ -71,9 +71,9 @@ public class FusionBlockStateProvider extends SimpleBlockStateProvider
     {
         // MODELS
         ModelFile bronzePlateModel = this.models().pressurePlate("bronze_plate", 
-                new ResourceLocation("minecraft", "block/bronze_block"));
+                new ResourceLocation(Fusion.MODID, "block/bronze_block"));
         ModelFile bronzePlateModel_down = this.models().pressurePlateDown("bronze_plate_down", 
-                new ResourceLocation("minecraft", "block/bronze_block"));
+                new ResourceLocation(Fusion.MODID, "block/bronze_block"));
         ModelFile steelPlateModel = this.models().pressurePlate("steel_plate", 
                 new ResourceLocation(Fusion.MODID, "block/steel_block"));
         ModelFile steelPlateModel_down = this.models().pressurePlateDown("steel_plate_down", 

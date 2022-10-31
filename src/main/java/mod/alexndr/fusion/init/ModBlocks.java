@@ -133,7 +133,7 @@ public final class ModBlocks
                                                                 .noCollission().strength(0.5F).sound(SoundType.METAL)));
     
     public static final RegistryObject<MultifunctionPressurePlateBlock> sinisite_pressure_plate = BLOCKS.register("sinisite_pressure_plate", 
-            () -> new MultifunctionPressurePlateBlock(75, MultifunctionPressurePlateBlock.Sensitivity.PLAYERS, 10, 
+            () -> new MultifunctionPressurePlateBlock(75, MultifunctionPressurePlateBlock.Sensitivity.PLAYERS_WEIGHTED, 10, 
                     Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE)
                       .noCollission().strength(0.5F).sound(SoundType.METAL)));
     
