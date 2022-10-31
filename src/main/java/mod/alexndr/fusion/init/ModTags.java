@@ -13,6 +13,7 @@ public class ModTags
         public static final TagKey<Item> INGOTS_COPPER = TagUtils.forgeTag("ingots/copper");
         public static final TagKey<Item> INGOTS_TIN = TagUtils.forgeTag("ingots/tin");
         public static final TagKey<Item> INGOTS_BRONZE = TagUtils.forgeTag("ingots/bronze");
+        public static final TagKey<Item> INGOTS_STEEL = TagUtils.forgeTag("ingots/steel");
         public static final TagKey<Item> INGOTS_MYTHRIL = TagUtils.forgeTag("ingots/mythril");
         public static final TagKey<Item> GEMS_ONYX = TagUtils.forgeTag("gems/onyx");
         public static final TagKey<Item> INGOTS_ADAMANTIUM = TagUtils.forgeTag("ingots/adamantium");
@@ -26,6 +27,7 @@ public class ModTags
     public static class Blocks
     {
         public static final TagKey<Block> BLOCK_BRONZE = TagUtils.forgeBlockTag("storage_blocks/bronze");
+        public static final TagKey<Item> BLOCK_STEEL = TagUtils.forgeTag("storage_blocks/steel");
     } // end class Blocks
 
     

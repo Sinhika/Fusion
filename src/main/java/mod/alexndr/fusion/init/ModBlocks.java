@@ -2,6 +2,7 @@ package mod.alexndr.fusion.init;
 
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.content.FusionFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.MultifunctionPressurePlateBlock;
 import mod.alexndr.simplecorelib.api.helpers.LightUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
@@ -119,4 +120,26 @@ public final class ModBlocks
             () -> new DoorBlock(Block.Properties.copy(thyrium_block.get()).noOcclusion()));
     public static RegistryObject<DoorBlock> sinisite_door = BLOCKS.register("sinisite_door",
             () -> new DoorBlock(Block.Properties.copy(sinisite_block.get()).noOcclusion()));
+    
+    // Blocks - pressure plates
+    public static final RegistryObject<MultifunctionPressurePlateBlock> bronze_pressure_plate = BLOCKS.register("bronze_pressure_plate", 
+                    () -> new MultifunctionPressurePlateBlock(150, MultifunctionPressurePlateBlock.Sensitivity.EVERYTHING_WEIGHTED, 10, 
+                                                              Block.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_ORANGE)
+                                                                .noCollission().strength(0.5F).sound(SoundType.METAL)));
+            
+    public static final RegistryObject<MultifunctionPressurePlateBlock> steel_pressure_plate =  BLOCKS.register("steel_pressure_plate", 
+                    () -> new MultifunctionPressurePlateBlock(150, MultifunctionPressurePlateBlock.Sensitivity.EVERYTHING_WEIGHTED, 10, 
+                                                              Block.Properties.of(Material.METAL)
+                                                                .noCollission().strength(0.5F).sound(SoundType.METAL)));
+    
+    public static final RegistryObject<MultifunctionPressurePlateBlock> sinisite_pressure_plate = BLOCKS.register("sinisite_pressure_plate", 
+            () -> new MultifunctionPressurePlateBlock(75, MultifunctionPressurePlateBlock.Sensitivity.PLAYERS, 10, 
+                    Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLUE)
+                      .noCollission().strength(0.5F).sound(SoundType.METAL)));
+    
+    public static final RegistryObject<MultifunctionPressurePlateBlock> thyrium_pressure_plate = BLOCKS.register("thyrium_pressure_plate", 
+            () -> new MultifunctionPressurePlateBlock(75, MultifunctionPressurePlateBlock.Sensitivity.LIVING_WEIGHTED, 10, 
+                                                      Block.Properties.of(Material.METAL, MaterialColor.COLOR_CYAN)
+                                                        .noCollission().strength(0.5F).sound(SoundType.METAL)));
+          
 } // end class

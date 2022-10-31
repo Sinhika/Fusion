@@ -51,6 +51,11 @@ public class FusionLootTableProvider extends BlockLootTableProvider
         slabDropTable(ModBlocks.thyrium_brick_slab.get());
         standardDropTable(ModBlocks.thyrium_bars.get());
         copyNameDropTable(ModBlocks.fusion_furnace.get(), ModBlocks.fusion_furnace.get().asItem());
+        standardDropTable(ModBlocks.bronze_pressure_plate.get());
+        standardDropTable(ModBlocks.steel_pressure_plate.get());
+        standardDropTable(ModBlocks.sinisite_pressure_plate.get());
+        standardDropTable(ModBlocks.thyrium_pressure_plate.get());
+
         return tables;
     }
 

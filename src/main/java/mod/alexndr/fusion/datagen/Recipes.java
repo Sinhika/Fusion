@@ -135,6 +135,16 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
     			Ingredient.of(ModItems.thyrium_ingot.get()), ModItems.thyrium_rod.get(), Ingredient.of(Items.GOLD_INGOT), 
     			has(Items.STRING), flag("fusion_bows"));
     	
+        // Fusion pressure_plates
+        this.setbuilder.buildSimplePressurePlate(consumer, Ingredient.of(ModTags.Items.INGOTS_BRONZE), 
+                ModBlocks.bronze_pressure_plate.get(), has(ModTags.Items.INGOTS_BRONZE));
+        this.setbuilder.buildSimplePressurePlate(consumer, Ingredient.of(ModTags.Items.INGOTS_STEEL),
+                ModBlocks.steel_pressure_plate.get(), has(ModTags.Items.INGOTS_STEEL));
+        this.setbuilder.buildSimplePressurePlate(consumer, Ingredient.of(ModItems.sinisite_ingot.get()),
+                ModBlocks.sinisite_pressure_plate.get(), has(ModItems.sinisite_ingot.get()));
+        this.setbuilder.buildSimplePressurePlate(consumer, Ingredient.of(ModItems.thyrium_ingot.get()),
+                ModBlocks.thyrium_pressure_plate.get(), has(ModItems.thyrium_ingot.get()));
+
     } // end registerMiscRecipes()
 
     
