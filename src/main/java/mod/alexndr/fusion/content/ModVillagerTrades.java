@@ -75,28 +75,29 @@ public class ModVillagerTrades
                 new ItemStack(ModItems.bronze_hoe.get()), 12, 1, 0.2F));
         trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
                 new ItemStack(ModItems.bronze_pickaxe.get()), 12, 1, 0.2F));
-        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
-                new ItemStack(ModItems.steel_axe.get()), 12, 1, 0.2F));
-        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
-                new ItemStack(ModItems.steel_shovel.get()), 12, 1, 0.2F));
-        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
-                new ItemStack(ModItems.steel_hoe.get()), 12, 1, 0.2F));
-        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
-                new ItemStack(ModItems.steel_pickaxe.get()), 12, 1, 0.2F));
         
         // journeyman
-        trades.get(3).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.steel_axe.get(), 
-                2, 3, 10, 0.2F));
-        trades.get(3).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.steel_shovel.get(), 
-                3, 3, 10, 0.2F));
-        trades.get(3).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.steel_pickaxe.get(), 
-                3, 3, 10, 0.2F));
-        
+        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
+                new ItemStack(ModItems.steel_axe.get()), 12, 10, 0.2F));
+        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
+                new ItemStack(ModItems.steel_shovel.get()), 12, 10, 0.2F));
+        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
+                new ItemStack(ModItems.steel_hoe.get()), 12, 10, 0.2F));
+        trades.get(2).add(new BasicItemListing( new ItemStack(Items.EMERALD, 1), 
+                new ItemStack(ModItems.steel_pickaxe.get()), 12, 10, 0.2F));
+       
         // expert trades
-        // NONE
+        trades.get(3).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.steel_axe.get(), 
+                2, 3, 20, 0.2F));
+        trades.get(3).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.steel_shovel.get(), 
+                3, 3, 20, 0.2F));
+        trades.get(3).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.steel_pickaxe.get(), 
+                3, 3, 20, 0.2F));
+        
         
         // master trades
-        // NONE
+        trades.get(5).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.thyrium_pickaxe.get(), 
+                13, 3, 30, 0.2F));
     } // end ArmorerTrades()
    
     public static void WeaponsmithTrades(VillagerTradesEvent evt)
@@ -115,14 +116,17 @@ public class ModVillagerTrades
                 new ItemStack(Items.EMERALD), 12, 10, 0.05F));
         
         // journeyman
-        trades.get(3).add(new BasicItemListing(new ItemStack(ModItems.steel_ingot.get()),
+        trades.get(3).add(new BasicItemListing(new ItemStack(ModItems.thyrium_ingot.get()),
                 new ItemStack(Items.EMERALD), 12, 20, 0.05F));
         
         // expert trades
-        // NONE
+        trades.get(4).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.thyrium_axe.get(), 
+                12, 3, 15, 0.2F));
         
         // master trades
-        // NONE
+        trades.get(5).add(new VillagerTrades.EnchantedItemForEmeralds(ModItems.thyrium_sword.get(), 
+                8, 3, 30, 0.2F));
+
     } // end ArmorerTrades()
    
 } // end class
