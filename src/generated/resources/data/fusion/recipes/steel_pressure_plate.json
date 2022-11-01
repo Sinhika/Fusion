@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "tag": "forge:ingots/steel"
+    }
+  },
+  "pattern": [
+    "   ",
+    "SS ",
+    "   "
+  ],
+  "result": {
+    "item": "fusion:steel_pressure_plate"
+  }
+}

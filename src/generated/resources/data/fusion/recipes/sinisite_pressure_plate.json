@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "fusion:sinisite_ingot"
+    }
+  },
+  "pattern": [
+    "   ",
+    "SS ",
+    "   "
+  ],
+  "result": {
+    "item": "fusion:sinisite_pressure_plate"
+  }
+}
