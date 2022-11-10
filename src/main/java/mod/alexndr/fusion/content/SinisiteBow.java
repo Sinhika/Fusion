@@ -6,12 +6,14 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import mod.alexndr.fusion.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -82,4 +84,15 @@ public class SinisiteBow extends BowItem
         tooltip.add((Component.translatable("tips.knockback_tooltip")).withStyle(ChatFormatting.GREEN));
     }
     
+    @Override
+    public boolean isValidRepairItem(ItemStack pStack, ItemStack pRepairCandidate)
+    {
+        return this.getRepairIngredient().test(pRepairCandidate) || super.isValidRepairItem(pStack, pRepairCandidate);
+    }
+    
+    public Ingredient getRepairIngredient()
+    {
+        return Ingredient.of(ModItems.sinisite_rod.get());
+    }
+
 } // end class
