@@ -13,6 +13,7 @@ import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.api.client.ClientOnlyWrapper;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -147,22 +148,20 @@ public class FusionRecipe implements IFusionRecipe
     /**
      * Returns an Item that is the result of this recipe
      */
-    @Override
-    public ItemStack assemble(RecipeWrapper inv)
-    {
-        return getResultItem().copy();
-    }
+	@Override
+	public ItemStack assemble(RecipeWrapper pContainer, RegistryAccess pRegistryAccess) {
+        return getResultItem(pRegistryAccess).copy();
+	}
 
     /**
      * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
      * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
      */
-    @Override
-    public ItemStack getResultItem()
-    {
+	@Override
+	public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
         return this.output;
-    }
-    
+	}
+
     @Override
     public Ingredient getCatalyst()
     {
@@ -245,12 +244,14 @@ public class FusionRecipe implements IFusionRecipe
             for (Ingredient input : recipe.getIngredients()) {
                 input.toNetwork(buf);
             }
-            buf.writeItemStack(recipe.getResultItem(), true);
+            buf.writeItemStack(recipe.getResultItem(null), true);
             recipe.getCatalyst().toNetwork(buf);
             buf.writeVarInt(recipe.getCookTime());
             buf.writeFloat(recipe.getExperience());
         } // end write(packet)
 
     } // end class FusionRecipeSerializer
+
+
 
 } // end class FusionRecipe

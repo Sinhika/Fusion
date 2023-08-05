@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import mod.alexndr.fusion.config.ConfigHolder;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModContainers;
+import mod.alexndr.fusion.init.ModCreativeTabs;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModRecipeTypes;
 import mod.alexndr.fusion.init.ModTiles;
@@ -33,6 +34,7 @@ public class Fusion
         
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModContainers.CONTAINER_TYPES.register(modEventBus);
         ModTiles.TILE_ENTITY_TYPES.register(modEventBus);
         ModRecipeTypes.RECIPE_TYPES.register(modEventBus);

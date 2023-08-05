@@ -6,30 +6,24 @@ import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.JsonOps;
 
 import mod.alexndr.fusion.init.ModRecipeTypes;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.NonNullList;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.NbtOps;
-import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 
-public class AbstractFusionRecipeProvider extends RecipeProvider
+public abstract class AbstractFusionRecipeProvider extends RecipeProvider
 {
 
-    public AbstractFusionRecipeProvider(DataGenerator generatorIn)
+    public AbstractFusionRecipeProvider(PackOutput pOutput)
     {
-        super(generatorIn);
-    }
-
-    @Override
-    public String getName()
-    {
-        return "SimpleOres:Fusion Alloy Recipes";
+        super(pOutput);
     }
 
     public static ResourceLocation id(String modid, String path) 
@@ -37,7 +31,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
         return new ResourceLocation(modid, "fusion_furnace/" + path);
     }
     
-    
+
     public static class FinishedFusionRecipe implements FinishedRecipe
     {
         private final ResourceLocation id;
@@ -134,5 +128,7 @@ public class AbstractFusionRecipeProvider extends RecipeProvider
             }
         }
     } // end-class FinishedFusionRecipe
+
+
     
 } // end class
