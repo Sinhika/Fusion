@@ -3,7 +3,6 @@ package mod.alexndr.fusion.api.datagen;
 import java.util.List;
 import java.util.function.Consumer;
 
-import mod.alexndr.fusion.api.recipe.AbstractFusionRecipeProvider;
 import mod.alexndr.simplecorelib.api.datagen.RecipeSetBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;

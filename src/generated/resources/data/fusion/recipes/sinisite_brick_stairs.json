@@ -10,6 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "building",
         "key": {
           "S": {
             "item": "fusion:sinisite_bricks"
@@ -23,7 +24,8 @@
         "result": {
           "count": 4,
           "item": "fusion:sinisite_brick_stairs"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

@@ -171,7 +171,8 @@ tasks.named('processResources', ProcessResources).configure {
             simpleores_version : simpleores_version,
             simpleores_range : simpleores_range,
             netherrocks_version : netherrocks_version,
-            netherrocks_range : netherrocks_range
+            netherrocks_range : netherrocks_range,
+            jei_version_range : jei_version_range,
     ]
     inputs.properties replaceProperties
 

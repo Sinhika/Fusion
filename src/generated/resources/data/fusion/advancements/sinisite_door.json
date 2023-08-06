@@ -26,7 +26,8 @@
           "recipes": [
             "fusion:sinisite_door"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

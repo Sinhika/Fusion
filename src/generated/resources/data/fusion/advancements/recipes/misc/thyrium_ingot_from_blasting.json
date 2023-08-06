@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fusion:thyrium_ingot_from_blasting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "thyrium_ingot_from_blasting": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "fusion:large_thyrium_chunk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "thyrium_ingot_from_blasting",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fusion:thyrium_ingot_from_blasting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

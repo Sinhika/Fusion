@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "W": {
       "tag": "minecraft:coals"
@@ -21,5 +22,6 @@
   ],
   "result": {
     "item": "fusion:fusion_furnace"
-  }
+  },
+  "show_notification": true
 }

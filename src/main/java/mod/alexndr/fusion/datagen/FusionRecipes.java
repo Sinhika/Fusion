@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.fusion.api.datagen.AbstractFusionRecipeProvider;
 import mod.alexndr.fusion.api.datagen.FusionRecipeSetBuilder;
-import mod.alexndr.fusion.api.recipe.AbstractFusionRecipeProvider;
 import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModTags;

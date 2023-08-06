@@ -10,6 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "building",
         "key": {
           "S": {
             "item": "fusion:steel_bricks"
@@ -23,7 +24,8 @@
         "result": {
           "count": 6,
           "item": "fusion:steel_brick_slab"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

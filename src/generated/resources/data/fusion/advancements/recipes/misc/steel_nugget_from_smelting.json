@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fusion:steel_nugget_from_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "steel_nugget_from_smelting": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "fusion:steel_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "steel_nugget_from_smelting",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fusion:steel_nugget_from_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

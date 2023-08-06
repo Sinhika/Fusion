@@ -10,6 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "building",
         "key": {
           "S": {
             "item": "fusion:bronze_ingot"
@@ -23,7 +24,8 @@
         "result": {
           "count": 3,
           "item": "fusion:bronze_door"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

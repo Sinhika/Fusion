@@ -10,6 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "equipment",
         "key": {
           "S": {
             "item": "fusion:bronze_ingot"
@@ -21,7 +22,8 @@
         ],
         "result": {
           "item": "fusion:bronze_shears"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

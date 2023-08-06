@@ -96,5 +96,6 @@
         "min": 1.0
       }
     }
-  ]
+  ],
+  "random_sequence": "fusion:inject/desert_pyramid"
 }

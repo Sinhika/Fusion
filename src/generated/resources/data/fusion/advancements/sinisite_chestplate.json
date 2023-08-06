@@ -26,7 +26,8 @@
           "recipes": [
             "fusion:sinisite_chestplate"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

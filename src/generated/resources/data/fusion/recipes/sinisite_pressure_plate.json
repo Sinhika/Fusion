@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "S": {
       "item": "fusion:sinisite_ingot"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "fusion:sinisite_pressure_plate"
-  }
+  },
+  "show_notification": true
 }

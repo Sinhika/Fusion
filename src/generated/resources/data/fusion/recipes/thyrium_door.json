@@ -10,6 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "building",
         "key": {
           "S": {
             "item": "fusion:thyrium_ingot"
@@ -23,7 +24,8 @@
         "result": {
           "count": 3,
           "item": "fusion:thyrium_door"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

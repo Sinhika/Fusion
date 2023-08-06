@@ -11,16 +11,17 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            }
+          ],
           "name": "fusion:fusion_furnace"
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:copy_name",
-          "source": "block_entity"
         }
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "fusion:blocks/fusion_furnace"
 }

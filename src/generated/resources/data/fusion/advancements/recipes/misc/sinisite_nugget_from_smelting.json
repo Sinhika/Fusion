@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fusion:sinisite_nugget_from_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "sinisite_nugget_from_smelting": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "fusion:sinisite_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "sinisite_nugget_from_smelting",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fusion:sinisite_nugget_from_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

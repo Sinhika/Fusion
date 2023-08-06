@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "S": {
       "item": "fusion:bronze_ingot"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "fusion:bronze_block"
-  }
+  },
+  "show_notification": true
 }

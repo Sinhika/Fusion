@@ -26,7 +26,8 @@
           "recipes": [
             "fusion:thyrium_hoe"
           ]
-        }
+        },
+        "sends_telemetry_event": true
       },
       "conditions": [
         {

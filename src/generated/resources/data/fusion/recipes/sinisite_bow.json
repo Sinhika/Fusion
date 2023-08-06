@@ -10,6 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "equipment",
         "key": {
           "X": {
             "item": "fusion:sinisite_rod"
@@ -28,7 +29,8 @@
         ],
         "result": {
           "item": "fusion:sinisite_bow"
-        }
+        },
+        "show_notification": true
       }
     }
   ]
