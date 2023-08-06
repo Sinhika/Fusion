@@ -2,8 +2,17 @@ package mod.alexndr.fusion.datagen;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import mod.alexndr.fusion.Fusion;
+import mod.alexndr.simplecorelib.api.datagen.SimpleLootTableProvider;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -27,16 +36,28 @@ public class FusionDataGenerator
     public static void gatherData(GatherDataEvent event)
     {
         DataGenerator gen = event.getGenerator();
-        gen.addProvider(event.includeServer(), new Recipes(gen));
-        gen.addProvider(event.includeServer(), new FusionRecipes(gen));
-        gen.addProvider(event.includeServer(), new SilentsRecipes(gen));
-        gen.addProvider(event.includeServer(), new FusionLootTableProvider(gen));
-        gen.addProvider(event.includeServer(), new FusionLootInjectorProvider(gen));
-        gen.addProvider(event.includeServer(), new ModBlockTags(gen, event.getExistingFileHelper()));
-        gen.addProvider(event.includeServer(), new ModItemTags(gen, event.getExistingFileHelper()));
+        PackOutput packOutput = gen.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();		
+
+        // server side
+        ModBlockTags blockTags = new ModBlockTags(packOutput, lookupProvider, existingFileHelper);
+        gen.addProvider(event.includeServer(), blockTags);
+        gen.addProvider(event.includeServer(),
+            	new ModItemTags(packOutput, lookupProvider, blockTags.contentsGetter(), event.getExistingFileHelper()));
+
+        gen.addProvider(event.includeServer(), new Recipes(packOutput));
+        gen.addProvider(event.includeServer(), new FusionRecipes(packOutput));
         
-        gen.addProvider(event.includeClient(), new FusionBlockStateProvider(gen, event.getExistingFileHelper()));
-        gen.addProvider(event.includeClient(), new FusionItemModelProvider(gen, event.getExistingFileHelper()));
+        gen.addProvider(event.includeServer(), 
+            	new SimpleLootTableProvider(packOutput, List.of(
+            			new LootTableProvider.SubProviderEntry(FusionLootTableSubprovider::new, LootContextParamSets.BLOCK),
+                		new LootTableProvider.SubProviderEntry(FusionLootInjectorSubprovider::new, LootContextParamSets.CHEST)
+            			)));
+        
+        // client side
+        gen.addProvider(event.includeClient(), new FusionBlockStateProvider(packOutput, event.getExistingFileHelper()));
+        gen.addProvider(event.includeClient(), new FusionItemModelProvider(packOutput, event.getExistingFileHelper()));
     } // end gatherData()
 
 } // end-class FusionDataGenerator

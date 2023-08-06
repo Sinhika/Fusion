@@ -1,7 +1,7 @@
 package mod.alexndr.fusion.datagen;
 
 import mod.alexndr.fusion.Fusion;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -9,9 +9,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class FusionItemModelProvider extends ItemModelProvider
 {
 
-    public FusionItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper)
+    public FusionItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper)
     {
-        super(generator, Fusion.MODID, existingFileHelper);
+        super(output, Fusion.MODID, existingFileHelper);
     }
 
     @Override

@@ -9,8 +9,9 @@ import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModTags;
 import mod.alexndr.simplecorelib.api.datagen.ISimpleConditionBuilder;
 import mod.alexndr.simplecorelib.api.datagen.RecipeSetBuilder;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -31,14 +32,14 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
 {
     private RecipeSetBuilder setbuilder;
 
-    public Recipes(DataGenerator generatorIn)
+    public Recipes(PackOutput pOutput)
     {
-        super(generatorIn);
+        super(pOutput);
         setbuilder = new RecipeSetBuilder(Fusion.MODID);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer)
     {
         registerStorageRecipes(consumer);
         registerMiscRecipes(consumer);
@@ -46,6 +47,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
         registerArmorRecipes(consumer);
         registerFurnaceRecipes(consumer);
         registerAestheticRecipes(consumer);
+        registerSilentsFurnaceRecipes(consumer);
     } // end registerRecipes()
 
     protected void registerToolRecipes(Consumer<FinishedRecipe> consumer)
@@ -116,7 +118,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
     protected void registerMiscRecipes(Consumer<FinishedRecipe> consumer)
     {
     	// fusion furnace
-    	ShapedRecipeBuilder.shaped(ModBlocks.fusion_furnace.get())
+    	ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.fusion_furnace.get().asItem())
     		.define('W', ItemTags.COALS)
     		.define('X', Blocks.BRICKS)
     		.define('Y', Blocks.FURNACE)
@@ -182,6 +184,26 @@ public class Recipes extends RecipeProvider implements IConditionBuilder, ISimpl
         					  ModItems.thyrium_pickaxe.get(), ModItems.thyrium_shovel.get(), ModItems.thyrium_sword.get()), 
         		ModItems.thyrium_nugget.get(), has(ModItems.thyrium_axe.get()), 0.2F, 200);
     } // end registerFurnaceRecipes()
+
+    private void registerSilentsFurnaceRecipes(Consumer<FinishedRecipe> consumer)
+    {
+        setbuilder.buildOre2IngotRecipes(consumer, 
+                Ingredient.of(ModItems.bronze_dust.get().asItem()),
+                ModItems.bronze_ingot.get(), 
+                has(ModItems.bronze_dust.get().asItem()), 0.4F, 200, "_from_dust");
+        setbuilder.buildOre2IngotRecipes(consumer, 
+                Ingredient.of(ModItems.steel_dust.get().asItem()),
+                ModItems.steel_ingot.get(), 
+                has(ModItems.steel_dust.get().asItem()), 0.4F, 200, "_from_dust");
+        setbuilder.buildOre2IngotRecipes(consumer, 
+                Ingredient.of(ModItems.thyrium_dust.get().asItem()),
+                ModItems.thyrium_ingot.get(), 
+                has(ModItems.thyrium_dust.get().asItem()), 0.4F, 200, "_from_dust");
+        setbuilder.buildOre2IngotRecipes(consumer, 
+                Ingredient.of(ModItems.sinisite_dust.get().asItem()),
+                ModItems.sinisite_ingot.get(), 
+                has(ModItems.sinisite_dust.get().asItem()), 0.4F, 200, "_from_dust");
+    }
 
     
     @Override

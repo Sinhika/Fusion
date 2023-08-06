@@ -1,33 +1,71 @@
 package mod.alexndr.fusion.datagen;
 
+import java.util.concurrent.CompletableFuture;
+
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.simplecorelib.api.datagen.MiningItemTags;
 import mod.alexndr.simplecorelib.api.helpers.TagUtils;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModItemTags extends MiningItemTags
 {
-    public ModItemTags(DataGenerator dataGenerator, ExistingFileHelper existingFileHelper)
+    public ModItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
+			CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper)
     {
-        super(dataGenerator, new ModBlockTags(dataGenerator, existingFileHelper), 
-                              Fusion.MODID, existingFileHelper);
+        super(output, lookupProvider, blockTagProvider, Fusion.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags()
+    protected void addTags(HolderLookup.Provider lookupProvider)
     {
-        super.addTags();
+        super.addTags(lookupProvider);
         registerDoorsSlabsAndStairs();
         registerDustTags();
         registerStorageBlockTags();
         registerIngotNuggetTags();
+        registerTools();
         registerMiscTags();
     }
 
-    
+    private void registerTools()
+    {
+    	this.tag(TagUtils.modTag("minecraft", "axes"))
+    		.add(ModItems.bronze_axe.get())
+    		.add(ModItems.steel_axe.get())
+    		.add(ModItems.sinisite_axe.get())
+    		.add(ModItems.thyrium_axe.get());
+    	
+    	this.tag(TagUtils.modTag("minecraft", "swords"))
+			.add(ModItems.bronze_sword.get())
+			.add(ModItems.steel_sword.get())
+			.add(ModItems.sinisite_sword.get())
+			.add(ModItems.thyrium_sword.get());
+
+    	this.tag(TagUtils.modTag("minecraft", "pickaxes"))
+			.add(ModItems.bronze_pickaxe.get())
+			.add(ModItems.steel_pickaxe.get())
+			.add(ModItems.sinisite_pickaxe.get())
+			.add(ModItems.thyrium_pickaxe.get());
+
+    	this.tag(TagUtils.modTag("minecraft", "shovels"))
+			.add(ModItems.bronze_shovel.get())
+			.add(ModItems.steel_shovel.get())
+			.add(ModItems.sinisite_shovel.get())
+			.add(ModItems.thyrium_shovel.get());
+
+    	this.tag(TagUtils.modTag("minecraft", "hoes"))
+			.add(ModItems.bronze_hoe.get())
+			.add(ModItems.steel_hoe.get())
+			.add(ModItems.sinisite_hoe.get())
+			.add(ModItems.thyrium_hoe.get());
+
+    } // end registerTools()
+
     private void registerIngotNuggetTags()
     {
     	// ingots

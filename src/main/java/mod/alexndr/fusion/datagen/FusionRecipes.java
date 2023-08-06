@@ -11,7 +11,7 @@ import mod.alexndr.fusion.config.FusionConfig;
 import mod.alexndr.fusion.init.ModItems;
 import mod.alexndr.fusion.init.ModTags;
 import mod.alexndr.simplecorelib.api.datagen.ISimpleConditionBuilder;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -31,14 +31,14 @@ public class FusionRecipes extends AbstractFusionRecipeProvider
 {
     private FusionRecipeSetBuilder fusionbuilder;
 
-    public FusionRecipes(DataGenerator generatorIn)
+    public FusionRecipes(PackOutput pOutput)
     {
-        super(generatorIn);
+        super(pOutput);
         fusionbuilder = new FusionRecipeSetBuilder(Fusion.MODID);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer)
     {
         registerBronzeRecipes(consumer);
         registerSteelRecipes(consumer);

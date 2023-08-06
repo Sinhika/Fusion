@@ -3,7 +3,7 @@ package mod.alexndr.fusion.datagen;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.init.ModBlocks;
 import mod.alexndr.simplecorelib.api.datagen.SimpleBlockStateProvider;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -11,9 +11,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class FusionBlockStateProvider extends SimpleBlockStateProvider
 {
 
-    public FusionBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper)
+    public FusionBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper)
     {
-        super(gen, Fusion.MODID, exFileHelper);
+        super(output, Fusion.MODID, exFileHelper);
     }
 
     @Override
