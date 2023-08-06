@@ -18,8 +18,10 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mod.alexndr.fusion.Fusion;
 import mod.alexndr.fusion.api.recipe.IFusionRecipe;
 import mod.alexndr.fusion.init.ModBlocks;
+import mod.alexndr.netherrocks.client.jei.NetherFurnaceFuelRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -79,14 +81,14 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
     } // end ctor
     
     @Override
-    public void draw(IFusionRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack matrixStack, double mouseX, double mouseY)
+	public void draw(IFusionRecipe recipe,  IRecipeSlotsView recipeSlotsView,  GuiGraphics guiGraphics, double mouseX, double mouseY) 
     {
-        flame.draw(matrixStack, 23, 51);
-        flame.draw(matrixStack, 73, 51);
-        arrow_left.draw(matrixStack, 19, 30);
-        arrow_right.draw(matrixStack, 68, 30);
-        bubble_left.draw(matrixStack, 32, 0);
-        bubble_right.draw(matrixStack, 66, 0);
+        flame.draw(guiGraphics, 23, 51);
+        flame.draw(guiGraphics, 73, 51);
+        arrow_left.draw(guiGraphics, 19, 30);
+        arrow_right.draw(guiGraphics, 68, 30);
+        bubble_left.draw(guiGraphics, 32, 0);
+        bubble_right.draw(guiGraphics, 66, 0);
         
         float experience = recipe.getExperience();
         if (experience > 0) {
@@ -94,7 +96,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
             Minecraft minecraft = Minecraft.getInstance();
             Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(experienceString);
-            fontRenderer.draw(matrixStack, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
+            guiGraphics.drawString(fontRenderer, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
         }
     }
 
@@ -129,7 +131,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
         builder.addSlot(INPUT, 0, 30).addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(INPUT, 93, 30).addIngredients(recipe.getIngredients().get(1));
         builder.addSlot(INPUT, 46, 2).addIngredients(recipe.getCatalyst());
-        builder.addSlot(OUTPUT,46, 28).addItemStack(recipe.getResultItem());
+        builder.addSlot(OUTPUT,46, 28).addItemStack(recipe.getResultItem(null));
     }
 
     @Override
