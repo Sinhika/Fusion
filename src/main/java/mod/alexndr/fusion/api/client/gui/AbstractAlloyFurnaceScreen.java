@@ -104,16 +104,16 @@ public abstract class AbstractAlloyFurnaceScreen<T extends AbstractAlloyFurnaceC
         String s = this.title.getString();
         String [] s2 = s.split("\\s+", 2);
         int left_offset = this.imageWidth / 2 - forbidden_area/2 - this.font.width(s2[0]);
-        gg.drawString( this.font, s2[0], left_offset, 6, displayNameColor);
+        gg.drawString( this.font, s2[0], left_offset, 6, displayNameColor, false);
         // In some languages, the title is one word, not two.
         if (s2.length > 1)
         {
             int right_offset = this.imageWidth / 2 + forbidden_area/2;
-            gg.drawString( this.font, s2[1], right_offset, 6, displayNameColor);
+            gg.drawString( this.font, s2[1], right_offset, 6, displayNameColor, false);
         }
         //this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0x404040);
         
-        gg.drawString( this.font, this.playerInventoryTitle.getString(), 8, (this.imageHeight - 96 + 2), displayNameColor);
+        gg.drawString( this.font, this.playerInventoryTitle.getString(), 8, (this.imageHeight - 96 + 2), displayNameColor, false);
     } // end ()
 
     private int getSmeltTimeScaled(int pixels)
