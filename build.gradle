@@ -138,13 +138,13 @@ dependencies {
     implementation fg.deobf("simpleores:SimpleOres2:${simpleores_version}")
     implementation fg.deobf("netherrocks:Netherrocks:${netherrocks_version}")
     // UNCOMMENT JEI stuff if JEI support ready.
-  // compile against the JEI API but do not include it at runtime
-   compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}-common-api:${jei_version}")
-  compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}-forge-api:${jei_version}")
-  // at runtime, use the full JEI jar for Forge
-   runtimeOnly fg.deobf("mezz.jei:jei-${version_mcjei}-forge:${jei_version}")
-    compileOnly fg.deobf("com.github.cech12:BucketLib:${current_bucketlib_version}:api") 
-    runtimeOnly fg.deobf("com.github.cech12:BucketLib:${current_bucketlib_version}")
+  	// compile against the JEI API but do not include it at runtime
+   	compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}-common-api:${jei_version}")
+  	compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}-forge-api:${jei_version}")
+  	// at runtime, use the full JEI jar for Forge
+   	runtimeOnly fg.deobf("mezz.jei:jei-${version_mcjei}-forge:${jei_version}")
+   	compileOnly fg.deobf("com.github.cech12:BucketLib:${current_bucketlib_version}:api") 
+  	runtimeOnly fg.deobf("com.github.cech12:BucketLib:${current_bucketlib_version}")
 
 }
 
