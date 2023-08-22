@@ -46,7 +46,7 @@ public class FusionFuelCategory extends VeryAbstractFurnaceVariantCategory<Fusio
         flame.draw(guiGraphics, 1, 0);
         Minecraft minecraft = Minecraft.getInstance();
         this.smeltCountText = createSmeltCountText(recipe.getBurnTime());
-       guiGraphics.drawString(minecraft.font, smeltCountText, 24, 13, 0xFF808080);
+       guiGraphics.drawString(minecraft.font, smeltCountText, 24, 13, 0xFF808080, false);
     }
 
 } // end class
