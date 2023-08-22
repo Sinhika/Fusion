@@ -28,43 +28,10 @@ public class ModItemTags extends MiningItemTags
         registerDustTags();
         registerStorageBlockTags();
         registerIngotNuggetTags();
-        registerTools();
-        registerMiscTags();
+        registerToolTags(ModItems.ITEMS);
+        registerArmorTags(ModItems.ITEMS);
     }
 
-    private void registerTools()
-    {
-    	this.tag(TagUtils.modTag("minecraft", "axes"))
-    		.add(ModItems.bronze_axe.get())
-    		.add(ModItems.steel_axe.get())
-    		.add(ModItems.sinisite_axe.get())
-    		.add(ModItems.thyrium_axe.get());
-    	
-    	this.tag(TagUtils.modTag("minecraft", "swords"))
-			.add(ModItems.bronze_sword.get())
-			.add(ModItems.steel_sword.get())
-			.add(ModItems.sinisite_sword.get())
-			.add(ModItems.thyrium_sword.get());
-
-    	this.tag(TagUtils.modTag("minecraft", "pickaxes"))
-			.add(ModItems.bronze_pickaxe.get())
-			.add(ModItems.steel_pickaxe.get())
-			.add(ModItems.sinisite_pickaxe.get())
-			.add(ModItems.thyrium_pickaxe.get());
-
-    	this.tag(TagUtils.modTag("minecraft", "shovels"))
-			.add(ModItems.bronze_shovel.get())
-			.add(ModItems.steel_shovel.get())
-			.add(ModItems.sinisite_shovel.get())
-			.add(ModItems.thyrium_shovel.get());
-
-    	this.tag(TagUtils.modTag("minecraft", "hoes"))
-			.add(ModItems.bronze_hoe.get())
-			.add(ModItems.steel_hoe.get())
-			.add(ModItems.sinisite_hoe.get())
-			.add(ModItems.thyrium_hoe.get());
-
-    } // end registerTools()
 
     private void registerIngotNuggetTags()
     {
@@ -101,17 +68,6 @@ public class ModItemTags extends MiningItemTags
 	        .add(ModItems.thyrium_nugget.get());
 	    
     } // end registerIngotNuggetTags()
-    
-    
-    private void registerMiscTags()
-    {
-    	this.tag(TagUtils.forgeTag("shears"))
-			.add(ModItems.steel_shears.get())
-			.add(ModItems.bronze_shears.get())
-			.add(ModItems.sinisite_shears.get())
-			.add(ModItems.thyrium_shears.get());
-    	
-    } // end registerMiscTags()
     
     
     private void registerDustTags()

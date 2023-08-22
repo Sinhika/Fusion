@@ -31,6 +31,7 @@ public class ModBlockTags extends MiningBlockTags
         registerBeaconTags();
         registerDoorsSlabsAndStairs();
         registerMiscTags();
+        
 	}
 
     private void registerMiscTags()
@@ -110,6 +111,9 @@ public class ModBlockTags extends MiningBlockTags
         this.tag(TagUtils.forgeBlockTag("storage_blocks/thyrium"))
         	.add(ModBlocks.thyrium_block.get());
     }
+
+	@Override
+	protected void registerOreTags() {}
     
     
 } // end class
