@@ -93,7 +93,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<IFusionRecip
             Minecraft minecraft = Minecraft.getInstance();
             Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(experienceString);
-            guiGraphics.drawString(fontRenderer, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080);
+            guiGraphics.drawString(fontRenderer, experienceString, background.getWidth() - stringWidth, 0, 0xFF808080, false);
         }
     }
 
